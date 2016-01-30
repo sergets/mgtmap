@@ -15,6 +15,8 @@ ymaps.ready(function() {
 
         _coll : new ymaps.GeoObjectCollection(),
 
+        _jcColl : new ymaps.GeoObjectCollection(),
+
         _junctions : {},
 
         _visibleSegments : {},
@@ -78,6 +80,7 @@ ymaps.ready(function() {
                     this._map.events
                         .add('boundschange', this._onBoundsChanged, this);
                     this._map.geoObjects.add(this._coll);
+                    this._map.geoObjects.add(this._jcColl);
                     this._onBoundsChanged();
                 }, this);
             }, this);
@@ -88,10 +91,12 @@ ymaps.ready(function() {
 
         _hideAllSegments : function() {
             this._coll.removeAll();
+            this._junctions = {};
             this._visibleSegments = {};
         },
 
         _showSegmentsByIds : function(ids) {
+            this._jcColl.removeAll();
             this._load('data/segments.json', function(segments) {
                 Object.keys(this._visibleSegments)
                     .filter(function(id) {
@@ -106,39 +111,53 @@ ymaps.ready(function() {
                     .forEach(function(id) {
                         this._addSegment(id, segments[id]);
                     }, this);
+
+                Object.keys(this._junctions).forEach(function(key) {
+                    if(this._junctions[key] && this._junctions[key].length > 1) {
+                        this._jcColl.add(new ymaps.Placemark(key.split(',')));
+                    }
+                }, this);
             }, this);
         },
 
         _removeSegmentById : function(id) { 
             this._coll.remove(this._visibleSegments[id]);
+            var coords = this._visibleSegments[id].geometry.getCoordinates();
+            this._junctions[coords[0].join()] = this._junctions[coords[0].join()].filter(function(js) { return js != id; });
+            this._junctions[coords[coords.length - 1].join()] = this._junctions[coords[coords.length - 1].join()].filter(function(js) { return js != -id; });
             delete this._visibleSegments[id];
         },
 
         _addSegment : function(id, coords) {
             var segment = this._createPolyline(id, coords, this._map.getZoom());
-           // (this._junctions[coords[0].join()] || (this._junctions[coords[0].join()] = []).push(id);
-           // (this._junctions[coords[coords.length - 1].join()] || (this._junctions[coords[coords.length - 1]].join()] = []).push(-id);
+            (this._junctions[coords[0].join()] || (this._junctions[coords[0].join()] = [])).push(id);
+            (this._junctions[coords[coords.length - 1].join()] || (this._junctions[coords[coords.length - 1].join()] = [])).push(-id);
             this._visibleSegments[id] = segment;
             this._coll.add(segment);
         },
 
         _createPolyline : function(id, coords, zoom) {
-            var reverse = 1;
-            if(coords[0][0] > coords[coords.length - 1][0]) {
-                coords = coords.reverse();
+           // console.log(coords, '!');
+           // var reverse = 1;
+           // if(coords[0][0] > coords[coords.length - 1][0]) {
+           //     coords = coords.reverse();
                 //reverse = -1;
-            }
+           // }
             var routes = this._getRoutesForSegment(id).map(this._getRouteData, this),
                 colors = routes.map(function(r) { return r.color; }),
                 widths = routes.map(function(r) { return r.width / (zoom > 15? 0.5 : (16 - zoom)); }),
                 directions = routes.map(function(r) { return r.direction; });
             
           
-            return new ymaps.Polyline(coords.map(function(point) {
+            return new ymaps.Polyline(coords/*.map(function(point) {
                 return [55 + point[1], 37 + point[0]];
-            }), {
+            })*/, {
                 id: id
             }, this._getLineOptions(colors, widths, directions));
+        },
+
+        _createJunction : function(coords) {
+            return new ymaps.Placemark(coords, {}, this._getJunctionOptions(this._junctions[coords.join()].filter(function(seg) { return seg > 0; })))
         },
 
         _getLineOptions : function(colors, widths, directions) {
@@ -242,8 +261,8 @@ ymaps.ready(function() {
             this._load('data/bounds.json', function(response) {
                 var res = [];
                  response.forEach(function(segment, i) {
-                    if(segment[0][1] + 55 < bounds[1][0] && bounds[0][0] < segment[1][1] + 55) {
-                        if(segment[0][0] + 37 < bounds[1][1] && bounds[0][1] < segment[1][0] + 37) {
+                    if(segment[0][0] < bounds[1][0] && bounds[0][0] < segment[1][0]) {
+                        if(segment[0][1] < bounds[1][1] && bounds[0][1] < segment[1][1]) {
                             res.push(i);
                         }
                     }
