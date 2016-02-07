@@ -32,7 +32,8 @@ ymaps.ready(function() {
                 '<div class="segment" segment-id="$[properties.id]" routes-joined="$[properties.routesJoined]">' + 
                     '$[properties.routesHtml]' +
                     '<div class="edit-segment">Маршруты</div>' +
-                    '<div class="edit-segment-geometry">Геометрия</div>' +
+                    '<div class="reverse-segment">Развернуть</div>' +
+                    // '<div class="edit-segment-geometry">Геометрия</div>' +
                 '</div>',
                 {
                     build: function(a, b, c) {
@@ -86,7 +87,9 @@ ymaps.ready(function() {
             }, this);
             $(document)
                 .on('click', '.segment .edit-segment', this._onEditSegment.bind(this))
-                .on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this));
+                .on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
+
+                //.on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this));
          },
 
         _hideAllSegments : function() {
@@ -113,9 +116,10 @@ ymaps.ready(function() {
                     }, this);
 
                 Object.keys(this._junctions).forEach(function(key) {
-                    if(this._junctions[key] && this._junctions[key].length > 1) {
-                        this._jcColl.add(new ymaps.Placemark(key.split(',')));
-                    }
+                    //if(this._junctions[key] && this._junctions[key].length) {
+                        var jc = this._createJunction(key.split(','));
+                        jc && this._jcColl.add(jc);
+                    //}
                 }, this);
             }, this);
         },
@@ -157,7 +161,10 @@ ymaps.ready(function() {
         },
 
         _createJunction : function(coords) {
-            return new ymaps.Placemark(coords, {}, this._getJunctionOptions(this._junctions[coords.join()].filter(function(seg) { return seg > 0; })))
+            var opts = this._getJunctionOptions(coords, this._junctions[coords.join()]);
+            if (opts.visible) {
+                return new ymaps.Placemark(coords, opts.properties, opts.options);
+            }
         },
 
         _getLineOptions : function(colors, widths, directions) {
@@ -221,6 +228,151 @@ ymaps.ready(function() {
                 strokeColor : resColors,
                 strokeWidth : resWidths,
                 strokeStyle : styles
+            };
+        },
+
+        _getJunctionOptions : function(coords, segmentIds) {
+            var //segments = segmentIds.map(function(id) {
+                //    return this._segments[Math.abs(id)];
+                //}),
+                routes = {},
+                inRoutes = {},
+                outRoutes = {};
+
+            segmentIds.forEach(function(id) {
+                var routesForSegment = this._getRoutesForSegment(Math.abs(id));
+                routesForSegment.forEach(function(rt) {
+                    var collection;
+
+                    switch(rt[0]) {
+                        case '-':
+                            return;
+                        case '>':
+                        case '<':
+                            var m = rt[0] == '>'? 1 : -1,
+                                n = id / Math.abs(id);
+                            collection = m * n > 0? inRoutes : outRoutes;
+                            rt = rt.substr(1);
+                            break;
+                        default:
+                            collection = routes;
+                    }
+                        
+                    (collection[rt] || (collection[rt] = [])).push(id);
+                })
+            }, this);
+
+            var passing = []
+                    .concat(Object.keys(routes).filter(function(rt) {
+                        return routes[rt].length == 2 && !inRoutes[rt] && !outRoutes[rt];
+                    }))
+                    .concat(Object.keys(inRoutes).filter(function(rt) {
+                        
+                        return !routes[rt] && inRoutes[rt].length == 1 && outRoutes[rt] && outRoutes[rt].length == 1;// ) {
+                         //   console.log()
+                       // }
+                    })),
+                terminating = Object.keys(routes).filter(function(rt) {
+                        return routes[rt].length == 1 && !inRoutes[rt] && !outRoutes[rt];
+                    }),
+                splitting = Object.keys(routes).filter(function(rt) {
+                        return routes[rt].length == 1 && 
+                            inRoutes[rt] && inRoutes[rt].length == 1 &&
+                            outRoutes[rt] && outRoutes[rt].length == 1;
+                    }),
+                uturning = Object.keys(routes).filter(function(rt) {
+                        return routes[rt].length == 3 && !inRoutes[rt] && !outRoutes[rt];
+                    }),
+                all = Object.keys([]
+                .concat(Object.keys(routes))
+                .concat(Object.keys(inRoutes))
+                .concat(Object.keys(outRoutes))
+                .reduce(function(p, i) { p[i] = true; /* console.log('---', JSON.stringify(p), Object.keys(p));*/ return p; }, {}));
+
+            var isSimple = (all.length === passing.length + terminating.length + splitting.length + uturning.length);
+
+            ///
+
+            var jcLines = [],
+                segmentsToPairWith = segmentIds,
+                fromSegmentId,
+                fromRoutes;
+            
+            while(segmentsToPairWith[0]) {
+                fromSegmentId = segmentsToPairWith[0];
+                segmentsToPairWith = segmentsToPairWith.slice(1);
+            //segmentIds.forEach(function(fromSegmentId) {
+                fromRoutes = this._getRoutesForSegment(Math.abs(fromSegmentId));
+                if(fromSegmentId > 0) {
+                    //fromSegmentId = -fromSegmentId;
+                    fromRoutes = fromRoutes.slice().reverse().map(function(rt) {
+                        if(rt[0] == '>') { rt = '<' + rt.substr(1); }
+                        else if(rt[0] == '<') { rt = '>' + rt.substr(1); }
+                        return rt;
+                    });
+                }
+                segmentsToPairWith.forEach(function(toSegmentId) {
+                    //if(fromSegmentId == toSegmentId) return;
+
+                    var toRoutes = this._getRoutesForSegment(Math.abs(toSegmentId));
+                    if(toSegmentId < 0) {
+                        //toSegmentId = -toSegmentId;
+                        toRoutes = toRoutes.slice().reverse().map(function(rt) {
+                            if(rt[0] == '>') { rt = '<' + rt.substr(1); }
+                            else if(rt[0] == '<') { rt = '>' + rt.substr(1); }
+                            return rt;
+                        });
+                    }
+
+                    var i = 0,
+                        j = -1,
+                        route,
+                        newLine = { routes : [] };
+
+                    while(i < fromRoutes.length) {
+                        route = fromRoutes[i],
+                        j = toRoutes.indexOf(route);
+    
+                        if(j != -1 && route[0] != '-') {
+                            newLine.routes.push(route);
+                            newLine.from = fromSegmentId;
+                            newLine.to = toSegmentId;
+                            newLine.beforeFrom = fromRoutes.slice(0, i);
+                            newLine.beforeTo = toRoutes.slice(0, j);
+
+                            while(toRoutes.indexOf(fromRoutes[++i]) == ++j && fromRoutes[i][0] != '-') {
+                                newLine.routes.push(fromRoutes[i]);
+                            }
+                            newLine.afterFrom = fromRoutes.slice(i);
+                            newLine.afterTo = toRoutes.slice(j);
+
+                            jcLines.push(newLine);
+                            newLine = { routes : [] };
+                            j = -1;
+                        } else {
+                            i++;
+                        }
+                    }
+                }, this);
+            }
+
+            ///
+                
+            return {
+                visible : false, // !isSimple || !!terminating.length,
+                properties : {
+                    balloonContent : (terminating.length? ('Конечная ' + terminating.join(', ') + '<br>') : '') +
+                        'Маршруты: ' + all.join(', ') + 
+                        //'<br>Повороты: ' + JSON.stringify(jcLines) + 
+                        (isSimple? '' : '<br>Особенности у: ' + all.filter(function(rt) {
+                            return [terminating, passing, splitting, uturning].every(function(arr) { return arr.indexOf(rt) == -1; });
+                        }).join(','))
+    
+                        
+                },
+                options : {
+                    preset : 'islands#' + (isSimple? 'darkGreen' : 'red') + 'Circle' + (terminating.length? 'Dot':'') + 'Icon'
+                }
             };
         },
 
@@ -293,11 +445,27 @@ ymaps.ready(function() {
             }
         },
 
-        _onEditSegmentGeometry : function(e) {
+        _onReverseSegment : function(e) {
+            var segment = $(e.target).parent('.segment'),
+                id = segment.attr('segment-id'),
+                oldRoutes = this._getRoutesForSegment(id),
+                routes = oldRoutes.reverse();
+            
+                this._routesBySegment[id] = routes;
+                this._removeSegmentById(id);
+                this._load('data/segments.json', function(segments) {
+                    this._addSegment(id, segments[id]);
+                }, this);
+                this._saveRoutes();
+                e.preventDefault();
+        },
+
+
+        /*_onEditSegmentGeometry : function(e) {
             var segment = $(e.target).parent('.segment'),
                 id = segment.attr('segment-id');
             this._visibleSegments[id].editor.startEditing();
-        },
+        },*/
 
         _load : function(file, callback, ctx) {
             if(this._loadCache[file]) {
