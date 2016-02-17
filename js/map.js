@@ -48,6 +48,7 @@ ymaps.ready(function() {
                                 return route.indexOf('-') == -1;
                             })
                             .map(function(route) {
+                                route = route.replace(/^[<>]/, '');
                                 return '<div class="route" style="background: ' + getBusColor(route) + '">' + 
                                     route + 
                                 '</div>';
@@ -64,6 +65,7 @@ ymaps.ready(function() {
             return '<b>#' + id + '</b><br>' + 
                 '<div class="segment-form">' +
                 routes.map(function(route) {
+                    route = route.replace(/^[<>]/, '');
                     return '<div class="route" style="background: ' + getBusColor(route) + '">' + 
                         route + 
                         '</div>';
