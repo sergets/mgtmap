@@ -2,7 +2,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
         <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
-        <script type="text/javascript" src="/jquery.min.js"></script>
+        <script type="text/javascript" src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&load=package.full,graphics.generator.stroke.outline" type="text/javascript"></script>
         <script type="text/javascript" src="js/colors.js"></script>
         <script type="text/javascript" src="js/geom.js"></script>
@@ -30,6 +30,7 @@
                 text-align: center;
                 color: white;
                 font-weight: bold;
+                cursor: pointer;
             }
 
             .edit-segment,
@@ -43,9 +44,30 @@
                 text-align : center;
                 font-weight : bold;
             }
+            
+            .current-route {
+                display: none;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 100px;
+                height: 28px;
+                font: 20px/28px sans-serif;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            
+            body.route-selected .current-route {
+                display: block;
+            }
         </style>
     </head>
     <body>
         <div id="map"></div>
+        <div class="current-route"></div>
+        <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter37075485 = new Ya.Metrika({ id:37075485, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/37075485" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
     </body>
 </html>
