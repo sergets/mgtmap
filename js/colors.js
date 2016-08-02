@@ -86,11 +86,11 @@
                 bus = bus.substr(3);
                 type = 0;
             }
-            if(bus.indexOf('к') != -1) {
+            if(/[a-я]$/.test(bus)) {
                 bus = bus.substr(0, bus.length - 1);
                 k = true;
             }
-            bus = +bus;
+            bus = +bus.replace(/^[^\d]/g, '');
             if(isNaN(bus)) {
                 bus = 0;
             }
