@@ -86,7 +86,7 @@
                 bus = bus.substr(3);
                 type = 0;
             }
-            if(/[a-я]$/.test(bus)) {
+            if(/[a-я]$/i.test(bus)) {
                 bus = bus.substr(0, bus.length - 1);
                 k = true;
             }
