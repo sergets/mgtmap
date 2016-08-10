@@ -2,7 +2,7 @@ ymaps.ready(function() {
     // localStorage.clear();
 
     busMap = {
-        _isAdminMode : false,
+        _isAdminMode : location.search === '?admin',
 
         _map : new ymaps.Map('map', $.extend({
             controls: ['zoomControl', 'geolocationControl']
@@ -57,7 +57,7 @@ ymaps.ready(function() {
                         //console.warn(res.properties.get('segmentId'))
                         res.properties.set('routesHtml', that._getRoutesForSegment(id)
                             .filter(function(route) {
-                                return route.indexOf('-') == -1;
+                                return route.indexOf('-') !== 0;
                             })
                             .map(function(route) {
                                 route = route.replace(/^[<>]/, '');
@@ -664,8 +664,14 @@ ymaps.ready(function() {
                     //console.info(res);
                 },
                 error : function(req, st, e) {
-                    console.warn(e.message);
-                }
+                    this._saveWindow || (this._saveWindow = window.open('about:blank'));
+                    this._saveWindow.document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._routesBySegment, { 
+                        shouldExpand : function(obj, level) {
+                            return level < 2;
+                        }
+                    }) + '</pre>';
+                },
+                context : this
             })
         }
     };
