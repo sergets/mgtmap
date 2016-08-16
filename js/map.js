@@ -2,7 +2,9 @@ ymaps.ready(function() {
     // localStorage.clear();
 
     busMap = {
-        _isAdminMode : location.search === '?admin',
+        _isAdminMode : location.search.indexOf('admin') != -1,
+        
+        _isEqualWidthsMode : location.search.indexOf('equal') != -1,
 
         _map : new ymaps.Map('map', $.extend({
             controls: ['zoomControl', 'geolocationControl']
@@ -278,7 +280,7 @@ ymaps.ready(function() {
             
 
             var routes = this._getRoutesForSegment(id).map(this._getRouteData, this),
-                colors = [], widths = [], directions = [];
+                colors = [], widths = [], directions = [], diffStates = [];
 
             if(this._selectedRoute) {
                 var rts = [];
@@ -290,17 +292,19 @@ ymaps.ready(function() {
                 colors = rts.map(function(x) { return routes[x].color; });
                 widths = rts.map(function(x) { return 10; });
                 directions = rts.map(function(x) { return routes[x].direction; });
+                diffStates = rts.map(function(x) { return routes[x].diffState; });
             } else {
                 colors = routes.map(function(r) { return r.color; });
                 widths = routes.map(function(r) {
                     return this._widthFactor * r.width / (zoom > 15? 0.5 : (16 - zoom));
                 }, this);
                 directions = routes.map(function(r) { return r.direction; });
+                diffStates = routes.map(function(r) { return r.diffState; });
             }
 
             return new ymaps.Polyline(coords, {
                 id: id
-            }, this._getLineOptions(colors, widths, directions));
+            }, this._getLineOptions(colors, widths, directions, diffStates));
         },
 
         _createJunction : function(coords) {
@@ -310,7 +314,7 @@ ymaps.ready(function() {
             }
         },
 
-        _getLineOptions : function(colors, widths, directions) {
+        _getLineOptions : function(colors, widths, directions, diffStates) {
             var styles = [null],
                 resWidths = [10],
                 resColors = ['ffffff00'],
@@ -358,10 +362,23 @@ ymaps.ready(function() {
                                 var res = ymaps.graphics.generator.stroke.outline.sides(a, Math.abs(actualShift))[actualShift > 0? 'leftSide' : 'rightSide'];
                                 return geomUtils.cut(res, Math.abs(actualShift), Math.abs(actualShift));
                             });
-                   
                         }
                     });
                     resColors.push(colors[i]);
+                    resWidths.push(width);
+                }
+                if(diffStates[i]) {
+                    styles.push({
+                        style: [1, 3],
+                        offset: width * 1.2,
+                        generator: function(paths) {
+                            return paths.map(function(a) {
+                                var res = ymaps.graphics.generator.stroke.outline.sides(a, Math.abs(actualShift))[actualShift > 0? 'leftSide' : 'rightSide'];
+                                return geomUtils.cut(res, Math.abs(actualShift), Math.abs(actualShift));
+                            });
+                        }
+                    });
+                    resColors.push(diffStates[i] === +1? '00ff00ff' : 'ff0000ff');
                     resWidths.push(width);
                 }
                 shift += width;
@@ -543,7 +560,8 @@ ymaps.ready(function() {
             return {
                 color : color,
                 direction : direction,
-                width : this._widths[route] || 0
+                width : this._isEqualWidthsMode? 1 : (this._widths[route] || 0),
+                diffState : 0
             };
         },
 
@@ -637,7 +655,7 @@ ymaps.ready(function() {
                 $.ajax({
                     url : file,
                     data : {
-                        ncrnd : Math.random()
+                        // ncrnd : Math.random()
                     },
                     success : function(res) {
                         this._loadCache[file] = res;
