@@ -3,7 +3,7 @@
     <style>
         body {
             background: #fec;
-            font-family: roboto;
+            font-family: roboto, helvetica, sans-serif;
         }
         
         .balloon {
@@ -14,6 +14,12 @@
             right: 10px;
             background: white;
             box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .balloon__title {
+            margin: 10px;
+            font-weight: bold;
+            color: gray;
         }
         
         .balloon__wrapper {
@@ -45,59 +51,171 @@
         {
             color: gray;
             padding: 5px;
-            font-size: 10px;
-            border: 0;
+            font-size: 15px;
+            border: none;
             margin: 0;
-            line-height: 25px;
+            line-height: 20px;
         }
         
-        .period__date-input
+        .period__date-input,
+        .period_edited .period__date
         {
             display: none;
         }
         
-        .period_editing .period__date-input
+        .period_edited .period__date-input
         {
             display: block;
         }
+
+        .route
+        {
+            overflow: hidden;
+            height: 50px;
+        }
         
-        .period_editing .period__date
+        .route__label,
+        .route__input
+        {
+            margin: 1px;
+            height: 48px;
+            line-height: 50px;
+            padding: 0;
+            padding-left: 5px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            width: 150px;
+            background: none;
+            border: none;
+        }
+
+        .route__input {
+            padding: 10px;
+            padding-left: 5px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .route__input,
+        .route_edited .route__label
         {
             display: none;
         }
         
-        .route {
-            padding: 10px;
-            padding-left: 5px;
-            color: white;
-            font-weight: bold;
+        .route_edited .route__input
+        {
+            display: block;
+        }
+
+        .route_direction_right::after,
+        .route_direction_right::before,
+        .route_direction_left::after,
+        .route_direction_left::before
+        {
+            content: '';
+            position: absolute;
+            border-top: 15px solid;
+            border-bottom: 15px solid;
+        }
+
+        .route_direction_right::after,
+        .route_direction_left::after
+        {
+            margin-left: 165px;
+            margin-top: -40px;
+        }
+
+        .route_direction_right::before,
+        .route_direction_left::before
+        {
+            margin-left: 175px;
+            margin-top: 10px;
+        }
+
+        .route_direction_right::after,
+        .route_direction_right::before
+        {
+            border-left: 10px solid;
+        }
+
+        .route_direction_left::after,
+        .route_direction_left::before
+        {
+            border-right: 10px solid;
+        }
+
+        .route_direction_right::after
+        {
+            border-top-color: white;
+            border-bottom-color: white;
+            border-left-color: rgba(0,0,0,0);
+        }
+
+        .route_direction_right::before
+        {
+            border-top-color: rgba(0,0,0,0);
+            border-bottom-color: rgba(0,0,0,0);
+            border-left-color: white;
+        }
+
+        .route_direction_left::before
+        {
+            border-top-color: white;
+            border-bottom-color: white;
+            border-right-color: rgba(0,0,0,0);
+        }
+
+        .route_direction_left::after
+        {
+            border-top-color: rgba(0,0,0,0);
+            border-bottom-color: rgba(0,0,0,0);
+            border-right-color: white;
+        }
+
+        .route__direction-button,
+        {
+            display : none;
+        }
+
+        .route_edited .route__direction-button {
+            display: block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            margin-left: 155px;
+            margin-top: 5px;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 2px;
+            padding: 4px;
+        }
+
+        .route_placeholder .route__input,
+        .route_placeholder .route__label
+        {
+            background: white;
+            color: inherit;
+        }
+
+        .route_placeholder .route__direction-button {
+            display: none;
         }
         
         form {
             display: inline;
         }
-        
-        [draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
-}
-
-        
     </style>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
     <script src="//yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <script src="js/colors.js"></script>
-    <script>
+    <script type="text/javascript">
         var data = {
             '1922' : ['<Тм 13'],
             '1932' : ['<Тм 13', '<Тм 23'],
             '1938' : ['Тм 13', 'Тм 23'],
-            '1939' : ['Тм 13к', 'Тм 13', 'Тм 23']
+            '1939' : ['Тм 13к', 'Тм 13', 'Тм 23'],
             '1942' : ['Тм 13к', 'Тм 23'],
             '1943' : ['Тм 21'],
             '1967' : ['Тм 21', 'Тм 28'],
@@ -113,7 +231,7 @@
     </script>
     <body onload="">
         <div class="balloon">
-            <div class="balloon__title">Segment</div>
+            <div class="balloon__title">Segment #237</div>
             <div class="balloon__wrapper">
                 <div class="period">
                     <div class="period__date">
@@ -123,20 +241,36 @@
                         <input class="period__date-input" value="03.03.2013">
                     </form>
                     <div class="period__content">
-                        <div class="route" style="background-color: red" draggable>
+                        <div class="route route_direction_left" style="background-color: red; color: red" draggable>
                             <div class="route__label">Тм 30</div>
+                            <div class="route__direction-button"></div>
                             <form onsubmit="return false;">
                                 <input class="route__input" value="Тм 30">
                             </form>
                         </div>
-                        <div class="route" style="background-color: #ed1234" draggable>
-                            Тм 15
+                        <div class="route route_direction_right" style="background-color: #ed1234; color: #ed1234" draggable>
+                            <div class="route__label">Тм 15</div>
+                            <div class="route__direction-button"></div>
+                            <form onsubmit="return false;">
+                                <input class="route__input" value="Тм 15">
+                            </form>
                         </div>
-                        <div class="route" style="background-color: #ff5422" draggable>
-                            Тм 28
+                        <div class="route" style="background-color: #ff5422; color: #ff5422" draggable>
+                            <div class="route__label">Тм 28</div>
+                            <div class="route__direction-button"></div>
+                            <form onsubmit="return false;">
+                                <input class="route__input" value="Тм 28">
+                            </form>
+                        </div>
+                        <div class="route route_placeholder" style="background-color: magenta; color: magenta" draggable>
+                            <div class="route__label">Тм 10</div>
+                            <div class="route__direction-button"></div>
+                            <form onsubmit="return false;">
+                                <input class="route__input" value="Тм 28">
+                            </form>
                         </div>
                     </div>
-                </div><div class="period period_editing">
+                </div><div class="period period_edited">
                     <div class="period__date">
                         03.03.2013
                     </div>
@@ -163,9 +297,49 @@
         </div>
         <script>
                 
-        $('.period__content').each(function(period) {
+        $('.period__content').each(function(_, period) {
             Sortable.create(period);
         });
+
+        $('.period').each(function(_, period) {
+            Sortable.create(period);
+        });
+
+        $('.route__label').click(function() {
+            $('.route').removeClass('route_edited');
+            $(this).closest('.route')
+                .addClass('route_edited')
+                .find('input').focus();
+        });
+
+        $('.route__direction-button').click(function() {
+            var route = $(this).closest('.route'),
+                direction = route.hasClass('route_direction_right')?
+                    'right' : route.hasClass('route_direction_left')?
+                    'left' : '';
+
+            route.removeClass('route_direction_right route_direction_left');
+            direction === 'left'?
+                route.addClass('route_direction_right') :
+                (direction === '' && route.addClass('route_direction_left'));
+        });
+
+        $(document).click(function(e) {
+            if(!$(e.target).closest('.route_edited').length) {
+                $('.route').removeClass('route_edited');
+            }
+        });
+
+        $('.route form').submit(function(e, data) {
+            var val = $(this).find('input').val();
+
+            $(this).closest('.route')
+                .find('.route__label').html(val).end()
+                .removeClass('route_edited')
+                .css('background-color', getBusColor(val))
+                .css('color', getBusColor(val));
+        });
+
         </script>
     </body>
 </html>
