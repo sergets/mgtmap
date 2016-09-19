@@ -18,8 +18,20 @@
 
         .balloon__title {
             margin: 10px;
+            height: 25px;
+            font-size: 20px;
+            line-height: 25px;
             font-weight: bold;
             color: gray;
+        }
+
+        .balloon__text {
+            width: 100%;
+            height: 50px;
+            border: 0;
+            font: 13px monospace;
+            color: gray;
+            padding: 10px;
         }
         
         .balloon__wrapper {
@@ -29,14 +41,13 @@
             left: 0;
             right: 0;
             bottom: 50px;
-            top: 50px;
+            top: 95px;
             overflow: scroll;
             white-space: nowrap;
             vertical-align: top;
             padding: 10px;
         }
-        
-        
+
         .period {
             display: inline-block;
             vertical-align: top;
@@ -45,7 +56,7 @@
             border-left: 1px solid gray;
             margin: 0;
         }
-        
+
         .period__date,
         .period__date-input
         {
@@ -85,17 +96,14 @@
             color: white;
             font-size: 20px;
             font-weight: bold;
-            width: 150px;
+            width: 140px;
             background: none;
             border: none;
+            float: left;
         }
 
         .route__input {
-            padding: 10px;
-            padding-left: 5px;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
+            margin-right: 6px;
         }
 
         .route__input,
@@ -107,6 +115,17 @@
         .route_edited .route__input
         {
             display: block;
+        }
+
+        .route_placeholder::after
+        {
+            content: '';
+            position: absolute;
+            background: white;
+            width: 22px;
+            height: 5px;
+            margin-left: -36px;
+            margin-top: 22px;
         }
 
         .route_direction_right::after,
@@ -123,14 +142,14 @@
         .route_direction_right::after,
         .route_direction_left::after
         {
-            margin-left: 165px;
-            margin-top: -40px;
+            margin-left: -35px;
+            margin-top: 10px;
         }
 
         .route_direction_right::before,
         .route_direction_left::before
         {
-            margin-left: 175px;
+            margin-left: 172px;
             margin-top: 10px;
         }
 
@@ -174,33 +193,60 @@
             border-right-color: white;
         }
 
-        .route__direction-button,
-        {
-            display : none;
-        }
-
-        .route_edited .route__direction-button {
+        .route__direction-button {
+            position: relative;
             display: block;
+            float: left;
             width: 30px;
             height: 30px;
-            position: absolute;
-            margin-left: 155px;
-            margin-top: 5px;
             z-index: 2;
             border: 1px solid rgba(255, 255, 255, 0.7);
             border-radius: 2px;
+            margin: 5px;
             padding: 4px;
+            cursor: pointer;
         }
+
+        .period__add-button {
+            opacity: 0.2;
+            position: relative;
+            display: block;
+            left: 147px;
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(0, 0, 0, 0.7);
+            border-radius: 2px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .period__add-button::before,
+        .period__add-button::after
+        {
+            content: '';
+            position: absolute;
+            background: black;
+            width: 22px;
+            height: 5px;
+            margin-left: 8px;
+            margin-top: 16px;
+        }
+
+        .period__add-button::after
+        {
+            width: 5px;
+            height: 22px;
+            margin-left: 17px;
+            margin-top: 8px;
+        }
+
+
 
         .route_placeholder .route__input,
         .route_placeholder .route__label
         {
             background: white;
             color: inherit;
-        }
-
-        .route_placeholder .route__direction-button {
-            display: none;
         }
         
         form {
@@ -214,132 +260,157 @@
         var data = {
             '1922' : ['<Тм 13'],
             '1932' : ['<Тм 13', '<Тм 23'],
-            '1938' : ['Тм 13', 'Тм 23'],
-            '1939' : ['Тм 13к', 'Тм 13', 'Тм 23'],
-            '1942' : ['Тм 13к', 'Тм 23'],
-            '1943' : ['Тм 21'],
-            '1967' : ['Тм 21', 'Тм 28'],
-            '1975' : ['Тм 28'],
-            '1991' : ['Тм 30', 'Тм 28'],
-            '1995' : ['Тм 30', 'Тм 15', 'Тм 28'],
-            '2008' : ['Тм 30', 'Тм 15', 'Тм 23'],
-            '19.08.2012' : ['Тм 30', 'Тм 15', 'Тм 28'],
-            '19.03.2013' : ['Тм 31', 'Тм 30', 'Тм 15', 'Тм 28'],
-            '19.07.2014' : ['Тм 10', 'Тм 30', 'Тм 15'],
-            '29.11.2014' : ['Тм 31', 'Тм 30', 'Тм 15', 'Тм 28']
+            '1938' : ['-Тм 23', 'Тм 13', 'Тм 23'],
+            '1939' : ['-Тм 23', 'Тм 13к', 'Тм 13', 'Тм 23'],
+            '1942' : ['Тм 13к', 'Тм 23', '-Тм 13к'],
+            '1943' : ['Тм 21', '-Тм 6'],
+            '1967' : ['-Тм 6', 'Тм 21', 'Тм 28'],
+            '1975' : ['-Тм 6', 'Тм 28'],
+            '1991' : ['-Тм 6', 'Тм 30', 'Тм 28'],
+            '1995' : ['-Тм 6', 'Тм 30', 'Тм 15', 'Тм 28'],
+            '2008' : ['-Тм 6', 'Тм 30', 'Тм 15', 'Тм 23'],
+            '19.08.2012' : ['-Тм 6', 'Тм 30', 'Тм 15', 'Тм 28'],
+            '19.03.2013' : ['-Тм 6', 'Тм 31', 'Тм 30', 'Тм 15', 'Тм 28'],
+            '19.07.2014' : ['-Тм 6', 'Тм 10', 'Тм 30', 'Тм 15'],
+            '29.11.2014' : ['-Тм 6', 'Тм 31', 'Тм 30', 'Тм 15', 'Тм 28']
         };
     </script>
-    <body onload="">
-        <div class="balloon">
-            <div class="balloon__title">Segment #237</div>
-            <div class="balloon__wrapper">
-                <div class="period">
-                    <div class="period__date">
-                        19.08.2012
-                    </div>
-                    <form onsubmit="alert(this); return false;">
-                        <input class="period__date-input" value="03.03.2013">
-                    </form>
-                    <div class="period__content">
-                        <div class="route route_direction_left" style="background-color: red; color: red" draggable>
-                            <div class="route__label">Тм 30</div>
-                            <div class="route__direction-button"></div>
-                            <form onsubmit="return false;">
-                                <input class="route__input" value="Тм 30">
-                            </form>
-                        </div>
-                        <div class="route route_direction_right" style="background-color: #ed1234; color: #ed1234" draggable>
-                            <div class="route__label">Тм 15</div>
-                            <div class="route__direction-button"></div>
-                            <form onsubmit="return false;">
-                                <input class="route__input" value="Тм 15">
-                            </form>
-                        </div>
-                        <div class="route" style="background-color: #ff5422; color: #ff5422" draggable>
-                            <div class="route__label">Тм 28</div>
-                            <div class="route__direction-button"></div>
-                            <form onsubmit="return false;">
-                                <input class="route__input" value="Тм 28">
-                            </form>
-                        </div>
-                        <div class="route route_placeholder" style="background-color: magenta; color: magenta" draggable>
-                            <div class="route__label">Тм 10</div>
-                            <div class="route__direction-button"></div>
-                            <form onsubmit="return false;">
-                                <input class="route__input" value="Тм 28">
-                            </form>
-                        </div>
-                    </div>
-                </div><div class="period period_edited">
-                    <div class="period__date">
-                        03.03.2013
-                    </div>
-                    <form onsubmit="alert(this); return false;">
-                        <input class="period__date-input" value="03.03.2013">
-                    </form>
-                    <div class="period__content">
-                        <div class="route" style="background-color: #ff2254">
-                            Тм 31
-                        </div>
-                        <div class="route" style="background-color: red">
-                            Тм 30
-                        </div>
-                        <div class="route" style="background-color: #ed1234">
-                            Тм 15
-                        </div>
-                        <div class="route" style="background-color: #ff5422">
-                            Тм 28
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <body>
         <script>
-                
-        $('.period__content').each(function(_, period) {
-            Sortable.create(period);
-        });
+            $(document)
+                .on('click', '.period__date', function() {
+                    $('.period').removeClass('period_edited');
+                    $(this).closest('.period').addClass('period_edited').find('input').focus();
+                })
+                .on('submit', '.period > form', function() {
+                    var val = $(this).find('input').val();
 
-        $('.period').each(function(_, period) {
-            Sortable.create(period);
-        });
+                    $(this).closest('.period')
+                        .find('.period__date').html($(this).find('input').val()).end()
+                        .removeClass('period_edited');
 
-        $('.route__label').click(function() {
-            $('.route').removeClass('route_edited');
-            $(this).closest('.route')
-                .addClass('route_edited')
-                .find('input').focus();
-        });
+                    onUpdated(this);
+                })
+                .on('click', '.route__label', function() {
+                    $('.route').removeClass('route_edited');
+                    $(this).closest('.route').addClass('route_edited').find('input').focus();
+                })
+                .on('submit', '.route > form', function(e, data) {
+                    var val = $(this).find('input').val();
 
-        $('.route__direction-button').click(function() {
-            var route = $(this).closest('.route'),
-                direction = route.hasClass('route_direction_right')?
-                    'right' : route.hasClass('route_direction_left')?
-                    'left' : '';
+                    if (val) {
+                        $(this).closest('.route')
+                            .find('.route__label').html(val).end()
+                            .removeClass('route_edited')
+                            .css('background-color', getBusColor(val))
+                            .css('color', getBusColor(val));
+                        onUpdated(this);
+                    } else {
+                        var parent = $(this).closest('.period');
+                        $(this).closest('.route').remove();
+                        onUpdated(parent);
+                    }
+                })
+                .on('click', '.route__direction-button', function() {
+                    var DIRECTION_CLASSES = {
+                        'placeholder' : 'route_placeholder',
+                        'right' : 'route_direction_right',
+                        'left' : 'route_direction_left'
+                    },
+                    directions = Object.keys(DIRECTION_CLASSES);
 
-            route.removeClass('route_direction_right route_direction_left');
-            direction === 'left'?
-                route.addClass('route_direction_right') :
-                (direction === '' && route.addClass('route_direction_left'));
-        });
+                    var route = $(this).closest('.route'),
+                        direction = directions.filter(function(direction) { return route.hasClass(DIRECTION_CLASSES[direction]); })[0],
+                        newDirection = DIRECTION_CLASSES[directions[directions.indexOf(direction) + 1]];
 
-        $(document).click(function(e) {
-            if(!$(e.target).closest('.route_edited').length) {
-                $('.route').removeClass('route_edited');
+                    route.removeClass(directions.map(function(i) { return DIRECTION_CLASSES[i]; }).join(' '));
+                    newDirection && route.addClass(newDirection);
+                    onUpdated(this);
+                })
+                .on('click', '.period__add-button', function() {
+                    var newRoute = buildRoute('');
+                    $(this).before(newRoute);
+                    newRoute.addClass('route_edited').find('input').focus();
+                })
+                .on('click', function(e) {
+                    if(!$(e.target).closest('.route_edited').length) {
+                        $('.route').removeClass('route_edited');
+                    }
+                });
+
+            $(document).on('submit', '.route form', function(e, data) {
+                var val = $(this).find('input').val();
+
+                $(this).closest('.route')
+                    .find('.route__label').html(val).end()
+                    .removeClass('route_edited')
+                    .css('background-color', getBusColor(val))
+                    .css('color', getBusColor(val));
+
+                onUpdated(this);
+            });
+
+            function collect(elem) {
+                return $.makeArray($(elem).find('.period')).reduce(function(res, period) {
+                    res[$(period).find('input').val()] = $.makeArray($(period).find('.route')).map(function(route) {
+                        return ($(route).hasClass('route_direction_left')? '<' :
+                            $(route).hasClass('route_direction_right')? '>' :
+                            $(route).hasClass('route_placeholder')? '-' : '') + $(route).find('input').val(); 
+                    });
+                    return res;
+                }, {});
             }
-        });
 
-        $('.route form').submit(function(e, data) {
-            var val = $(this).find('input').val();
+            function onUpdated(elem) {
+                $(elem).closest('.balloon').find('.balloon__text').val(JSON.stringify(collect($(elem).closest('.balloon__wrapper'))));
+            }
 
-            $(this).closest('.route')
-                .find('.route__label').html(val).end()
-                .removeClass('route_edited')
-                .css('background-color', getBusColor(val))
-                .css('color', getBusColor(val));
-        });
+            function buildRoute(route) {
+                return $('<div/>')
+                    .addClass('route')
+                    .addClass(route.indexOf('-') === 0? 'route_placeholder' :
+                        route.indexOf('>') === 0? 'route_direction_right' :
+                        route.indexOf('<') === 0? 'route_direction_left' : '')
+                    .css('background-color', getBusColor(route))
+                    .css('color', getBusColor(route))
+                    .append($('<div/>').addClass('route__label').html(route.replace(/^[\-<>]/, '')))
+                    .append($('<form/>')
+                        .attr('onsubmit', 'return false;')
+                        .append($('<input/>')
+                            .addClass('route__input')
+                            .val(route.replace(/^[\-<>]/, ''))
+                        )
+                    )
+                    .append($('<div/>').addClass('route__direction-button'));
+            }
 
+            function buildBalloon(segmentId, data) {
+                var wrapper = $('<div/>').addClass('balloon__wrapper');
+
+                Object.keys(data).forEach(function(date) {
+                    var periodContent = $('<div/>').addClass('period__content')
+                        .append(data[date].map(buildRoute))
+                        .append($('<div/>').addClass('period__add-button'));
+
+                    Sortable.create(periodContent[0], {
+                        onUpdate : function(evt) {
+                            onUpdated(evt.target);
+                        }
+                    });
+
+                    wrapper.append($('<div/>').addClass('period')
+                        .append($('<div/>').addClass('period__date').html(date))
+                        .append($('<form/>').attr('onsubmit', 'return false;').append($('<input/>').addClass('period__date-input').val(date)))
+                        .append(periodContent));
+                });
+
+                return $('<div/>').addClass('balloon')
+                    .append($('<div/>').addClass('balloon__title').html('Segment #' + segmentId))
+                    .append($('<textarea/>').addClass('balloon__text').attr('disabled', true).val(JSON.stringify(data)))
+                    .append(wrapper);
+            }
+
+            buildBalloon('3605', data).appendTo('body');
         </script>
     </body>
 </html>
