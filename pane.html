@@ -66,6 +66,8 @@
             border: none;
             margin: 0;
             line-height: 20px;
+            height: 20px;
+            box-sizing: content-box;
         }
         
         .period__date-input,
@@ -207,6 +209,38 @@
             cursor: pointer;
         }
 
+        .period__add-period-button {
+            opacity: 0.2;
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border: 1px solid rgba(0, 0, 0, 0.7);
+            border-radius: 2px;
+            margin-top: -30px;
+            margin-left: 165px;
+            cursor: pointer;
+        }
+
+        .period__add-period-button::before,
+        .period__add-period-button::after
+        {
+            content: '';
+            position: absolute;
+            background: black;
+            width: 17px;
+            height: 5px;
+            margin-left: 5px;
+            margin-top: 11px;
+        }
+
+        .period__add-period-button::after
+        {
+            width: 5px;
+            height: 17px;
+            margin-left: 11px;
+            margin-top: 5px;
+        }
+
         .period__add-button {
             opacity: 0.2;
             position: relative;
@@ -285,9 +319,15 @@
                 .on('submit', '.period > form', function() {
                     var val = $(this).find('input').val();
 
-                    $(this).closest('.period')
-                        .find('.period__date').html($(this).find('input').val()).end()
-                        .removeClass('period_edited');
+                    if (val) {
+                        $(this).closest('.period')
+                            .find('.period__date').html($(this).find('input').val()).end()
+                            .removeClass('period_edited');
+                        } else {
+                            var parent = $(this).closest('.balloon__wrapper');
+                            $(this).closest('.period').remove();
+                            onUpdated(parent);
+                        }
 
                     onUpdated(this);
                 })
@@ -331,6 +371,15 @@
                     var newRoute = buildRoute('');
                     $(this).before(newRoute);
                     newRoute.addClass('route_edited').find('input').focus();
+                })
+                .on('click', '.period__add-period-button', function() {
+                    var currentPeriod = $(this).closest('.period'),
+                        date = currentPeriod.find('input').val(),
+                        data = collect(this.closest('.balloon__wrapper')),
+                        newPeriod = buildPeriod(date, data[date]);
+
+                    $(currentPeriod).after(newPeriod);
+                    newPeriod.addClass('period_edited').find('input').focus();
                 })
                 .on('click', function(e) {
                     if(!$(e.target).closest('.route_edited').length) {
@@ -384,24 +433,29 @@
                     .append($('<div/>').addClass('route__direction-button'));
             }
 
+            function buildPeriod(date, content) {
+                var periodContent = $('<div/>').addClass('period__content')
+                        .append(content.map(buildRoute))
+                        .append($('<div/>').addClass('period__add-button'));
+
+                Sortable.create(periodContent[0], {
+                    onUpdate : function(evt) {
+                        onUpdated(evt.target);
+                    }
+                });
+
+                return $('<div/>').addClass('period')
+                    .append($('<div/>').addClass('period__date').html(date))
+                    .append($('<form/>').attr('onsubmit', 'return false;').append($('<input/>').addClass('period__date-input').val(date)))
+                    .append($('<div/>').addClass('period__add-period-button'))
+                    .append(periodContent);
+            }
+
             function buildBalloon(segmentId, data) {
                 var wrapper = $('<div/>').addClass('balloon__wrapper');
 
                 Object.keys(data).forEach(function(date) {
-                    var periodContent = $('<div/>').addClass('period__content')
-                        .append(data[date].map(buildRoute))
-                        .append($('<div/>').addClass('period__add-button'));
-
-                    Sortable.create(periodContent[0], {
-                        onUpdate : function(evt) {
-                            onUpdated(evt.target);
-                        }
-                    });
-
-                    wrapper.append($('<div/>').addClass('period')
-                        .append($('<div/>').addClass('period__date').html(date))
-                        .append($('<form/>').attr('onsubmit', 'return false;').append($('<input/>').addClass('period__date-input').val(date)))
-                        .append(periodContent));
+                    wrapper.append(buildPeriod(date, data[date]));
                 });
 
                 return $('<div/>').addClass('balloon')
