@@ -18,7 +18,8 @@ ymaps.ready(function() {
         _timeSettings : {
             dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
             from : (new Date()).getHours(),
-            to : (new Date()).getHours()
+            to : (new Date()).getHours(),
+            date : +(new Date())
         },
 
         _selectedRoute : false,
@@ -193,7 +194,19 @@ ymaps.ready(function() {
                 this._widthFactor = +val;
                 this._hideAllSegments();
                 this._onBoundsChanged();
-            }, this)
+            }, this);
+            
+            var _this = this;
+            
+            $('#dateForm').find('input')
+            .val((new Date()).toISOString().substr(0, 10))
+            .change(function() {
+                if(this.value) {
+                    _this._timeSettings.date = +new Date(this.value);
+                    _this._hideAllSegments();
+                    _this._onBoundsChanged();
+                }
+            });
         },
 
         _createListControl : function(content, options, items, onItemSelected, ctx) {
@@ -694,4 +707,4 @@ ymaps.ready(function() {
         }
     };
     busMap.init();
-});
+}); 
