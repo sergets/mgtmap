@@ -4,6 +4,7 @@
         <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
         <script type="text/javascript" src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&load=package.full,graphics.generator.stroke.outline" type="text/javascript"></script>
+        <script type="text/javascript" src="js/simpleHighlight.js"></script>
         <script type="text/javascript" src="js/colors.js"></script>
         <script type="text/javascript" src="js/stringify.js"></script>
         <script type="text/javascript" src="js/geom.js"></script>
@@ -19,10 +20,15 @@
             }
 
             .segment {
-                width : 186px;
+                width : 220px;
             }
 
-            .route {
+            .routes-editor {
+                width: 220px;
+                min-height : 140px;
+            }
+
+            .route, .antiroute {
                 width : 50px;
                 float : left;
                 margin : 3px;
@@ -34,8 +40,20 @@
                 cursor: pointer;
             }
 
+            .antiroute {
+                background: transparent;
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                padding: 2px;
+            }
+
+            .routes-editor .route, .routes-editor .antiroute {
+                display: inline-block;
+                float: none;
+            }
+
             .edit-segment,
-            .edit-segment-geometry {
+            .edit-segment-geometry,
+            .reverse-segment {
                 border: 1px solid black;
                 margin : 7px 3px 7px;
                 font-size : 18px

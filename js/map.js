@@ -43,32 +43,46 @@ ymaps.ready(function() {
         _getBalloonContentLayout : function() { 
             var that = this;
             return this._balloonContentLayout || (this._balloonContentLayout = ymaps.templateLayoutFactory.createClass(       
-                (this._isAdminMode? 'id <b>$[properties.id]</b><br>' : '') +
-                '<div class="segment" segment-id="$[properties.id]" routes-joined="$[properties.routesJoined]">' +
-                                    '$[properties.routesHtml]' +
-                    (this._isAdminMode? '<div class="edit-segment">Маршруты</div>' +
-                        '<div class="reverse-segment">Развернуть</div>' : '') +
-                    // '<div class="edit-segment-geometry">Геометрия</div>' +
-                '</div>',
+                (this._isAdminMode?
+                     '<div class="segment" segment-id="$[properties.id]">' +
+                     'id <b>$[properties.id]</b>' + 
+                     '<br>До:<br><div class="routes-editor before" contentEditable="true">$[properties.routesBeforeJoined]</div>' +
+                     '<br>После:<br><div class="routes-editor after" contentEditable="true">$[properties.routesTodayJoined]</div>' +
+                     '<div class="edit-segment">Сохранить</div>' +
+                     '<div class="reverse-segment">Развернуть</div>' + 
+                     '</div>' :
+
+                     '<div class="segment" segment-id="$[properties.id]" routes-joined="$[properties.routesJoined]">$[properties.routesHtml]</div>'),
                 {
                     build: function(a, b, c) {
                         this.constructor.superclass.build.call(this);
+
+                        $('.routes-editor').each(function(i, editor) {
+                            simpleHighlight(editor, {
+                                '([-<>]?)((?:Тм |Тб |)(?:[А-я\-0-9]+))' : function(res, mode, number) {
+                                    return '<span class="' + (mode == '-'? 'antiroute' : 'route') + '" style="' + (mode == '-'? 'color' : 'background') + ': ' + getBusColor(number) + '">' + res + '</span>';
+                                }
+                            })
+                        });
                     },
                     getData: function() {
                         var res = this.constructor.superclass.getData.call(this),
                             id = res.properties.get('id');
                         //console.warn(res.properties.get('segmentId'))
-                        res.properties.set('routesHtml', that._getRoutesForSegment(id)
-                            .filter(function(route) {
-                                return route.indexOf('-') !== 0;
-                            })
-                            .map(function(route) {
-                                route = route.replace(/^[<>]/, '');
-                                return '<div class="route" style="background: ' + getBusColor(route) + '">' + 
-                                    route + 
-                                '</div>';
-                            })
-                            .join(''));
+                        res.properties
+                            .set('routesHtml', that._getRoutesForSegment(id)
+                                .filter(function(route) {
+                                    return route.indexOf('-') !== 0;
+                                })
+                                .map(function(route) {
+                                    route = route.replace(/^[<>]/, '');
+                                    return '<div class="route" style="background: ' + getBusColor(route) + '">' + 
+                                        route + 
+                                    '</div>';
+                                })
+                                .join(''))
+                            .set('routesBeforeJoined', ((that._routesBySegment[id] || {})[that._getCurrentDateForSegment(id, true)] || []).join(' '))
+                            .set('routesTodayJoined', that._getRoutesForSegment(id).join(' '));
                         return res;
                     }
                 }
@@ -439,11 +453,8 @@ ymaps.ready(function() {
                     .concat(Object.keys(routes).filter(function(rt) {
                         return routes[rt].length == 2 && !inRoutes[rt] && !outRoutes[rt];
                     }))
-                    .concat(Object.keys(inRoutes).filter(function(rt) {
-                        
+                    .concat(Object.keys(inRoutes).filter(function(rt) {        
                         return !routes[rt] && inRoutes[rt].length == 1 && outRoutes[rt] && outRoutes[rt].length == 1;// ) {
-                         //   console.log()
-                       // }
                     })),
                 terminating = Object.keys(routes).filter(function(rt) {
                         return routes[rt].length == 1 && !inRoutes[rt] && !outRoutes[rt];
@@ -549,8 +560,22 @@ ymaps.ready(function() {
             };
         },
 
+        _getCurrentDateForSegment : function(id, onlyPast) {
+            var that = this,
+                routesData = this._routesBySegment[id] || {},
+                dates = Object.keys(routesData).sort(function(a, b) {
+                    return +(new Date(a)) - +(new Date(b));
+                }),
+                pastDates = dates.filter(function(date) {
+                    return onlyPast?
+                        +(new Date(date)) < that._timeSettings.date :
+                        +(new Date(date)) <= that._timeSettings.date;
+                });
+                return pastDates[pastDates.length - 1];
+        },
+
         _getRoutesForSegment : function(id) {
-            return this._routesBySegment[id] || []; // ['Тб 59', 'Тб 61', 'Тб 19', '100', '105', '26', '691', '-Тб 59'];
+            return (this._routesBySegment[id] || {})[this._getCurrentDateForSegment(id)] || [];
         },
 
         _getRouteData : function(route) {
@@ -618,10 +643,55 @@ ymaps.ready(function() {
             $('body').removeClass('route-selected');
         },
 
+        _unjoinRoutes : function(routes) {
+            var re = /([-<>]?)((?:Тм |Тб |)(?:[А-я-0-9]+))/g, 
+                m = true,
+                res = [];
+            while(m) {
+                m = re.exec(routes);
+                m && res.push(m[0]);
+            }
+            return res;
+        },
+
         _onEditSegment : function(e) {
             if(!this._isAdminMode) return;
 
             var segment = $(e.target).parent('.segment'),
+                id = segment.attr('segment-id'),
+                before = segment.find('.routes-editor.before').text(),
+                after = segment.find('.routes-editor.after').text(),
+
+                beforeRoutes = this._unjoinRoutes(before),
+                afterRoutes = this._unjoinRoutes(after),
+
+                todayKey = new Date(this._timeSettings.date).toISOString().substr(0, 10),
+                beforeKey = this._getCurrentDateForSegment(id, true);
+
+            console.log(before, after, todayKey, todayKey in this._routesBySegment[id]);
+
+            if(todayKey in this._routesBySegment[id] && before == after) {
+                console.log('removing');
+                delete this._routesBySegment[id][todayKey];
+            }
+
+            if(!(todayKey in this._routesBySegment[id]) && before !== after) {
+                console.log('creating new moment');
+                this._routesBySegment[id][todayKey] = {};
+            }
+
+            (beforeKey in this._routesBySegment[id]) && (this._routesBySegment[id][beforeKey] = beforeRoutes);
+            (todayKey in this._routesBySegment[id]) && (this._routesBySegment[id][todayKey] = afterRoutes);
+
+            this._removeSegmentById(id);
+            this._load('data/segments.json', function(segments) {
+                this._addSegment(id, segments[id]);
+            }, this);
+
+            this._saveRoutes();
+            e.preventDefault();
+
+            /*var segment = $(e.target).parent('.segment'),
                 id = segment.attr('segment-id'),
                 oldRoutes = this._getRoutesForSegment(id),
                 routes = prompt('Маршруты сегмента ' + id, oldRoutes);
@@ -634,7 +704,7 @@ ymaps.ready(function() {
                 }, this);
                 this._saveRoutes();
                 e.preventDefault();
-            }
+            }*/
         },
 
         _onReverseSegment : function(e) {
