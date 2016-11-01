@@ -1,4 +1,4 @@
-var geomUtils = (function() {
+define(function() {
     var MIN_LEN = 0.00001;
 
     function _cut(dist, data) {
@@ -40,6 +40,16 @@ var geomUtils = (function() {
             }
 
             return _cut(fromEnd, _cut(fromStart, { points : line, segLengths : segmentLengths })).points;
+        },
+        
+        bounds : function(segment) {
+            return segment.reduce(function(prev, point) {
+                if(point[0] < prev[0][0] || !prev[0][0]) { prev[0][0] = point[0]; }
+                if(point[1] < prev[0][1] || !prev[0][1]) { prev[0][1] = point[1]; }
+                if(point[0] > prev[1][0] || !prev[1][0]) { prev[1][0] = point[0]; }
+                if(point[1] > prev[1][1] || !prev[1][1]) { prev[1][1] = point[1]; }
+                return prev;
+            }, [[], []]);
         }
     }
-})();
+});
