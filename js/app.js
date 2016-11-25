@@ -38,8 +38,21 @@ require([
             map = new Map(stateManager.getBounds(), dataManager, segmentFactory),
             appView = new AppView(map, stateManager);
 
-        map.on('bounds-changed', function(e, data) {
-            stateManager.setBounds(data.bounds);
+        map.on({
+            'bounds-changed' : function(e, data) {
+                stateManager.setBounds(data.bounds);
+            },
+            'segment-geometry-changed' : function(e, data) {
+                dataManager.setSegmentGeometry(data.segmentId, data.geometry);
+            },
+            'split-segment' : function(e, data) {
+                vow.all([dataManager.getSegmentCount(), dataManager.getRoutesForSegment(data.segmentId)]).spread(function(segmentCount, routes) {
+                    map.toggleSegmentGeometryEditor(data.segmentId);
+                    dataManager.setSegmentGeometry(data.segmentId, data.geometry.slice(0, data.vertexIndex + 1));
+                    dataManager.setSegmentGeometry(segmentCount, data.geometry.slice(data.vertexIndex));
+                    dataManager.setRoutesForSegment(segmentCount, routes);
+                });
+            }
         });
         
         dataManager.on('widths-updated routes-updated segments-updated', function() {
@@ -56,7 +69,7 @@ require([
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
             'route-selected' : function(e, route) { stateManager.setSelectedRoute(route); },
             'save-segment' : function(e, data) { dataManager.setRoutesForSegment(data.id, data.routes).done(); },
-            'edit-segment-geometry' : function(e, segmentId) { console.warn('FIXME: editing segment geometry'); },
+            'edit-segment-geometry' : function(e, segmentId) { map.toggleSegmentGeometryEditor(segmentId); },
         });
     });
 });

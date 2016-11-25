@@ -22,9 +22,12 @@ var DataManager = function(stateManager) {
     
     this._data = {};
     this._loadingPromises = {};
+    this._bounds = {};
+    this._boundsReady = false;
     this._widths = {};
     this._widthsReady = true;
     this._changedFiles = {};
+    this._saveWindows = {};
     
     this._stateManager.on({
         'time-settings-updated' : this._recalcWidths,
@@ -34,6 +37,7 @@ var DataManager = function(stateManager) {
     }, this);
     
     this._recalcWidths();
+    this._recalcBounds();
 };
 
 $.extend(DataManager.prototype, eventEmitter);
@@ -71,25 +75,39 @@ $.extend(DataManager.prototype, {
         this._loadingPromises[fileName] = promise;
         return promise;
     },
+
+    _recalcBounds : function() {
+        this._boundsReady = this.getSegments().then(function(segmentsData) {
+            this._bounds = segmentsData.map(geomUtils.bounds);
+            this._boundsReady = true;
+        }, this);
+    },
     
     getSegmentBounds : function() {
-        return this._getDataFromFile('data/bounds.json');
+        return vow.when(this._boundsReady).then(function() {
+            return this._bounds;
+        }, this);
     },
     
     getSegments : function() {
         return this._getDataFromFile('data/segments.json');
     },
     
-    setSegmentGeometry : function(id, geometry) {
-        return vow.all([this.getSegments(), this.getBounds()]).then(function() {
+    setSegmentGeometry : function(segmentId, geometry) {
+        return vow.all([this.getSegments(), this.getSegmentBounds()]).done(function() {
             this._data['data/segments.json'][segmentId] = geometry;
-            this._data['data/bounds.json'][segmentId] = geomUtils.bounds(geometry);
+            this._bounds[segmentId] = geomUtils.bounds(geometry);
             this._changedFiles['data/segments.json'] = true;
-            this._changedFiles['data/bounds.json'] = true;
             this.trigger('segments-updated');
         }, this);
     },
     
+    getSegmentCount : function() {
+        return this.getSegments().then(function(segments) {
+            return segments.length;
+        }, this);
+    },
+
     getRoutesForSegment : function(segmentId) {
         return this._getDataFromFile('data/routes.json').then(function(routesBySegment) {
             return routesBySegment[segmentId] || {};
@@ -168,12 +186,13 @@ $.extend(DataManager.prototype, {
 
     saveChangedFiles : function() {
         Object.keys(this._changedFiles).forEach(function(fileName) {
-            this._saveWindow || (this._saveWindow = window.open('about:blank'));
-            this._saveWindow.document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._data[fileName], { 
+            this._saveWindows[fileName] || (this._saveWindows[fileName] = window.open('about:blank'));
+            this._saveWindows[fileName].document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._data[fileName], { 
                 shouldExpand : function(obj, level) {
                     return level < 2;
                 }
             }) + '</pre>';
+            this._saveWindows[fileName].document.title = fileName;
         }, this);
     }
 });

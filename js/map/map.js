@@ -10,6 +10,8 @@ define([
     eventsEmitter
 ) {
 
+var SNAP_DISTANCE = 25;
+
 var Map = function(initialBounds, dataManager, segmentFactory, junctionFactory) {
     this._map = new ymaps.Map('map', $.extend({
         controls: ['zoomControl', 'geolocationControl']
@@ -23,6 +25,7 @@ var Map = function(initialBounds, dataManager, segmentFactory, junctionFactory) 
     this._dataManager = dataManager;
     this._segmentFactory = segmentFactory;
     this._junctionFactory = junctionFactory;
+    this._geometryEditedSegments = {};
     
     this._init();
 };
@@ -42,6 +45,14 @@ $.extend(Map.prototype, {
         ));
 
         this._map.events.add('boundschange', this._onBoundsChanged, this);
+        this._coll.events.add('split', function(e) {
+            var originalEvent = e.getSourceEvent().originalEvent;
+            this.trigger('split-segment', { 
+                segmentId : originalEvent.segmentId,
+                vertexIndex : originalEvent.vertexIndex,
+                geometry : originalEvent.geometry
+            });
+        }, this);
         this._map.geoObjects.add(this._coll);
         this._map.geoObjects.add(this._jcColl);
 
@@ -49,10 +60,29 @@ $.extend(Map.prototype, {
     },
     
     _hideAllSegments : function() {
-        this._segmentFactory.abortAll();
-        this._coll.removeAll();
-        this._junctions = {};
-        this._visibleSegments = {};
+        Object.keys(this._visibleSegments).forEach(this._removeSegmentById, this);
+    },
+
+    _editorCorrector : function(coords, vertexIndex) {
+        if(vertexIndex != 0 && vertexIndex != coords.length - 1) return vow.resolve(coords[vertexIndex]);
+
+        var point = coords[vertexIndex]
+            visibleSegments = this._visibleSegments;
+            matchedJunctions = Object.keys(Object.keys(visibleSegments).reduce(function(jcs, segmentId) {
+                var sCoords = visibleSegments[segmentId].geometry.getPixelGeometry().getCoordinates(),
+                    start = sCoords[0],
+                    end = sCoords[sCoords.length - 1];
+
+                jcs[start.join()] = true;
+                jcs[end.join()] = true;
+                return jcs;
+            }, {})).map(function(jc) {
+                return jc.split(',');
+            }).filter(function(jc) {
+                return Math.sqrt((jc[0] - point[0]) * (jc[0] - point[0]) + (jc[1] - point[1]) * (jc[1] - point[1])) < SNAP_DISTANCE;
+            });
+
+        return vow.resolve(matchedJunctions[0] || coords[vertexIndex]);
     },
 
     _showSegments : function(segments, ids) {
@@ -80,21 +110,55 @@ $.extend(Map.prototype, {
     },
 
     _removeSegmentById : function(id) {
-        this._segmentFactory.abort(id);
-        this._coll.remove(this._visibleSegments[id]);
-        var coords = this._visibleSegments[id].geometry.getCoordinates();
-        //this._junctions[coords[0].join()] = this._junctions[coords[0].join()].filter(function(js) { return js != id; });
-        //this._junctions[coords[coords.length - 1].join()] = this._junctions[coords[coords.length - 1].join()].filter(function(js) { return js != -id; });
-        delete this._visibleSegments[id];
+        if(!this._geometryEditedSegments[id]) {
+            this._segmentFactory.abort(id);
+            this._coll.remove(this._visibleSegments[id]);
+            //var coords = this._visibleSegments[id].geometry.getCoordinates();
+            //this._junctions[coords[0].join()] = this._junctions[coords[0].join()].filter(function(js) { return js != id; });
+            //this._junctions[coords[coords.length - 1].join()] = this._junctions[coords[coords.length - 1].join()].filter(function(js) { return js != -id; });
+            delete this._visibleSegments[id];
+        }
     },
 
     _addSegment : function(id, coords) {
         this._segmentFactory.createSegment(id, coords, this._map.getZoom()).done(function(segment) {
             /*(this._junctions[coords[0].join()] || (this._junctions[coords[0].join()] = [])).push(id);
             (this._junctions[coords[coords.length - 1].join()] || (this._junctions[coords[coords.length - 1].join()] = [])).push(-id);*/
-            this._visibleSegments[id] = segment;
-            this._coll.add(segment);
+            if(!this._visibleSegments[id]) {
+                this._visibleSegments[id] = segment;
+                this._coll.add(segment);
+            }
         }, this);
+    },
+
+    toggleSegmentGeometryEditor : function(id) {
+        this._geometryEditedSegments[id]?
+            this._stopSegmentGeometryEditor(id) :
+            this._startSegmentGeometryEditor(id);
+    },
+
+    _stopSegmentGeometryEditor : function(id) {
+        var segment = this._visibleSegments[id];
+        
+        if(!segment) return;
+        segment.editor.stopEditing();
+        var geometry = segment.geometry.getCoordinates();
+        if(JSON.stringify(geometry) != JSON.stringify(this._geometryEditedSegments[id])) {
+            this.trigger('segment-geometry-changed', { segmentId : id, geometry : geometry });
+        }
+        delete this._geometryEditedSegments[id];
+    },
+
+    _startSegmentGeometryEditor : function(id) {
+        var segment = this._visibleSegments[id];
+
+        if(!segment) return;
+        segment.options.set({
+            editorDraggingCorrector : this._editorCorrector.bind(this),
+            editorDrawingCorrector : this._editorCorrector.bind(this)
+        });
+        segment.editor.startEditing();
+        this._geometryEditedSegments[id] = segment.geometry.getCoordinates();
     },
 
     _onBoundsChanged : function(e) {

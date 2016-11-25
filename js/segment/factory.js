@@ -65,12 +65,29 @@ $.extend(SegmentFactory.prototype, {
                         diffStates = processedRoutes.map(function(r) { return r.diffState; }),
                         yesterdayDate = dateUtils.findNearestDate(Object.keys(allRoutesForSegment), this._stateManager.getTimeSettings().date, true);
                                         
-                    return new ymaps.Polyline(coords, {
+                    var segment = new ymaps.Polyline(coords, {
                         id : id,
                         allRoutes : allRoutesForSegment,
                         routes : actualRoutesForSegment,
                         routesYesterday : allRoutesForSegment[yesterdayDate] || []
                     }, this._getLineOptions(colors, widths, directions, diffStates));
+
+                    segment.editor.options.set('menuManager', function(menu, vertex) {
+                        menu.push({
+                            id : 'split',
+                            onClick : function() {
+                                segment.events.fire('split', {
+                                    segmentId : id,
+                                    vertexIndex : vertex.getIndex(),
+                                    geometry : segment.geometry.getCoordinates()
+                                });
+                            },
+                            title : 'Разрезать'
+                        })
+                        return menu;
+                    })
+
+                    return segment;
                 }, this);
             }, this)
             .done(function(segmentGeoObject) {
