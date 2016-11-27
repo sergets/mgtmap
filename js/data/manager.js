@@ -57,7 +57,7 @@ $.extend(DataManager.prototype, {
         $.ajax({
             url : fileName,
             data : {
-                // ncrnd : Math.random()
+                ncrnd : Math.random()
             },
             success : function(res) {
                 this._data[fileName] = res;
@@ -186,13 +186,17 @@ $.extend(DataManager.prototype, {
 
     saveChangedFiles : function() {
         Object.keys(this._changedFiles).forEach(function(fileName) {
-            this._saveWindows[fileName] || (this._saveWindows[fileName] = window.open('about:blank'));
-            this._saveWindows[fileName].document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._data[fileName], { 
+            var saveWindows = this._saveWindows;
+            if(!saveWindows[fileName]) {
+                saveWindows[fileName] = window.open('about:blank');
+                saveWindows[fileName].onunload = function() { delete saveWindows[fileName]; return true; };
+            }
+            saveWindows[fileName].document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._data[fileName], { 
                 shouldExpand : function(obj, level) {
                     return level < 2;
                 }
             }) + '</pre>';
-            this._saveWindows[fileName].document.title = fileName;
+            saveWindows[fileName].document.title = fileName;
         }, this);
     }
 });
