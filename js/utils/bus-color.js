@@ -86,7 +86,7 @@ define(function() {
             bus = bus.substr(3);
             type = 0;
         }
-        if(/[a-я]$/i.test(bus)) {
+        if(/.?[a-я]$/.test(bus)) {
             bus = bus.substr(0, bus.length - 1);
             k = true;
         }
@@ -117,8 +117,8 @@ define(function() {
                 break;
         }
         if(k) {
-            color[1] = frame(color[1], 0, 0.5);
-            color[2] = frame(color[2], 0.9, 1);
+            color[1] = frame(color[1], 0, 0.8);
+            color[2] = frame(color[2], 0.4, 1);
         }
         return formatColor(hsl2rgb(color));
     }

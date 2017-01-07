@@ -137,13 +137,13 @@ $.extend(DataManager.prototype, {
             selectedRoute = this._stateManager.getSelectedRoute(),
             widthFactor = this._stateManager.getWidthFactor();
 
-        if (isEqualWidthsMode) {
-            return vow.resolve(DEFAULT_WIDTH * widthFactor);
-        } else if (selectedRoute) {
+        if (selectedRoute) {
             return vow.resolve(route == selectedRoute? SELECTED_ROUTE_WIDTH : 0);
+        } else if (isEqualWidthsMode) {
+            return vow.resolve(DEFAULT_WIDTH * widthFactor);
         } else {    
             return vow.when(this._widthsReady).then(function() {
-                var width = this._widths[route] || DEFAULT_WIDTH;
+                var width = (route in this._widths)? this._widths[route] : DEFAULT_WIDTH;
             
                 return widthFactor * width;
             }, this);
