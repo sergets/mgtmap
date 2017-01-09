@@ -143,8 +143,7 @@ $.extend(DataManager.prototype, {
             return vow.resolve(DEFAULT_WIDTH * widthFactor);
         } else {    
             return vow.when(this._widthsReady).then(function() {
-                var width = (route in this._widths)? this._widths[route] : DEFAULT_WIDTH;
-            
+                var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : DEFAULT_WIDTH;
                 return widthFactor * width;
             }, this);
         }
