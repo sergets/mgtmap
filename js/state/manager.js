@@ -10,7 +10,7 @@ define([
 
 var StateManager = function() {
     var bounds,
-        query = location.search.split('&').reduce(function(res, param) {
+        query = location.search.substr(1).split('&').reduce(function(res, param) {
             var params = param.split('=');
             res[params[0]] = params[1] || '';
             return res;
