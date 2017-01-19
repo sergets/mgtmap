@@ -15,6 +15,7 @@ define([
 ) {
 
 var DEFAULT_WIDTH = 2,
+    NO_DATA_WIDTH = 0,
     SELECTED_ROUTE_WIDTH = 20;
 
 var DataManager = function(stateManager) {
@@ -143,7 +144,7 @@ $.extend(DataManager.prototype, {
             return vow.resolve(DEFAULT_WIDTH * widthFactor);
         } else {    
             return vow.when(this._widthsReady).then(function() {
-                var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : DEFAULT_WIDTH;
+                var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : NO_DATA_WIDTH;
                 return widthFactor * width;
             }, this);
         }

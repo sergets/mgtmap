@@ -74,7 +74,11 @@ define(function() {
         return res - Math.floor(res);
     }
 
-    function getColor(bus) {
+    function getColor(bus, customColoringId) {
+        if(customColoringId && CUSTOM_COLORINGS[customColoringId]) {
+            return CUSTOM_COLORINGS[customColoringId](bus);
+        }
+
         bus = bus + '';
         var type = 2,
             k = false;
@@ -125,3 +129,20 @@ define(function() {
 
     return getColor;
 });
+
+var PROJECT_ROUTES = ['Т79', 'Т3', 'Т47', 'Т10', 'Б', 'Т39', 'Т67', 'м9', '24к ', 'м1', '648', '64', '223', '205к', '247', '164', '237', '24', '763к', '209', '232', '651', '271', 'Т15', '633', '298', '709', '683', 'Т25', '215к', '85', '132', '291', '263', 'м6', '791', '832', '834', '241', '789', '615', '221', 'м3', '275', '706к', '811', 'м2', '608', '155', '805', '659', '230', '690', '31', 'А', '39', '761', '216', '255', '645', '51', '299', '806', '776', '803', '742', '152', '194', 'С5', '276', '706', '116', 'С8', '700', '52', '171', '159', '84к', '257', '12', '39к', '67', '57', '672', '84', '130', '143', '800', '763', '40', '96', '9', 'м10', '656', '709к', '179', '623', '142', '101', '730', '8', '186', '820', '153', '701', '278', '147', '106', '220', '38', '214', 'В'];
+
+var CUSTOM_COLORINGS = {
+    'troll-project' : function(bus) {
+        if(bus.indexOf('Тм') != -1) {
+            return '#900';
+        }
+        if(bus.indexOf('Тб') != -1) {
+            return '#3f0';
+        }
+        if(PROJECT_ROUTES.indexOf(bus) != -1) {
+            return '#5fd';
+        }
+        return '#104';
+    }
+}

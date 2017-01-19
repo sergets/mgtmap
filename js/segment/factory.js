@@ -17,13 +17,14 @@ define([
 var SegmentFactory = function(dataManager, stateManager) {
     this._dataManager = dataManager;
     this._stateManager = stateManager;
-    this._balloonContentLayout = BalloonContentLayout.create(stateManager.isAdminMode());
+    this._balloonContentLayout = BalloonContentLayout.create(stateManager.isAdminMode(), stateManager.getCustomColoringId());
     this._pendingDeferreds = {};
 };
 
 $.extend(SegmentFactory.prototype, {
     createSegment : function(id, coords, zoom) {
-        var deferred = this._pendingDeferreds[id] = vow.defer();
+        var deferred = this._pendingDeferreds[id] = vow.defer(),
+            customColoringId = this._stateManager.getCustomColoringId();
         
         vow.all([
             this._dataManager.getRoutesForSegment(id),
@@ -46,7 +47,7 @@ $.extend(SegmentFactory.prototype, {
                         color = 'ffffff00';
                         route = route.substr(1);
                     } else {
-                        color = getBusColor(route)
+                        color = getBusColor(route, customColoringId);
                     }
                     return this._dataManager.getActualWidthForRoute(route).then(function(width) {
                         return {

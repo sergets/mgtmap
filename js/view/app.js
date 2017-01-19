@@ -177,7 +177,7 @@ $.extend(AppView.prototype, {
 
         this.trigger('route-selected', route);
         $('body').addClass('route-selected');
-        $('.current-route').css('background', getBusColor(route)).html(route);
+        $('.current-route').css('background', getBusColor(route, this._stateManager.getCustomColoringId())).html(route);
     },
     
     _onDeselectRoute : function(e) {

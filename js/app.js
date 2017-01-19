@@ -38,6 +38,11 @@ require([
             map = new Map(stateManager.getBounds(), dataManager, segmentFactory),
             appView = new AppView(map, stateManager);
 
+        stateManager.isDebugMode() && (window.mgtApp = {
+            dataManager : dataManager,
+            map : map
+        });
+
         map.on({
             'bounds-changed' : function(e, data) {
                 stateManager.setBounds(data.bounds);

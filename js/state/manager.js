@@ -9,7 +9,12 @@ define([
 ) {
 
 var StateManager = function() {
-    var bounds;
+    var bounds,
+        query = location.search.split('&').reduce(function(res, param) {
+            var params = param.split('=');
+            res[params[0]] = params[1] || '';
+            return res;
+        }, {});
     
     try {
         bounds = JSON.parse(localStorage.getItem('bounds'));
@@ -24,10 +29,12 @@ var StateManager = function() {
         toHour : (new Date()).getHours(),
         date : +new Date(new Date().toISOString().substring(0, 10))
     };
-    this._selectedRoute = false;
+    this._selectedRoute = query.route || false;
     this._widthFactor = 1;
-    this._isEqualWidthsMode = location.search.indexOf('equal') != -1,
-    this._isAdminMode = location.search.indexOf('admin') != -1;
+    this._isEqualWidthsMode = 'equal' in query;
+    this._isAdminMode = 'admin' in query;
+    this._isDebugMode = 'debug' in query,
+    this._customColoringId = query.coloring;
 };
 
 $.extend(StateManager.prototype, eventsEmitter);
@@ -88,6 +95,14 @@ $.extend(StateManager.prototype, {
     
     isAdminMode : function() {
         return this._isAdminMode; 
+    },
+
+    isDebugMode : function() {
+        return this._isDebugMode; 
+    },
+
+    getCustomColoringId : function() {
+        return this._customColoringId;
     }
 });
 

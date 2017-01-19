@@ -11,7 +11,7 @@ define([
 ) {
 
 return {
-    create : function(isAdminMode) { 
+    create : function(isAdminMode, customColoringId) { 
         return ymaps.templateLayoutFactory.createClass(       
             (isAdminMode?
                  '<div class="segment" segment-id="$[properties.id]" all-routes-json-encoded="$[properties.allRoutesJson]">' +
@@ -31,7 +31,10 @@ return {
                     $('.routes-editor').each(function(i, editor) {
                         shylight(editor, {
                             '([-<>]?)((?:Тм |Тб |)(?:[А-я\-0-9]+))' : function(res, mode, number) {
-                                return '<span class="' + (mode == '-'? 'antiroute' : 'route') + '" style="' + (mode == '-'? 'color' : 'background') + ': ' + getBusColor(number) + '">' + res + '</span>';
+                                return '<span ' +
+                                    'class="' + (mode == '-'? 'antiroute' : 'route') + '" ' + 
+                                    'style="' + (mode == '-'? 'color' : 'background') + ': ' + getBusColor(number, customColoringId) + '"' +
+                                '>' + res + '</span>';
                             }
                         })
                     });
@@ -50,7 +53,7 @@ return {
                             })
                             .map(function(route) {
                                 route = route.replace(/^[<>]/, '');
-                                return '<div class="route" style="background: ' + getBusColor(route) + '">' + 
+                                return '<div class="route" style="background: ' + getBusColor(route, customColoringId) + '">' + 
                                     route + 
                                 '</div>';
                             })
