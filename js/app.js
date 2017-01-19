@@ -65,16 +65,26 @@ require([
             dataManager.saveChangedFiles();
         });
 
-        stateManager.on('selected-route-updated', function(route) {
+        stateManager.on('selected-routes-updated', function(route) {
             map.update();
+            appView.updateSelectedRoutes();
         });
         
         appView.on({
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
-            'route-selected' : function(e, route) { stateManager.setSelectedRoute(route); },
+            'routes-selected' : function(e, data) { stateManager.selectRoutes(data.routes); },
+            'routes-deselected' : function(e, data) { stateManager.deselectRoutes(data.routes); },
             'save-segment' : function(e, data) { dataManager.setRoutesForSegment(data.id, data.routes).done(); },
             'edit-segment-geometry' : function(e, segmentId) { map.toggleSegmentGeometryEditor(segmentId); },
+            'select-segment-routes' : function(e, segmentId) { 
+                dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
+                    stateManager.selectRoutes(routes.map(function(route) {
+                        return (route.indexOf('-') != 0) && route.replace(/^[<>]/, '');
+                    }).filter(Boolean));
+                });
+            },
+
         });
     });
 });

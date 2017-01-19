@@ -3,12 +3,15 @@ body {
 }
 
 #map {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
 }
 
 .segment {
-    width : 220px;
+    width : 190px;
 }
 
 .routes-editor {
@@ -26,6 +29,7 @@ body {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 .antiroute {
@@ -40,30 +44,75 @@ body {
 }
 
 .segment-button {
-    border: 1px solid black;
     margin : 7px 3px 7px;
     font-size : 18px
     display : block;
     padding : 4px;
     clear : left;
+    float : left;
     text-align : center;
     font-weight : bold;
     cursor: pointer;
+    user-select: none;
+    width: 170px;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.4) inset;
+    border-radius: 2px;
 }
 
-.current-route {
-    display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100px;
+.segment-button:hover {
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.6) inset;
+}
+
+.current-routes {
+    position: relative;
+    z-index: 1;
+    margin: 10px;
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.current-route, .deselect-all {
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 80px;
     height: 28px;
     font: 20px/28px sans-serif;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: bold;
-    text-align: center;
     border-radius: 4px;
     cursor: pointer;
+    text-align: left;
+    padding: 4px 10px;
+}
+
+.deselect-all {
+    display: none;
+    width: 16px;
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+    color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.current-routes:not(:empty) ~ .deselect-all {
+    display: block;
+}
+
+.current-route::after {
+    content: "×";
+    float: right;
+    font-weight: normal;
+}
+
+.current-route:hover {
+    color: white;
+}
+
+.current-route:hover::after {
+    color: #fff0f0;
 }
 
 .logo {

@@ -29,14 +29,18 @@ $.extend(AppView.prototype, {
         
         $(document)
             .on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
+            .on('click', '.segment .select-segment-routes', this._onSelectSegmentRoutes.bind(this))
             .on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
             .on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
             .on('click', '.segment .route', this._onSelectRoute.bind(this))
-            .on('click', '.current-route', this._onDeselectRoute.bind(this));
+            .on('click', '.current-route', this._onDeselectRoute.bind(this))
+            .on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
     },
     
     _createTimeControls : function() {
         var timeSettings = this._stateManager.getTimeSettings();
+
+        this._selectedRouteViews = {};          
     
         this._createListControl(
             ({ 6 : 'суббота', 0 : 'воскресенье' })[(new Date()).getDay()] || 'будни',
@@ -103,6 +107,8 @@ $.extend(AppView.prototype, {
                 _this.trigger('time-settings-updated', { date : +new Date(this.value) });
             }
         });
+
+        this.updateSelectedRoutes();
     },
 
     _createListControl : function(content, options, items, onItemSelected, ctx) {
@@ -170,20 +176,48 @@ $.extend(AppView.prototype, {
     _onEditSegmentGeometry : function(e) {
         if(!this._stateManager.isAdminMode()) return;
         this.trigger('edit-segment-geometry', $(e.target).parent('.segment').attr('segment-id'));
+    },
+
+    _onSelectSegmentRoutes : function(e) {
+        this.trigger('select-segment-routes', $(e.target).parent('.segment').attr('segment-id'));
     }, 
     
     _onSelectRoute : function(e) {
         var route = $(e.target).text();
-
-        this.trigger('route-selected', route);
-        $('body').addClass('route-selected');
-        $('.current-route').css('background', getBusColor(route, this._stateManager.getCustomColoringId())).html(route);
+        this.trigger('routes-selected', { routes : [route] });
     },
     
     _onDeselectRoute : function(e) {
-        this.trigger('route-selected', null);
-        $('body').removeClass('route-selected');
-    }    
+        var route = $(e.target).text();
+        this.trigger('routes-deselected', { routes : [route] });
+    },
+
+    _onDeselectAllRoutes : function(e) {
+        this.trigger('routes-deselected', { routes : Object.keys(this._selectedRouteViews) });
+    },
+
+    _createSelectedRouteView : function(route) {
+        return $('<div/>')
+            .addClass('current-route')
+            .css('background', getBusColor(route, this._stateManager.getCustomColoringId()))
+            .html(route)
+            .appendTo('.current-routes');
+    },
+
+    updateSelectedRoutes : function() {
+        var selectedRoutes = this._stateManager.getSelectedRoutes();
+        Object.keys(this._selectedRouteViews).forEach(function(route) {
+            if(selectedRoutes.indexOf(route) == -1) {
+                this._selectedRouteViews[route].remove();
+                delete this._selectedRouteViews[route];
+            }
+        }, this);
+        selectedRoutes.forEach(function(route) {
+            if(!this._selectedRouteViews[route]) {
+                this._selectedRouteViews[route] = this._createSelectedRouteView(route);
+            }
+        }, this)
+    }
 });
 
 function unjoinRoutes(routes) {

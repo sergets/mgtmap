@@ -135,11 +135,19 @@ $.extend(DataManager.prototype, {
     
     getActualWidthForRoute : function(route) {
         var isEqualWidthsMode = this._stateManager.isEqualWidthsMode(),
-            selectedRoute = this._stateManager.getSelectedRoute(),
+            selectedRoutes = this._stateManager.getSelectedRoutes(),
             widthFactor = this._stateManager.getWidthFactor();
 
-        if (selectedRoute) {
-            return vow.resolve(route == selectedRoute? SELECTED_ROUTE_WIDTH : 0);
+        if (selectedRoutes.length) {
+            if(selectedRoutes.length == 1) {
+                return vow.resolve(route == selectedRoutes[0]? SELECTED_ROUTE_WIDTH : 0);
+            } else {
+                return vow.when(this._widthsReady).then(function() {
+                    if(selectedRoutes.indexOf(route) == -1) return 0;
+                    var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : NO_DATA_WIDTH;
+                    return widthFactor * width;
+                }, this);
+            }
         } else if (isEqualWidthsMode) {
             return vow.resolve(DEFAULT_WIDTH * widthFactor);
         } else {    

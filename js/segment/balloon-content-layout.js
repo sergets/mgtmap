@@ -14,16 +14,20 @@ return {
     create : function(isAdminMode, customColoringId) { 
         return ymaps.templateLayoutFactory.createClass(       
             (isAdminMode?
-                 '<div class="segment" segment-id="$[properties.id]" all-routes-json-encoded="$[properties.allRoutesJson]">' +
-                 'id <b>$[properties.id]</b>' + 
-                 '<br>До:<br><div class="routes-editor yesterday">$[properties.routesYesterdayEditor]</div>' +
-                 '<br>После:<br><div class="routes-editor today">$[properties.routesTodayEditor]</div>' +
-                 '<div class="segment-button edit-segment-geometry">Геометрия</div>' +
-                 '<div class="segment-button save-segment">Сохранить</div>' +
-                 '<div class="segment-button reverse-segment">Развернуть</div>' + 
-                 '</div>' :
+                '<div class="segment" segment-id="$[properties.id]" all-routes-json-encoded="$[properties.allRoutesJson]">' +
+                    'id <b>$[properties.id]</b>' + 
+                    '<br>До:<br><div class="routes-editor yesterday">$[properties.routesYesterdayEditor]</div>' +
+                    '<br>После:<br><div class="routes-editor today">$[properties.routesTodayEditor]</div>' +
+                    '<div class="segment-button edit-segment-geometry">Геометрия</div>' +
+                    '<div class="segment-button save-segment">Сохранить</div>' +
+                    '<div class="segment-button reverse-segment">Развернуть</div>' + 
+                '</div>' :
 
-                 '<div class="segment" segment-id="$[properties.id]">$[properties.routesHtml]</div>'),
+                '<div class="segment" segment-id="$[properties.id]">' +   
+                    '$[properties.routesHtml]' + 
+                    '<div class="segment-button select-segment-routes">Показать эти маршруты</div>' +
+                '</div>'
+            ),
             {
                 build: function() {
                     this.constructor.superclass.build.call(this);

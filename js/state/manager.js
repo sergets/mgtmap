@@ -12,7 +12,7 @@ var StateManager = function() {
     var bounds,
         query = location.search.substr(1).split('&').reduce(function(res, param) {
             var params = param.split('=');
-            res[params[0]] = params[1] || '';
+            res[decodeURIComponent(params[0])] = decodeURIComponent(params[1]) || '';
             return res;
         }, {});
     
@@ -29,7 +29,7 @@ var StateManager = function() {
         toHour : (new Date()).getHours(),
         date : +new Date(new Date().toISOString().substring(0, 10))
     };
-    this._selectedRoute = query.route || false;
+    this._selectedRoutes = query.routes? query.routes.split(',') : [];
     this._widthFactor = 1;
     this._isEqualWidthsMode = 'equal' in query;
     this._isAdminMode = 'admin' in query;
@@ -67,15 +67,28 @@ $.extend(StateManager.prototype, {
         isUpdated && this.trigger('time-settings-updated', this._timeSettings);
     },
     
-    getSelectedRoute : function() {
-        return this._selectedRoute;
+    getSelectedRoutes : function() {
+        return this._selectedRoutes;
     },
     
-    setSelectedRoute : function(route) {
-        if (this._selectedRoute != route) {
-            this._selectedRoute = route;
-            this.trigger('selected-route-updated', route);
-        }
+    selectRoutes : function(routes) {
+        routes.forEach(function(route) {
+            if (this._selectedRoutes.indexOf(route) == -1) {
+                this._selectedRoutes.push(route);
+                this.trigger('selected-routes-updated', this._selectedRoutes);
+            }
+        }, this);
+    },
+
+    deselectRoutes : function(routes) {
+        routes.forEach(function(route) {
+            var index = this._selectedRoutes.indexOf(route);
+
+            if (index != -1) {
+                this._selectedRoutes.splice(index, 1);
+                this.trigger('selected-routes-updated', this._selectedRoutes);
+            }
+        }, this);
     },
 
     getWidthFactor : function() {
