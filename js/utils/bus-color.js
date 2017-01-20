@@ -1,4 +1,45 @@
-define(function() {
+define([
+    '../../data/vendors'
+], function(vendors) {
+    var CUSTOM_COLORINGS = {
+        'troll-project' : function(bus) {
+            if(bus.indexOf('Тм') != -1) {
+                return '#f84';
+            }
+            if(bus.indexOf('Тб') != -1) {
+                return '#6f0';
+            }
+            if(PROJECT_ROUTES.indexOf(bus) != -1) {
+                return '#1bf';
+            }
+            return '#528';
+        },
+        'black' : function() {
+            return '#000';
+        },
+        'type' : function(bus) {
+            if(bus.indexOf('Тм') != -1) {
+                return '#e44';
+            }
+            if(bus.indexOf('Тб') != -1) {
+                return '#7c3';
+            }
+            return '#47c';
+        },
+        'vendor' : function(bus) {
+            return {
+                'autoline' : '#59c',
+                'tmp20' : '#871',
+                'alphagrant' : '#d22',
+                'rico' : '#1bf',
+                'gepart' : '#528',
+                'gortaxi' : '#ff2',
+                'autocars' : '#000',
+                'transway' : '#f0f'
+            }[vendors[bus]] || '#ddd';
+        }
+    };
+
     function rgb2hsl(rgb) {
         var r = rgb[0],
             g = rgb[1],
@@ -132,17 +173,4 @@ define(function() {
 
 var PROJECT_ROUTES = ['Т79', 'Т3', 'Т47', 'Т10', 'Б', 'Т39', 'Т67', 'Т40', 'Т71', 'Т72', 'Т52', 'м9', '24к', 'м1', '648', '64', '223', '205к', '247', '164', '237', '24', '763к', '209', '232', '651', '271', 'Т15', '633', '298', '709', '683', 'Т25', '215к', '85', '132', '291', '263', 'м6', '791', '832', '834', '241', '789', '615', '221', 'м3', '275', '706к', '811', 'м2', '608', '155', '805', '659', '230', '690', '31', 'А', '39', '761', '216', '255', '645', '51', '299', '806', '776', '803', '742', '152', '194', 'С5', '276', '706', '116', 'С8', '700', '52', '171', '159', '84к', '257', '12', '39к', '67', '57', '672', '84', '130', '143', '800', '763', '40', '96', '9', 'м10', '656', '709к', '179', '623', '142', '101', '730', '8', '186', '820', '153', '701', '278', '147', '106', '220', '38', '214', 'В'];
 
-var CUSTOM_COLORINGS = {
-    'troll-project' : function(bus) {
-        if(bus.indexOf('Тм') != -1) {
-            return '#f84';
-        }
-        if(bus.indexOf('Тб') != -1) {
-            return '#6f0';
-        }
-        if(PROJECT_ROUTES.indexOf(bus) != -1) {
-            return '#1bf';
-        }
-        return '#528';
-    }
-}
+

@@ -34,6 +34,7 @@ var StateManager = function() {
     this._isEqualWidthsMode = 'equal' in query;
     this._isAdminMode = 'admin' in query;
     this._isDebugMode = 'debug' in query,
+    this._white = query.white || 0.7;
     this._customColoringId = query.coloring;
 };
 
@@ -89,6 +90,10 @@ $.extend(StateManager.prototype, {
                 this.trigger('selected-routes-updated', this._selectedRoutes);
             }
         }, this);
+    },
+
+    getWhite : function() {
+        return this._white;
     },
 
     getWidthFactor : function() {

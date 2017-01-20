@@ -35,7 +35,7 @@ require([
         var stateManager = new StateManager(),
             dataManager = new DataManager(stateManager),
             segmentFactory = new SegmentFactory(dataManager, stateManager),
-            map = new Map(stateManager.getBounds(), dataManager, segmentFactory),
+            map = new Map({ bounds : stateManager.getBounds(), white : stateManager.getWhite() }, dataManager, segmentFactory),
             appView = new AppView(map, stateManager);
 
         stateManager.isDebugMode() && (window.mgtApp = {

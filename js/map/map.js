@@ -12,11 +12,11 @@ define([
 
 var SNAP_DISTANCE = 25;
 
-var Map = function(initialBounds, dataManager, segmentFactory, junctionFactory) {
+var Map = function(initialParams, dataManager, segmentFactory, junctionFactory) {
     this._map = new ymaps.Map('map', $.extend({
         controls: ['zoomControl', 'geolocationControl']
     }, {
-        bounds : initialBounds
+        bounds : initialParams.bounds
     }));
     this._coll = new ymaps.GeoObjectCollection();
     this._jcColl = new ymaps.GeoObjectCollection();
@@ -26,6 +26,7 @@ var Map = function(initialBounds, dataManager, segmentFactory, junctionFactory) 
     this._segmentFactory = segmentFactory;
     this._junctionFactory = junctionFactory;
     this._geometryEditedSegments = {};
+    this._white = +initialParams.white || 0.7;
     
     this._init();
 };
@@ -38,7 +39,7 @@ $.extend(Map.prototype, {
             'data:image/svg+xml,' + encodeURIComponent(
                 '<?xml version="1.0" encoding="utf-8"?>' + 
                 '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" height="256" width="256">' + 
-                    '<rect x="0" y="0" width="256" height="256" fill="white" opacity="0.7"/>' +
+                    '<rect x="0" y="0" width="256" height="256" fill="white" opacity="' + this._white + '"/>' +
                 '</svg>'
             ),
             { tileTransparent : true }
