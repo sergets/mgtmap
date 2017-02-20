@@ -191,11 +191,13 @@ $.extend(AppView.prototype, {
     },
     
     _onDeselectRoute : function(e) {
-        var routeNumber = $(e.target).text(),
-            routeType = ($(e.target).find('.bus,.tram,.trolley')[0]).className,
+        var target = $(e.target).closest('.current-route'),
+            routeNumber = target.text(),
+            routeTypeElem = target.find('.bus,.tram,.trolley')[0],
+            routeType = routeTypeElem && routeTypeElem.className,
             route = { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
 
-        this.trigger('routes-deselected', { routes : [route] });
+        routeType && this.trigger('routes-deselected', { routes : [route] });
     },
 
     _onDeselectAllRoutes : function(e) {

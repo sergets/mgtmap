@@ -5,7 +5,7 @@ requirejs.config({
         vow : '//cdn.rawgit.com/dfilatov/vow/0.4.12/vow.min',
         shylight : '//cdn.rawgit.com/sergets/shylight/0.0.1/shylight.min',
         'pretty-json-stringify' : '//cdn.rawgit.com/sergets/pretty-json-stringify/0.0.2/index',
-        ymaps : '//api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline'   
+        ymaps : '//api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'   
     },
     shim : {
         ymaps : { exports : 'ymaps' }
@@ -16,6 +16,7 @@ require([
     'ymaps',
     'jquery',
     'vow',
+    'tile/client',
     'state/manager',
     'data/manager',
     'segment/factory',
@@ -25,6 +26,7 @@ require([
     ym,
     $,
     vow,
+    MapWorker,
     StateManager,
     DataManager,
     SegmentFactory,
@@ -35,13 +37,19 @@ require([
         var stateManager = new StateManager(),
             dataManager = new DataManager(stateManager),
             segmentFactory = new SegmentFactory(dataManager, stateManager),
-            map = new Map({ bounds : stateManager.getBounds(), white : stateManager.getWhite() }, dataManager, segmentFactory),
+            tileWorker = new MapWorker(dataManager, stateManager);
+
+        var map = new Map({ bounds : stateManager.getBounds(), white : stateManager.getWhite() }, dataManager, segmentFactory, stateManager, tileWorker),
             appView = new AppView(map, stateManager);
 
         stateManager.isDebugMode() && (window.mgtApp = {
             dataManager : dataManager,
             map : map
         });
+
+        stateManager.on('selected-routes-updated time-settings-updated width-factor-updated', function() {
+            tileWorker.command('setup', { state : stateManager.serialize() });
+        })
 
         map.on({
             'bounds-changed' : function(e, data) {
@@ -83,8 +91,7 @@ require([
                         return (route.indexOf('-') != 0) && route.replace(/^[<>]/, '');
                     }).filter(Boolean));
                 });
-            },
-
+            }
         });
     });
 });

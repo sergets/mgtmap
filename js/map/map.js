@@ -2,30 +2,40 @@ define([
     'ymaps',
     'jquery',
     'vow',
-    'utils/events-emitter'
+    'utils/cache',
+    'utils/events-emitter',
+    'map/worker-canvas-layer',
+    'map/worker-hotspot-source',
+    'view/segment'
 ], function(
     ymaps,
     $,
     vow,
-    eventsEmitter
+    Cache,
+    eventsEmitter,
+    _,
+    _,
+    segmentView
 ) {
 
 var SNAP_DISTANCE = 25;
 
-var Map = function(initialParams, dataManager, segmentFactory, junctionFactory) {
+var Map = function(initialParams, dataManager, segmentFactory, stateManager, worker) {
     this._map = new ymaps.Map('map', $.extend({
         controls: ['zoomControl', 'geolocationControl']
     }, {
         bounds : initialParams.bounds
     }));
 
+    this._worker = worker;
     this._coll = new ymaps.GeoObjectCollection();
     this._jcColl = new ymaps.GeoObjectCollection();
     this._junctions = {};
     this._visibleSegments = {};
     this._dataManager = dataManager;
     this._segmentFactory = segmentFactory;
-    this._junctionFactory = junctionFactory;
+    this._stateManager = stateManager;
+    //this._junctionFactory = junctionFactory;
     this._geometryEditedSegments = {};
     this._white = +initialParams.white || 0.7;
     
@@ -36,19 +46,39 @@ $.extend(Map.prototype, eventsEmitter);
 
 $.extend(Map.prototype, {
     _init : function() {
-        this._map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+        var map = this._map,
+            worker = this._worker,
+            that = this;
 
-        this._map.layers.add(new ymaps.Layer(
-            'data:image/svg+xml,' + encodeURIComponent(
-                '<?xml version="1.0" encoding="utf-8"?>' + 
-                '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" height="256" width="256">' + 
-                    '<rect x="0" y="0" width="256" height="256" fill="white" opacity="' + this._white + '"/>' +
-                '</svg>'
-            ),
-            { tileTransparent : true }
-        ));
+        map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+        map.panes.append('white', new ymaps.pane.StaticPane(map, {
+            css : {
+                width: '100%',
+                height: '100%',
+                background: 'rgba(256, 256, 256, ' + this._white + ')'
+            },
+            zIndex : 150
+        }));
+        
+        ymaps.modules.require([
+            'worker-canvas-layer',
+            'worker-hotspot-source'
+        ], function(
+            WorkerCanvasLayer,
+            WorkerHotspotSource
+        ) {
+            var rendererLayer = new WorkerCanvasLayer(worker, {
+                    tileTransparent : true,
+                    pane : 'places'
+                }),
+                hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker));
 
-        this._map.events.add('boundschange', this._onBoundsChanged, this);
+            map.layers.add(rendererLayer);
+            map.layers.add(hotspotLayer);
+
+            hotspotLayer.events.add('click', that._onHotspotClicked, that);
+        });
+
         this._coll.events.add('split', function(e) {
             var originalEvent = e.getSourceEvent().originalEvent;
             this.trigger('split-segment', { 
@@ -57,10 +87,15 @@ $.extend(Map.prototype, {
                 geometry : originalEvent.geometry
             });
         }, this);
-        this._map.geoObjects.add(this._coll);
-        this._map.geoObjects.add(this._jcColl);
+    },
 
-        this._onBoundsChanged();
+    _onHotspotClicked : function(e) {
+        var position = e.get('coords'),
+            segmentId = e.get('activeObject').getProperties().segmentId;
+
+        this._dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
+            this._map.balloon.open(position, segmentView(segmentId, routes, this._stateManager.getCustomColoringId()).outerHTML);
+        }, this);
     },
     
     _hideAllSegments : function() {
@@ -195,8 +230,8 @@ $.extend(Map.prototype, {
     },
     
     update : function() {
-        this._hideAllSegments();
-        this._onBoundsChanged();
+        //this._hideAllSegments();
+        //this._onBoundsChanged();
     },
     
     getMap : function() {

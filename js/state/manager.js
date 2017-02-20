@@ -1,9 +1,9 @@
 define([
-    'jquery',
+    'utils/extend',
     'vow',
     'utils/events-emitter'
 ], function(
-    $,
+    extend,
     vow,
     eventsEmitter
 ) {
@@ -22,7 +22,7 @@ var StateManager = function() {
         
     this._bounds = bounds && bounds[0] && bounds[0][0]?
         bounds :
-        [[55.73, 37.5], [55.77, 37.7]];
+        [[55.74, 37.55], [55.76, 37.65]];
     this._timeSettings = {
         dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
         fromHour : (new Date()).getHours(),
@@ -38,9 +38,9 @@ var StateManager = function() {
     this._customColoringId = query.coloring;
 };
 
-$.extend(StateManager.prototype, eventsEmitter);
+extend(StateManager.prototype, eventsEmitter);
 
-$.extend(StateManager.prototype, {
+extend(StateManager.prototype, {
     getBounds : function() {
         return this._bounds;
     },
@@ -121,6 +121,19 @@ $.extend(StateManager.prototype, {
 
     getCustomColoringId : function() {
         return this._customColoringId;
+    },
+
+    serialize : function() {
+        return {
+            timeSettings : this._timeSettings,
+            selectedRoutes : this._selectedRoutes,
+            widthFactor : this._widthFactor,
+            isEqualWidthsMode : this._isEqualWidthsMode,
+            isAdminMode : this._isAdminMode,
+            isDebugMode : this._isDebugMode,
+            white : this._white,
+            customColoringId : this._customColoringId
+        };
     }
 });
 

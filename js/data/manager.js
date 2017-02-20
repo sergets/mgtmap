@@ -109,6 +109,10 @@ $.extend(DataManager.prototype, {
         }, this);
     },
 
+    getRoutes : function() {
+        return this._getDataFromFile('data/routes.json');
+    },
+
     getRoutesForSegment : function(segmentId) {
         return this._getDataFromFile('data/routes.json').then(function(routesBySegment) {
             return routesBySegment[segmentId] || {};
