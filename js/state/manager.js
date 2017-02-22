@@ -76,9 +76,9 @@ $.extend(StateManager.prototype, {
         routes.forEach(function(route) {
             if (this._selectedRoutes.indexOf(route) == -1) {
                 this._selectedRoutes.push(route);
-                this.trigger('selected-routes-updated', this._selectedRoutes);
             }
         }, this);
+        this.trigger('selected-routes-updated', this._selectedRoutes);
     },
 
     deselectRoutes : function(routes) {
@@ -87,9 +87,9 @@ $.extend(StateManager.prototype, {
 
             if (index != -1) {
                 this._selectedRoutes.splice(index, 1);
-                this.trigger('selected-routes-updated', this._selectedRoutes);
             }
         }, this);
+        this.trigger('selected-routes-updated', this._selectedRoutes);
     },
 
     getWhite : function() {

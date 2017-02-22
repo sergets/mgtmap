@@ -18,6 +18,7 @@ var Map = function(initialParams, dataManager, segmentFactory, junctionFactory) 
     }, {
         bounds : initialParams.bounds
     }));
+
     this._coll = new ymaps.GeoObjectCollection();
     this._jcColl = new ymaps.GeoObjectCollection();
     this._junctions = {};
@@ -35,6 +36,8 @@ $.extend(Map.prototype, eventsEmitter);
 
 $.extend(Map.prototype, {
     _init : function() {
+        this._map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+
         this._map.layers.add(new ymaps.Layer(
             'data:image/svg+xml,' + encodeURIComponent(
                 '<?xml version="1.0" encoding="utf-8"?>' + 

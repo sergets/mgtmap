@@ -100,18 +100,18 @@ $.extend(SegmentFactory.prototype, {
     },
     
     _getLineOptions : function(colors, widths, directions, diffStates) {
-        var styles = [null],
-            resWidths = [10],
-            resColors = ['ffffff00'],
-            totalWidth = widths.reduce(function(p, c) { return p + c; }, 0),
+        var totalWidth = widths.reduce(function(p, c) { return p + c; }, 0),
             shift = -totalWidth / 2;
+            styles = [null],
+            resWidths = [totalWidth || 1],
+            resColors = ['ffffff00'];
 
         if(!totalWidth) {
             return {
                 balloonContentLayout: this._balloonContentLayout,
-                strokeColor : ['ffffff00', 'ff770033'],
-                strokeWidth : [10, 3],
-                strokeStyle : [null, [1, 2]]
+                strokeColor : ['ffffff00', 'ff770044'],
+                strokeWidth : [2, 1],
+                strokeStyle : [null, [1, 3]]
             };
         }
 
@@ -119,16 +119,12 @@ $.extend(SegmentFactory.prototype, {
             var actualShift = shift + width / 2;
     
             if(directions[i]) {
-                var style, offset = 0;
-                for(var j = 0.2; j <= 1; j += 0.2) {
-                    style = [2 / j , 2 / j];
-                    //if (directions[i] == -1) {
-                        offset = directions[i] * width * 1.2 * j;
-                    //}
-                    //console.log(directions[i], style, offset);
+                var arrowSteps = Math.ceil(width / 2);
+
+                for(var j = 1/arrowSteps; j <= 1; j += 1/arrowSteps) {
                     styles.push({
-                        style : style,
-                        offset : offset,
+                        style : [2 / j , 2 / j],
+                        offset : directions[i] * width * (1 + 1/arrowSteps) * j,
                         generator: function(paths) {
                             return paths.map(function(a) {
                                 var res = ymaps.graphics.generator.stroke.outline.sides(a, Math.abs(actualShift))[actualShift > 0? 'leftSide' : 'rightSide'];
