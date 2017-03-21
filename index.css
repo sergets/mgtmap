@@ -11,12 +11,45 @@ body {
 }
 
 .segment {
-    width : 190px;
+    width : 215px;
 }
 
 .routes-editor {
     width: 220px;
     min-height : 140px;
+}
+
+@import url('//fonts.googleapis.com/css?family=Ubuntu:700|Montserrat:500');
+
+.bus, .trolley, .tram {
+    color: white;
+    font-family: Montserrat, Ubuntu, Futura, Verdana, Sans-serif;
+    font-weight: 500;
+    display: block;
+    float : left;
+    padding: 3px 0 3px 15px;
+    margin : 3px;
+    font-size: 16px;
+    width: 50px;
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.trolley {
+    background-color: #1e90ff;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" transform="scale(0.8)" fill="#fff" d="M16 19.49h3.216v-9.124H16v9.123zm-4.527 0h3.218v-9.124h-3.217v9.123zm-8.948-5.393h7.64v-3.73h-7.64v3.73zm4.008 8.385c-1.122 0-2.032-.836-2.032-1.865 0-1.028.91-1.863 2.033-1.863 1.125 0 2.037.835 2.037 1.863 0 1.03-.912 1.865-2.037 1.865zm13.99-5.392v-6.724L18.06 8.11H14.7V6.926h-1.287l-4-3.642-.132-.12L6.623.747 5.804 0h-1.85L7.34 3.083l4.225 3.843h-1.86L5.7 3.284l-.197-.18L2.913.745 2.09 0H.24l3.61 3.284 4.003 3.642H6.55V8.11H0v2.256h1.217v3.73H0v7.552h2.148c-.093-.335-.14-.68-.14-1.03 0-.562.12-1.108.36-1.622.227-.497.555-.942.97-1.322.42-.382.905-.682 1.446-.892.56-.217 1.154-.327 1.768-.327v1.09c-1.848.006-3.343 1.378-3.343 3.072 0 1.697 1.5 3.073 3.35 3.073 1.46 0 2.7-.852 3.162-2.042h10.802v-2.164h1.307V17.09h-1.306z"/></svg>');
+}
+
+.bus {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><path transform="scale(0.8) translate(0,8)" fill-rule="evenodd" fill="#fff" d="M16 11.38h3.216V2.255H16v9.123zm-4.527 0h3.218V2.255h-3.217v9.123zM2.525 5.985h7.64v-3.73h-7.64v3.73zm4.008 8.385c-1.122 0-2.032-.835-2.032-1.863 0-1.03.91-1.864 2.033-1.864 1.125 0 2.037.835 2.037 1.864 0 1.028-.912 1.864-2.037 1.864zm13.99-5.39V2.256L18.06 0H0v2.256h1.217v3.73H0v7.552h2.148c-.093-.336-.14-.68-.14-1.03 0-.563.12-1.108.36-1.622.227-.497.555-.942.97-1.323.42-.382.905-.68 1.446-.89.56-.218 1.154-.328 1.768-.328v1.09c-1.848.006-3.343 1.377-3.343 3.072 0 1.697 1.5 3.072 3.35 3.072 1.46 0 2.7-.852 3.162-2.042h10.802v-2.164h1.307V8.98h-1.306z"/></svg>');
+    background-color: black;
+}
+
+.tram {
+    background-color: red;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" transform="scale(0.8) translate(0, 3)" fill-rule="evenodd"><path d="M9.275 19.35c0-.196-.04-.386-.11-.56-.25-.617-.895-1.057-1.655-1.057s-1.405.44-1.655 1.056c-.07.173-.11.363-.11.56 0 .892.79 1.62 1.765 1.62.974 0 1.765-.728 1.765-1.62"/><path d="M2.618 20.97c.976 0 1.766-.725 1.766-1.62 0-.197-.038-.386-.11-.56-.25-.617-.896-1.057-1.656-1.057-.975 0-1.764.725-1.764 1.617 0 .114.012.225.036.332.167.734.877 1.287 1.728 1.287"/><path d="M.082 22.732h21.265v-1.24H.082"/><path d="M16.665 17.298h3.33V8h-3.33v9.298zm-4.684 0h3.33V8h-3.33v9.298zm-9.26-5.436h7.91V8H2.72v3.862zm2.136-8.094l2.658-1.65 2.66 1.65-2.66 1.65-2.658-1.65zm16.494 11.05V8l-2.552-2.337H9.52l2.232-1.384c.185-.117.296-.308.296-.513 0-.206-.11-.397-.296-.512L7.892.86c-.228-.14-.53-.14-.755 0L3.275 3.257c-.184.115-.295.306-.295.512 0 .204.11.395.295.51l2.232 1.384-5.425.004v2.338L1.366 8v3.862H.082v5.912c.553-.742 1.48-1.23 2.533-1.233h4.893c1.692 0 3.07 1.263 3.07 2.81 0 .114-.008.223-.022.33H21.35V17.3h1.35v-2.48h-1.35z"/></g></svg>');
 }
 
 .route, .antiroute {
@@ -76,8 +109,8 @@ body {
     float: left;
     margin-right: 10px;
     margin-bottom: 10px;
-    width: 80px;
-    height: 28px;
+    width: 95px;
+    height: 30px;
     font: 20px/28px sans-serif;
     color: rgba(255, 255, 255, 0.9);
     font-weight: bold;
@@ -85,7 +118,12 @@ body {
     cursor: pointer;
     text-align: left;
     padding: 4px 10px;
+    overflow: hidden;
 }
+
+.current-route .bus, .current-route .trolley, .current-route .tram {
+    transform: scale(1.5);
+} 
 
 .deselect-all {
     display: none;
@@ -132,13 +170,12 @@ body {
 }
 
 #dateForm input {
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
-    background: linear-gradient(to bottom, #fff 0, #eee 100%);
-    border-radius: 4px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 1px rgba(0,0,0,.15), 0 2px 5px -3px rgba(0,0,0,.15);
     height: 28px; 
+    border: 0;
+    padding: 0 10px;
     font: 10pt arial, sans-serif
 }
 

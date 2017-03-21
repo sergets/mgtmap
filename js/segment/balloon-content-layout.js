@@ -57,8 +57,11 @@ return {
                             })
                             .map(function(route) {
                                 route = route.replace(/^[<>]/, '');
-                                return '<div class="route" style="background: ' + getBusColor(route, customColoringId) + '">' + 
-                                    route + 
+                                var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
+                                    routeCleared = route.replace(/^(Тб|Тм) /, '');
+
+                                return '<div class="' + type + '" style="background-color: ' + getBusColor(route, customColoringId) + '">' + 
+                                    routeCleared + 
                                 '</div>';
                             })
                             .join(''))

@@ -32,7 +32,7 @@ $.extend(AppView.prototype, {
             .on('click', '.segment .select-segment-routes', this._onSelectSegmentRoutes.bind(this))
             .on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
             .on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
-            .on('click', '.segment .route', this._onSelectRoute.bind(this))
+            .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
             .on('click', '.current-route', this._onDeselectRoute.bind(this))
             .on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
     },
@@ -183,12 +183,18 @@ $.extend(AppView.prototype, {
     }, 
     
     _onSelectRoute : function(e) {
-        var route = $(e.target).text();
+        var routeNumber = $(e.target).text(),
+            routeType = e.target.className,
+            route = { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
+
         this.trigger('routes-selected', { routes : [route] });
     },
     
     _onDeselectRoute : function(e) {
-        var route = $(e.target).text();
+        var routeNumber = $(e.target).text(),
+            routeType = ($(e.target).find('.bus,.tram,.trolley')[0]).className,
+            route = { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
+
         this.trigger('routes-deselected', { routes : [route] });
     },
 
@@ -197,10 +203,17 @@ $.extend(AppView.prototype, {
     },
 
     _createSelectedRouteView : function(route) {
+        var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
+            routeCleared = route.replace(/^(Тб|Тм) /, '');
+
         return $('<div/>')
             .addClass('current-route')
-            .css('background', getBusColor(route, this._stateManager.getCustomColoringId()))
-            .html(route)
+            .css('background-color', getBusColor(route, this._stateManager.getCustomColoringId()))
+            .append($('<div/>')
+                .addClass(type)
+                .css('background-color', getBusColor(route, this._stateManager.getCustomColoringId()))
+                .html(routeCleared)
+            )
             .appendTo('.current-routes');
     },
 

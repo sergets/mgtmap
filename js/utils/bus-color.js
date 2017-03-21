@@ -153,17 +153,19 @@ define([
                 color[2] = frame(color[2], 1 - (color[1] - 0.75) * 3, 1);
                 break;
             case 1: 
-                color[0] = frame(color[0], 0.15, 0.4);
-                color[1] = frame(color[1], 0.5, 0.9);
+                color[0] = frame(color[0], 0.2, 0.4);
+                color[1] = frame(color[1], 0.7 + 0.3 * Math.abs(color[0] - 0.3), 1);
                 color[2] = frame(color[2], 0.3, 1);
                 break;
             case 2: 
-                color[0] = frame(color[0], 0.3 + color[1] / 4, 1 - color[1] / 4);
+                color[0] = frame(color[0], 0.4 + color[1] / 4, 1 - color[1] / 4);
+                color[1] = frame(color[1], 0, 1 - 0.5 * Math.abs(color[0] - 0.8));
+                color[2] = frame(color[2], 0, 1 - 0.3 * Math.abs(color[0] - 0.8));
                 break;
         }
         if(k) {
-            color[1] = frame(color[1], 0, 0.8);
-            color[2] = frame(color[2], 0.4, 1);
+            color[1] = frame(color[1], 0, 0.9);
+            color[2] = frame(color[2], 0.3, 1);
         }
         return formatColor(hsl2rgb(color));
     }
