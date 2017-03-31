@@ -2,7 +2,7 @@ var global = window = this;
 
 importScripts('//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
 
-requirejs.config({ baseUrl : '/js',
+requirejs.config({ baseUrl : '..',
     paths : {
         jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
         vow : '//cdn.rawgit.com/dfilatov/vow/0.4.12/lib/vow',

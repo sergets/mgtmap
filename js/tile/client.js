@@ -15,7 +15,7 @@ define([
     //console.log(rhc);
 
 var MapWorker = function(dataManager, stateManager) {
-    var worker = this._worker = new Worker('/js/tile/worker.js'),
+    var worker = this._worker = new Worker('./js/tile/worker.js'),
         that = this;
 
     worker.addEventListener('message', this._onWorkerMessage.bind(this));
