@@ -24,27 +24,8 @@ define([
             tree = this.tree = rbush(),
             actuals = calcActuals(data.segments, data.routes, data.freqs, state);
 
-        this.actualRoutes = actuals.actualRoutes; /* Object.keys(data.routes).reduce(function(res, segmentId) {
-            var routesForSegment = data.routes[segmentId];
-            res[segmentId] = routesForSegment[dateUtils.findNearestDate(Object.keys(routesForSegment), state.timeSettings.date)] || [];
-            return res;
-        }, {});*/
-        
-        this.actualWidths = actuals.actualWidths; /* Object.keys(data.freqs).reduce(function(widths, routeName) {
-            var currentDay = Object.keys(freqs[routeName]).filter(function(dow) { return dow & state.timeSettings.dow; }),
-                tt = data.freqs[routeName][currentDay] || {}
-                //tt = data.freqs[routeName][31] || data.freqs[routeName][127] || {};
-            
-                widths[routeName] = Object.keys(tt).reduce(function(width, hour) {
-                    if(hour >= state.timeSettings.fromHour && hour <= state.timeSettings.toHour) {
-                        width += tt[hour];
-                        i++;
-                    }
-                    return width;
-                }, 0) / i;
-
-            return widths;
-        }, {});*/
+        this.actualRoutes = actuals.actualRoutes;
+        this.actualWidths = actuals.actualWidths;
 
         this.maxWidth = 0;
 

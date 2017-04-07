@@ -1,5 +1,5 @@
 define([
-    'tile/require-ymaps',
+    'worker/utils/require-ymaps',
     'utils/bus-color',
     'utils/geom'
 ], function(

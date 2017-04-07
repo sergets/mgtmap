@@ -1,12 +1,14 @@
 define([
     'jquery',
+    'utils/extend',
     'vow',
     'pretty-json-stringify',
     'utils/geom',
     'utils/date',
     'utils/events-emitter'
 ], function(
-    $,
+    $
+    extend,
     vow,
     prettyJSONStringify,
     geomUtils,
@@ -41,9 +43,9 @@ var DataManager = function(stateManager) {
     this._recalcBounds();
 };
 
-$.extend(DataManager.prototype, eventEmitter);
+extend(DataManager.prototype, eventEmitter);
 
-$.extend(DataManager.prototype, {
+extend(DataManager.prototype, {
     _getDataFromFile : function(fileName) {
         if (fileName in this._data) {
             return vow.resolve(this._data[fileName]);

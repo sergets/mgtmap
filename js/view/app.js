@@ -1,6 +1,7 @@
 define([
     'ymaps',
     'jquery',
+    'utils/extend',
     'vow',
     'utils/date',
     'utils/events-emitter',
@@ -8,6 +9,7 @@ define([
 ], function(
     ymaps,
     $,
+    extend,
     vow,
     dateUtils,
     eventsEmitter,
@@ -21,9 +23,9 @@ var AppView = function(map, stateManager) {
     this._init();
 };
 
-$.extend(AppView.prototype, eventsEmitter);
+extend(AppView.prototype, eventsEmitter);
 
-$.extend(AppView.prototype, {
+extend(AppView.prototype, {
     _init : function() {
         this._createTimeControls();
         

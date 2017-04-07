@@ -3,7 +3,6 @@ requirejs.config({
     paths : {
         jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
         vow : '//cdn.rawgit.com/dfilatov/vow/0.4.12/vow.min',
-        shylight : '//cdn.rawgit.com/sergets/shylight/0.0.1/shylight.min',
         'pretty-json-stringify' : '//cdn.rawgit.com/sergets/pretty-json-stringify/0.0.2/index',
         ymaps : '//api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'   
     },
@@ -16,10 +15,9 @@ require([
     'ymaps',
     'jquery',
     'vow',
-    'tile/client',
+    'worker/client',
     'state/manager',
     'data/manager',
-    'segment/factory',
     'map/map',
     'view/app'
 ], function(
@@ -29,17 +27,15 @@ require([
     MapWorker,
     StateManager,
     DataManager,
-    SegmentFactory,
     Map,
     AppView
 ) {
     ym.ready(function() {
         var stateManager = new StateManager(),
             dataManager = new DataManager(stateManager),
-            segmentFactory = new SegmentFactory(dataManager, stateManager),
             tileWorker = new MapWorker(dataManager, stateManager);
 
-        var map = new Map({ bounds : stateManager.getBounds(), white : stateManager.getWhite() }, dataManager, segmentFactory, stateManager, tileWorker),
+        var map = new Map(dataManager, stateManager, tileWorker),
             appView = new AppView(map, stateManager);
 
         stateManager.isDebugMode() && (window.mgtApp = {
@@ -69,12 +65,10 @@ require([
         });
         
         dataManager.on('widths-updated routes-updated segments-updated', function() {
-            map.update();
             dataManager.saveChangedFiles();
         });
 
         stateManager.on('selected-routes-updated', function(route) {
-            map.update();
             appView.updateSelectedRoutes();
         });
         
@@ -83,8 +77,6 @@ require([
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
             'routes-selected' : function(e, data) { stateManager.selectRoutes(data.routes); },
             'routes-deselected' : function(e, data) { stateManager.deselectRoutes(data.routes); },
-            'save-segment' : function(e, data) { dataManager.setRoutesForSegment(data.id, data.routes).done(); },
-            'edit-segment-geometry' : function(e, segmentId) { map.toggleSegmentGeometryEditor(segmentId); },
             'select-segment-routes' : function(e, segmentId) { 
                 dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
                     stateManager.selectRoutes(routes.map(function(route) {

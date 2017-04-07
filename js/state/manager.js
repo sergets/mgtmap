@@ -32,7 +32,7 @@ var StateManager = function() {
     this._selectedRoutes = query.routes? query.routes.split(',') : [];
     this._widthFactor = 1;
     this._isEqualWidthsMode = 'equal' in query;
-    this._isAdminMode = 'admin' in query;
+    // this._isAdminMode = 'admin' in query;
     this._isDebugMode = 'debug' in query,
     this._white = query.white || 0.7;
     this._customColoringId = query.coloring;
@@ -112,7 +112,7 @@ extend(StateManager.prototype, {
     },
     
     isAdminMode : function() {
-        return this._isAdminMode; 
+        return fasle; // this._isAdminMode; 
     },
 
     isDebugMode : function() {

@@ -3,16 +3,12 @@ define([
     'ymaps',
     'utils/events-emitter',
     'utils/extend'
-    //'tile/commands/init'
 ], function(
     vow,
     ymaps,
     eventsEmitter,
     extend
-   //rhc
 ) {
-
-    //console.log(rhc);
 
 var MapWorker = function(dataManager, stateManager) {
     var worker = this._worker = new Worker('./js/tile/worker.js'),
@@ -36,9 +32,9 @@ extend(MapWorker.prototype, {
             stateManager = this._stateManager;
     
         vow.all({
-            segments : dataManager.getSegments(),// $.getJSON('/data/segments.json'),
-            routes : dataManager.getRoutes(), //$.getJSON('/data/routes.json'),
-            freqs : dataManager.getFreqs() //$.getJSON('/data/freqs.json')
+            segments : dataManager.getSegments(),
+            routes : dataManager.getRoutes(),
+            freqs : dataManager.getFreqs()
         }).done(function(params) {
             worker.postMessage({
                 command : 'init',
@@ -93,10 +89,6 @@ extend(MapWorker.prototype, {
         });
                         
         return deferred.promise();
-    },
-
-    getGlobalId : function() {
-        return this._globalId;
     }
 });
 

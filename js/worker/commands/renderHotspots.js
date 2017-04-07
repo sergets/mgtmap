@@ -1,5 +1,5 @@
 define([
-    'tile/getTilePixelLines'
+    'worker/getTilePixelLines'
 ], function(
     getTilePixelLines
 ) {

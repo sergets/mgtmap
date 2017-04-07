@@ -12,10 +12,10 @@ requirejs.config({ baseUrl : '..',
 
 require([
     'vow',
-    'tile/commands/init',
-    'tile/commands/setup',
-    'tile/commands/renderTile',
-    'tile/commands/renderHotspots'
+    'worker/commands/init',
+    'worker/commands/setup',
+    'worker/commands/renderTile',
+    'worker/commands/renderHotspots'
 ], function(
     vow,
     initCommand,

@@ -1,4 +1,4 @@
-define([
+/*define([
     'vow'
 ], function(
     vow
@@ -49,7 +49,7 @@ define([
                     }
                 };
 
-                /*coordOrder = ym.env.coordinatesOrder;
+                / *coordOrder = ym.env.coordinatesOrder;
                 sign = function (x) {
                     return x < 0 ? -1 : (x > 0 ? 1 : 0); 
                 };
@@ -75,7 +75,7 @@ define([
 
                 cutLat = function (lat) {
                     return Math.max(Math.min(lat, 89.999), -89.999);
-                };*/
+                };* /
                 
                 vectorMath = prototypeToFunction(utils.vector),
                 vector = vectorMath,
@@ -101,4 +101,4 @@ function stringToFunction(str) {
 
 function prototypeToFunction(obj) {
     return Object.keys(obj).reduce(function(v, key) { v[key] = stringToFunction(obj[key]); return v; }, {})
-}
+}*/
