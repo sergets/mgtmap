@@ -1,12 +1,12 @@
 define([
     'jquery',
-    'utils/bus-color'
+    //'utils/bus-color'
 ], function(
-    $,
-    getBusColor
+    $
+    //getBusColor
 ) {
 
-return function(id, routes, customColoringId) {
+return function(id, routes, colors) {
     return $('<div/>')
         .addClass('segment')
         .attr('segment-id', id)
@@ -17,10 +17,12 @@ return function(id, routes, customColoringId) {
                 })
                 .map(function(route) {
                     route = route.replace(/^[<>]/, '');
-                    var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
-                        routeCleared = route.replace(/^(Тб|Тм) /, '');
 
-                    return $('<div/>').addClass(type).css('backgroundColor', getBusColor(route, customColoringId)).html(routeCleared);
+                    var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
+                        routeCleared = route.replace(/^(Тб|Тм) /, ''),
+                        div = $('<div/>').addClass(type).css('backgroundColor', colors[route]).html(routeCleared);
+
+                    return div;
                 }, this)
         )
         .append($('<div/>')

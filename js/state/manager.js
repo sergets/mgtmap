@@ -112,11 +112,16 @@ extend(StateManager.prototype, {
     },
     
     isAdminMode : function() {
-        return fasle; // this._isAdminMode; 
+        return false; // this._isAdminMode; 
     },
 
     isDebugMode : function() {
         return this._isDebugMode; 
+    },
+
+    setCustomColoringId : function(id) {
+        this._customColoringId = id;
+        this.trigger('coloring-id-updated', id);
     },
 
     getCustomColoringId : function() {

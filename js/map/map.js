@@ -28,6 +28,10 @@ var Map = function(dataManager, stateManager, worker) {
     this._worker = worker;
     this._dataManager = dataManager;
     this._stateManager = stateManager;
+
+    dataManager.on('data-updated', function() {
+        this.getMap().balloon.close();
+    }, this);
     
     this._init();
 };
@@ -74,10 +78,17 @@ extend(Map.prototype, {
 
     _onHotspotClicked : function(e) {
         var position = e.get('coords'),
+            dataManager = this._dataManager,
             segmentId = e.get('activeObject').getProperties().segmentId;
 
-        this._dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
-            this._map.balloon.open(position, segmentView(segmentId, routes, this._stateManager.getCustomColoringId()).outerHTML);
+        dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
+            return vow.all(routes.reduce(function(res, i) {
+                var routeName = i.replace(/^[<>]/g, '');
+                res[routeName] = dataManager.getBusColor(routeName);
+                return res;
+            }, {})).done(function(colors) {
+                this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
+            }, this);
         }, this);
     },
 

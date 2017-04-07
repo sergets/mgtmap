@@ -1,10 +1,10 @@
 define([
     'worker/utils/require-ymaps',
-    'utils/bus-color',
+    //'utils/bus-color',
     'utils/geom'
 ], function(
     requireYmaps,
-    getBusColor,
+    //getBusColor,
     geomUtils
 ) {
 	return function(x, y, z) {
@@ -36,6 +36,7 @@ define([
 
 					var routes = global.actualRoutes[id] || [],
 						widths = global.actualWidths,
+						colors = global.actualColors,
 						totalWidth = routes.reduce(function(s, route) { return s + (widths[route.replace(/^[-<>]/, '')] || 0); }, 0) * zoomWidthFactor,
 						curPosition = -totalWidth / 2;
 
@@ -87,7 +88,7 @@ define([
 											Math.abs(curPosition),
 											Math.abs(curPosition)
 										),
-										color : getBusColor(route.replace(/^[-<>]/, ''), global.state.customColoringId),
+										color : colors[route.replace(/^[-<>]/, '')] || '#ccc',
 										data : { id : id }
 									}, line);
 								}));

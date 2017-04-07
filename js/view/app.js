@@ -4,22 +4,21 @@ define([
     'utils/extend',
     'vow',
     'utils/date',
-    'utils/events-emitter',
-    'utils/bus-color'
+    'utils/events-emitter'
 ], function(
     ymaps,
     $,
     extend,
     vow,
     dateUtils,
-    eventsEmitter,
-    getBusColor
+    eventsEmitter
 ) {
 
-var AppView = function(map, stateManager) {
+var AppView = function(map, dataManager, stateManager) {
     this._map = map.getMap();
     this._stateManager = stateManager;
-    
+    this._dataManager = dataManager;
+
     this._init();
 };
 
@@ -98,6 +97,23 @@ extend(AppView.prototype, {
         },
         function(val) {
             this.trigger('width-factor-updated', +val);
+        }, this);
+
+        var colorings = {
+            "" : 'обычная',
+            "vendor" : 'по перевозчику',
+            "type" : 'по типу',
+            "black" : 'все чёрные'
+        }
+
+        this._createListControl(colorings[this._stateManager.getCustomColoringId() || ''] || this._stateManager.getCustomColoringId(), {
+            position : {
+                top : 150,
+                right : 10
+            }
+        }, colorings,
+        function(val) {
+            this.trigger('coloring-updated', val);
         }, this);
         
         var _this = this;
@@ -208,17 +224,21 @@ extend(AppView.prototype, {
 
     _createSelectedRouteView : function(route) {
         var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
-            routeCleared = route.replace(/^(Тб|Тм) /, '');
+            routeCleared = route.replace(/^(Тб|Тм) /, ''),
+            view = $('<div/>')
+                .addClass('current-route')
+                .append($('<div/>')
+                    .addClass(type)
+                    .css('background-color', 'inherit')
+                    .html(routeCleared)
+                )
+                .appendTo('.current-routes');
 
-        return $('<div/>')
-            .addClass('current-route')
-            .css('background-color', getBusColor(route, this._stateManager.getCustomColoringId()))
-            .append($('<div/>')
-                .addClass(type)
-                .css('background-color', getBusColor(route, this._stateManager.getCustomColoringId()))
-                .html(routeCleared)
-            )
-            .appendTo('.current-routes');
+        this._dataManager.getBusColor(route).done(function(color) { 
+            view.css('background-color', color);
+        });
+
+        return view;
     },
 
     updateSelectedRoutes : function() {
@@ -234,6 +254,17 @@ extend(AppView.prototype, {
                 this._selectedRouteViews[route] = this._createSelectedRouteView(route);
             }
         }, this)
+    },
+
+    refreshColors : function() {
+        var dataManager = this._dataManager,
+            selectedRouteViews = this._selectedRouteViews;
+
+        Object.keys(selectedRouteViews).forEach(function(route) {
+            dataManager.getBusColor(route).then(function(color) {
+                selectedRouteViews[route].css('background-color', color);
+            });
+        });
     }
 });
 

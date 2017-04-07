@@ -1,13 +1,15 @@
 define([
-	'utils/date'
+	'utils/date',
+    'utils/bus-color'
 ], function(
-	dateUtils
+	dateUtils,
+    getBusColor
 ) {
 var DEFAULT_WIDTH = 2,
     NO_DATA_WIDTH = 0,
     SELECTED_ROUTE_WIDTH = 20;
 
-return function(segments, routes, freqs, state) {
+return function(data, state) {
 	return {
 		actualRoutes : Object.keys(data.routes).reduce(function(res, segmentId) {
             var routesForSegment = data.routes[segmentId];
@@ -16,7 +18,7 @@ return function(segments, routes, freqs, state) {
         }, {}),
     
     	actualWidths : Object.keys(data.freqs).reduce(function(widths, routeName) {
-            var currentDay = Object.keys(freqs[routeName]).filter(function(dow) { return dow & state.timeSettings.dow; }),
+            var currentDay = Object.keys(data.freqs[routeName]).filter(function(dow) { return dow & state.timeSettings.dow; }),
                 tt = data.freqs[routeName][currentDay] || {},
                 i = 0;
 
@@ -41,6 +43,11 @@ return function(segments, routes, freqs, state) {
 	        widths[routeName] *= state.widthFactor;
 
             return widths;
+        }, {}),
+
+        actualColors : Object.keys(data.freqs).reduce(function(colors, routeName) {
+            colors[routeName] = getBusColor(routeName, state.customColoringId, data);
+            return colors;
         }, {})
     };
 };

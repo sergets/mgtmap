@@ -5,15 +5,17 @@ define([
     'pretty-json-stringify',
     'utils/geom',
     'utils/date',
-    'utils/events-emitter'
+    'utils/events-emitter',
+    'data/calc-actuals'
 ], function(
-    $
+    $,
     extend,
     vow,
     prettyJSONStringify,
     geomUtils,
     dateUtils,
-    eventEmitter
+    eventEmitter,
+    calcActuals
 ) {
 
 var DEFAULT_WIDTH = 2,
@@ -25,22 +27,25 @@ var DataManager = function(stateManager) {
     
     this._data = {};
     this._loadingPromises = {};
-    this._bounds = {};
-    this._boundsReady = false;
-    this._widths = {};
-    this._widthsReady = true;
+
+    this._actualWidths = {};
+    this._actualRoutes = {};
+    this._actualColors = {};
+
+    this._actualsReady = true;
+
     this._changedFiles = {};
     this._saveWindows = {};
     
     this._stateManager.on({
-        'time-settings-updated' : this._recalcWidths,
+        'time-settings-updated' : this._recalcActuals,
+        'coloring-id-updated' : this._recalcActuals,
         'width-factor-updated' : function() {
-            this.trigger('widths-updated');
+            this.trigger('data-updated');
         }
     }, this);
     
-    this._recalcWidths();
-    this._recalcBounds();
+    this._recalcActuals();
 };
 
 extend(DataManager.prototype, eventEmitter);
@@ -78,19 +83,6 @@ extend(DataManager.prototype, {
         this._loadingPromises[fileName] = promise;
         return promise;
     },
-
-    _recalcBounds : function() {
-        this._boundsReady = this.getSegments().then(function(segmentsData) {
-            this._bounds = segmentsData.map(geomUtils.bounds);
-            this._boundsReady = true;
-        }, this);
-    },
-    
-    getSegmentBounds : function() {
-        return vow.when(this._boundsReady).then(function() {
-            return this._bounds;
-        }, this);
-    },
     
     getSegments : function() {
         return this._getDataFromFile('data/segments.json');
@@ -101,7 +93,7 @@ extend(DataManager.prototype, {
             this._data['data/segments.json'][segmentId] = geometry;
             this._bounds[segmentId] = geomUtils.bounds(geometry);
             this._changedFiles['data/segments.json'] = true;
-            this.trigger('segments-updated');
+            this.trigger('data-updated');
         }, this);
     },
     
@@ -125,13 +117,13 @@ extend(DataManager.prototype, {
         return this.getRoutesForSegment(segmentId).then(function() {
             this._data['data/routes.json'][segmentId] = data;
             this._changedFiles['data/routes.json'] = true;
-            this.trigger('routes-updated');
+            this.trigger('data-updated');
         }, this);
     },
 
     getActualRoutesForSegment : function(segmentId) {
-        return this.getRoutesForSegment(segmentId).then(function(routesForSegment) {
-            return routesForSegment[dateUtils.findNearestDate(Object.keys(routesForSegment), this._stateManager.getTimeSettings().date)] || [];
+        return vow.when(this._actualsReady).then(function() {
+            return this._actualRoutes[segmentId];
         }, this);
     },
     
@@ -140,62 +132,33 @@ extend(DataManager.prototype, {
     },
     
     getActualWidthForRoute : function(route) {
-        var isEqualWidthsMode = this._stateManager.isEqualWidthsMode(),
-            selectedRoutes = this._stateManager.getSelectedRoutes(),
-            widthFactor = this._stateManager.getWidthFactor();
-
-        if (selectedRoutes.length) {
-            if(selectedRoutes.length == 1) {
-                return vow.resolve(route == selectedRoutes[0]? SELECTED_ROUTE_WIDTH : 0);
-            } else {
-                return vow.when(this._widthsReady).then(function() {
-                    if(selectedRoutes.indexOf(route) == -1) return 0;
-                    var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : NO_DATA_WIDTH;
-                    return widthFactor * width;
-                }, this);
-            }
-        } else if (isEqualWidthsMode) {
-            return vow.resolve(DEFAULT_WIDTH * widthFactor);
-        } else {    
-            return vow.when(this._widthsReady).then(function() {
-                var width = (this._widths[route] || this._widths[route] === 0)? this._widths[route] : NO_DATA_WIDTH;
-                return widthFactor * width;
-            }, this);
-        }
+        return vow.when(this._actualsReady).then(function() {
+            return this._actualWidths[segmentId];
+        }, this);
     },  
 
-    _recalcWidths : function() {
-        var stateManager = this._stateManager,
-            time = stateManager.getTimeSettings();
-            
-        if (stateManager.isEqualWidthsMode()) {
-            this._widths = {};
-            this._widthsReady = true;
-            this.trigger('widths-updated');
-        } else {        
-            this._widthsReady = this.getFreqs()
-                .then(function(freqs) {
-                    this._widths = Object.keys(freqs).reduce(function(widths, routeName) {
-                        var currentDay = Object.keys(freqs[routeName]).filter(function(dow) { return dow & time.dow; }),
-                            tt = freqs[routeName][currentDay] || {},
-                            i = 0;
+    getBusColor : function(route) {
+        return vow.when(this._actualsReady).then(function() {
+            return this._actualColors[route] || '#ccc';
+        }, this);
+    },
 
-                        widths[routeName] = Object.keys(tt).reduce(function(width, hour) {
-                            if(hour >= time.fromHour && hour <= time.toHour) {
-                                width += tt[hour];
-                                i++;
-                            }
-                            return width;
-                        }, 0) / i;
+    _recalcActuals : function() {
+        var stateManager = this._stateManager;
 
-                        return widths;
-                    }, {});
-                }, this)
-                .then(function() {
-                    this._widthsReady = true;
-                    this.trigger('widths-updated');
-                }, this);
-        }
+        this._actualsReady = vow.all({
+            freqs : this.getFreqs(),
+            segments : this.getSegments(),
+            routes : this.getRoutes()
+        }).then(function(data) {
+            var actualData = calcActuals(data, stateManager.serialize());
+
+            this._actualWidths = actualData.actualWidths;
+            this._actualRoutes = actualData.actualRoutes;
+            this._actualColors = actualData.actualColors;
+            this._actualsReady = true;
+            this.trigger('data-updated');
+        }, this);
     },
 
     saveChangedFiles : function() {

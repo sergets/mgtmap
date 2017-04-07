@@ -8,10 +8,11 @@ define([
 
         var state = params.state,
             data = this.data,
-            actuals = calcActuals(data.segments, data.routes, data.freqs, state);
+            actuals = calcActuals(data, state);
 
         this.actualRoutes = actuals.actualRoutes;
         this.actualWidths = actuals.actualWidths;
+        this.actualColors = actuals.actualColors;
         this.maxWidth = 0;
 
         this.tilePixelLinesCache.drop();

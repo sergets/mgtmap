@@ -36,16 +36,16 @@ require([
             tileWorker = new MapWorker(dataManager, stateManager);
 
         var map = new Map(dataManager, stateManager, tileWorker),
-            appView = new AppView(map, stateManager);
+            appView = new AppView(map, dataManager, stateManager);
 
         stateManager.isDebugMode() && (window.mgtApp = {
             dataManager : dataManager,
             map : map
         });
 
-        stateManager.on('selected-routes-updated time-settings-updated width-factor-updated', function() {
+        stateManager.on('selected-routes-updated time-settings-updated width-factor-updated coloring-id-updated', function() {
             tileWorker.command('setup', { state : stateManager.serialize() });
-        })
+        });
 
         map.on({
             'bounds-changed' : function(e, data) {
@@ -64,8 +64,9 @@ require([
             }
         });
         
-        dataManager.on('widths-updated routes-updated segments-updated', function() {
-            dataManager.saveChangedFiles();
+        dataManager.on('data-updated', function() {
+            //dataManager.saveChangedFiles();
+            appView.refreshColors();
         });
 
         stateManager.on('selected-routes-updated', function(route) {
@@ -74,6 +75,7 @@ require([
         
         appView.on({
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
+            'coloring-updated' : function(e, coloringId) { stateManager.setCustomColoringId(coloringId); },
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
             'routes-selected' : function(e, data) { stateManager.selectRoutes(data.routes); },
             'routes-deselected' : function(e, data) { stateManager.deselectRoutes(data.routes); },
