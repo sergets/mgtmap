@@ -87,6 +87,8 @@ $.extend(Map.prototype, {
                 geometry : originalEvent.geometry
             });
         }, this);
+
+        map.events.add('boundschange', this._onBoundsChanged, this);
     },
 
     _onHotspotClicked : function(e) {
@@ -201,7 +203,7 @@ $.extend(Map.prototype, {
     },
 
     _onBoundsChanged : function(e) {
-        var map = this._map,
+        /*var map = this._map,
             oldZoom = e && e.get('oldZoom'),
             zoom = map.getZoom(),
             bounds = map.getBounds(),
@@ -224,8 +226,10 @@ $.extend(Map.prototype, {
                 vow.resolve({});
         }, this).done(function(segmentsData) {
             this._showSegments(segmentsData, visibleSegmentsIds);
-        }, this);
+        }, this);*/
         
+        var bounds = this._map.getBounds()
+
         bounds[0][0] && this.trigger('bounds-changed', { bounds : bounds });
     },
     
