@@ -1,5 +1,6 @@
 define([
     '../../data/vendors'
+    //'../data/colorings/troll-project'
 ], function(vendors) {
     var CUSTOM_COLORINGS = {
         'troll-project' : function(bus) {

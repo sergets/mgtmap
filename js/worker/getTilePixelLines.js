@@ -1,10 +1,8 @@
 define([
     'worker/utils/require-ymaps',
-    //'utils/bus-color',
     'utils/geom'
 ], function(
     requireYmaps,
-    //getBusColor,
     geomUtils
 ) {
 	return function(x, y, z) {
@@ -37,9 +35,51 @@ define([
 					var routes = global.actualRoutes[id] || [],
 						widths = global.actualWidths,
 						colors = global.actualColors,
-						totalWidth = routes.reduce(function(s, route) { return s + (widths[route.replace(/^[-<>]/, '')] || 0); }, 0) * zoomWidthFactor,
+						segmentOutlines = {}, // 1 : { 10 :  'rgba(0, 0, 0, 0.1)', 20 : 'rgba(0, 0, 0, 0.1)' } },
+						totalWidth = routes.reduce(function(s, route) {
+							return s + (widths[route.replace(/^[-<>]/, '')] || 0);
+						}, 0) * zoomWidthFactor,
 						curPosition = -totalWidth / 2;
 
+					// Generate segment overall outline
+					if(segmentOutlines[id]) {
+						var opaqueOffsetLeft = 0; 
+						routes.some(function(route) {
+							if(route.indexOf('-') == -1) {
+								return true;
+							} else {
+								opaqueOffsetLeft += (widths[route.replace(/^-/, '')] || 0);
+							}
+						});
+						opaqueOffsetLeft = opaqueOffsetLeft * zoomWidthFactor;
+
+						var opaqueOffsetRight = 0; 
+						routes.slice(0).reverse().some(function(route) {
+							if(route.indexOf('-') == -1) {
+								return true;
+							} else {
+								opaqueOffsetRight += (widths[route.replace(/^-/, '')] || 0);
+							}
+						});
+						opaqueOffsetRight = opaqueOffsetRight * zoomWidthFactor;
+
+						var opaqueOffset = (opaqueOffsetLeft - opaqueOffsetRight) / 2;
+
+						var outlinePath = offsetLine(generator, segmentUnshiftedCoords, opaqueOffset);
+
+						Object.keys(segmentOutlines[id]).forEach(function(width) {
+ 							lines.push({
+								coords : outlinePath,
+								color : segmentOutlines[id][width],
+								data : { id : id },
+								width : totalWidth - opaqueOffsetLeft - opaqueOffsetRight + 2 * width * zoomWidthFactor,
+								dashStyle : [],
+								dashOffset : 0
+							});
+ 						});
+					}
+
+					// Generate route lines
 					routes.forEach(function(route) {
 						var width = widths[route.replace(/^[-<>]/, '')] * zoomWidthFactor || 0,
 							direction,
@@ -76,18 +116,11 @@ define([
 									}];
 								}
 
-								var resPath = generator.sides(
-									segmentUnshiftedCoords,
-									Math.abs(curPosition)
-								)[curPosition > 0? 'leftSide' : 'rightSide'];
+								var resPath = offsetLine(generator, segmentUnshiftedCoords, curPosition);
 
 								lines = lines.concat(dashLines.map(function(line) {
 									return Object.assign({
-										coords : geomUtils.cut(
-											resPath,
-											Math.abs(curPosition),
-											Math.abs(curPosition)
-										),
+										coords : resPath,
 										color : colors[route.replace(/^[-<>]/, '')] || '#ccc',
 										data : { id : id }
 									}, line);
@@ -95,7 +128,7 @@ define([
 						}
 
 						curPosition += width/2;
-					})
+					});
 
 					return lines;
 				}, []);
@@ -117,6 +150,17 @@ define([
         	return item.id;
         });
     }
+
+    function offsetLine(generator, sourceCoords, offset) {
+		return geomUtils.cut(
+			generator.sides(
+				sourceCoords,
+				Math.abs(offset)
+			)[offset > 0? 'leftSide' : 'rightSide'],
+			Math.abs(offset),
+			Math.abs(offset)
+		);
+	}
 });
 
 var TILE_SIZE = 256;
@@ -144,5 +188,4 @@ function tileToGeoBounds(projection, x, y, z, margin) {
 		projection.fromGlobalPixels([globalPixelBounds[2] + margin, globalPixelBounds[1] - margin], z).reverse()
 	];
 	return res;
-
 }
