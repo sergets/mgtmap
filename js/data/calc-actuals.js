@@ -1,13 +1,30 @@
 define([
 	'utils/date',
-    'utils/bus-color'
+    'data/colorings/default',
+    'data/colorings/type',
+    'data/colorings/black',
+    'data/colorings/vendor',
+    'data/colorings/troll-project'
 ], function(
 	dateUtils,
-    getBusColor
+    defaultColoring,
+    typeColoring,
+    blackColoring,
+    vendorColoring,
+    trollProjectColoring
 ) {
+
 var DEFAULT_WIDTH = 2,
     NO_DATA_WIDTH = 0,
     SELECTED_ROUTE_WIDTH = 20;
+
+var colorings = {
+    default : defaultColoring,
+    type : typeColoring,
+    black : blackColoring,
+    vendor : vendorColoring,
+    'troll-project' : trollProjectColoring
+};
 
 return function(data, state) {
     var allActualRoutes = {},
@@ -48,16 +65,25 @@ return function(data, state) {
             return widths;
         }, {}),
         actualColors = Object.keys(allActualRoutes).reduce(function(colors, routeName) {
-            colors[routeName] = getBusColor(routeName, state.customColoringId, data);
+            colors[routeName] = colorings[state.customColoringId || 'default'].getRouteColor(routeName, data, state, { 
+                actualWidths : actualWidths,
+                actualRoutes : actualRoutes
+            });
             return colors;
+        }, {}),
+        actualSegmentOutlines = Object.keys(data.segments).reduce(function(outlines, segmentId) {
+            outlines[+segmentId] = colorings[state.customColoringId || 'default'].getSegmentOutlines(+segmentId, data, state, {
+                actualWidths : actualWidths,
+                actualRoutes : actualRoutes
+            });
+            return outlines;
         }, {});
 
 	return {
 		actualRoutes : actualRoutes,
-    
     	actualWidths : actualWidths,
-
-        actualColors : actualColors
+        actualColors : actualColors,
+        actualSegmentOutlines : actualSegmentOutlines
     };
 };
 })

@@ -1,9 +1,7 @@
 define([
     'jquery',
-    //'utils/bus-color'
 ], function(
     $
-    //getBusColor
 ) {
 
 return function(id, routes, colors) {

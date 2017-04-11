@@ -19,7 +19,9 @@ define([
         var data = this.data = {
                 segments : params.segments,
                 freqs : params.freqs,
-                routes : params.routes
+                routes : params.routes,
+                vendors : params.vendors,
+                trolleyWires : params.trolleyWires
             },
             tree = this.tree = rbush(),
             actuals = calcActuals(data, state);
@@ -27,6 +29,7 @@ define([
         this.actualRoutes = actuals.actualRoutes;
         this.actualWidths = actuals.actualWidths;
         this.actualColors = actuals.actualColors;
+        this.actualSegmentOutlines = actuals.actualSegmentOutlines;
 
         this.maxWidth = 0;
 

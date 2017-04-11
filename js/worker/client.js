@@ -34,7 +34,9 @@ extend(MapWorker.prototype, {
         vow.all({
             segments : dataManager.getSegments(),
             routes : dataManager.getRoutes(),
-            freqs : dataManager.getFreqs()
+            freqs : dataManager.getFreqs(),
+            trolleyWires : dataManager.getWiredSegments(),
+            vendors : dataManager.getVendors()
         }).done(function(params) {
             worker.postMessage({
                 command : 'init',

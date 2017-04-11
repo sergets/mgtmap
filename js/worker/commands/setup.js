@@ -13,6 +13,8 @@ define([
         this.actualRoutes = actuals.actualRoutes;
         this.actualWidths = actuals.actualWidths;
         this.actualColors = actuals.actualColors;
+        this.actualSegmentOutlines = actuals.actualSegmentOutlines;
+
         this.maxWidth = 0;
 
         this.tilePixelLinesCache.drop();

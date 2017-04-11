@@ -1,46 +1,4 @@
-define([
-    '../../data/vendors'
-    //'../data/colorings/troll-project'
-], function(vendors) {
-    var CUSTOM_COLORINGS = {
-        'troll-project' : function(bus) {
-            if(bus.indexOf('Тм') != -1) {
-                return '#f84';
-            }
-            if(bus.indexOf('Тб') != -1) {
-                return '#6f0';
-            }
-            if(PROJECT_ROUTES.indexOf(bus) != -1) {
-                return '#1bf';
-            }
-            return '#528';
-        },
-        'black' : function() {
-            return '#000';
-        },
-        'type' : function(bus) {
-            if(bus.indexOf('Тм') != -1) {
-                return '#e44';
-            }
-            if(bus.indexOf('Тб') != -1) {
-                return '#7c3';
-            }
-            return '#47c';
-        },
-        'vendor' : function(bus) {
-            return {
-                'autoline' : '#59c',
-                'tmp20' : '#871',
-                'alphagrant' : '#d22',
-                'rico' : '#1bf',
-                'gepart' : '#528',
-                'gortaxi' : '#ff2',
-                'autocars' : '#000',
-                'transway' : '#f0f'
-            }[vendors[bus]] || '#ddd';
-        }
-    };
-
+define(function() {
     function rgb2hsl(rgb) {
         var r = rgb[0],
             g = rgb[1],
@@ -116,11 +74,7 @@ define([
         return res - Math.floor(res);
     }
 
-    function getColor(bus, customColoringId) {
-        if(customColoringId && CUSTOM_COLORINGS[customColoringId]) {
-            return CUSTOM_COLORINGS[customColoringId](bus);
-        }
-
+    function getColor(bus) {
         bus = bus + '';
         var type = 2,
             k = false;

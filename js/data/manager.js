@@ -143,13 +143,23 @@ extend(DataManager.prototype, {
         }, this);
     },
 
+    getVendors : function() {
+        return this._getDataFromFile('data/vendors.json');
+    },
+
+    getWiredSegments : function() {
+        return this._getDataFromFile('data/trolley-wire.json');
+    },
+
     _recalcActuals : function() {
         var stateManager = this._stateManager;
 
         this._actualsReady = vow.all({
             freqs : this.getFreqs(),
             segments : this.getSegments(),
-            routes : this.getRoutes()
+            routes : this.getRoutes(),
+            trolleyWires : this.getWiredSegments(),
+            vendors : this.getVendors()
         }).then(function(data) {
             var actualData = calcActuals(data, stateManager.serialize());
 
