@@ -1,5 +1,6 @@
 define([
     'jquery',
+    'ymaps',
     'utils/extend',
     'vow',
     'pretty-json-stringify',
@@ -9,6 +10,7 @@ define([
     'data/calc-actuals'
 ], function(
     $,
+    ymaps,
     extend,
     vow,
     prettyJSONStringify,
@@ -38,14 +40,14 @@ var DataManager = function(stateManager) {
     this._saveWindows = {};
     
     this._stateManager.on({
-        'time-settings-updated' : this._recalcActuals,
-        'coloring-id-updated' : this._recalcActuals,
+        'time-settings-updated' : this._recalcActuals.bind(this, ['timeSettings']),
+        'coloring-id-updated' : this._recalcActuals.bind(this, ['customColoringId']),
         'width-factor-updated' : function() {
             this.trigger('data-updated');
         }
     }, this);
     
-    this._recalcActuals();
+    this._recalcActuals(Object.keys(this._stateManager.serialize()));
 };
 
 extend(DataManager.prototype, eventEmitter);
@@ -151,7 +153,27 @@ extend(DataManager.prototype, {
         return this._getDataFromFile('data/trolley-wire.json');
     },
 
-    _recalcActuals : function() {
+    getSegmentLengths : function() {
+        return this.getSegments().then(function(segments) {
+            var mapElem = $('<div/>').css({ display: 'none' }).appendTo('body'),
+                map = new ymaps.Map(mapElem[0], { center : [56, 37], zoom : 14 });
+
+            var lengths = segments.reduce(function(res, segment, id) {
+                if(!segment[0][0]) return res;
+                var lineStringGeometry = new ymaps.geometry.LineString(segment),
+                    geoObject = new ymaps.GeoObject({ geometry: lineStringGeometry });
+
+                map.geoObjects.add(geoObject);
+                res[id] = geoObject.geometry.getDistance();
+                return res;
+            }, {});
+
+            mapElem.remove();
+            return lengths;
+        }, this);
+    },
+
+    _recalcActuals : function(changedStateFields) {
         var stateManager = this._stateManager;
 
         this._actualsReady = vow.all({
@@ -159,10 +181,16 @@ extend(DataManager.prototype, {
             segments : this.getSegments(),
             routes : this.getRoutes(),
             trolleyWires : this.getWiredSegments(),
-            vendors : this.getVendors()
+            vendors : this.getVendors(),
+            lengths : this.getSegmentLengths()
         }).then(function(data) {
-            var actualData = calcActuals(data, stateManager.serialize());
-
+            return calcActuals(
+                data,
+                stateManager.serialize(),
+                changedStateFields,
+                { actualWidths : this._actualWidths, actualRoutes : this._actualRoutes, actualColors : this._actualColors }
+            );
+        }, this).then(function(actualData) {
             this._actualWidths = actualData.actualWidths;
             this._actualRoutes = actualData.actualRoutes;
             this._actualColors = actualData.actualColors;

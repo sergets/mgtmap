@@ -15,7 +15,7 @@ define([
 ) {
 
 var AppView = function(map, dataManager, stateManager) {
-    this._map = map.getMap();
+    this._map = map;
     this._stateManager = stateManager;
     this._dataManager = dataManager;
 
@@ -34,6 +34,8 @@ extend(AppView.prototype, {
             .on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
             .on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
             .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
+            .on('mouseover', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOver.bind(this))
+            .on('mouseout', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOut.bind(this))
             .on('click', '.current-route', this._onDeselectRoute.bind(this))
             .on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
     },
@@ -152,7 +154,7 @@ extend(AppView.prototype, {
         Object.keys(items).forEach(function(itemKey, i) {
             control.get(i).events.add('click', createEventListener(i));
         });
-        this._map.controls.add(control, options);
+        this._map.getMap().controls.add(control, options);
     },
     
     _onSaveSegment : function(e) {
@@ -199,17 +201,28 @@ extend(AppView.prototype, {
     _onSelectSegmentRoutes : function(e) {
         this.trigger('select-segment-routes', $(e.target).parent('.segment').attr('segment-id'));
     }, 
+
+    _routeElemToRouteId : function(elem) {
+        var routeNumber = $(elem).text(),
+            routeType = elem.className;
+
+        return { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
+    },
     
     _onSelectRoute : function(e) {
-        var routeNumber = $(e.target).text(),
-            routeType = e.target.className,
-            route = { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
+        this.trigger('routes-selected', { routes : [this._routeElemToRouteId(e.target)] });
+    },
 
-        this.trigger('routes-selected', { routes : [route] });
+    _onRouteMouseOver : function(e) {
+        this._map.highlightRoute(this._routeElemToRouteId(e.target));
+    },
+
+    _onRouteMouseOut : function(e) {
+        this._map.unhighlightRoute(this._routeElemToRouteId(e.target));
     },
     
     _onDeselectRoute : function(e) {
-        var target = $(e.target).closest('.current-route'),
+        var target = $(e.target).closest('.current-route');
             routeNumber = target.text(),
             routeTypeElem = target.find('.bus,.tram,.trolley')[0],
             routeType = routeTypeElem && routeTypeElem.className,

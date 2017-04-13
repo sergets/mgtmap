@@ -29,6 +29,8 @@ var Map = function(dataManager, stateManager, worker) {
     this._dataManager = dataManager;
     this._stateManager = stateManager;
 
+    this._currentSegmentRoutes = null;
+
     dataManager.on('data-updated', function() {
         this.getMap().balloon.close();
     }, this);
@@ -45,6 +47,9 @@ extend(Map.prototype, {
             that = this;
 
         map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+        map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
+            zIndex : 200
+        }));
         map.panes.append('white', new ymaps.pane.StaticPane(map, {
             css : {
                 width: '100%',
@@ -53,7 +58,8 @@ extend(Map.prototype, {
             },
             zIndex : 150
         }));
-        
+
+        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s';
         ymaps.modules.require([
             'worker-canvas-layer',
             'worker-hotspot-source'
@@ -61,11 +67,15 @@ extend(Map.prototype, {
             WorkerCanvasLayer,
             WorkerHotspotSource
         ) {
-            var rendererLayer = new WorkerCanvasLayer(worker, {
+            var rendererLayer = that._rendererLayer = new WorkerCanvasLayer(worker, null, {
+                    tileTransparent : true,
+                    pane : 'mgtmap'
+                }),
+                hotspotLayer = that._hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker)),
+                selectionLayer = that._selectionLayer = new WorkerCanvasLayer(worker, '', {
                     tileTransparent : true,
                     pane : 'places'
-                }),
-                hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker));
+                });
 
             map.layers.add(rendererLayer);
             map.layers.add(hotspotLayer);
@@ -74,6 +84,7 @@ extend(Map.prototype, {
         });
 
         map.events.add('boundschange', this._onBoundsChanged, this);
+        map.balloon.events.add('close', this._onBalloonClosed, this);
     },
 
     _onHotspotClicked : function(e) {
@@ -88,8 +99,35 @@ extend(Map.prototype, {
                 return res;
             }, {})).done(function(colors) {
                 this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
+                this._onBalloonOpen(segmentId, routes);
             }, this);
         }, this);
+    },
+
+    _onBalloonOpen : function(segmentId, routes) {
+        this._onBalloonClosed();
+        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s'; // = this._placesPaneZIndex;
+        this._map.panes.get('mgtmap').getElement().style.opacity = 0.2; // zIndex = this._whitePaneZIndex - 1;
+        this._currentSegmentRoutes = routes
+            .filter(function(route) { return route.indexOf('-') !== 0; })
+            .map(function(route) { return route.replace(/^[<>]/, ''); });
+        this._selectionLayer.setQuery(this._currentSegmentRoutes.join(';'));
+        this._map.layers.add(this._selectionLayer);
+    },
+
+    _onBalloonClosed : function() {
+        this._currentSegmentRoutes = null;
+        this._map.layers.remove(this._selectionLayer);
+        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity 1s'; // = this._placesPaneZIndex;s
+        this._map.panes.get('mgtmap').getElement().style.opacity = 1; // = this._placesPaneZIndex;
+    },
+
+    highlightRoute : function(route) {
+        this._selectionLayer.setQuery(route);
+    },
+
+    unhighlightRoute : function() {
+        this._selectionLayer.setQuery(this._currentSegmentRoutes.join(';'));
     },
 
     _onBoundsChanged : function(e) {

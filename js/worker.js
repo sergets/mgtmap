@@ -1,5 +1,9 @@
 var global = window = this;
 
+setImmediate = function(func) {
+    return setTimeout(func, 0);
+}; // otherwise vow's nextTick tries to use postMessage
+
 importScripts('//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
 
 requirejs.config({ //baseUrl : '.',

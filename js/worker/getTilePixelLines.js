@@ -35,7 +35,7 @@ define([
 					var routes = global.actualRoutes[id] || [],
 						widths = global.actualWidths,
 						colors = global.actualColors,
-						segmentOutlines = global.actualSegmentOutlines, // 1 : { 10 :  'rgba(0, 0, 0, 0.1)', 20 : 'rgba(0, 0, 0, 0.1)' } },
+						segmentOutlines = global.actualSegmentOutlines,
 						totalWidth = routes.reduce(function(s, route) {
 							return s + (widths[route.replace(/^[-<>]/, '')] || 0);
 						}, 0) * zoomWidthFactor,
@@ -122,7 +122,7 @@ define([
 									return Object.assign({
 										coords : resPath,
 										color : colors[route.replace(/^[-<>]/, '')] || '#ccc',
-										data : { id : id }
+										data : { id : id, route : route.replace(/^[-<>]/, '') }
 									}, line);
 								}));
 						}

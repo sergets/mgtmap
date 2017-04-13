@@ -7,28 +7,48 @@ define([
         postMessage({ state : 'busy '});
 
         var state = params.state,
+            oldState = this.state,
             data = this.data,
-            actuals = calcActuals(data, state);
+            changedStateFields = Object.keys(state).reduce(function(changeds, propId) {
+                if(JSON.stringify(oldState[propId]) != JSON.stringify(state[propId])) {
+                    changeds.push(propId);
+                }
+                return changeds;
+            }, []);
 
-        this.actualRoutes = actuals.actualRoutes;
-        this.actualWidths = actuals.actualWidths;
-        this.actualColors = actuals.actualColors;
-        this.actualSegmentOutlines = actuals.actualSegmentOutlines;
+        this.state = state;
 
-        this.maxWidth = 0;
+        return calcActuals(
+            data,
+            state,
+            changedStateFields, 
+            {
+                actualRoutes : this.actualRoutes,
+                actualWidths : this.actualWidths,
+                actualColors : this.actualColors,
+                actualSegmentOutlines : this.actualSegmentOutlines
+            }
+        ).then(function(actuals) {
+            this.actualRoutes = actuals.actualRoutes;
+            this.actualWidths = actuals.actualWidths;
+            this.actualColors = actuals.actualColors;
+            this.actualSegmentOutlines = actuals.actualSegmentOutlines;
 
-        this.tilePixelLinesCache.drop();
-        
-        this.maxWidth = data.segments.reduce(function(prev, segment, id) {
-            if(!segment.length) return;
+            this.maxWidth = 0;
 
-            var width = (this.actualRoutes[id] || []).reduce(function(s, route) {
-                return s + (this.actualWidths[route.replace(/^[-<>]/, '')] || 0); 
+            this.tilePixelLinesCache.drop();
+            
+            this.maxWidth = data.segments.reduce(function(prev, segment, id) {
+                if(!segment.length) return;
+
+                var width = (this.actualRoutes[id] || []).reduce(function(s, route) {
+                    return s + (this.actualWidths[route.replace(/^[-<>]/, '')] || 0); 
+                }, 0);
+
+                return Math.max(width, prev);
             }, 0);
-
-            return Math.max(width, prev);
-        }, 0);
-        
-        return Promise.resolve({ state : 'ready' });
+        }, this).then(function() {
+            return { state : 'ready' };
+        });
     };
 });

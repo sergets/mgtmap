@@ -1,4 +1,6 @@
 define([
+    'vow',
+    'utils/extend',
 	'utils/date',
     'data/colorings/default',
     'data/colorings/type',
@@ -6,6 +8,8 @@ define([
     'data/colorings/vendor',
     'data/colorings/troll-project'
 ], function(
+    vow,
+    extend,
 	dateUtils,
     defaultColoring,
     typeColoring,
@@ -26,16 +30,37 @@ var colorings = {
     'troll-project' : trollProjectColoring
 };
 
-return function(data, state) {
-    var allActualRoutes = {},
-        actualRoutes = Object.keys(data.routes).reduce(function(res, segmentId) {
-            var routesForSegment = data.routes[segmentId] || [];
-            res[segmentId] = routesForSegment[dateUtils.findNearestDate(Object.keys(routesForSegment), state.timeSettings.date)] || [];
-            res[segmentId].forEach(function(route) {
-                allActualRoutes[route.replace(/^[-<>]/, '')] = true;
-            });
-            return res;
-        }, {}),
+return function(data, state, updatedStateFields, oldActuals) {
+    var coloring = colorings[state.customColoringId || 'default'];
+
+    var shouldRecalcActualRoutes = updatedStateFields.indexOf('timeSettings') != -1,
+        shouldRecalcColors = updatedStateFields.indexOf('customColoringId') != -1 || 
+            coloring.shouldRecalcColorsOn.some(function(stateField) {
+                return updatedStateFields.indexOf(stateField) != -1;
+            }),
+        shouldRecalcOutlines = updatedStateFields.indexOf('customColoringId') != -1 || 
+            coloring.shouldRecalcOutlinesOn.some(function(stateField) {
+                return updatedStateFields.indexOf(stateField) != -1;
+            }),
+
+        allActualRoutes = shouldRecalcActualRoutes?
+            {} :
+            Object.keys(oldActuals.actualColors).reduce(function(res, id) {
+                res[id] = true;
+                return res;
+            }, {}),
+
+        actualRoutes = shouldRecalcActualRoutes?
+            Object.keys(data.routes).reduce(function(res, segmentId) {
+                var routesForSegment = data.routes[segmentId] || [];
+                res[segmentId] = routesForSegment[dateUtils.findNearestDate(Object.keys(routesForSegment), state.timeSettings.date)] || [];
+                res[segmentId].forEach(function(route) {
+                    allActualRoutes[route.replace(/^[-<>]/, '')] = true;
+                });
+                return res;
+            }, {}) : 
+            oldActuals.actualRoutes,
+
         actualWidths = Object.keys(allActualRoutes).reduce(function(widths, routeName) {
             var freqs = data.freqs[routeName] || {}
                 currentDay = Object.keys(freqs).filter(function(dow) { return dow & state.timeSettings.dow; }),
@@ -64,26 +89,33 @@ return function(data, state) {
 
             return widths;
         }, {}),
-        actualColors = Object.keys(allActualRoutes).reduce(function(colors, routeName) {
-            colors[routeName] = colorings[state.customColoringId || 'default'].getRouteColor(routeName, data, state, { 
-                actualWidths : actualWidths,
-                actualRoutes : actualRoutes
-            });
-            return colors;
-        }, {}),
-        actualSegmentOutlines = Object.keys(data.segments).reduce(function(outlines, segmentId) {
-            outlines[+segmentId] = colorings[state.customColoringId || 'default'].getSegmentOutlines(+segmentId, data, state, {
-                actualWidths : actualWidths,
-                actualRoutes : actualRoutes
-            });
-            return outlines;
-        }, {});
 
-	return {
+        actualColors = shouldRecalcColors?
+            Object.keys(allActualRoutes).reduce(function(colors, routeName) {
+                colors[routeName] = coloring.getRouteColor(routeName, data, state, { 
+                    actualWidths : actualWidths,
+                    actualRoutes : actualRoutes
+                });
+                return colors;
+            }, {}) :
+            oldActuals.actualColors;
+
+        actualSegmentOutlines = shouldRecalcOutlines?
+            Object.keys(data.segments).reduce(function(outlines, segmentId) {
+                outlines[+segmentId] = coloring.getSegmentOutlines(+segmentId, data, state, {
+                    actualWidths : actualWidths,
+                    actualRoutes : actualRoutes
+                });
+                return outlines;
+            }, {}) :
+            oldActuals.actualSegmentOutlines;
+
+	return vow.all({
 		actualRoutes : actualRoutes,
     	actualWidths : actualWidths,
         actualColors : actualColors,
         actualSegmentOutlines : actualSegmentOutlines
-    };
+    });
 };
+
 })

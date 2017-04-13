@@ -21,41 +21,43 @@ define([
                 freqs : params.freqs,
                 routes : params.routes,
                 vendors : params.vendors,
-                trolleyWires : params.trolleyWires
+                trolleyWires : params.trolleyWires,
+                lengths : params.lengths
             },
-            tree = this.tree = rbush(),
-            actuals = calcActuals(data, state);
+            tree = this.tree = rbush();
 
-        this.actualRoutes = actuals.actualRoutes;
-        this.actualWidths = actuals.actualWidths;
-        this.actualColors = actuals.actualColors;
-        this.actualSegmentOutlines = actuals.actualSegmentOutlines;
+        return calcActuals(data, state, Object.keys(state), {}).then(function(actuals) {
+            this.actualRoutes = actuals.actualRoutes;
+            this.actualWidths = actuals.actualWidths;
+            this.actualColors = actuals.actualColors;
+            this.actualSegmentOutlines = actuals.actualSegmentOutlines;
 
-        this.maxWidth = 0;
+            this.maxWidth = 0;
 
-        this.tilePixelLinesCache = new Cache(CACHE_SIZE);
-        
-        var items = data.segments.map(function(segment, id) {
-            if(!segment.length) return;
+            this.tilePixelLinesCache = new Cache(CACHE_SIZE);
+            
+            var items = data.segments.map(function(segment, id) {
+                if(!segment.length) return;
 
-            var width = (this.actualRoutes[id] || []).reduce(function(s, route) {
-                return s + (this.actualWidths[route.replace(/^[-<>]/, '')] || 0); 
-            }, 0);
+                var width = (this.actualRoutes[id] || []).reduce(function(s, route) {
+                    return s + (this.actualWidths[route.replace(/^[-<>]/, '')] || 0); 
+                }, 0);
 
-            if(width > this.maxWidth) { maxWidth = width; }
+                if(width > this.maxWidth) { maxWidth = width; }
 
-            var bounds = geomUtils.bounds(segment),
-                item = {
-                    minX : bounds[0][0],
-                    minY : bounds[0][1],
-                    maxX : bounds[1][0],
-                    maxY : bounds[1][1],
-                    id : id
-                };
-            return item;
-        }).slice(1);
-        tree.load(items);
-        
-        return Promise.resolve({ state : 'ready' });
+                var bounds = geomUtils.bounds(segment),
+                    item = {
+                        minX : bounds[0][0],
+                        minY : bounds[0][1],
+                        maxX : bounds[1][0],
+                        maxY : bounds[1][1],
+                        id : id
+                    };
+                return item;
+            }).slice(1);
+            tree.load(items);
+        }, this).then(function() {
+            return { state : 'ready' };
+        });
     };
 });

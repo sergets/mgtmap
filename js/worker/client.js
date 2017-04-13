@@ -36,7 +36,8 @@ extend(MapWorker.prototype, {
             routes : dataManager.getRoutes(),
             freqs : dataManager.getFreqs(),
             trolleyWires : dataManager.getWiredSegments(),
-            vendors : dataManager.getVendors()
+            vendors : dataManager.getVendors(),
+            lengths : dataManager.getSegmentLengths()
         }).done(function(params) {
             worker.postMessage({
                 command : 'init',

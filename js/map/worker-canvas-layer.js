@@ -20,11 +20,14 @@ ymaps.modules.define('worker-canvas-layer', [
     defineClass
 ) {
     var WorkerCanvasLayer = defineClass(
-        function(worker) {
+        function(worker, query) {
             var layerId = Math.random(),
                 canvas = document.createElement('canvas'),
                 ctx = canvas.getContext("2d"),
                 tileCaches = this._tileCaches = {};
+
+            this._layerId = layerId;
+            this._query = query;
 
             canvas.width = TILE_SIZE;
             canvas.height = TILE_SIZE;
@@ -43,7 +46,8 @@ ymaps.modules.define('worker-canvas-layer', [
                         worker.command('renderTile', {
                             x : +params[0],
                             y : +params[1],
-                            z : zoom
+                            z : zoom,
+                            routes : params[3] && params[3].split(';')
                         }).done(function(result) {
                             ctx.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
                             result.forEach(function(canvasCommand) {
@@ -69,7 +73,9 @@ ymaps.modules.define('worker-canvas-layer', [
 
             WorkerCanvasLayer.superclass.constructor.apply(
                 this,
-                ['worker:' + layerId + '?%x,%y,%z'].concat([].slice.call(arguments, 1))
+                [
+                    'worker:' + layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join(',')
+                ].concat([].slice.call(arguments, 2))
             );
         },
         Layer,
@@ -79,6 +85,12 @@ ymaps.modules.define('worker-canvas-layer', [
                     this._tileCaches[zoom].drop();
                 }, this);
                 WorkerCanvasLayer.superclass.update.apply(this, arguments);
+            },
+
+            setQuery : function(query) {
+                this._query = query;
+                this.setTileUrlTemplate('worker:' + this._layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join(','));
+                this.update();
             }
         }
     );
