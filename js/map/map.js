@@ -59,7 +59,7 @@ extend(Map.prototype, {
             zIndex : 150
         }));
 
-        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s';
+        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .3s';
         ymaps.modules.require([
             'worker-canvas-layer',
             'worker-hotspot-source'
@@ -81,10 +81,46 @@ extend(Map.prototype, {
             map.layers.add(hotspotLayer);
 
             hotspotLayer.events.add('click', that._onHotspotClicked, that);
+            hotspotLayer.events.add('mouseenter', that._onHotspotMouseover, that);
+            hotspotLayer.events.add('mouseleave', that._onHotspotMouseout, that);
         });
 
         map.events.add('boundschange', this._onBoundsChanged, this);
         map.balloon.events.add('close', this._onBalloonClosed, this);
+    },
+
+    _onHotspotMouseover : function(e) {
+        if(this._currentSegmentRoutes) {
+            var segmentId = e.get('activeObject').getProperties().segmentId;
+
+            this._dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
+                if(!this._currentSegmentRoutes) {
+                    return;
+                }
+
+                var currentSegmentRoutes = this._currentSegmentRoutes,               
+                    routesToHighlight = routes.map(function(route) {
+                        var routeName = route.replace(/^[<>]/, '');
+                        return currentSegmentRoutes.indexOf(routeName) !== -1 && routeName;
+                    }).filter(Boolean)
+
+                if(routesToHighlight.length) { 
+                    this.trigger('highlight-routes', { routes : routesToHighlight });
+                    //this.highlightRoutes(routesToHighlight);
+                    this._routesHovered = true;
+                }
+            }, this);
+        }
+    },
+
+    _onHotspotMouseout : function(e) {
+        if(!this._currentSegmentRoutes || !this._routesHovered) {
+            return;
+        }
+
+        this.trigger('unhighlight-routes');
+        //this.unhighlightRoutes();
+        this._routesHovered = false;
     },
 
     _onHotspotClicked : function(e) {
@@ -106,7 +142,7 @@ extend(Map.prototype, {
 
     _onBalloonOpen : function(segmentId, routes) {
         this._onBalloonClosed();
-        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s'; // = this._placesPaneZIndex;
+        //this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s'; // = this._placesPaneZIndex;
         this._map.panes.get('mgtmap').getElement().style.opacity = 0.2; // zIndex = this._whitePaneZIndex - 1;
         this._currentSegmentRoutes = routes
             .filter(function(route) { return route.indexOf('-') !== 0; })
@@ -118,15 +154,15 @@ extend(Map.prototype, {
     _onBalloonClosed : function() {
         this._currentSegmentRoutes = null;
         this._map.layers.remove(this._selectionLayer);
-        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity 1s'; // = this._placesPaneZIndex;s
+        //this._map.panes.get('mgtmap').getElement().style.transition = 'opacity 1s'; // = this._placesPaneZIndex;s
         this._map.panes.get('mgtmap').getElement().style.opacity = 1; // = this._placesPaneZIndex;
     },
 
-    highlightRoute : function(route) {
-        this._selectionLayer.setQuery(route);
+    highlightRoutes : function(routes) {
+        this._selectionLayer.setQuery(routes.join(';'));
     },
 
-    unhighlightRoute : function() {
+    unhighlightRoutes : function() {
         this._selectionLayer.setQuery(this._currentSegmentRoutes.join(';'));
     },
 

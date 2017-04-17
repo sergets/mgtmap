@@ -5,7 +5,7 @@ define([
     requireYmaps,
     geomUtils
 ) {
-	return function(x, y, z) {
+	return function(x, y, z, purpose) {
 		var global = this,
 			cache = global.tilePixelLinesCache,
 			cachedLines = global.tilePixelLinesCache.get(x, y, z);
@@ -42,7 +42,7 @@ define([
 						curPosition = -totalWidth / 2;
 
 					// Generate segment overall outline
-					if(segmentOutlines[id]) {
+					if(segmentOutlines[id] || purpose == 'hotspots') {
 						var opaqueOffsetLeft = 0; 
 						routes.some(function(route) {
 							if(route.indexOf('-') == -1) {
@@ -67,7 +67,7 @@ define([
 
 						var outlinePath = offsetLine(generator, segmentUnshiftedCoords, opaqueOffset);
 
-						Object.keys(segmentOutlines[id]).forEach(function(width) {
+						segmentOutlines[id] && Object.keys(segmentOutlines[id]).forEach(function(width) {
  							lines.push({
 								coords : outlinePath,
 								color : segmentOutlines[id][width],
@@ -77,10 +77,19 @@ define([
 								dashOffset : 0
 							});
  						});
+
+ 						purpose == 'hotspots' && lines.push({
+							coords : outlinePath,
+							color : '#000',
+							data : { id : id },
+							width : totalWidth - opaqueOffsetLeft - opaqueOffsetRight,
+							dashStyle : [],
+							dashOffset : 0
+						});
 					}
 
 					// Generate route lines
-					routes.forEach(function(route) {
+					(purpose != 'hotspots') && routes.forEach(function(route) {
 						var width = widths[route.replace(/^[-<>]/, '')] * zoomWidthFactor || 0,
 							direction,
 							dashLines = [];
@@ -133,7 +142,7 @@ define([
 					return lines;
 				}, []);
 
-				cache.set(x, y, z, tilePixelLines);
+				cache.set(x, y, z, purpose, tilePixelLines);
 				resolve(tilePixelLines);
 			});
 		});

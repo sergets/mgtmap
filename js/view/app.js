@@ -38,6 +38,11 @@ extend(AppView.prototype, {
             .on('mouseout', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOut.bind(this))
             .on('click', '.current-route', this._onDeselectRoute.bind(this))
             .on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
+
+        this._map
+            .on('highlight-routes', this._onRoutesHighlightedOnMap, this)
+            .on('unhighlight-routes', this._onRoutesUnhighlightedOnMap, this);
+
     },
     
     _createTimeControls : function() {
@@ -203,8 +208,9 @@ extend(AppView.prototype, {
     }, 
 
     _routeElemToRouteId : function(elem) {
-        var routeNumber = $(elem).text(),
-            routeType = elem.className;
+        var elem = $(elem);
+            routeNumber = elem.text(),
+            routeType = elem.hasClass('trolley')? 'trolley': elem.hasClass('tram')? 'tram' : 'bus';
 
         return { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
     },
@@ -214,13 +220,36 @@ extend(AppView.prototype, {
     },
 
     _onRouteMouseOver : function(e) {
-        this._map.highlightRoute(this._routeElemToRouteId(e.target));
+        this._map.highlightRoutes([this._routeElemToRouteId(e.target)]);
     },
 
     _onRouteMouseOut : function(e) {
-        this._map.unhighlightRoute(this._routeElemToRouteId(e.target));
+        this._map.unhighlightRoutes();
     },
-    
+
+    _onRoutesHighlightedOnMap : function(e, data) {
+        if(!data.routes || !data.routes.length) { 
+            return;
+        }
+
+        var elementsToHighLight = $('.segment .bus, .segment .trolley, .segment .tram'); 
+
+        data.routes.forEach(function(route) { 
+            var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
+                routeCleared = route.replace(/^(Тб|Тм) /, '');
+
+            elementsToHighLight = elementsToHighLight.not($('.segment').find('.' + type).filter(function(_, el) {
+                return el.textContent == routeCleared;
+            }));
+        });
+
+        elementsToHighLight.addClass('dimmed');
+    },
+
+    _onRoutesUnhighlightedOnMap : function(e) {
+        $('.segment .dimmed').removeClass('dimmed');
+    },
+
     _onDeselectRoute : function(e) {
         var target = $(e.target).closest('.current-route');
             routeNumber = target.text(),

@@ -35,6 +35,13 @@ body {
     line-height: 19px;
     text-align: center;
     cursor: pointer;
+    transition: all ease .3s;
+}
+
+.dimmed
+{
+    opacity: 0.3;
+    transform: scale(0.9, 0.9);
 }
 
 .trolley {

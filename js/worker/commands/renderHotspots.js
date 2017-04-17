@@ -9,7 +9,7 @@ define([
             y = params.y,
             z = params.z;
 
-        return getTilePixelLines.call(this, x, y, z).then(function(tilePixelLines) {
+        return getTilePixelLines.call(this, x, y, z, 'hotspots').then(function(tilePixelLines) {
             tilePixelLines.forEach(function(line) {
                 var lineCoords = line.coords;
 
