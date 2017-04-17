@@ -155,20 +155,29 @@ extend(DataManager.prototype, {
 
     getSegmentLengths : function() {
         return this.getSegments().then(function(segments) {
-            var mapElem = $('<div/>').css({ display: 'none' }).appendTo('body'),
-                map = new ymaps.Map(mapElem[0], { center : [56, 37], zoom : 14 });
+
+
+
+            //var mapElem = $('<div/>').css({ display: 'none' }).appendTo('body'),
+            //    map = new ymaps.Map(mapElem[0], { center : [56, 37], zoom : 14 });
+
+            var projection = ymaps.projection.wgs84Mercator;
 
             var lengths = segments.reduce(function(res, segment, id) {
                 if(!segment[0][0]) return res;
-                var lineStringGeometry = new ymaps.geometry.LineString(segment),
-                    geoObject = new ymaps.GeoObject({ geometry: lineStringGeometry });
 
-                map.geoObjects.add(geoObject);
-                res[id] = geoObject.geometry.getDistance();
+                //var points = 
+                //var lineStringGeometry = new ymaps.geometry.LineString(segment),
+                //    geoObject = new ymaps.GeoObject({ geometry: lineStringGeometry });
+
+                //map.geoObjects.add(geoObject);
+                res[id] = geomUtils.getLength(segment.map(function(point) { 
+                    return projection.toGlobalPixels(point, 20);
+                }));
                 return res;
             }, {});
 
-            mapElem.remove();
+            //mapElem.remove();
             return lengths;
         }, this);
     },

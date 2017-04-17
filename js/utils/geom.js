@@ -22,16 +22,23 @@ define(function() {
         };
     }
 
+    function _getSegmentLengths(line) {
+        return line.slice(1).map(function(i, n) {
+            var x = i[0] - line[n][0],
+                y = i[1] - line[n][1],
+                l = Math.sqrt(x*x + y*y);
+            return l;
+        });
+    }
+
     return {
+        getLength : function(line) {
+            return _getSegmentLengths(line).reduce(function(s, l) { return s + l; }, 0);
+        },
+
         cut : function(line, fromStart, fromEnd) {
-            var length = 0,
-                segmentLengths = line.slice(1).map(function(i, n) {
-                    var x = i[0] - line[n][0],
-                        y = i[1] - line[n][1],
-                        l = Math.sqrt(x*x + y*y);
-                    length += l;
-                    return l;
-                });
+            var segmentLengths = _getSegmentLengths(line),
+                length = segmentLengths.reduce(function(s, l) { return s + l; }, 0);
 
             if(fromStart + fromEnd > length - MIN_LEN) {
                 var k = (length - MIN_LEN) / (fromStart + fromEnd);

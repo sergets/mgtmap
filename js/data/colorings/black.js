@@ -6,7 +6,7 @@ define(function() {
         getSegmentOutlines : function(segmentId, data, state) {
             return null;
         },
-        shouldRecalcColorsOn : [],
+        shouldRecalcColorsOn : ['timeSettings'],
         shouldRecalcOutlinesOn : []
     };
 });
