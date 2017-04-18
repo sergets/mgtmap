@@ -197,7 +197,7 @@ extend(Map.prototype, {
                 var routeName = i.replace(/^[<>]/g, '');
                 res[routeName] = dataManager.getBusColor(routeName);
                 return res;
-            }, {})).done(function(colors) {
+            }, {})).then(function(colors) {
                 this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
                 this._onBalloonOpen(segmentId, routes);
             }, function() {}, this);
@@ -226,6 +226,10 @@ extend(Map.prototype, {
         setTimeout(function() {
             pane.style.opacity = 1;
         });
+    },
+
+    closeBalloon : function() {
+        this._map.balloon.close();
     },
 
     highlightRoutes : function(routes) {

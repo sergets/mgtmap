@@ -75,16 +75,16 @@ extend(StateManager.prototype, {
         return this._selectedRoutes;
     },
     
-    selectRoutes : function(routes) {
+    /*selectRoutes : function(routes) {
         routes.forEach(function(route) {
             if (this._selectedRoutes.indexOf(route) == -1) {
                 this._selectedRoutes.push(route);
             }
         }, this);
         this.trigger('selected-routes-updated', this._selectedRoutes);
-    },
+    },*/
 
-    deselectRoutes : function(routes) {
+    /*deselectRoutes : function(routes) {
         routes.forEach(function(route) {
             var index = this._selectedRoutes.indexOf(route);
 
@@ -92,6 +92,16 @@ extend(StateManager.prototype, {
                 this._selectedRoutes.splice(index, 1);
             }
         }, this);
+        this.trigger('selected-routes-updated', this._selectedRoutes);
+    },*/
+
+    selectRoute : function(route) {
+        this._selectedRoutes = [route];
+        this.trigger('selected-routes-updated', this._selectedRoutes);
+    },
+
+    deselectRoute : function() {
+        this._selectedRoutes = [];
         this.trigger('selected-routes-updated', this._selectedRoutes);
     },
 

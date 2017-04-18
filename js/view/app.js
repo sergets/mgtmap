@@ -2,6 +2,7 @@ define([
     'ymaps',
     'jquery',
     'utils/extend',
+    'view/route',
     'vow',
     'utils/date',
     'utils/events-emitter'
@@ -9,6 +10,7 @@ define([
     ymaps,
     $,
     extend,
+    routeView,
     vow,
     dateUtils,
     eventsEmitter
@@ -29,15 +31,15 @@ extend(AppView.prototype, {
         this._createControls();
         
         $(document)
-            .on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
-            .on('click', '.segment .select-segment-routes', this._onSelectSegmentRoutes.bind(this))
-            .on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
-            .on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
+            //.on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
+            //.on('click', '.segment .select-segment-routes', this._onSelectSegmentRoutes.bind(this))
+            //.on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
+            //.on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
             .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
             .on('mouseover', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOver.bind(this))
             .on('mouseout', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOut.bind(this))
-            .on('click', '.current-route', this._onDeselectRoute.bind(this))
-            .on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
+            .on('click', '.route-card .close', this._onDeselectRoute.bind(this))
+            //.on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
 
         this._map
             .on('highlight-routes', this._onRoutesHighlightedOnMap, this)
@@ -162,7 +164,7 @@ extend(AppView.prototype, {
         this._map.getMap().controls.add(control, options);
     },
     
-    _onSaveSegment : function(e) {
+    /*_onSaveSegment : function(e) {
         if(!this._stateManager.isAdminMode()) return;
 
         var segment = $(e.target).parent('.segment'),
@@ -191,9 +193,9 @@ extend(AppView.prototype, {
 
         segment.attr('all-routes-json-encoded', encodeURIComponent(JSON.stringify(allRoutes)));
         this.trigger('save-segment', { id : id, routes : allRoutes });
-    }, 
+    }, */
 
-    _onReverseSegment : function(e) {
+    /*_onReverseSegment : function(e) {
         if(!this._stateManager.isAdminMode()) return;
         this.trigger('reverse-segment', $(e.target).parent('.segment').attr('segment-id'));
     }, 
@@ -201,11 +203,11 @@ extend(AppView.prototype, {
     _onEditSegmentGeometry : function(e) {
         if(!this._stateManager.isAdminMode()) return;
         this.trigger('edit-segment-geometry', $(e.target).parent('.segment').attr('segment-id'));
-    },
+    },*/
 
-    _onSelectSegmentRoutes : function(e) {
+    /*_onSelectSegmentRoutes : function(e) {
         this.trigger('select-segment-routes', $(e.target).parent('.segment').attr('segment-id'));
-    }, 
+    },*/ 
 
     _routeElemToRouteId : function(elem) {
         var elem = $(elem);
@@ -216,7 +218,7 @@ extend(AppView.prototype, {
     },
     
     _onSelectRoute : function(e) {
-        this.trigger('routes-selected', { routes : [this._routeElemToRouteId(e.target)] });
+        this.trigger('route-selected', this._routeElemToRouteId(e.target));
     },
 
     _onRouteMouseOver : function(e) {
@@ -250,7 +252,7 @@ extend(AppView.prototype, {
         $('.segment .dimmed').removeClass('dimmed');
     },
 
-    _onDeselectRoute : function(e) {
+    /*_onDeselectRoute : function(e) {
         var target = $(e.target).closest('.current-route');
             routeNumber = target.text(),
             routeTypeElem = target.find('.bus,.tram,.trolley')[0],
@@ -258,14 +260,16 @@ extend(AppView.prototype, {
             route = { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
 
         routeType && this.trigger('routes-deselected', { routes : [route] });
-    },
+    },*/
 
-    _onDeselectAllRoutes : function(e) {
-        this.trigger('routes-deselected', { routes : Object.keys(this._selectedRouteViews) });
+    _onDeselectRoute : function(e) {
+        this.trigger('route-deselected');
     },
 
     _createSelectedRouteView : function(route) {
-        var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
+        return routeView(route, this._dataManager).appendTo('.sidebar');
+
+        /*var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
             routeCleared = route.replace(/^(Тб|Тм) /, ''),
             view = $('<div/>')
                 .addClass('current-route')
@@ -278,18 +282,19 @@ extend(AppView.prototype, {
 
         this._dataManager.getBusColor(route).done(function(color) { 
             view.css('background-color', color);
-        });
+        });*/
 
-        return view;
+        //return view;
     },
 
     updateSelectedRoutes : function() {
+        this._map.closeBalloon();
         var selectedRoutes = this._stateManager.getSelectedRoutes();
         Object.keys(this._selectedRouteViews).forEach(function(route) {
-            if(selectedRoutes.indexOf(route) == -1) {
+            //if(selectedRoutes.indexOf(route) == -1) {
                 this._selectedRouteViews[route].remove();
                 delete this._selectedRouteViews[route];
-            }
+            //}
         }, this);
         selectedRoutes.forEach(function(route) {
             if(!this._selectedRouteViews[route]) {
@@ -299,14 +304,15 @@ extend(AppView.prototype, {
     },
 
     refreshColors : function() {
-        var dataManager = this._dataManager,
+        /*var dataManager = this._dataManager,
             selectedRouteViews = this._selectedRouteViews;
 
         Object.keys(selectedRouteViews).forEach(function(route) {
             dataManager.getBusColor(route).then(function(color) {
                 selectedRouteViews[route].css('background-color', color);
             });
-        });
+        });*/
+        this.updateSelectedRoutes();
     }
 });
 

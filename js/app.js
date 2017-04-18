@@ -77,8 +77,8 @@ require([
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
             'coloring-updated' : function(e, coloringId) { stateManager.setCustomColoringId(coloringId); },
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
-            'routes-selected' : function(e, data) { stateManager.selectRoutes(data.routes); },
-            'routes-deselected' : function(e, data) { stateManager.deselectRoutes(data.routes); },
+            'route-selected' : function(e, data) { stateManager.selectRoute(data); },
+            'route-deselected' : function(e, data) { stateManager.deselectRoute(); },
             'select-segment-routes' : function(e, segmentId) { 
                 dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
                     stateManager.selectRoutes(routes.map(function(route) {

@@ -182,6 +182,36 @@ extend(DataManager.prototype, {
         }, this);
     },
 
+    getRouteSummaryHtml : function(route) {
+        return vow.all([
+            this.getFreqs(),
+            this.getVendors()
+        ]).spread(function(freqs, vendors) {
+            var res = '';
+
+            if(!freqs[route]) {
+                res += 'Нет данных о частоте движения';
+            } else {
+                var stateManager = this._stateManager,
+                    timeSettings = stateManager.getTimeSettings(),
+                    currentDay = Object.keys(freqs[route]).filter(function(dow) { return dow & timeSettings.dow; }),
+                    timetable = [];
+
+                if(!freqs[route][currentDay]) {
+                    res += 'Маршрут сегодня не ходит';
+                } else {
+                    for (var h = timeSettings.fromHour; h <= timeSettings.toHour; h++) {
+                        timetable.push('в ' + h + ' ч — <b>' + (freqs[route][currentDay][h] || 'нет рейсов') + '</b>');
+                    }
+                    res += 'Частота движения (рейсов в час):<br/>' + timetable.join('<br/>');
+                }
+            }
+
+            vendors[route] && (res += '<br/><br>Перевозчик: <b>' + vendors[route] + '</b>');
+            return res;
+        }, this);
+    },
+
     _recalcActuals : function(changedStateFields) {
         var stateManager = this._stateManager;
 
