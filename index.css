@@ -36,6 +36,7 @@ body {
     text-align: center;
     cursor: pointer;
     transition: all ease .3s;
+    user-select: none;
 }
 
 .dimmed
@@ -167,6 +168,12 @@ body {
     bottom: 30px;
     width: 75px;
     height: 100px;
+}
+
+@media screen and (max-width: 500px) {
+    .logo {
+        display: none;
+    }
 }
 
 #dateForm

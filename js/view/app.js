@@ -26,7 +26,7 @@ extend(AppView.prototype, eventsEmitter);
 
 extend(AppView.prototype, {
     _init : function() {
-        this._createTimeControls();
+        this._createControls();
         
         $(document)
             .on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
@@ -45,7 +45,7 @@ extend(AppView.prototype, {
 
     },
     
-    _createTimeControls : function() {
+    _createControls : function() {
         var timeSettings = this._stateManager.getTimeSettings();
 
         this._selectedRouteViews = {};          

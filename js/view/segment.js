@@ -23,10 +23,10 @@ return function(id, routes, colors) {
                     return div;
                 }, this)
         )
-        .append($('<div/>')
+        /*.append($('<div/>')
             .addClass('segment-button select-segment-routes')
             .html('Показать эти маршруты')
-        )
+        )*/
         [0];
 };
 

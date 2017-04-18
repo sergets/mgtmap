@@ -17,7 +17,7 @@ define([
                     shape : {
                         type : 'LineString',
                         pixelGeometry : line.coords.map(tilePixelsToGlobalPixels.bind(this, [x, y])),
-                        params : { strokeWidth : line.width }
+                        params : { strokeWidth : line.width + this.state.isTouch? 10 : 0 }
                     },
                     feature : {
                         properties : {

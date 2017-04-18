@@ -18,16 +18,23 @@ define([
     segmentView
 ) {
 
+var ANIMATION_DURATION = 300;
+
 var Map = function(dataManager, stateManager, worker) {
     this._map = new ymaps.Map('map', extend({
-        controls: ['zoomControl', 'geolocationControl']
+        controls: ['zoomControl', 'geolocationControl'],
     }, {
         bounds : stateManager.getBounds()
+    }, {
+        suppressMapOpenBlock : true
     }));
 
     this._worker = worker;
     this._dataManager = dataManager;
     this._stateManager = stateManager;
+    
+    this._selectionLayer = null;
+    this._pendingSelectionLayer = null;
 
     this._currentSegmentRoutes = null;
 
@@ -46,9 +53,12 @@ extend(Map.prototype, {
             worker = this._worker,
             that = this;
 
-        map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+        this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
         map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
             zIndex : 200
+        }));
+        map.panes.append('selection', new (map.panes.get('places').constructor)(map, {
+            zIndex : 201
         }));
         map.panes.append('white', new ymaps.pane.StaticPane(map, {
             css : {
@@ -59,7 +69,7 @@ extend(Map.prototype, {
             zIndex : 150
         }));
 
-        this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .3s';
+        this._map.panes.get('mgtmap').getElement().style.transitionDuration = 'all ' + ANIMATION_DURATION/1000 + 's';
         ymaps.modules.require([
             'worker-canvas-layer',
             'worker-hotspot-source'
@@ -71,11 +81,7 @@ extend(Map.prototype, {
                     tileTransparent : true,
                     pane : 'mgtmap'
                 }),
-                hotspotLayer = that._hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker)),
-                selectionLayer = that._selectionLayer = new WorkerCanvasLayer(worker, '', {
-                    tileTransparent : true,
-                    pane : 'places'
-                });
+                hotspotLayer = that._hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker));
 
             map.layers.add(rendererLayer);
             map.layers.add(hotspotLayer);
@@ -89,12 +95,70 @@ extend(Map.prototype, {
         map.balloon.events.add('close', this._onBalloonClosed, this);
     },
 
+    _createSelectionLayer : function(query, onReady) {
+        var that = this;
+
+        ymaps.modules.require(['worker-canvas-layer'], function(WorkerCanvasLayer) {
+            if(that._pendingSelectionLayer) {
+                that._pendingSelectionLayer.events.remove('ready');
+                that._map.layers.remove(that._pendingSelectionLayer);
+                that._pendingSelectionLayer = null;
+            }
+            var newSelectionLayer = that._pendingSelectionLayer = new WorkerCanvasLayer(that._worker, query, {
+                    tileTransparent : true,
+                    pane : 'selection'
+                });
+
+            newSelectionLayer.events.once('ready', function() {
+                that._pendingSelectionLayer = null;
+                var oldSelectionLayer = that._selectionLayer;
+
+                that._selectionLayer = newSelectionLayer;
+                newSelectionLayer.getElement().style.opacity = 1;
+                if(oldSelectionLayer) {
+                    oldSelectionLayer.getElement().style.opacity = 0;
+                    setTimeout(function() {
+                        that._map.layers.remove(oldSelectionLayer);
+                    }, ANIMATION_DURATION);
+                }
+                onReady && onReady();
+            });
+
+            that._map.layers.add(newSelectionLayer);
+
+            var layerElem = newSelectionLayer.getElement();
+
+            layerElem.style.transition = 'all ' + ANIMATION_DURATION/1000 + 's';
+            layerElem.style.opacity = 0;
+        });
+    },
+
+    _removeSelectionLayer : function() {
+        var that = this,
+            oldSelectionLayer = this._selectionLayer;
+
+        if(that._pendingSelectionLayer) {
+            that._pendingSelectionLayer.events.remove('ready');
+            that._map.layers.remove(that._pendingSelectionLayer);
+            that._pendingSelectionLayer = null;
+        }
+
+        this._selectionLayer = null;
+
+        if(oldSelectionLayer) {
+            oldSelectionLayer.getElement().style.opacity = 0;
+            setTimeout(function() {
+                that._map.layers.remove(oldSelectionLayer);
+            }, ANIMATION_DURATION);
+        }
+    },
+
     _onHotspotMouseover : function(e) {
         if(this._currentSegmentRoutes) {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
             this._dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
-                if(!this._currentSegmentRoutes) {
+                if(!this._currentSegmentRoutes || !routes) {
                     return;
                 }
 
@@ -106,7 +170,7 @@ extend(Map.prototype, {
 
                 if(routesToHighlight.length) { 
                     this.trigger('highlight-routes', { routes : routesToHighlight });
-                    //this.highlightRoutes(routesToHighlight);
+                    this.highlightRoutes(routesToHighlight);
                     this._routesHovered = true;
                 }
             }, this);
@@ -119,7 +183,7 @@ extend(Map.prototype, {
         }
 
         this.trigger('unhighlight-routes');
-        //this.unhighlightRoutes();
+        this.unhighlightRoutes();
         this._routesHovered = false;
     },
 
@@ -136,34 +200,40 @@ extend(Map.prototype, {
             }, {})).done(function(colors) {
                 this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
                 this._onBalloonOpen(segmentId, routes);
-            }, this);
+            }, function() {}, this);
         }, this);
     },
 
     _onBalloonOpen : function(segmentId, routes) {
+        var pane = this._map.panes.get('mgtmap').getElement();
+
         this._onBalloonClosed();
-        //this._map.panes.get('mgtmap').getElement().style.transition = 'opacity .5s'; // = this._placesPaneZIndex;
-        this._map.panes.get('mgtmap').getElement().style.opacity = 0.2; // zIndex = this._whitePaneZIndex - 1;
+
         this._currentSegmentRoutes = routes
             .filter(function(route) { return route.indexOf('-') !== 0; })
             .map(function(route) { return route.replace(/^[<>]/, ''); });
-        this._selectionLayer.setQuery(this._currentSegmentRoutes.join(';'));
-        this._map.layers.add(this._selectionLayer);
+        this._createSelectionLayer(this._currentSegmentRoutes.join(';'), function() {
+            //pane.style.transition = 'opacity .3s';
+            pane.style.opacity = 0.2;
+        });
     },
 
     _onBalloonClosed : function() {
+        var pane = this._map.panes.get('mgtmap').getElement();
+
         this._currentSegmentRoutes = null;
-        this._map.layers.remove(this._selectionLayer);
-        //this._map.panes.get('mgtmap').getElement().style.transition = 'opacity 1s'; // = this._placesPaneZIndex;s
-        this._map.panes.get('mgtmap').getElement().style.opacity = 1; // = this._placesPaneZIndex;
+        this._removeSelectionLayer();
+        setTimeout(function() {
+            pane.style.opacity = 1;
+        });
     },
 
     highlightRoutes : function(routes) {
-        this._selectionLayer.setQuery(routes.join(';'));
+        this._createSelectionLayer(routes.join(';'));
     },
 
     unhighlightRoutes : function() {
-        this._selectionLayer.setQuery(this._currentSegmentRoutes.join(';'));
+        this._createSelectionLayer(this._currentSegmentRoutes.join(';'));
     },
 
     _onBoundsChanged : function(e) {

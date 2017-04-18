@@ -36,6 +36,9 @@ var StateManager = function() {
     this._isDebugMode = 'debug' in query,
     this._white = query.white || 0.7;
     this._customColoringId = query.coloring;
+
+    this._isTouch = true; // 'ontouchstart' in window;
+    this._isNarrow = window.innerWidth < 500;
 };
 
 extend(StateManager.prototype, eventsEmitter);
@@ -119,6 +122,10 @@ extend(StateManager.prototype, {
         return this._isDebugMode; 
     },
 
+    isMobile : function() {
+        return this._isTouch && this._isNarrow;
+    },
+
     setCustomColoringId : function(id) {
         this._customColoringId = id;
         this.trigger('coloring-id-updated', id);
@@ -137,7 +144,9 @@ extend(StateManager.prototype, {
             isAdminMode : this._isAdminMode,
             isDebugMode : this._isDebugMode,
             white : this._white,
-            customColoringId : this._customColoringId
+            customColoringId : this._customColoringId,
+            isTouch : this._isTouch,
+            isNarrow : this._isNarrow 
         };
     }
 });

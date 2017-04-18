@@ -40,8 +40,8 @@ ymaps.modules.define('worker-canvas-layer', [
                         zoom = +params[2],
                         deferred = ymaps.vow.defer();
 
-                    if (tileCaches[zoom] && tileCaches[zoom].get(params)) {
-                        return ymaps.vow.resolve(tileCaches[zoom].get(params));
+                    if (tileCaches[zoom] && tileCaches[zoom].get(params, query)) {
+                        return ymaps.vow.resolve(tileCaches[zoom].get(params, query));
                     } else {
                         worker.command('renderTile', {
                             x : +params[0],
@@ -58,7 +58,7 @@ ymaps.modules.define('worker-canvas-layer', [
                                 }
                             });
                             var url = canvas.toDataURL();
-                            (tileCaches[zoom] || (tileCaches[zoom] = new Cache(CACHE_SIZE))).set(params, url);
+                            (tileCaches[zoom] || (tileCaches[zoom] = new Cache(CACHE_SIZE))).set(params, query, url);
                             deferred.resolve(url);
                         });
 
