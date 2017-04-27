@@ -1,22 +1,28 @@
-define(['worker/utils/require-ymaps'], function(requireYMaps) {
+define([
+    'data/trolley'
+], function(
+    trolleyUtils
+) {
     return {
         getRouteColor : function(route, data, state, actuals) {
-            var totalLength = 0,
+            var trolleyFraction = trolleyUtils.getTrolleyFraction(route, data.lengths, actuals.actualRoutes, data.trolleyWires);
+
+            /*var totalLength = 0,
                 trolleyLength = 0;
 
             Object.keys(data.lengths).forEach(function(segmentId) {
-                if(isSegmentInRoute(segmentId, route, actuals.actualRoutes)) {
+                if(trolleyUtils.isSegmentInRoute(segmentId, route, actuals.actualRoutes)) {
                     var times = actuals.actualRoutes[segmentId].reduce(function(t, r) {
                         if(r == route) return t + 2;
                         if(r == '>' + route || r == '<' + route) return t + 1;
                         return t; 
                     }, 0);
                     totalLength += times * data.lengths[segmentId];
-                    if(isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)) {
+                    if(trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)) {
                         trolleyLength += times * data.lengths[segmentId];
                     }
                 }
-            });
+            });*/
 
             if(route.indexOf('Тм') != -1) {
                 return '#f84';;
@@ -24,7 +30,7 @@ define(['worker/utils/require-ymaps'], function(requireYMaps) {
             if(route.indexOf('Тб') != -1) {
                 return '#6f0';
             }
-            if(trolleyLength / totalLength > 0.5 && !data.vendors[route]) {
+            if(trolleyFraction > 0.5 && !(data.registry[route] && (data.registry[route].vendor != 'mgt' || data.registry[route].express))) {
                 return '#1bf';
             }
             return '#528';
@@ -33,8 +39,8 @@ define(['worker/utils/require-ymaps'], function(requireYMaps) {
             if(state.selectedRoutes.length == 1) {
                 var selectedRoute = state.selectedRoutes[0];
 
-            return isSegmentInRoute(segmentId, selectedRoute, actuals.actualRoutes)?
-                isSegmentTrolleyForRoute(segmentId, selectedRoute, actuals.actualRoutes, data.trolleyWires)?
+            return trolleyUtils.isSegmentInRoute(segmentId, selectedRoute, actuals.actualRoutes)?
+                trolleyUtils.isSegmentTrolleyForRoute(segmentId, selectedRoute, actuals.actualRoutes, data.trolleyWires)?
                     { 10 : '#6f0' } : 
                     { 10 : '#999' } :
                 null;
@@ -45,16 +51,16 @@ define(['worker/utils/require-ymaps'], function(requireYMaps) {
     };
 });
 
-function isSegmentInRoute(segmentId, route, actualRoutes) {
+/*function isSegmentInRoute(segmentId, route, actualRoutes) {
     var routes = actualRoutes[segmentId];
 
     return routes &&
         (routes.indexOf('>' + route) != -1 ||
         routes.indexOf('<' + route) != -1 ||
         routes.indexOf(route) != -1);
-}
+}*/
 
-function isSegmentTrolleyForRoute(segmentId, route, actualRoutes, trolleyWires) {
+/*function isSegmentTrolleyForRoute(segmentId, route, actualRoutes, trolleyWires) {
     segmentId = +segmentId;
     var routes = actualRoutes[segmentId],
         isSelectedRouteForward = routes && routes.indexOf('>' + route) != -1,
@@ -76,4 +82,4 @@ function isSegmentTrolleyForRoute(segmentId, route, actualRoutes, trolleyWires) 
         (isSelectedRouteBackward && (isSegmentTrolleyBackward || isSegmentTrolleyBoth)) ||
         (isSelectedRouteBoth && isSegmentTrolleyBoth);
     return res;
-}
+}*/

@@ -20,7 +20,7 @@ define([
                 segments : params.segments,
                 freqs : params.freqs,
                 routes : params.routes,
-                vendors : params.vendors,
+                registry : params.registry,
                 trolleyWires : params.trolleyWires,
                 lengths : params.lengths
             },

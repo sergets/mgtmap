@@ -28,6 +28,7 @@ extend(AppView.prototype, eventsEmitter);
 
 extend(AppView.prototype, {
     _init : function() {
+        this._createTopPane();
         this._createControls();
         
         $(document)

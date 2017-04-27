@@ -1,0 +1,7384 @@
+{
+	"0" : {
+		"endpoints" : "Рижский вокзал&nbsp;— Тихвинская ул.",
+		"length" : 7.2,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"1" : {
+		"endpoints" : "МГУ&nbsp;— Севастопольский просп.",
+		"length" : 28.1,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"2" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Тушинская»",
+		"length" : 15.6,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"3" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Бульвар Рокоссовского»",
+		"length" : 21.8,
+		"quantity" : 18,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"4" : {
+		"endpoints" : "Силикатный завод&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 18.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"5" : {
+		"endpoints" : "Новоорловская ул.&nbsp;— Платф. Переделкино",
+		"length" : 7.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"м6" : {
+		"endpoints" : "Силикатный завод&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 34.2,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"7" : {
+		"endpoints" : "Ст. Перово&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 24.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"8" : {
+		"endpoints" : "Велозаводская ул.&nbsp;— Южный порт",
+		"length" : 10.5,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"9" : {
+		"endpoints" : "м.&nbsp;«Кожуховская»&nbsp;— Ул. Серпуховский Вал",
+		"length" : 22.8,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"11" : {
+		"endpoints" : "Ул. Герасима Курина&nbsp;— Ст.Очаково",
+		"length" : 16.0,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"12" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— 2-й Красногвардейский пр.",
+		"length" : 33.1,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"101" : {
+		"endpoints" : "Ледовый дворец&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 19.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"13" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— Павелецкий вокзал",
+		"length" : 10.4,
+		"quantity" : 13,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"16" : {
+		"endpoints" : "66-й кв. Кунцева&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 14.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"17" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Троицк (Торговый центр)",
+		"length" : 18.8,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"17к" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— ЦАС (ИЯИ)",
+		"length" : 13.4,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"19" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— Рижский вокзал",
+		"length" : 14.3,
+		"quantity" : 15,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"20" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 20.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"21" : {
+		"endpoints" : "3-й м/р Новокосина&nbsp;— м.&nbsp;«Новогиреево»",
+		"length" : 15.1,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"21к" : {
+		"endpoints" : "м.&nbsp;«Новокосино»&nbsp;— 3-й м/р Новокосина",
+		"length" : 4.4,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"22" : {
+		"endpoints" : "Ул. 8-го Марта&nbsp;— Ст. Лихоборы",
+		"length" : 32.2,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"22к" : {
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— Ул. 8-го Марта",
+		"length" : 6.5,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"23" : {
+		"endpoints" : "Юрловский пр.&nbsp;— м.&nbsp;«Тимирязевская»",
+		"length" : 23.8,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"24" : {
+		"endpoints" : "Гостиницы ВДНХ&nbsp;— Трубная пл.",
+		"length" : 24.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"24к" : {
+		"endpoints" : "Гостиницы ВДНХ&nbsp;— м.&nbsp;«Марьина Роща»",
+		"length" : 18.9,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"м5" : {
+		"endpoints" : "Нагорный бульв.&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 26.5,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"25к" : {
+		"endpoints" : "Нагорный бульв.&nbsp;— м.&nbsp;«Нагорная»",
+		"length" : 3.0,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"26" : {
+		"endpoints" : "Живописная ул.&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 13.8,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"27" : {
+		"endpoints" : "Силикатный завод&nbsp;— Белорусский вокзал",
+		"length" : 19.9,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"28" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— м.&nbsp;«Калужская»",
+		"length" : 20.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"29" : {
+		"endpoints" : "Кузьминский парк&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 20.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"29к" : {
+		"endpoints" : "Хохловка&nbsp;— Кузьминский парк",
+		"length" : 16.0,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"30" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— м.&nbsp;«Печатники»",
+		"length" : 22.7,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"31" : {
+		"endpoints" : "Осташковская ул.&nbsp;— м.&nbsp;«Бибирево»",
+		"length" : 14.8,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"32" : {
+		"endpoints" : "Платф. Сколково&nbsp;— Пос. Толстопальцево",
+		"length" : 61.0,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"32к" : {
+		"endpoints" : "Внуковский завод&nbsp;— Пос. Толстопальцево",
+		"length" : 16.0,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"33" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— м.&nbsp;«Владыкино»",
+		"length" : 16.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"33к" : {
+		"endpoints" : "м.&nbsp;«ВДНХ»&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 9.4,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"34" : {
+		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 29.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"34к" : {
+		"endpoints" : "м.&nbsp;«Измайловская»&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 16.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"35" : {
+		"endpoints" : "Курьяново&nbsp;— м.&nbsp;«Люблино»",
+		"length" : 13.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"36" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 36.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"37" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Теплый стан»",
+		"length" : 49.1,
+		"quantity" : 19,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"908" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— м.&nbsp;«Филевский парк»",
+		"length" : 31.4,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"38" : {
+		"endpoints" : "Рижский вокзал&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 14.2,
+		"quantity" : 5,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"39" : {
+		"endpoints" : "Ул. Расплетина&nbsp;— Никитские ворота",
+		"length" : 29.3,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"39к" : {
+		"endpoints" : "Ул. Расплетина&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 11.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"40" : {
+		"endpoints" : "м.&nbsp;«Сокольники»&nbsp;— Завод «Красный путь»",
+		"length" : 26.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"40к" : {
+		"endpoints" : "м.&nbsp;«Римская»&nbsp;— Завод «Красный путь»",
+		"length" : 2.4,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"41" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— м.&nbsp;«Добрынинская»",
+		"length" : 26.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"42" : {
+		"endpoints" : "Матвеевское&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 19.7,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"43" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— 3-й м/р Сходненской поймы",
+		"length" : 13.9,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"44" : {
+		"endpoints" : "м.&nbsp;«Профсоюзная»&nbsp;— м.&nbsp;«Кожуховская»",
+		"length" : 25.9,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"45" : {
+		"endpoints" : "66-й кв.Кунцева&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 13.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"46" : {
+		"endpoints" : "Ст.Перово&nbsp;— м.&nbsp;«Шоссе Энтузиастов»",
+		"length" : 6.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"47" : {
+		"endpoints" : "Ст. ЗИЛ&nbsp;— м.&nbsp;«Технопарк»",
+		"length" : 3.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"48" : {
+		"endpoints" : "Ледовый дворец&nbsp;— Живописная ул.",
+		"length" : 22.9,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"49" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— Санаторий «Узкое»",
+		"length" : 10.6,
+		"quantity" : 1,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"50" : {
+		"endpoints" : "Платф. Лось&nbsp;— 10-й кв. Медведкова",
+		"length" : 14.8,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"51" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— Народная ул.",
+		"length" : 33.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"51к" : {
+		"endpoints" : "м.&nbsp;«Рязанский проспект»&nbsp;— Платф. Чухлинка",
+		"length" : 7.6,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"52" : {
+		"endpoints" : "Южное Измайлово&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 25.0,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"53" : {
+		"endpoints" : "м.&nbsp;«Бибирево»&nbsp;— м.&nbsp;«Владыкино»",
+		"length" : 18.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"54" : {
+		"endpoints" : "Капотня&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 39.3,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"55" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— Платф. Перерва",
+		"length" : 10.2,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"56" : {
+		"endpoints" : "ВДНХ (сев.)&nbsp;— Платф. Яуза",
+		"length" : 9.8,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"57" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— Озёрная ул.",
+		"length" : 37.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"58" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— Ул. Косыгина",
+		"length" : 30.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"59" : {
+		"endpoints" : "Карачарово&nbsp;— Электрозаводский мост",
+		"length" : 24.5,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"60" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— МФЦ «Хорошёво-Мнёвники»",
+		"length" : 16.3,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"61" : {
+		"endpoints" : "Ясный проезд&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 11.5,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"61к" : {
+		"endpoints" : "Ясный проезд&nbsp;— м.&nbsp;«Свиблово»",
+		"length" : 6.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"62" : {
+		"endpoints" : "Братцево&nbsp;— Ст. Тушино",
+		"length" : 15.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"63" : {
+		"endpoints" : "Лобненская ул.&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 21.5,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"64" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— Песчаная пл.",
+		"length" : 30.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"65" : {
+		"endpoints" : "м.&nbsp;«Водный Стадион»&nbsp;— Левобережная ул.",
+		"length" : 21.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"65а" : {
+		"endpoints" : "м.&nbsp;«Водный Стадион»&nbsp;— Платф. Моссельмаш",
+		"length" : 12.2,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"65к" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Платф. Моссельмаш",
+		"length" : 9.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"66" : {
+		"endpoints" : "Платф. Сколково&nbsp;— 9-й м/р Теплого Стана",
+		"length" : 16.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"67" : {
+		"endpoints" : "Нагорный бульв.&nbsp;— Ул. Довженко",
+		"length" : 22.3,
+		"quantity" : 5,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"67к" : {
+		"endpoints" : "Нагорный бульв.&nbsp;— м.&nbsp;«Университет»",
+		"length" : 12.7,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"68" : {
+		"endpoints" : "Камчатская ул.&nbsp;— Пл. Соловецких Юнг",
+		"length" : 16.1,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"69" : {
+		"endpoints" : "Фили&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 19.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"70" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Сенежская ул.",
+		"length" : 7.9,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"70а" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Ленинградское ш., 50",
+		"length" : 8.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"70к" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Флотская ул.",
+		"length" : 6.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"71" : {
+		"endpoints" : "Осташковская ул.&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 29.0,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"72" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Савеловский вокзал",
+		"length" : 24.4,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"73" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— м.&nbsp;«Филевский парк»",
+		"length" : 20.4,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"74" : {
+		"endpoints" : "Саратовская ул.&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 21.1,
+		"quantity" : 2,
+		"class" : ["s", "m"],
+		"vendor" : "mgt"
+	},
+	"75" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Дворец спорта «Сокольники»",
+		"length" : 28.2,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"76" : {
+		"endpoints" : "м.&nbsp;«ВДНХ»&nbsp;— м.&nbsp;«Тимирязевская»",
+		"length" : 24.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"76к" : {
+		"endpoints" : "м.&nbsp;«Владыкино»&nbsp;— Большая Марфинская ул.",
+		"length" : 5.5,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"77" : {
+		"endpoints" : "Матвеевское&nbsp;— м.&nbsp;«Славянский бульвар»",
+		"length" : 13.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"78" : {
+		"endpoints" : "м.&nbsp;«Сокольники»&nbsp;— Пл. Земляной Вал",
+		"length" : 16.3,
+		"quantity" : 7,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"79" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— м.&nbsp;«Новокосино»",
+		"length" : 21.5,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"80" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 10.2,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "alphagrant"
+	},
+	"81" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— м.&nbsp;«Марьино»",
+		"length" : 12.2,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"82" : {
+		"endpoints" : "Гостиницы ВДНХ&nbsp;— Белорусский вокзал",
+		"length" : 26.4,
+		"quantity" : 5,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"83" : {
+		"endpoints" : "Ст. Перово&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 21.0,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"84" : {
+		"endpoints" : "Рижский вокзал&nbsp;— Белорусский вокзал",
+		"length" : 26.6,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"84к" : {
+		"endpoints" : "Рижский вокзал&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 16.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"84а" : {
+		"endpoints" : "Савёловский вокзал&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 9.3,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"85" : {
+		"endpoints" : "Гостиницы ВДНХ&nbsp;— Рижский вокзал",
+		"length" : 24.1,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"86" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Б- ца Соколиной Горы",
+		"length" : 23.6,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"86к" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Электрозаводский мост",
+		"length" : 12.4,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"87" : {
+		"endpoints" : "Мост Октябрьской ж/д&nbsp;— Савеловский вокзал",
+		"length" : 22.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"88" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Гидропроект",
+		"length" : 27.0,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"88к" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— 3-й м/р Сходненской поймы",
+		"length" : 11.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"89" : {
+		"endpoints" : "2-й мкр. Жулебина&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 20.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"90" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 21.4,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"91" : {
+		"endpoints" : "Матвеевское&nbsp;— 4-й Сетуньский пр.",
+		"length" : 39.8,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"92" : {
+		"endpoints" : "м.&nbsp;«Бибирево»&nbsp;— Платф. Моссельмаш",
+		"length" : 25.8,
+		"quantity" : 22,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"93" : {
+		"endpoints" : "ВДНХ (сев.)&nbsp;— м.&nbsp;«Медведково»",
+		"length" : 22.8,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"93к" : {
+		"endpoints" : "Пенсионный фонд&nbsp;— Осташковская ул.",
+		"length" : 10.7,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"94" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— Ст. Бутово",
+		"length" : 28.7,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"95" : {
+		"endpoints" : "Капотня&nbsp;— 7-й мкр. Орехово- Борисова",
+		"length" : 31.8,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"96" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Ст. Тушино",
+		"length" : 16.2,
+		"quantity" : 24,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"97" : {
+		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Измайловская»",
+		"length" : 12.8,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"950" : {
+		"endpoints" : "Тропарево&nbsp;— Платф. Кокошкино",
+		"length" : 56.2,
+		"quantity" : 20,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"98" : {
+		"endpoints" : "Юрловский пр.&nbsp;— Платф. Лианозово",
+		"length" : 22.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"99" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— Автозаводский мост",
+		"length" : 34.8,
+		"quantity" : 18,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"100" : {
+		"endpoints" : "Щукино&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 15.8,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"818" : {
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 16.3,
+		"quantity" : 6,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"102" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Ст.Тушино",
+		"length" : 12.5,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"103" : {
+		"endpoints" : "23-й кв. Нов. Черемушек&nbsp;— Ул. Дорохова",
+		"length" : 35.3,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"104" : {
+		"endpoints" : "м.&nbsp;«Филевский парк»&nbsp;— Платф. Рабочий поселок",
+		"length" : 23.3,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"105" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 26.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"105к" : {
+		"endpoints" : "м.&nbsp;«Сокол»&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 10.4,
+		"quantity" : 9,
+		"class" : ["s", "m", "l"],
+		"vendor" : "mgt"
+	},
+	"106" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— Ст. Новохохловская",
+		"length" : 20.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"107" : {
+		"endpoints" : "м.&nbsp;«Филевский парк»&nbsp;— Платф. Матвеевская",
+		"length" : 13.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"108" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— Милицейский пос.",
+		"length" : 23.8,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"109" : {
+		"endpoints" : "Ул. Герасима Курина&nbsp;— м.&nbsp;«Пионерская»",
+		"length" : 18.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"110" : {
+		"endpoints" : "м.&nbsp;«Сокол»&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 9.8,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"111" : {
+		"endpoints" : "Ул. Новаторов&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 30.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"112" : {
+		"endpoints" : "Капотня&nbsp;— м.&nbsp;«Братиславская»",
+		"length" : 16.5,
+		"quantity" : 17,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"113" : {
+		"endpoints" : "м.&nbsp;«Профсоюзная»&nbsp;— м.&nbsp;«Ломоносовский проспект»",
+		"length" : 25.1,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"114" : {
+		"endpoints" : "Базовская ул.&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 30.0,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"115" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— 138-й кв. Выхина",
+		"length" : 13.6,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"116" : {
+		"endpoints" : "Фили (Лес)&nbsp;— Тишинская пл.",
+		"length" : 25.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"117" : {
+		"endpoints" : "2-й мкр. Южного Бутова&nbsp;— Нововатутинский просп.",
+		"length" : 48.7,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"118" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— Ул. Академика Янгеля",
+		"length" : 33.3,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"119" : {
+		"endpoints" : "Нагорный бульв.&nbsp;— Киевский вокзал",
+		"length" : 32.8,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"120" : {
+		"endpoints" : "Озерная ул.&nbsp;— 32-33 кв. Юго- Запада",
+		"length" : 19.2,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"121" : {
+		"endpoints" : "23-й кв. Нов. Черемушек&nbsp;— м.&nbsp;«Тульская»",
+		"length" : 19.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"122" : {
+		"endpoints" : "м.&nbsp;«Сокольники»&nbsp;— Лубянская пл.",
+		"length" : 21.2,
+		"quantity" : 7,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"123" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— м.&nbsp;«Петровско-Разумовская»",
+		"length" : 18.5,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"123к" : {
+		"endpoints" : "Ст. Лихоборы&nbsp;— м.&nbsp;«Петровско-Разумовская»",
+		"length" : 8.1,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"124" : {
+		"endpoints" : "Мкр. 4 «Д» Отрадного&nbsp;— Ст. Лосиноостровская",
+		"length" : 21.4,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"125" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— Красноказарменная пл.",
+		"length" : 25.9,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "rico"
+	},
+	"126" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— м.&nbsp;«Марьина Роща»",
+		"length" : 18.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"128" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— м.&nbsp;«Марьино»",
+		"length" : 10.1,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"130" : {
+		"endpoints" : "м.&nbsp;«Филевский парк»nbsp;— 23- й кв. Нов. Черемушек",
+		"length" : 21.1,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"131" : {
+		"endpoints" : "Ст. Перово&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 17.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"132" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— Киевский вокзал",
+		"length" : 17.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"133" : {
+		"endpoints" : "м.&nbsp;«Щелковская»&nbsp;— м.&nbsp;«Рязанский проспект»",
+		"length" : 35.1,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"134" : {
+		"endpoints" : "Юрловский пр.&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 7.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"135" : {
+		"endpoints" : "Ул. Академика Павлова&nbsp;— м.&nbsp;«Пионерская»",
+		"length" : 14.2,
+		"quantity" : 6,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"136" : {
+		"endpoints" : "ВДНХ (сев.)&nbsp;— Платф. Лианозово",
+		"length" : 48.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"137" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— Троице- Лыково",
+		"length" : 12.2,
+		"quantity" : 4,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"138" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— 19-й кв. Химки-Ховрино",
+		"length" : 7.5,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"139" : {
+		"endpoints" : "Ст. Лихоборы&nbsp;— м.&nbsp;«Водный стадион»",
+		"length" : 11.9,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"140" : {
+		"endpoints" : "м.&nbsp;«Сокольники»&nbsp;— 6-й Лучевой просек",
+		"length" : 9.0,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "alphagrant"
+	},
+	"141" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 26.7,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"142" : {
+		"endpoints" : "м.&nbsp;«Кожуховская»&nbsp;— м.&nbsp;«Академическая»",
+		"length" : 33.2,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"143" : {
+		"endpoints" : "Саратовская ул.&nbsp;— Хохловка",
+		"length" : 29.1,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"143к" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— Хохловка",
+		"length" : 23.5,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"144" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 47.2,
+		"quantity" : 26,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"144к" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Магазин «Лейпциг»",
+		"length" : 7.5,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"145" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Беляево»",
+		"length" : 7.2,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"145к" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Беляево»",
+		"length" : 9.7,
+		"quantity" : 5,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"146" : {
+		"endpoints" : "2-й м/р Южн.Бутова&nbsp;— м.&nbsp;«Бульвар Дмитрия Донского»",
+		"length" : 22.3,
+		"quantity" : 5,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"147" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 22.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"147к" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— м.&nbsp;«Варшавская»",
+		"length" : 16.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"148" : {
+		"endpoints" : "14-й м/р Орехово-Борисова&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 23.2,
+		"quantity" : 7,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"149" : {
+		"endpoints" : "Коровино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 24.9,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"150" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— Платф. Чертаново",
+		"length" : 13.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"150к" : {
+		"endpoints" : "м.&nbsp;«Кантемировская»&nbsp;— Платф. Чертаново",
+		"length" : 3.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"151" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— 3-я Радиальная ул.",
+		"length" : 16.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"151к" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— 3-я Радиальная ул.",
+		"length" : 8.7,
+		"quantity" : 1,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"152" : {
+		"endpoints" : "Филевский бульв.&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 16.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"153" : {
+		"endpoints" : "м.&nbsp;«Профсоюзная»&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 12.1,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"154" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— ВДНХ (южн.)",
+		"length" : 31.3,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"155" : {
+		"endpoints" : "Просп. Маршала Жукова&nbsp;— м.&nbsp;«Филевский парк»",
+		"length" : 27.8,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"156" : {
+		"endpoints" : "Нагатинский затон&nbsp;— Котельническая наб.",
+		"length" : 27.1,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"157" : {
+		"endpoints" : "Беловежская ул.&nbsp;— Киевский вокзал",
+		"length" : 26.9,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"157к" : {
+		"endpoints" : "Беловежская ул.&nbsp;— м.&nbsp;«Славянский бульвар»",
+		"length" : 16.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"158" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 18.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"159" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 27.9,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"160" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— Харьковский пр.",
+		"length" : 16.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"161" : {
+		"endpoints" : "Курьяново&nbsp;— м.&nbsp;«Кожуховская»",
+		"length" : 25.1,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"162" : {
+		"endpoints" : "Ст. Бирюлево-Тов.&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 25.7,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"163" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— Ул. Новаторов",
+		"length" : 22.7,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"163к" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 7.7,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"164" : {
+		"endpoints" : "Ереванская ул.&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 17.2,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С8" : {
+		"endpoints" : "м.&nbsp;«Нагатинская»&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 14.6,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"165" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 31.1,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"166" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— Новоорловская ул.",
+		"length" : 8.1,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"167" : {
+		"endpoints" : "Платф. Лианозово&nbsp;— м.&nbsp;«Петровско-Разумовская»",
+		"length" : 19.1,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"168" : {
+		"endpoints" : "м.&nbsp;«Профсоюзная»&nbsp;— Чертаново Северное",
+		"length" : 17.0,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"169" : {
+		"endpoints" : "Карачаровский путепровод&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 28.8,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"169к" : {
+		"endpoints" : "Саратовская ул.&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 20.6,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"170" : {
+		"endpoints" : "м.&nbsp;«Петровско-Разумовская»&nbsp;— Ст. Бескудниково",
+		"length" : 12.2,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"171" : {
+		"endpoints" : "Камчатская ул.&nbsp;— Электрозаводский мост",
+		"length" : 27.5,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"172" : {
+		"endpoints" : "м.&nbsp;«Медведково»&nbsp;— Рижский вокзал",
+		"length" : 36.5,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"173" : {
+		"endpoints" : "Братцево&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 24.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"174" : {
+		"endpoints" : "Осташковская ул.&nbsp;— Cт. Лосиноостровская",
+		"length" : 14.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"175" : {
+		"endpoints" : "м.&nbsp;«Беговая»&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 19.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"176" : {
+		"endpoints" : "Платф. Лось&nbsp;— Пр. Русанова",
+		"length" : 15.6,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"177" : {
+		"endpoints" : "2-й м/р Жулебина&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 14.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"178" : {
+		"endpoints" : "66-й кв. Кунцева&nbsp;— Фили",
+		"length" : 20.0,
+		"quantity" : 9,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"179" : {
+		"endpoints" : "Платф. Лианозово&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 29.9,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"180" : {
+		"endpoints" : "66-й кв. Кунцева&nbsp;— Беловежская ул.",
+		"length" : 10.5,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"181" : {
+		"endpoints" : "Заревый пр.&nbsp;— Платф. Лось",
+		"length" : 16.0,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"182" : {
+		"endpoints" : "Ст. Бирюлево-Тов.&nbsp;— Платф. Чертаново",
+		"length" : 21.6,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"183" : {
+		"endpoints" : "Платф. Лось&nbsp;— Институт пути",
+		"length" : 15.1,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"184" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— м.&nbsp;«Пролетарская»",
+		"length" : 8.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"185" : {
+		"endpoints" : "Платф. Лось&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 18.2,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"186" : {
+		"endpoints" : "Велозаводская ул.&nbsp;— м.&nbsp;«Волгоградский проспект»",
+		"length" : 13.6,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"187" : {
+		"endpoints" : "Озерная ул.&nbsp;— м.&nbsp;«Университет»",
+		"length" : 34.2,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"188" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Ст. Ховрино",
+		"length" : 9.1,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"189" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— Битцевская аллея",
+		"length" : 12.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"190" : {
+		"endpoints" : "Беловежская ул.&nbsp;— м.&nbsp;«Молодежная»",
+		"length" : 17.3,
+		"quantity" : 8,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"191" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 19.7,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"192" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— Платф. Москворечье",
+		"length" : 11.2,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"867" : {
+		"endpoints" : "Ул. Корнейчука&nbsp;— Заболотье",
+		"length" : 20.4,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"193" : {
+		"endpoints" : "Саратовская ул.&nbsp;— м.&nbsp;«Автозаводская»",
+		"length" : 34.7,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"194" : {
+		"endpoints" : "Коровино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 18.6,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"195" : {
+		"endpoints" : "ВДНХ (сев.)&nbsp;— Пр. Русанова",
+		"length" : 18.1,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"196" : {
+		"endpoints" : "Тропарево&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 40.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"197" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 5.9,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"198" : {
+		"endpoints" : "66-й кв. Кунцева&nbsp;— Матвеевское",
+		"length" : 20.0,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"199" : {
+		"endpoints" : "13-й м/р Тушина&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 27.4,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"199к" : {
+		"endpoints" : "м.&nbsp;«Сходненская»&nbsp;— Налоговый городок",
+		"length" : 7.3,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autocars"
+	},
+	"200" : {
+		"endpoints" : "Лобненская ул.&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 18.6,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"201" : {
+		"endpoints" : "Б-ца им. Семашко&nbsp;— Ставропольский пр.",
+		"length" : 8.7,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"202" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 28.6,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"203" : {
+		"endpoints" : "6-й м/р Загорья&nbsp;— м.&nbsp;«Царицыно»",
+		"length" : 17.7,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"204" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 13.8,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"205к" : {
+		"endpoints" : "Киевский вокзал&nbsp;— Ул. Довженко",
+		"length" : 12.8,
+		"quantity" : 5,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"м10" : {
+		"endpoints" : "Лобненская ул.&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 40.7,
+		"quantity" : 26,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"206к" : {
+		"endpoints" : "м.&nbsp;«Петровско-Разумовская»&nbsp;— Лобненская ул.",
+		"length" : 18.6,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"207" : {
+		"endpoints" : "Ледовый дворец&nbsp;— Ледовый дворец",
+		"length" : 4.9,
+		"quantity" : 2,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"208" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— Сормовская ул.",
+		"length" : 20.0,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"209" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 6.7,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"210" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Тушинская»",
+		"length" : 18.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"211" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 17.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"213" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— 4-й мкр. Северного Бутова",
+		"length" : 22.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"214" : {
+		"endpoints" : "Южное Измайлово&nbsp;— Ст. Перово",
+		"length" : 21.7,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"215" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 16.8,
+		"quantity" : 7,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"215к" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 14.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"216" : {
+		"endpoints" : "Якорная ул.&nbsp;— Автозаводский мост",
+		"length" : 19.1,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"217" : {
+		"endpoints" : "14-й кв. Ленино-Дачного&nbsp;— м.&nbsp;«Кантемировская»",
+		"length" : 6.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"218" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— м.&nbsp;«Академическая»",
+		"length" : 22.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"218к" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Академическая»",
+		"length" : 13.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"219" : {
+		"endpoints" : "Якорная ул.&nbsp;— м.&nbsp;«Профсоюзная»",
+		"length" : 23.1,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"220" : {
+		"endpoints" : "Ереванская ул.&nbsp;— Больница им. Юдина",
+		"length" : 18.2,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"220к" : {
+		"endpoints" : "Ереванская ул.&nbsp;— м.&nbsp;«Кантемировская»",
+		"length" : 6.9,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"221" : {
+		"endpoints" : "Ст. Бирюлево-Тов.&nbsp;— м.&nbsp;«Кантемировская»",
+		"length" : 12.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"222" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— 16-й м/р Чертанова",
+		"length" : 15.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"223" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Первомайская»",
+		"length" : 11.0,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"224" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— Ленинский просп.",
+		"length" : 22.6,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"225" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— 16-й м/р Чертанова",
+		"length" : 15.9,
+		"quantity" : 9,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"226" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— Ст. Очаково",
+		"length" : 19.8,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"227" : {
+		"endpoints" : "5-й м/р Теплого Стана&nbsp;— Олимпийская деревня",
+		"length" : 22.7,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"227к" : {
+		"endpoints" : "5-й м/р Теплого Стана&nbsp;— м.&nbsp;«Юго-Западная»",
+		"length" : 18.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"228" : {
+		"endpoints" : "Саратовская ул.&nbsp;— Ул. Головачева",
+		"length" : 25.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"229" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— м.&nbsp;«Крылатское»",
+		"length" : 14.3,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"230" : {
+		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 15.5,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"231" : {
+		"endpoints" : "Беловежская ул.&nbsp;— м.&nbsp;«Филёвский парк»",
+		"length" : 19.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"232" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Платф. Новогиреево",
+		"length" : 10.0,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"233" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Петрозаводская ул.",
+		"length" : 6.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"234" : {
+		"endpoints" : "Саратовская ул.&nbsp;— Саратовская ул.",
+		"length" : 5.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"235" : {
+		"endpoints" : "5-й мкр. Теплого Стана&nbsp;— Ул. Островитянова",
+		"length" : 19.9,
+		"quantity" : 4,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"236" : {
+		"endpoints" : "Матвеевское&nbsp;— МКАД",
+		"length" : 21.3,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"237" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— Ивановское",
+		"length" : 12.9,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"238" : {
+		"endpoints" : "Гостиницы ВДНХ&nbsp;— Ст. Лосиноостровская",
+		"length" : 29.2,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"239" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— Рижский вокзал",
+		"length" : 15.0,
+		"quantity" : 3,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"240" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— Ул. Рословка",
+		"length" : 10.7,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"241" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— Платф. Покровская",
+		"length" : 19.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"242" : {
+		"endpoints" : "Ул. Головачева&nbsp;— Цимлянская ул.",
+		"length" : 11.3,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"243" : {
+		"endpoints" : "Силикатный завод&nbsp;— Ваганьково",
+		"length" : 19.9,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"244" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Федоскинская ул.",
+		"length" : 17.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"245" : {
+		"endpoints" : "Ст. Бирюлево-Тов.&nbsp;— К/т «Эльбрус»",
+		"length" : 20.9,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"246" : {
+		"endpoints" : "23-й кв. Нов. Черемушек&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 21.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"247" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 16.9,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"248" : {
+		"endpoints" : "м.&nbsp;«Тушинская»&nbsp;— м.&nbsp;«Волоколамская»",
+		"length" : 18.5,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"249" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— Милицейский пос.",
+		"length" : 30.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"250" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Ул. Академика Анохина",
+		"length" : 19.6,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"251" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— Автобаза Ген. штаба",
+		"length" : 13.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"251к" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— Рубежный пр.",
+		"length" : 6.9,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"252" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— м.&nbsp;«Митино»",
+		"length" : 22.1,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"253" : {
+		"endpoints" : "Просп. Маршала Жукова&nbsp;— Щукино",
+		"length" : 18.6,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"253к" : {
+		"endpoints" : "Просп. Маршала Жукова&nbsp;— м.&nbsp;«Октябрьское поле»",
+		"length" : 10.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"254" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 25.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"255" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 22.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"256" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— Ст. Бирюлево-Тов.",
+		"length" : 6.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"257" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— Южное Измайлово",
+		"length" : 26.1,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"257к" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— м.&nbsp;«Щелковская»",
+		"length" : 10.8,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"258" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Нагорная»",
+		"length" : 17.3,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"259" : {
+		"endpoints" : "Ул. Корнейчука&nbsp;— м.&nbsp;«Владыкино»",
+		"length" : 22.3,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"260" : {
+		"endpoints" : "Матвеевское&nbsp;— м.&nbsp;«Университет»",
+		"length" : 20.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"261" : {
+		"endpoints" : "Озерная ул.&nbsp;— Ул. Островитянова",
+		"length" : 18.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"262" : {
+		"endpoints" : "Пр. Карамзина&nbsp;— м.&nbsp;«Битцевский парк»",
+		"length" : 7.3,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"263" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— Автозаводский мост",
+		"length" : 38.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"264" : {
+		"endpoints" : "5-й м/р Теплого Стана&nbsp;— Ул. Рокотова",
+		"length" : 17.2,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"265" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Рижский вокзал",
+		"length" : 22.8,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "alphagrant"
+	},
+	"266" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Тушинская»",
+		"length" : 17.2,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"267" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— 8-й м/р Митина",
+		"length" : 21.6,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"269" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— 6-я Радиальная ул.",
+		"length" : 18.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"270" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 22.3,
+		"quantity" : 8,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"271" : {
+		"endpoints" : "Крылатское&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 23.9,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"272" : {
+		"endpoints" : "Внуковский завод&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 32.8,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"272к" : {
+		"endpoints" : "Насосная ул.&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 24.4,
+		"quantity" : 0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"273" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— Ул. Академика Опарина",
+		"length" : 20.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"274" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— м.&nbsp;«Домодедовская»",
+		"length" : 11.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"275" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— Калужская пл.",
+		"length" : 40.0,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"276" : {
+		"endpoints" : "Южное Измайлово&nbsp;— Платф. Новогиреево",
+		"length" : 11.5,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"277" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— м.&nbsp;«Строгино»",
+		"length" : 17.0,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"277к" : {
+		"endpoints" : "3-й мкр. Строгина&nbsp;— м.&nbsp;«Щукинская»",
+		"length" : 10.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"278" : {
+		"endpoints" : "Осташковская ул.&nbsp;— Ст. Бескудниково",
+		"length" : 19.3,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"279" : {
+		"endpoints" : "6-й м/р Жулебина&nbsp;— Хохловка",
+		"length" : 28.1,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"280" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— м.&nbsp;«Люблино»",
+		"length" : 26.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"281" : {
+		"endpoints" : "Пр. Карамзина&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 25.8,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"282" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— Ул. Корнейчука",
+		"length" : 35.6,
+		"quantity" : 19,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"284" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Ул. Коненкова",
+		"length" : 26.0,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"285" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 12.0,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"286" : {
+		"endpoints" : "Ул. Павла Корчагина&nbsp;— Платф. Яуза",
+		"length" : 13.9,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"287" : {
+		"endpoints" : "14-й мкр. Орехово-Борисова&nbsp;— 7- й мкр. Орехово-Борисова",
+		"length" : 16.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"288" : {
+		"endpoints" : "Ст. Бутово&nbsp;— м/р Эдальго",
+		"length" : 26.0,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"289" : {
+		"endpoints" : "Загорье&nbsp;— Платф. Москворечье",
+		"length" : 25.2,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"290" : {
+		"endpoints" : "Ул. Корнейчука&nbsp;— м.&nbsp;«Бибирево»",
+		"length" : 9.0,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"291" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— Автозаводский мост",
+		"length" : 37.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"292" : {
+		"endpoints" : "Курьяново&nbsp;— Ул. Гурьянова, 77",
+		"length" : 15.4,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"292к" : {
+		"endpoints" : "Курьяново&nbsp;— м.&nbsp;«Печатники»",
+		"length" : 14.1,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"293" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— Ст. Бутово",
+		"length" : 13.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"294" : {
+		"endpoints" : "Силикатный завод&nbsp;— МФЦ Хорошево-Мневники",
+		"length" : 21.0,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"295" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— 9-й мкр. Теплого Стана",
+		"length" : 15.8,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"296" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— м.&nbsp;«Южная»",
+		"length" : 20.8,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"298" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 28.5,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С9" : {
+		"endpoints" : "Капотня&nbsp;— 68-я городская больница",
+		"length" : 39.4,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"299" : {
+		"endpoints" : "14-й м/р Орехово-Борисова&nbsp;— м.&nbsp;«Пролетарская»",
+		"length" : 36.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"304" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Троицк (мкр. «В»)",
+		"length" : 74.9,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"309" : {
+		"endpoints" : "м.&nbsp;«Отрадное»&nbsp;— Ст. Лосиноостровская",
+		"length" : 22.4,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"310" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— ТЦ Metro",
+		"length" : 17.2,
+		"quantity" : 9,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"311" : {
+		"endpoints" : "Платф. Останкино&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 27.9,
+		"quantity" : 16,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"312" : {
+		"endpoints" : "м.&nbsp;«Волжская»&nbsp;— Совхозная ул.",
+		"length" : 8.7,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"314" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Ст. Перово",
+		"length" : 23.2,
+		"quantity" : 9,
+		"class" : ["m"],
+		"vendor" : "alphagrant"
+	},
+	"315" : {
+		"endpoints" : "ТРЦ «РИО»&nbsp;— м.&nbsp;«Академическая»",
+		"length" : 5.4,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"317" : {
+		"endpoints" : "м.&nbsp;«Нагорная»&nbsp;— м.&nbsp;«Ленинский проспект»",
+		"length" : 11.4,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"318" : {
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— Ст. Зорге",
+		"length" : 11.1,
+		"quantity" : 9,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"319" : {
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— м.&nbsp;«Тимирязевская»",
+		"length" : 16.8,
+		"quantity" : 17,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"320" : {
+		"endpoints" : "Киевский вокзал&nbsp;— 2-й Мосфильмовский пер.",
+		"length" : 11.3,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "transway"
+	},
+	"322" : {
+		"endpoints" : "м.&nbsp;«Автозаводская»&nbsp;— Ст. ЗИЛ",
+		"length" : 7.3,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"326" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— ТЦ «Москва»",
+		"length" : 24.0,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"328" : {
+		"endpoints" : "м.&nbsp;«Фили»&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 11.0,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"329" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— м.&nbsp;«Славянский бульвар»",
+		"length" : 27.7,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"330" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 49.0,
+		"quantity" : 24,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"332" : {
+		"endpoints" : "Трамвайное депо им. Русакова&nbsp;— Б-ца Соколиной Горы",
+		"length" : 17.1,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"334" : {
+		"endpoints" : "Платф. Чухлинка&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 14.2,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "gortaxi"
+	},
+	"336" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— м.&nbsp;«Марьино»",
+		"length" : 19.8,
+		"quantity" : 10,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"338" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Госпиталь",
+		"length" : 7.5,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"340" : {
+		"endpoints" : "м.&nbsp;«Римская»&nbsp;— Смирновская ул.",
+		"length" : 7.5,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "rico"
+	},
+	"343" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Платф. Переделкино",
+		"length" : 30.3,
+		"quantity" : 16,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"346" : {
+		"endpoints" : "м.&nbsp;«Бабушкинская»&nbsp;— Ул. Малыгина",
+		"length" : 8.0,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"350" : {
+		"endpoints" : "м.&nbsp;«Текстильщики»&nbsp;— 7-й м/р Марьинского Парка",
+		"length" : 17.8,
+		"quantity" : 6,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"352" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Медведково»",
+		"length" : 29.9,
+		"quantity" : 7,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"353" : {
+		"endpoints" : "м.&nbsp;«Владыкино»&nbsp;— м.&nbsp;«Медведково»",
+		"length" : 29.7,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"361" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Ул. Островитянова",
+		"length" : 14.0,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"365" : {
+		"endpoints" : "м.&nbsp;«Римская»&nbsp;— ТК «Город»",
+		"length" : 5.2,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"368" : {
+		"endpoints" : "м.&nbsp;«Сходненская»&nbsp;— Налоговый городок",
+		"length" : 6.7,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "autocars"
+	},
+	"372" : {
+		"endpoints" : "м.&nbsp;«Преображенская площадь»&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 11.2,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"374" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Мкр. «Солнцево-Парк»",
+		"length" : 31.9,
+		"quantity" : 19,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"375" : {
+		"endpoints" : "Платф. Лось&nbsp;— м.&nbsp;«ВДНХ»",
+		"length" : 18.3,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"376" : {
+		"endpoints" : "Крылатское&nbsp;— ТЦ «Европарк»",
+		"length" : 9.1,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"378" : {
+		"endpoints" : "Ул. Павла Корчагина&nbsp;— м.&nbsp;«ВДНХ»",
+		"length" : 5.1,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"379" : {
+		"endpoints" : "Гостиница «Останкино»&nbsp;— Грохольский пер.",
+		"length" : 18.8,
+		"quantity" : 11,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"380" : {
+		"endpoints" : "Платф. Дегунино&nbsp;— Пр. Русанова",
+		"length" : 18.2,
+		"quantity" : 12,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"386" : {
+		"endpoints" : "м.&nbsp;«Волгоградский проспект»&nbsp;— Автомобильный пр., 10",
+		"length" : 7.6,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"387" : {
+		"endpoints" : "Торговый комплекс «Тройка»&nbsp;— Торговый комплекс «Тройка»",
+		"length" : 4.5,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"388" : {
+		"endpoints" : "5-й мкр. Теплого Стана&nbsp;— Парк «Тропарёво»",
+		"length" : 8.6,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"389" : {
+		"endpoints" : "м.&nbsp;«Царицыно»&nbsp;— Загорьевский пр.",
+		"length" : 15.3,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"390" : {
+		"endpoints" : "м.&nbsp;«Полежаевская»&nbsp;— Серебряный Бор (Пляж №3)",
+		"length" : 15.4,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"391" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 18.3,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"394" : {
+		"endpoints" : "Киевский вокзал&nbsp;— м.&nbsp;«Раменки»",
+		"length" : 16.7,
+		"quantity" : 11,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"398" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Троицк (Торговый центр)",
+		"length" : 52.3,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"404" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— м.&nbsp;«Калужская»",
+		"length" : 14.4,
+		"quantity" : 8,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"405" : {
+		"endpoints" : "м.&nbsp;«Текстильщики»&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 4.7,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"409" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 5.9,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "alphagrant"
+	},
+	"410" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Самаркандский бульв.",
+		"length" : 6.1,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"412" : {
+		"endpoints" : "Ул. Серегина&nbsp;— Покровский берег",
+		"length" : 17.3,
+		"quantity" : 10,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"413" : {
+		"endpoints" : "Платф. Перерва&nbsp;— ТЦ&nbsp;«Москва»",
+		"length" : 21.1,
+		"quantity" : 6,
+		"class" : ["m"],
+		"vendor" : "rico"
+	},
+	"415" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— ТЦ&nbsp;«Москва»",
+		"length" : 30.3,
+		"quantity" : 11,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"417" : {
+		"endpoints" : "4-й м/р Кожухова&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 13.8,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"418" : {
+		"endpoints" : "м.&nbsp;«Люблино»&nbsp;— Торговый центр «Садовод»",
+		"length" : 16.1,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"420" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Марьино",
+		"length" : 33.7,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"423" : {
+		"endpoints" : "Центр международной торговли&nbsp;— м.&nbsp;«Улица 1905 года»",
+		"length" : 3.4,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"425" : {
+		"endpoints" : "Ольховская ул.&nbsp;— Платф. Серп и Молот",
+		"length" : 8.9,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"426" : {
+		"endpoints" : "м.&nbsp;«Текстильщики»&nbsp;— Ул. Гурьянова, 77",
+		"length" : 10.2,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"428" : {
+		"endpoints" : "м.&nbsp;«Ботанический сад»&nbsp;— Северодвинская ул.",
+		"length" : 18.8,
+		"quantity" : 15,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"429" : {
+		"endpoints" : "Кузьминский парк&nbsp;— Хохловка",
+		"length" : 20.8,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"432" : {
+		"endpoints" : "м.&nbsp;«Сходненская»&nbsp;— 1-й Тушинский пр.",
+		"length" : 10.2,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"433" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— м.&nbsp;«Теплый стан»",
+		"length" : 42.8,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"434" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— Нагорный бульв.",
+		"length" : 10.8,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"436" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Торговый центр «Садовод»",
+		"length" : 18.0,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"438" : {
+		"endpoints" : "м.&nbsp;«Текстильщики»&nbsp;— Батюнинский пр. (ГСПТС)",
+		"length" : 14.3,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"440" : {
+		"endpoints" : "Авиамоторная ул., 75&nbsp;— м.&nbsp;«Бауманская»",
+		"length" : 12.7,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"443" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 6.9,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "gortaxi"
+	},
+	"447" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— Квартал «Шуваловский»",
+		"length" : 11.5,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"448" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— 12-й м/р Марьинского Парка",
+		"length" : 6.0,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"451" : {
+		"endpoints" : "8-й мкр. Митина&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 40.0,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"456" : {
+		"endpoints" : "8-й мкр. Митина&nbsp;— Белорусский вокзал",
+		"length" : 39.2,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"457" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Университет»",
+		"length" : 15.3,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"459" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 35.2,
+		"quantity" : 18,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"461" : {
+		"endpoints" : "м.&nbsp;«Петровско-Разумовская»&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 17.4,
+		"quantity" : 9,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"464" : {
+		"endpoints" : "Ул. Академика Павлова&nbsp;— м.&nbsp;«Университет»",
+		"length" : 29.1,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"466" : {
+		"endpoints" : "Ст. Бескудниково&nbsp;— Ст. Бескудниково",
+		"length" : 20.6,
+		"quantity" : 9,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"469" : {
+		"endpoints" : "Ст. Перово&nbsp;— м.&nbsp;«Черкизовская»",
+		"length" : 21.4,
+		"quantity" : 11,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"469к" : {
+		"endpoints" : "м.&nbsp;«Семеновская»&nbsp;— м.&nbsp;«Черкизовская»",
+		"length" : 8.6,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"470" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— м.&nbsp;«Фили»",
+		"length" : 17.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"471" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 8.5,
+		"quantity" : 10,
+		"class" : ["s"],
+		"vendor" : "gortaxi"
+	},
+	"474" : {
+		"endpoints" : "Киевский вокзал&nbsp;— Матвеевское",
+		"length" : 24.1,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"483" : {
+		"endpoints" : "м.&nbsp;«Бабушкинская»&nbsp;— Пр. Шокальского, 43",
+		"length" : 4.7,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"487" : {
+		"endpoints" : "Ул. Довженко&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 28.1,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"491" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— Платф. Плющево",
+		"length" : 17.7,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"494" : {
+		"endpoints" : "м.&nbsp;«Проспект Вернадского»&nbsp;— Квартал «Шуваловский»",
+		"length" : 10.4,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"496" : {
+		"endpoints" : "м.&nbsp;«ВДНХ»&nbsp;— Городок Моссовета",
+		"length" : 6.8,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"497" : {
+		"endpoints" : "м.&nbsp;«Проспект Вернадского»&nbsp;— Переделкино Ближнее",
+		"length" : 31.1,
+		"quantity" : 11,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"500" : {
+		"endpoints" : "Петрозаводская ул.&nbsp;— м.&nbsp;«Водный стадион»",
+		"length" : 10.8,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"502" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Новокосинская ул.",
+		"length" : 11.6,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"503" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Каменка (часть рейсов&nbsp;— Кузовлёво)",
+		"length" : 143.0,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"505" : {
+		"endpoints" : "м.&nbsp;«Новогиреево»&nbsp;— Южное Измайлово",
+		"length" : 9.6,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"508" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Вороново",
+		"length" : 87.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"511" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— ТЦ «Москва»",
+		"length" : 20.0,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"512" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Секерино",
+		"length" : 75.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"514" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Плесково",
+		"length" : 83.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"515" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Пос. Армейский",
+		"length" : 70.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"517" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— ТЦ&nbsp;«Москва»",
+		"length" : 29.1,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"519" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Матвеевское",
+		"length" : 18.1,
+		"quantity" : 7,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"522" : {
+		"endpoints" : "м.&nbsp;«Кузьминки»&nbsp;— м.&nbsp;«Люблино»",
+		"length" : 22.2,
+		"quantity" : 9,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"524" : {
+		"endpoints" : "м.&nbsp;«Текстильщики»&nbsp;— ТЦ&nbsp;«Москва»",
+		"length" : 25.1,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"526" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Аэропорт «Внуково»",
+		"length" : 107.3,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"528" : {
+		"endpoints" : "Ст. Люблино&nbsp;— ТЦ&nbsp;«Москва»",
+		"length" : 9.6,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"529" : {
+		"endpoints" : "Университетский просп.&nbsp;— м.&nbsp;«Нагорная»",
+		"length" : 12.1,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"530" : {
+		"endpoints" : "ТЦ&nbsp;«Москва»&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 14.5,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "gortaxi"
+	},
+	"531" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Красная Пахра",
+		"length" : 54.0,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"540" : {
+		"endpoints" : "м.&nbsp;«Теплый Стан»&nbsp;— м.&nbsp;«Теплый Стан»",
+		"length" : 4.3,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"541" : {
+		"endpoints" : "Южные Ворота&nbsp;— Ставропольский пр.",
+		"length" : 23.9,
+		"quantity" : 8,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"544" : {
+		"endpoints" : "ВДНХ (южная)&nbsp;— Ул. Ротерта",
+		"length" : 20.6,
+		"quantity" : 8,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"550" : {
+		"endpoints" : "Платф. Переделкино&nbsp;— Платф. Переделкино",
+		"length" : 8.6,
+		"quantity" : 4,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"551" : {
+		"endpoints" : "Ул. Верхние Поля, 38&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 29.4,
+		"quantity" : 14,
+		"class" : ["s"],
+		"vendor" : "gortaxi"
+	},
+	"552" : {
+		"endpoints" : "Рубцовская наб.&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 5.5,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"553" : {
+		"endpoints" : "м.&nbsp;«Ленинский проспект»&nbsp;— м.&nbsp;«Теплый Стан»",
+		"length" : 33.4,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"554" : {
+		"endpoints" : "Крылатское&nbsp;— Ул. Федосьино",
+		"length" : 45.3,
+		"quantity" : 20,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"555" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Южная»",
+		"length" : 23.4,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"559" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— м.&nbsp;«Алтуфьево»",
+		"length" : 29.6,
+		"quantity" : 13,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"561" : {
+		"endpoints" : "м.&nbsp;«Алексеевская»&nbsp;— Телецентр",
+		"length" : 7.4,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"567" : {
+		"endpoints" : "м.&nbsp;«Марксистская»&nbsp;— Смирновская ул., 25",
+		"length" : 12.3,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"571" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— м.&nbsp;«Отрадное»",
+		"length" : 33.7,
+		"quantity" : 7,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"572" : {
+		"endpoints" : "Ул. Шолохова&nbsp;— м.&nbsp;«Университет»",
+		"length" : 35.3,
+		"quantity" : 10,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"574" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— м.&nbsp;«Тимирязевская»",
+		"length" : 6.2,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"575" : {
+		"endpoints" : "5-й мкр. Солнцева&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 31.0,
+		"quantity" : 7,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"577" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— С/х «Воскресенское»",
+		"length" : 25.6,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"579" : {
+		"endpoints" : "Платф. Переделкино&nbsp;— Мкр. «Солнцево-Парк»",
+		"length" : 17.8,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"591" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— Ст. Ховрино",
+		"length" : 28.5,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"592" : {
+		"endpoints" : "м.&nbsp;«Бибирево»&nbsp;— Ст. Ховрино",
+		"length" : 25.0,
+		"quantity" : 11,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"594" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Петрозаводская ул.",
+		"length" : 10.5,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "gepart"
+	},
+	"595" : {
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— м.&nbsp;«Водный стадион»",
+		"length" : 30.3,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"597" : {
+		"endpoints" : "м.&nbsp;«Сокол»&nbsp;— Набережная Новикова-Прибоя",
+		"length" : 19.2,
+		"quantity" : 9,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"600" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 34.6,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"601" : {
+		"endpoints" : "Абрамцевская ул.&nbsp;— Ст. Лосиноостровская",
+		"length" : 22.1,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"602" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Оренбургская ул.",
+		"length" : 9.1,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"603" : {
+		"endpoints" : "Юрловский пр.&nbsp;— Платф. Яуза",
+		"length" : 19.3,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"604" : {
+		"endpoints" : "м.&nbsp;«Тимирязевская»&nbsp;— Ул. Вучетича",
+		"length" : 9.5,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"605" : {
+		"endpoints" : "Юрловский пр.&nbsp;— Платф. Лось",
+		"length" : 21.9,
+		"quantity" : 35,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"606" : {
+		"endpoints" : "Ул.Корнейчука&nbsp;— Осташковская ул.",
+		"length" : 13.0,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"607" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— м.&nbsp;«Варшавская»",
+		"length" : 7.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"608" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Пролетарская»",
+		"length" : 39.5,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"609" : {
+		"endpoints" : "Беловежская ул.&nbsp;— Ст. Кунцево",
+		"length" : 11.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"610" : {
+		"endpoints" : "Ул. Герасима Курина&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 26.2,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"610к" : {
+		"endpoints" : "м.&nbsp;«Кунцевская»&nbsp;— Пищекомбинат",
+		"length" : 17.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"611" : {
+		"endpoints" : "Внуковский завод&nbsp;— м.&nbsp;«Юго-Западная»",
+		"length" : 47.1,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"911" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Аэропорт «Внуково»",
+		"length" : 22.8,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"612" : {
+		"endpoints" : "Ул. Герасима Курина&nbsp;— Троекуровское кладбище",
+		"length" : 15.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"613" : {
+		"endpoints" : "3-й м/р Новокосина&nbsp;— Платф. Вешняки",
+		"length" : 41.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"613к" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 4.4,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"614" : {
+		"endpoints" : "м.&nbsp;«Тушинская»&nbsp;— Село Рождествено",
+		"length" : 17.7,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"615" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 18.6,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"616" : {
+		"endpoints" : "м.&nbsp;«Новые Черемушки»&nbsp;— м.&nbsp;«Просп.Вернадского»",
+		"length" : 14.1,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"617" : {
+		"endpoints" : "Ст. Перово&nbsp;— Ивановское",
+		"length" : 15.9,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"618" : {
+		"endpoints" : "Осташковская ул.&nbsp;— К/т «Марс»",
+		"length" : 13.7,
+		"quantity" : 12,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"619" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— м.&nbsp;«Люблино»",
+		"length" : 23.1,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"620" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 26.3,
+		"quantity" : 9,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"621" : {
+		"endpoints" : "м.&nbsp;«Водный Стадион»&nbsp;— 5-й Войковский пр.",
+		"length" : 23.3,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"621к" : {
+		"endpoints" : "м.&nbsp;«Водный Стадион»&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 18.5,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"622" : {
+		"endpoints" : "Пищекомбинат&nbsp;— м.&nbsp;«Славянский бульвар»",
+		"length" : 23.8,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"623" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 23.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"624" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— Чертаново Северное",
+		"length" : 13.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"625" : {
+		"endpoints" : "м.&nbsp;«Марьино»&nbsp;— Подольская ул.",
+		"length" : 6.8,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"627" : {
+		"endpoints" : "Камчатская ул.- Мясокомбинат",
+		"length" : 26.5,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"627к" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Щелковская»",
+		"length" : 9.2,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"628" : {
+		"endpoints" : "Ясный проезд&nbsp;— м.&nbsp;«Отрадное»",
+		"length" : 19.2,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"629" : {
+		"endpoints" : "Кленово&nbsp;— Свитино",
+		"length" : 57.2,
+		"quantity" : 1,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"630" : {
+		"endpoints" : "Тропарево&nbsp;— Ст. Очаково",
+		"length" : 14.0,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"631" : {
+		"endpoints" : "м.&nbsp;«Тушинская»&nbsp;— Таллинская ул.",
+		"length" : 19.4,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"632" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— Ул. Павла Андреева",
+		"length" : 13.5,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"633" : {
+		"endpoints" : "Марьино&nbsp;— м.&nbsp;«Автозаводская»",
+		"length" : 31.5,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"634" : {
+		"endpoints" : "Южное Измайлово&nbsp;— м.&nbsp;«Первомайская»",
+		"length" : 9.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"635" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— Ст. Бирюлево-Тов.",
+		"length" : 25.6,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"636" : {
+		"endpoints" : "Ст. Бутово&nbsp;— Комплекс «В» Южного Бутова",
+		"length" : 21.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"637" : {
+		"endpoints" : "м.&nbsp;«Бибирево»&nbsp;— м.&nbsp;«Владыкино»",
+		"length" : 20.0,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"638" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— Мякинино",
+		"length" : 12.7,
+		"quantity" : 18,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"639" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 16.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"640" : {
+		"endpoints" : "м.&nbsp;«Тушинская»&nbsp;— м.&nbsp;«Щукинская»",
+		"length" : 31.6,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"641" : {
+		"endpoints" : "Матвеевское&nbsp;— Ул. Ватутина",
+		"length" : 16.1,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"641к" : {
+		"endpoints" : "Матвеевское&nbsp;— Ул. Ватутина",
+		"length" : 10.6,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"642" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 42.5,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"642к" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 7.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"643" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— 3-й Дорожный пр.",
+		"length" : 8.2,
+		"quantity" : 3,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"644" : {
+		"endpoints" : "6-й мкр. Бибирева&nbsp;— Северный- 1-й мкр.",
+		"length" : 14.3,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"645" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— м.&nbsp;«Щелковская»",
+		"length" : 20.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"646" : {
+		"endpoints" : "Марьино&nbsp;— К/т «Тула»",
+		"length" : 29.5,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"647" : {
+		"endpoints" : "5-й м/р Теплого Стана&nbsp;— Пр. Одоевского",
+		"length" : 8.8,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"648" : {
+		"endpoints" : "м.&nbsp;«Новые Черемушки»&nbsp;— м.&nbsp;«Битцевский парк»",
+		"length" : 21.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"649" : {
+		"endpoints" : "Ясный пр.&nbsp;— Осташковская ул.",
+		"length" : 12.2,
+		"quantity" : 5,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"649к" : {
+		"endpoints" : "Чукотский пр.&nbsp;— Осташковская ул.",
+		"length" : 9.9,
+		"quantity" : 2,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"650" : {
+		"endpoints" : "Марьино&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 26.4,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"651" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Битцевский парк»",
+		"length" : 27.1,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"652" : {
+		"endpoints" : "Таллинская ул.&nbsp;— 3-й м/р Строгина",
+		"length" : 12.7,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"653" : {
+		"endpoints" : "Филевский бульв.&nbsp;— м.&nbsp;«Фили»",
+		"length" : 7.7,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"653к" : {
+		"endpoints" : "м.&nbsp;«Фили»&nbsp;— Лес",
+		"length" : 4.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"654" : {
+		"endpoints" : "Ул. Маршала Прошлякова&nbsp;— Мякинино",
+		"length" : 20.2,
+		"quantity" : 10,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"655" : {
+		"endpoints" : "Капотня&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 29.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"656" : {
+		"endpoints" : "Бусиново&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 23.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"657" : {
+		"endpoints" : "м.&nbsp;«Марьино»&nbsp;— Цимлянская ул.",
+		"length" : 23.7,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"658" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 19.9,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"659" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Шоссе Энтузиастов»",
+		"length" : 19.2,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"659к" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Перово»",
+		"length" : 13.9,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"660" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— ВКНЦ",
+		"length" : 13.5,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"661" : {
+		"endpoints" : "Ул. Новаторов&nbsp;— м.&nbsp;«Университет»",
+		"length" : 22.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"662" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Новогиреево»",
+		"length" : 7.8,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"663" : {
+		"endpoints" : "Ереванская ул.&nbsp;— К/т «Эльбрус»",
+		"length" : 10.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"664" : {
+		"endpoints" : "Южное Измайлово&nbsp;— м.&nbsp;«Первомайская»",
+		"length" : 10.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"665" : {
+		"endpoints" : "Лобненская ул.&nbsp;— Ст. Ховрино",
+		"length" : 7.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"667" : {
+		"endpoints" : "Озерная ул.&nbsp;— Олимпийская деревня",
+		"length" : 14.2,
+		"quantity" : 14,
+		"class" : ["m"],
+		"vendor" : "gepart"
+	},
+	"668" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— 17-й автобусный парк",
+		"length" : 24.7,
+		"quantity" : 4,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"670" : {
+		"endpoints" : "Нагатинский затон&nbsp;— м.&nbsp;«Дубровка»",
+		"length" : 20.8,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"670к" : {
+		"endpoints" : "Нагатинский затон&nbsp;— м.&nbsp;«Коломенская»",
+		"length" : 8.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"671" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— м.&nbsp;«Калужская»",
+		"length" : 34.1,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"672" : {
+		"endpoints" : "Коровино&nbsp;— м.&nbsp;«Петровско- Разумовская»",
+		"length" : 19.8,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"673" : {
+		"endpoints" : "Бусиново&nbsp;— м.&nbsp;«Речной вокзал»",
+		"length" : 11.1,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"674" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— Битцевская аллея",
+		"length" : 12.8,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"674к" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— Битцевская аллея",
+		"length" : 5.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"675" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— 3-й Дорожный пр.",
+		"length" : 9.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"676" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— м.&nbsp;«Домодедовская»",
+		"length" : 12.2,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"677" : {
+		"endpoints" : "Платф. Лианозово&nbsp;— м.&nbsp;«Петровско-Разумовская»",
+		"length" : 14.7,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"677к" : {
+		"endpoints" : "Платф. Лианозово&nbsp;— Ст. Окружная",
+		"length" : 12.7,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"678" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Ст. Тушино",
+		"length" : 18.8,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"679" : {
+		"endpoints" : "Ереванская ул.&nbsp;— 6-й «Г» м/р Загорья",
+		"length" : 16.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"680" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— 16-й м/р Чертанова",
+		"length" : 18.3,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"680к" : {
+		"endpoints" : "Ул.Академика Янгеля&nbsp;— Платф.Покровская",
+		"length" : 7.4,
+		"quantity" : 0,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"681" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— м.&nbsp;«Октябрьское Поле»",
+		"length" : 8.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"682" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— Платф. Красный Строитель",
+		"length" : 12.7,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"683" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— 3-й Дорожный пр.",
+		"length" : 15.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"684" : {
+		"endpoints" : "м.&nbsp;«Профсоюзная»&nbsp;— м.&nbsp;«Новые Черемушки»",
+		"length" : 8.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"685" : {
+		"endpoints" : "Абрамцевская ул.&nbsp;— Пос. Северный",
+		"length" : 21.2,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"686" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— 5-й м/р Солнцева",
+		"length" : 7.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"687" : {
+		"endpoints" : "3-й м/р Строгина&nbsp;— м.&nbsp;«Щукинская»",
+		"length" : 13.5,
+		"quantity" : 11,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"688" : {
+		"endpoints" : "Озерная ул.&nbsp;— Крылатское",
+		"length" : 34.7,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"688к" : {
+		"endpoints" : "Озерная ул.&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 24.4,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "gepart"
+	},
+	"689" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— 2-й м/р Солнцева",
+		"length" : 6.8,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"690" : {
+		"endpoints" : "Платф. Бирюлево-Пасс.&nbsp;— м.&nbsp;«Кантемировская»",
+		"length" : 20.9,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"691" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 21.7,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"691к" : {
+		"endpoints" : "м.&nbsp;«Сокол»&nbsp;— Б-ца No 67",
+		"length" : 13.0,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"692" : {
+		"endpoints" : "Мкр. 4 «Д» Отрадного&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 26.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"693" : {
+		"endpoints" : "Платф. Бирюлево-Пасс.&nbsp;— 6-й м/р Загорья",
+		"length" : 12.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"694" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— Платф. Москворечье",
+		"length" : 26.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"695" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— 5-й м/р Солнцева",
+		"length" : 7.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"696" : {
+		"endpoints" : "Заревый пр.&nbsp;— Платф. Лось",
+		"length" : 16.1,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"697" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 6.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"698" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— Платф.Моссельмаш",
+		"length" : 9.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"699" : {
+		"endpoints" : "Ул. Введенского&nbsp;— Ст. Очаково",
+		"length" : 26.9,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"700" : {
+		"endpoints" : "3-й Павелецкий пр.&nbsp;— м.&nbsp;«Добрынинская»",
+		"length" : 17.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"701" : {
+		"endpoints" : "6-й мкр. Загорья&nbsp;— м.&nbsp;«Коломенская»",
+		"length" : 35.1,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"702" : {
+		"endpoints" : "Южное Измайлово&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 22.7,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"702к" : {
+		"endpoints" : "м.&nbsp;«Семеновская»&nbsp;— Гаражная ул.",
+		"length" : 6.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"703" : {
+		"endpoints" : "Саратовская ул.&nbsp;— Курьяновский терминал",
+		"length" : 24.3,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"704" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— Каширское шоссе, 148",
+		"length" : 14.7,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"704к" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— Каширское шоссе, 148",
+		"length" : 14.2,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"705" : {
+		"endpoints" : "Абрамцевская ул.&nbsp;— м.&nbsp;«Бибирево»",
+		"length" : 10.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"706к" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Новокосинская ул.,51",
+		"length" : 14.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"707" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 27.0,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"707к" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Переделкино Ближнее",
+		"length" : 22.0,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"708" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— м.&nbsp;«Южная»",
+		"length" : 22.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"709" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 14.7,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"709к" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— Платф. Московречье",
+		"length" : 9.3,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"710" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Новые Черемушки»",
+		"length" : 10.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"711" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— 6-й м/р Орехово-Борисова",
+		"length" : 17.8,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"898" : {
+		"endpoints" : "Ст. Щербинка&nbsp;— Пос. Остафьево",
+		"length" : 15.6,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"898к" : {
+		"endpoints" : "Ст. Щербинка&nbsp;— Барышевская роща",
+		"length" : 5.9,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"712" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— 9-й м/р Теплого Стана",
+		"length" : 8.3,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"713" : {
+		"endpoints" : "м.&nbsp;«Марьино»&nbsp;— Волжский бульв.",
+		"length" : 18.2,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"714" : {
+		"endpoints" : "Ул. Павла Корчагина&nbsp;— Рижский вокзал",
+		"length" : 9.0,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"714к" : {
+		"endpoints" : "м.&nbsp;«Алексеевская»&nbsp;— Ул. Павла Корчагина",
+		"length" : 5.9,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "autoline"
+	},
+	"715" : {
+		"endpoints" : "МГУ&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 12.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"715к" : {
+		"endpoints" : "м.&nbsp;«Раменки»&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 8.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"715д" : {
+		"endpoints" : "Дворец культуры МГУ&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 17.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"717" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— Платф. Бирюлево-Пасс.",
+		"length" : 22.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"718" : {
+		"endpoints" : "5-й м/р Солнцева&nbsp;— 9-й м/р Теплого Стана",
+		"length" : 29.6,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"718к" : {
+		"endpoints" : "5-й м/р Солнцева&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 19.7,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"718ф" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 20.9,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"719" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Домодедовская»",
+		"length" : 20.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"719к" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Домодедовская»",
+		"length" : 18.6,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"720" : {
+		"endpoints" : "5-й м/р Солнцева&nbsp;— Ул. Академика Варги",
+		"length" : 29.1,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"720к" : {
+		"endpoints" : "5-й м/р Солнцева&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 22.0,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"720ф" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 21.9,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"721" : {
+		"endpoints" : "м.&nbsp;«Новые Черемушки»&nbsp;— Ул. Новаторов",
+		"length" : 8.0,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"724" : {
+		"endpoints" : "Нагатинский Затон&nbsp;— м.&nbsp;«Коломенская»",
+		"length" : 9.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"724к" : {
+		"endpoints" : "Нагатинский Затон&nbsp;— м.&nbsp;«Коломенская»",
+		"length" : 9.8,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"725" : {
+		"endpoints" : "Ветакадемия&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 23.9,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"727" : {
+		"endpoints" : "Ул. 8-го Марта&nbsp;— ул. Всеволода Вишневского",
+		"length" : 12.8,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"728" : {
+		"endpoints" : "Б-ца им. Семашко&nbsp;— Ставропольский пр.",
+		"length" : 10.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"729" : {
+		"endpoints" : "5-й м/р Солнцева&nbsp;— Платф. Переделкино",
+		"length" : 20.9,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"730" : {
+		"endpoints" : "Гаражная ул.&nbsp;— м.&nbsp;«Площадь Ильича»",
+		"length" : 23.5,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"731" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 7.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"732" : {
+		"endpoints" : "Крылатское&nbsp;— м.&nbsp;«Славянский бульвар»",
+		"length" : 28.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"733" : {
+		"endpoints" : "Крылатское&nbsp;— Аминьево",
+		"length" : 20.8,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"734" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 26.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"735" : {
+		"endpoints" : "Заревый пр.&nbsp;— м.&nbsp;«Щелковская»",
+		"length" : 39.8,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"736" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Строгино»",
+		"length" : 19.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"737" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— 4-й м/р Щербинки",
+		"length" : 26.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"738" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— м.&nbsp;«Алма- Атинская»",
+		"length" : 21.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"739" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— 19-й кв. Химки-Ховрино",
+		"length" : 7.7,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"740" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— Платф.Москворечье",
+		"length" : 15.9,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"742" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 25.5,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"743" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— Ул.Твардовского",
+		"length" : 17.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"744" : {
+		"endpoints" : "4-й м/р Кожухова&nbsp;— Платф. Косино",
+		"length" : 8.6,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"745" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Ст. Ховрино",
+		"length" : 9.0,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"746" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— Платф. Переделкино",
+		"length" : 6.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"748" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— Ст. Бескудниково",
+		"length" : 8.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"749" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— Платф. Перерва",
+		"length" : 17.0,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"750" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— Внуковский завод",
+		"length" : 25.5,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"751" : {
+		"endpoints" : "Нагатинский затон&nbsp;— м.&nbsp;«Нагатинская»",
+		"length" : 17.1,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"752" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— Солнцево",
+		"length" : 22.4,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"753" : {
+		"endpoints" : "2-й м/р Южного Бутова&nbsp;— 4-й м/р Щербинки",
+		"length" : 34.4,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"754" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— Ул. Академика Капицы",
+		"length" : 5.9,
+		"quantity" : 1,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"755" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Красногвардейская»",
+		"length" : 4.4,
+		"quantity" : 6,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"756" : {
+		"endpoints" : "Ст.Бирюлево-Тов.&nbsp;— м.&nbsp;«Царицыно»",
+		"length" : 9.5,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"757" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— Платф. Рабочий поселок",
+		"length" : 6.8,
+		"quantity" : 4,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"758" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— м.&nbsp;«Орехово»",
+		"length" : 14.6,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"759" : {
+		"endpoints" : "Карачарово&nbsp;— Смирновская ул.",
+		"length" : 18.9,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"760к" : {
+		"endpoints" : "м.&nbsp;«Щелковская»&nbsp;— Салтыковская ул.",
+		"length" : 29.5,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"761" : {
+		"endpoints" : "6-й м/р Загорья&nbsp;— м.&nbsp;«Царицыно»",
+		"length" : 12.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"762" : {
+		"endpoints" : "Марьино&nbsp;— 8-й м/р Марьинского парка",
+		"length" : 15.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"868" : {
+		"endpoints" : "Ст. Рассудово&nbsp;— Пос. Зосимова Пустынь",
+		"length" : 23.1,
+		"quantity" : 2,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"763" : {
+		"endpoints" : "м.&nbsp;«Петровско-Разумовская»&nbsp;— Пос. Северный",
+		"length" : 27.7,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"763к" : {
+		"endpoints" : "м.&nbsp;«Петровско-Разумовская»&nbsp;— ТРЦ «Рио»",
+		"length" : 20.6,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"764" : {
+		"endpoints" : "м.&nbsp;«Алма-Атинская»&nbsp;— м.&nbsp;«Борисово»",
+		"length" : 10.4,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"765" : {
+		"endpoints" : "м.&nbsp;«Орехово»&nbsp;— Братеево",
+		"length" : 19.0,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"766" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— 7-й м/р Орехово-Борисова",
+		"length" : 9.4,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"767" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Теплый стан»",
+		"length" : 32.6,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"768" : {
+		"endpoints" : "14-й м/р Орехово-Борисова&nbsp;— Платф. Москворечье",
+		"length" : 17.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"769" : {
+		"endpoints" : "Пр.Карамзина&nbsp;— Литовский бульв.",
+		"length" : 8.5,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"769к" : {
+		"endpoints" : "Пр.Карамзина&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 5.8,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"770" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— Ступинский пр.",
+		"length" : 8.5,
+		"quantity" : 1,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"771" : {
+		"endpoints" : "Абрамцевская ул.&nbsp;— Северодвинская ул.",
+		"length" : 19.9,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "autoline"
+	},
+	"773к" : {
+		"endpoints" : "4-й м/р Кожухова&nbsp;— Платф. Косино",
+		"length" : 8.8,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"774" : {
+		"endpoints" : "Лобненская ул.&nbsp;— Платф. Лось",
+		"length" : 32.0,
+		"quantity" : 28,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"775" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Центральная больница",
+		"length" : 7.3,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"776" : {
+		"endpoints" : "Южное Измайлово&nbsp;— Платф. Новогиреево",
+		"length" : 16.5,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"777" : {
+		"endpoints" : "м.&nbsp;«Тушинская»&nbsp;— Спас",
+		"length" : 18.5,
+		"quantity" : 2,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"778" : {
+		"endpoints" : "Рижский вокзал&nbsp;— Спартаковская пл.",
+		"length" : 10.7,
+		"quantity" : 2,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"779" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— Платф. Рабочий поселок",
+		"length" : 35.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"780" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— Ул. Приорова",
+		"length" : 8.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"781" : {
+		"endpoints" : "Пр. Карамзина&nbsp;— Ул. Дорохова",
+		"length" : 43.6,
+		"quantity" : 18,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"782" : {
+		"endpoints" : "Таллинская ул.&nbsp;— 2-я Лыковская ул.",
+		"length" : 13.3,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"783" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Бульвар Рокоссовского»",
+		"length" : 18.8,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"784" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— м.&nbsp;«Калужская»",
+		"length" : 15.6,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"785" : {
+		"endpoints" : "Тропарево&nbsp;— Ст. Очаково",
+		"length" : 20.9,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"785к" : {
+		"endpoints" : "Тропарево&nbsp;— Пос. Мосрентген",
+		"length" : 24.1,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"786" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Академическая»",
+		"length" : 23.0,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"787" : {
+		"endpoints" : "Ст.Перово&nbsp;— 9-й м/р Кожухова",
+		"length" : 33.5,
+		"quantity" : 13,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"788" : {
+		"endpoints" : "5-й мкр. Солнцева&nbsp;— м.&nbsp;«Раменки»",
+		"length" : 24.0,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"789" : {
+		"endpoints" : "Холмогорская ул.&nbsp;— м.&nbsp;«Ботанический сад»",
+		"length" : 16.3,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"790" : {
+		"endpoints" : "м.&nbsp;«Красногвардейская»&nbsp;— м.&nbsp;«Красногвардейская»",
+		"length" : 4.4,
+		"quantity" : 6,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"791" : {
+		"endpoints" : "Киевский вокзал&nbsp;— 4-й Сетуньский пр.",
+		"length" : 10.0,
+		"quantity" : 6,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"792" : {
+		"endpoints" : "м.&nbsp;«Новокосино»&nbsp;— 9-й м/р Кожухова",
+		"length" : 14.6,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"793" : {
+		"endpoints" : "5-й мкр. Солнцева&nbsp;— м.&nbsp;«Проспект Вернадского»",
+		"length" : 25.3,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"795" : {
+		"endpoints" : "14-й м/р Орехово-Борисова&nbsp;— Магазин «Белград»",
+		"length" : 12.4,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"796" : {
+		"endpoints" : "Бирюлево-Западное&nbsp;— 16-й м/р Чертанова",
+		"length" : 19.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"797" : {
+		"endpoints" : "м.&nbsp;«Южная»&nbsp;— Платф. Красный Строитель",
+		"length" : 16.2,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"798" : {
+		"endpoints" : "м.&nbsp;«Щукинская»&nbsp;— ВКНЦ",
+		"length" : 26.4,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"799" : {
+		"endpoints" : "Платф. Лианозово&nbsp;— Бусиново",
+		"length" : 23.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"800" : {
+		"endpoints" : "Щукино&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 22.7,
+		"quantity" : 8,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"801" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— 50-я гор.больница",
+		"length" : 23.2,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"802" : {
+		"endpoints" : "5-й мкр. Северного Бутова&nbsp;— Фабрика им. 1-го Мая",
+		"length" : 35.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"803" : {
+		"endpoints" : "м.&nbsp;«ВДНХ»&nbsp;— Ст. Бескудниково",
+		"length" : 22.4,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"804" : {
+		"endpoints" : "м.&nbsp;«Теплый Стан»&nbsp;— Пос. Мосрентген",
+		"length" : 10.6,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"805" : {
+		"endpoints" : "Карачаровский путепровод&nbsp;— Центр обслуживания населения",
+		"length" : 17.6,
+		"quantity" : 4,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"807" : {
+		"endpoints" : "Пищекомбинат&nbsp;— Ст. Очаково",
+		"length" : 19.7,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"808" : {
+		"endpoints" : "9-й м/р Кожухова&nbsp;— Платф. Косино",
+		"length" : 11.4,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"809" : {
+		"endpoints" : "Платф. Сколково&nbsp;— Платф. Переделкино",
+		"length" : 23.8,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"809к" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— Платф. Переделкино",
+		"length" : 6.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"810" : {
+		"endpoints" : "Новоорловская ул.&nbsp;— м.&nbsp;«Просп. Вернадского»",
+		"length" : 28.1,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"811" : {
+		"endpoints" : "Ул. Молостовых&nbsp;— 3-й м/р Новокосина",
+		"length" : 19.3,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"812" : {
+		"endpoints" : "Новоорловская ул.&nbsp;— Платф.Переделкино",
+		"length" : 10.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"813" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— 3-й м/р Сев. Бутова",
+		"length" : 7.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"814" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— Ст. Солнечная",
+		"length" : 9.6,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"815" : {
+		"endpoints" : "Ул. Корнейчука&nbsp;— Пос. Севводстрой",
+		"length" : 13.8,
+		"quantity" : 16,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"815к" : {
+		"endpoints" : "Абрамцевская ул.&nbsp;— Пос. Севводстрой",
+		"length" : 6.4,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"816" : {
+		"endpoints" : "м.&nbsp;«Калужская»&nbsp;— ВКНЦ",
+		"length" : 48.4,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"820" : {
+		"endpoints" : "м.&nbsp;«Каширская»&nbsp;— м.&nbsp;«Коломенская»",
+		"length" : 13.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"821" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— 9-й «А» мкр. Кожухова",
+		"length" : 15.1,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"822" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Яузская аллея",
+		"length" : 14.2,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"824" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— м.&nbsp;«Марьино»",
+		"length" : 10.3,
+		"quantity" : 7,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"825" : {
+		"endpoints" : "Беловежская ул.&nbsp;— м.&nbsp;«Молодежная»",
+		"length" : 10.5,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"826" : {
+		"endpoints" : "м.&nbsp;«Каховская»&nbsp;— м.&nbsp;«Тульская»",
+		"length" : 18.9,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"827" : {
+		"endpoints" : "Тимирязевская академия&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 11.3,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "gepart"
+	},
+	"829" : {
+		"endpoints" : "м.&nbsp;«Молодежная»&nbsp;— м.&nbsp;«Крылатское»",
+		"length" : 13.7,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"830" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Просп. Вернадского»",
+		"length" : 30.5,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"831" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— 16-й м/р Чертанова",
+		"length" : 10.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"832" : {
+		"endpoints" : "Крылатское&nbsp;— Спортцентр «Крылатское»",
+		"length" : 10.8,
+		"quantity" : 2,
+		"class" : ["s", "m", "l"],
+		"vendor" : "mgt"
+	},
+	"833" : {
+		"endpoints" : "м.&nbsp;«Щелковская»&nbsp;— Платф. Новогиреево",
+		"length" : 27.1,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"834" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Ул. Красная сосна",
+		"length" : 16.0,
+		"quantity" : 2,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"835" : {
+		"endpoints" : "Ст. Бутово&nbsp;— 4-й м/р Щербинки",
+		"length" : 14.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"836" : {
+		"endpoints" : "6-й мкр. Бибирева&nbsp;— Северный- 4-й мкр.",
+		"length" : 16.9,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"837" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— 3-й м/р Сходненской поймы",
+		"length" : 15.7,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"838" : {
+		"endpoints" : "М/р 4 «Д» Отрадного&nbsp;— Ст. Лосиноостровская",
+		"length" : 17.4,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"839" : {
+		"endpoints" : "м.&nbsp;«Кантемировская»&nbsp;— Бюро судмедэкспертизы",
+		"length" : 6.8,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"840" : {
+		"endpoints" : "66-й кв.Кунцева&nbsp;— Киевский вокзал",
+		"length" : 27.6,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"841" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— 3-й кв. Люберецких полей",
+		"length" : 17.8,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"893" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Покровская ул.",
+		"length" : 18.0,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"842" : {
+		"endpoints" : "Ст. Перово&nbsp;— Платф. Новогиреево",
+		"length" : 11.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"843" : {
+		"endpoints" : "Северный-1-й мкр.&nbsp;— Пос. Северный",
+		"length" : 14.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"844" : {
+		"endpoints" : "Ул. Федосьино&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 29.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"845" : {
+		"endpoints" : "23-й кв. Новых Черемушек&nbsp;— м.&nbsp;«Раменки»",
+		"length" : 17.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "autoline"
+	},
+	"846" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Митино»",
+		"length" : 6.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"847" : {
+		"endpoints" : "м.&nbsp;«Беговая»&nbsp;— м.&nbsp;«Беговая»",
+		"length" : 3.4,
+		"quantity" : 5,
+		"class" : ["s", "m", "l"],
+		"vendor" : "mgt"
+	},
+	"848" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— Ул. Брусилова",
+		"length" : 23.3,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"850" : {
+		"endpoints" : "Крылатское&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 34.3,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"853" : {
+		"endpoints" : "м.&nbsp;«Братиславская»&nbsp;— Ул. Марьинский парк",
+		"length" : 6.6,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "tmp20"
+	},
+	"854" : {
+		"endpoints" : "Капотня&nbsp;— м.&nbsp;«Люблино»",
+		"length" : 23.2,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"855" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— 9-й м/р Кожухова",
+		"length" : 15.7,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"856" : {
+		"endpoints" : "5-й мкр. Солнцева&nbsp;— м.&nbsp;«Кунцевская»",
+		"length" : 29.8,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"857" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Ст. Бескудниково",
+		"length" : 13.9,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"858" : {
+		"endpoints" : "5-й м/р Сев. Бутова&nbsp;— 4-й м/р Щербинки",
+		"length" : 24.1,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"859" : {
+		"endpoints" : "Карачарово&nbsp;— Центр обслуживания населения",
+		"length" : 15.8,
+		"quantity" : 8,
+		"class" : ["m", "l"],
+		"vendor" : "mgt"
+	},
+	"860" : {
+		"endpoints" : "1-й м/р Щербинки&nbsp;— Ст. Щербинка",
+		"length" : 19.8,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"861" : {
+		"endpoints" : "Саратовская ул.&nbsp;— Волжский бульв.",
+		"length" : 10.0,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"862" : {
+		"endpoints" : "Платф. Сколково&nbsp;— Ст. Солнечная",
+		"length" : 20.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"863" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Мкр. Град Московский",
+		"length" : 30.5,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"866" : {
+		"endpoints" : "3-й мкр. Московского&nbsp;— Пос. Мосрентген",
+		"length" : 41.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"869" : {
+		"endpoints" : "Фили&nbsp;— м.&nbsp;«Улица 1905 года»",
+		"length" : 18.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"870" : {
+		"endpoints" : "3-й мкр. Московского&nbsp;— Ст. Внуково",
+		"length" : 26.4,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"871" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Минзаг",
+		"length" : 24.2,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"872" : {
+		"endpoints" : "4-й мкр. Кожухова&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 15.8,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"873" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Яковлево",
+		"length" : 20.7,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"874" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Секерино",
+		"length" : 156.7,
+		"quantity" : 5,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"874Б" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Былово",
+		"length" : 25.5,
+		"quantity" : 2,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"875" : {
+		"endpoints" : "Троицк (мкр.&nbsp;«В»)&nbsp;— Ст. Крекшино",
+		"length" : 42.6,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"876" : {
+		"endpoints" : "Троицк (Торговый центр)&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 69.2,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"876к" : {
+		"endpoints" : "Троицк (Торговый центр)&nbsp;— м.&nbsp;«Саларьево»",
+		"length" : 62.8,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"877" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Остафьевская ул.",
+		"length" : 47.4,
+		"quantity" : 13,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"878" : {
+		"endpoints" : "3-й мкр. Московского&nbsp;— Платф. Кокошкино",
+		"length" : 37.5,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"879" : {
+		"endpoints" : "3-й мкр. Московского&nbsp;— С/х «Воскресенское»",
+		"length" : 52.6,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"880" : {
+		"endpoints" : "Мкр. 4 «Д» Отрадного&nbsp;— Ст. Лосиноостровская",
+		"length" : 12.5,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"881" : {
+		"endpoints" : "Ст. Солнечная&nbsp;— Мкр. Град Московский",
+		"length" : 24.8,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"882" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Мкр. Эдальго",
+		"length" : 16.0,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"882к" : {
+		"endpoints" : "Николо- Хованское",
+		"length" : 14.1,
+		"quantity" : 0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"884" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 28.8,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"885" : {
+		"endpoints" : "3-й м/р Новокосина&nbsp;— 3-й кв. Люберецких полей",
+		"length" : 24.9,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"888" : {
+		"endpoints" : "м.&nbsp;«Водный стадион»&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 14.7,
+		"quantity" : 8,
+		"class" : ["s"],
+		"vendor" : "gepart"
+	},
+	"889" : {
+		"endpoints" : "Толстопальцево (ул.Ленина)&nbsp;— Насосная ул.",
+		"length" : 29.4,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"890" : {
+		"endpoints" : "3-й м/р Московского&nbsp;— м.&nbsp;«Юго- Западная»",
+		"length" : 27.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"890к" : {
+		"endpoints" : "м.&nbsp;«Саларьево»",
+		"length" : 17.7,
+		"quantity" : 0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"891" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Нововатутинский просп.",
+		"length" : 36.0,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"892" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Мкр. Солнцево-Парк",
+		"length" : 27.5,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"895" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— 2-й м/р Южного Бутова",
+		"length" : 31.0,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"895к" : {
+		"endpoints" : "м.&nbsp;«Теплый стан»&nbsp;— Ул. Липовый парк, 4",
+		"length" : 16.8,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"896" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Ул. Вилиса Лациса",
+		"length" : 5.8,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"899" : {
+		"endpoints" : "Южные ворота&nbsp;— м.&nbsp;«Алма- Атинская»",
+		"length" : 9.9,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"901" : {
+		"endpoints" : "Загорье&nbsp;— Таганская пл.",
+		"length" : 39.6,
+		"quantity" : 32,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"902" : {
+		"endpoints" : "Новопеределкино&nbsp;— Киевский вокзал",
+		"length" : 42.7,
+		"quantity" : 34,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"902к" : {
+		"endpoints" : "Новопеределкино&nbsp;— м.&nbsp;«Раменки»",
+		"length" : 26.9,
+		"quantity" : 0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"903" : {
+		"endpoints" : "Холмогорская ул.&nbsp;— Рижский вокзал",
+		"length" : 23.9,
+		"quantity" : 28,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"904" : {
+		"endpoints" : "4-й мкр. Митина&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 45.5,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"904к" : {
+		"endpoints" : "4-й мкр. Митина&nbsp;— Белорусский вокзал",
+		"length" : 35.9,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"905" : {
+		"endpoints" : "75-й км МКАД&nbsp;— Белорусский вокзал",
+		"length" : 31.5,
+		"quantity" : 24,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"906" : {
+		"endpoints" : "1-й мкр. Щербинки&nbsp;— м.&nbsp;«Улица Академика Янгеля»",
+		"length" : 30.2,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"907" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— м.&nbsp;«Добрынинская»",
+		"length" : 35.7,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"941" : {
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 18.8,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},
+	"957" : {
+		"endpoints" : "м.&nbsp;«Марьино»&nbsp;— м.&nbsp;«Марьино»",
+		"length" : 27.9,
+		"quantity" : 11,
+		"class" : ["m"],
+		"vendor" : "tmp20"
+	},
+	"958" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Городок ЮРМА",
+		"length" : 33.8,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"961" : {
+		"endpoints" : "ТЦ «МЕГА Тёплый стан»&nbsp;— м.&nbsp;«Ясенево»",
+		"length" : 14.6,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"962" : {
+		"endpoints" : "ТЦ «МЕГА Тёплый стан»&nbsp;— м.&nbsp;«Бульв. Дм. Донского»",
+		"length" : 21.0,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"964" : {
+		"endpoints" : "м.&nbsp;«Теплый Стан»&nbsp;— Платф. Кокошкино",
+		"length" : 71.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"964к" : {
+		"endpoints" : "м.&nbsp;«Теплый Стан»&nbsp;— ТЦ «МЕГА Теплый Стан»",
+		"length" : 8.6,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"965" : {
+		"endpoints" : "Торговый центр «Садовод»&nbsp;— м.&nbsp;«Домодедовская»",
+		"length" : 31.8,
+		"quantity" : 6,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"975" : {
+		"endpoints" : "м.&nbsp;«Сокольники»&nbsp;— МГУПИ",
+		"length" : 5.1,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "alphagrant"
+	},
+	"977" : {
+		"endpoints" : "м.&nbsp;«Ясенево»&nbsp;— Битцевская аллея",
+		"length" : 24.0,
+		"quantity" : 4,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"981" : {
+		"endpoints" : "м.&nbsp;«Марьино»&nbsp;— м.&nbsp;«Братиславская»",
+		"length" : 9.7,
+		"quantity" : 6,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"987" : {
+		"endpoints" : "м.&nbsp;«Авиамоторная»&nbsp;— Платф. Серп и Молот",
+		"length" : 7.0,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "rico"
+	},
+	"994" : {
+		"endpoints" : "м.&nbsp;«Алтуфьево»&nbsp;— м.&nbsp;«Тимирязевская»",
+		"length" : 29.4,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "tmp20"
+	},
+	"С10" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— ул. Академика Зелинского",
+		"length" : 7.0,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"Bк" : {
+		"endpoints" : "Ветакадемия&nbsp;— Ветакадемия",
+		"length" : 17.5,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"B" : {
+		"endpoints" : "Ветакадемия&nbsp;— Ветакадемия",
+		"length" : 15.9,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Б/н" : {
+		"endpoints" : "МГУ&nbsp;— ДАС",
+		"length" : 14.2,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"К" : {
+		"endpoints" : "Театральная пл.&nbsp;— Театральная пл.",
+		"length" : 6.8,
+		"quantity" : 2,
+		"class" : ["s", "l"],
+		"vendor" : "mgt"
+	},
+	"Н2" : {
+		"endpoints" : "Беловежская ул.&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 36.1,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Н3" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 36.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Н4" : {
+		"endpoints" : "Новокосино&nbsp;— м.&nbsp;«Китай-Город»",
+		"length" : 41.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Н5" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— м.&nbsp;«Китай-Город»",
+		"length" : 55.3,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Н6" : {
+		"endpoints" : "Осташковская ул.&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 44.5,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Н8" : {
+		"endpoints" : "Комплекс «В» Южн. Бутова&nbsp;— Лубянская пл.",
+		"length" : 74.2,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"806" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— м.&nbsp;«Раменки»",
+		"length" : 18.6,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"С1" : {
+		"endpoints" : "Остафьевская ул.&nbsp;— Бартеневская ул.",
+		"length" : 22.6,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С2" : {
+		"endpoints" : "5-й м/р Теплого Стана&nbsp;— 9-й м/р Теплого Стана",
+		"length" : 19.7,
+		"quantity" : 4,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С3" : {
+		"endpoints" : "Братцево&nbsp;— Ул. Рословка",
+		"length" : 24.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С4" : {
+		"endpoints" : "Ул. Головачева&nbsp;— Ст. Люблино",
+		"length" : 16.3,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С5" : {
+		"endpoints" : "м.&nbsp;«Новые Черемушки»&nbsp;— Ул. Шверника",
+		"length" : 17.4,
+		"quantity" : 4,
+		"class" : ["m", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С6" : {
+		"endpoints" : "Юрловский пр.&nbsp;— Каргопольская ул.",
+		"length" : 9.4,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"С7" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— Верхняя Первомайская ул.",
+		"length" : 19.4,
+		"quantity" : 3,
+		"class" : ["m"],
+		"vendor" : "autoline"
+	},
+	"Т" : {
+		"endpoints" : "м.&nbsp;«Планерная»&nbsp;— Cт. Тушино",
+		"length" : 21.1,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Т25" : {
+		"endpoints" : "Просп. Буденного&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 14.9,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Ш1" : {
+		"endpoints" : "м.&nbsp;«ВДНХ»&nbsp;— Пр. Дубовой Рощи",
+		"length" : 7.7,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"Ш2" : {
+		"endpoints" : "м.&nbsp;«Авиамоторная»&nbsp;— Пр. Энтузиастов",
+		"length" : 6.6,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"928" : {
+		"endpoints" : "Ст. Ховрино&nbsp;— Ст. Лосиноостровская",
+		"length" : 34.9,
+		"quantity" : 17,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-1" : {
+		"endpoints" : "14-й м/р&nbsp;— СТО ВАЗ",
+		"length" : 27.9,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-2" : {
+		"endpoints" : "Ст. Крюково&nbsp;— СТО ВАЗ",
+		"length" : 18.0,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-3" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Алабушевское кладбище",
+		"length" : 25.9,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-3к" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Западная",
+		"length" : 17.5,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-4" : {
+		"endpoints" : "Ст. Крюково- Ст. Крюково",
+		"length" : 6.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-5" : {
+		"endpoints" : "16-й м/р&nbsp;— Ст. Крюково",
+		"length" : 6.8,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-6" : {
+		"endpoints" : "Северная&nbsp;— Гор.больница",
+		"length" : 12.5,
+		"quantity" : 0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-8" : {
+		"endpoints" : "41-й км&nbsp;— 41-й км",
+		"length" : 11.7,
+		"quantity" : 6,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-9" : {
+		"endpoints" : "41-й км&nbsp;— 41-й км",
+		"length" : 14.0,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-10" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Гор.больница",
+		"length" : 17.2,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-11" : {
+		"endpoints" : "Северная&nbsp;— Северная",
+		"length" : 17.4,
+		"quantity" : 14,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-12" : {
+		"endpoints" : "Ст. Крюково&nbsp;— МЖК",
+		"length" : 15.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-14" : {
+		"endpoints" : "14-й м/р&nbsp;— Ул. 1-го Мая",
+		"length" : 7.8,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-15" : {
+		"endpoints" : "Северная&nbsp;— 16-й м/р",
+		"length" : 14.2,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-16" : {
+		"endpoints" : "14-й м/р&nbsp;— Кутузово",
+		"length" : 10.7,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-16к" : {
+		"endpoints" : "14-й м/р&nbsp;— Ст. Крюково",
+		"length" : 5.1,
+		"quantity" : 5,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-17" : {
+		"endpoints" : "16-й м/р -Ст. Крюково",
+		"length" : 7.0,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-19" : {
+		"endpoints" : "14-й м/р&nbsp;— Гор.больница",
+		"length" : 23.7,
+		"quantity" : 25,
+		"class" : ["s", "l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-20" : {
+		"endpoints" : "16-й м/р&nbsp;— Кладбище Рожки",
+		"length" : 17.7,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-21" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Платф. Малино",
+		"length" : 6.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-22" : {
+		"endpoints" : "16-й м/р&nbsp;— Ст. Крюково",
+		"length" : 7.6,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-23" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Северная",
+		"length" : 10.4,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-24" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Алабушевское кладбище",
+		"length" : 9.4,
+		"quantity" : 1,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-25" : {
+		"endpoints" : "Северная&nbsp;— Корпус 1624",
+		"length" : 14.9,
+		"quantity" : 4,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-27" : {
+		"endpoints" : "Западная&nbsp;— Назарьево",
+		"length" : 21.2,
+		"quantity" : 5,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
+	"З-28" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Пенсионный фонд",
+		"length" : 4.0,
+		"quantity" : 3,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-29" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Ст. Крюково",
+		"length" : 10.4,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-31" : {
+		"endpoints" : "Ст. Крюково&nbsp;— Гор.больница",
+		"length" : 10.2,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"З-32" : {
+		"endpoints" : "Северная&nbsp;— 16-й мкр.",
+		"length" : 23.4,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"м1" : {
+		"endpoints" : "Ул. Кравченко&nbsp;— Больница МПС",
+		"length" : 48.9,
+		"quantity" : 28,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"м3" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 31.8,
+		"quantity" : 29,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"м2" : {
+		"endpoints" : "Фили&nbsp;— м.&nbsp;«Китай-Город»",
+		"length" : 23.0,
+		"quantity" : 21,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т3" : {
+		"endpoints" : "м.&nbsp;«Владыкино»&nbsp;— м.&nbsp;«Маяковская»",
+		"length" : 21.6,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 4" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— К/т «Ударник»",
+		"length" : 19.6,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 6" : {
+		"endpoints" : "К/т «Нева»&nbsp;— Песчаная пл.",
+		"length" : 22.8,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 7" : {
+		"endpoints" : "м.&nbsp;«Парк Победы»&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 35.1,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 8" : {
+		"endpoints" : "Москворецкий рынок&nbsp;— К/т «Ударник»",
+		"length" : 23.1,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"м9" : {
+		"endpoints" : "м.&nbsp;«Владыкино»&nbsp;— м.&nbsp;«Китай- Город»",
+		"length" : 28.1,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т10" : {
+		"endpoints" : "м.&nbsp;«Нагатинская»&nbsp;— Самотечная пл.",
+		"length" : 27.1,
+		"quantity" : 10,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},
+	"Тб 11" : {
+		"endpoints" : "Загорье&nbsp;— м.&nbsp;«Красногвардейская»",
+		"length" : 38.3,
+		"quantity" : 9,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 11к" : {
+		"endpoints" : "Загорье&nbsp;— м.&nbsp;«Каширская»",
+		"length" : 20.0,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 12" : {
+		"endpoints" : "Гидропроект&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 19.2,
+		"quantity" : 9,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 13" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Трубная пл.",
+		"length" : 16.0,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 14" : {
+		"endpoints" : "Платф. Северянин&nbsp;— Электрозаводский мост",
+		"length" : 30.4,
+		"quantity" : 18,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т15" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Лужнецкий пр.",
+		"length" : 29.8,
+		"quantity" : 19,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб м7к" : {
+		"endpoints" : "Карачаровский путепровод&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 18.6,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 17" : {
+		"endpoints" : "Озерная ул.&nbsp;— Киевский вокзал",
+		"length" : 26.0,
+		"quantity" : 24,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 18" : {
+		"endpoints" : "Рижский вокзал&nbsp;— Стрельбищенский пер.",
+		"length" : 21.4,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 19" : {
+		"endpoints" : "Крылатское&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 25.7,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 20" : {
+		"endpoints" : "Серебряный бор&nbsp;— Белорусский вокзал",
+		"length" : 21.6,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 20к" : {
+		"endpoints" : "Серебряный бор&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 10.7,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 21" : {
+		"endpoints" : "Берег Москвы-реки&nbsp;— м.&nbsp;«Полежаевская»",
+		"length" : 14.0,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 22" : {
+		"endpoints" : "16-я Парковая ул.&nbsp;— Комсомольская пл.",
+		"length" : 24.6,
+		"quantity" : 20,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 23" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— м.&nbsp;«Измайловская»",
+		"length" : 13.7,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 24" : {
+		"endpoints" : "Авиамоторная ул.&nbsp;— м.&nbsp;«Красные Ворота»",
+		"length" : 10.5,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 26" : {
+		"endpoints" : "Карачаровский путепровод&nbsp;— Автозаводский мост",
+		"length" : 27.9,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 27" : {
+		"endpoints" : "Ветакадемия&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 22.1,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 28" : {
+		"endpoints" : "Крымская пл.&nbsp;— Ленинский просп.",
+		"length" : 18.0,
+		"quantity" : 18,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т29" : {
+		"endpoints" : "Ул. Милашенкова&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 15.7,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т29к" : {
+		"endpoints" : "Ул. Милашенкова&nbsp;— Савеловский вокзал",
+		"length" : 11.3,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 30" : {
+		"endpoints" : "м.&nbsp;«Выхино»&nbsp;— Пр. Энтузиастов",
+		"length" : 24.2,
+		"quantity" : 17,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"А" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— м.&nbsp;«Комсомольская»",
+		"length" : 23.4,
+		"quantity" : 17,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 32" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— Гаражная ул.",
+		"length" : 33.3,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Т32" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— Гаражная ул.",
+		"length" : 33.3,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб м4к" : {
+		"endpoints" : "Ул. Кравченко&nbsp;— К/т «Ударник»",
+		"length" : 21.3,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 34" : {
+		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Киевский вокзал",
+		"length" : 28.4,
+		"quantity" : 27,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 34к" : {
+		"endpoints" : "Ул. Кравченко&nbsp;— Киевский вокзал",
+		"length" : 22.5,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 35" : {
+		"endpoints" : "Ул. Марш. Тухачевского&nbsp;— м.&nbsp;«Краснопресненская»",
+		"length" : 22.7,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 36" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Бескудниковский пер.",
+		"length" : 18.2,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 37" : {
+		"endpoints" : "Гостиница «Останкино»&nbsp;— Капельский пер.",
+		"length" : 17.4,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 38" : {
+		"endpoints" : "Ветакадемия&nbsp;— Шарикоподшипниковская ул.",
+		"length" : 18.2,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"38к" : {
+		"endpoints" : "Ветакадемия&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 9.6,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т39" : {
+		"endpoints" : "Фили&nbsp;— м.&nbsp;«Маяковская»",
+		"length" : 19.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т40" : {
+		"endpoints" : "Велозаводская ул.&nbsp;— Аннино",
+		"length" : 35.9,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 41" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— Комсомольская пл.",
+		"length" : 26.7,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 42" : {
+		"endpoints" : "Рижский вокзал&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 11.7,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 43" : {
+		"endpoints" : "Карамышевская наб.&nbsp;— Прибрежный пр.",
+		"length" : 35.2,
+		"quantity" : 19,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 43к" : {
+		"endpoints" : "м.&nbsp;«Войковская»&nbsp;— Прибрежный пр.",
+		"length" : 13.9,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб м8" : {
+		"endpoints" : "4-я Кабельная ул.&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 15.4,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т47" : {
+		"endpoints" : "Бескудниковский пер.&nbsp;— Самотечная пл.",
+		"length" : 23.9,
+		"quantity" : 22,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 48" : {
+		"endpoints" : "Гостиница «Турист»&nbsp;— Капельский пер.",
+		"length" : 14.5,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 49" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— Балаклавский просп.",
+		"length" : 15.3,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 50" : {
+		"endpoints" : "Марьино&nbsp;— м.&nbsp;«Текстильщики»",
+		"length" : 17.1,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 51" : {
+		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Измайловская»",
+		"length" : 9.6,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 52" : {
+		"endpoints" : "Москворецкий рынок&nbsp;— м.&nbsp;«Профсоюзная»",
+		"length" : 11.8,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 53" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 23.8,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 54" : {
+		"endpoints" : "м.&nbsp;«Филевский Парк»&nbsp;— Белорусский вокзал",
+		"length" : 17.9,
+		"quantity" : 18,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т55" : {
+		"endpoints" : "Пл.Соловецких Юнг&nbsp;— м.&nbsp;«Первомайская»",
+		"length" : 6.2,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 56" : {
+		"endpoints" : "Базовская ул.&nbsp;— Белорусский вокзал",
+		"length" : 26.9,
+		"quantity" : 19,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 57" : {
+		"endpoints" : "Мост Октябрьской ж/д&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 13.1,
+		"quantity" : 15,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 58" : {
+		"endpoints" : "м.&nbsp;«Речной вокзал»&nbsp;— Петрозаводская ул.",
+		"length" : 5.9,
+		"quantity" : 9,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 59" : {
+		"endpoints" : "Ул. Генерала Глаголева&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 11.0,
+		"quantity" : 23,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 60" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— м.&nbsp;«Новые Черемушки»",
+		"length" : 11.3,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 61" : {
+		"endpoints" : "Карамышевская наб.&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 10.8,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб м4" : {
+		"endpoints" : "Озерная ул.&nbsp;— К/т «Ударник»",
+		"length" : 34.8,
+		"quantity" : 44,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб м7" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Лубянка»",
+		"length" : 33.4,
+		"quantity" : 20,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 63к" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 28.3,
+		"quantity" : 15,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 64" : {
+		"endpoints" : "Ивановское&nbsp;— м.&nbsp;«Выхино»",
+		"length" : 16.0,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 65" : {
+		"endpoints" : "Серебряный бор&nbsp;— м.&nbsp;«Аэропорт»",
+		"length" : 21.1,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 66" : {
+		"endpoints" : "м.&nbsp;«Филевский Парк»&nbsp;— Тишинская пл.",
+		"length" : 18.5,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т67" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— Автозаводский мост",
+		"length" : 36.5,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 70" : {
+		"endpoints" : "Братцево&nbsp;— Белорусский вокзал",
+		"length" : 33.0,
+		"quantity" : 28,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 70к" : {
+		"endpoints" : "Братцево&nbsp;— Универсам (ул. Свободы)",
+		"length" : 6.7,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 71" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— м.&nbsp;«Добрынинская»",
+		"length" : 35.7,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 72" : {
+		"endpoints" : "м.&nbsp;«Варшавская»&nbsp;— Пр. Карамзина",
+		"length" : 31.7,
+		"quantity" : 33,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 73" : {
+		"endpoints" : "6-й мкр. Бибирева&nbsp;— ВДНХ (южн.)",
+		"length" : 24.7,
+		"quantity" : 26,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 74" : {
+		"endpoints" : "Марьино&nbsp;— м.&nbsp;«Кузьминки»",
+		"length" : 18.0,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 75" : {
+		"endpoints" : "Ивановское&nbsp;— Новокосино",
+		"length" : 20.7,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 76" : {
+		"endpoints" : "Холмогорская ул.&nbsp;— м.&nbsp;«ВДНХ»",
+		"length" : 17.2,
+		"quantity" : 21,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 77" : {
+		"endpoints" : "Ивановское&nbsp;— Ул. Плеханова",
+		"length" : 13.8,
+		"quantity" : 19,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 78" : {
+		"endpoints" : "Вагоноремонтная ул.&nbsp;— Белорусский вокзал",
+		"length" : 29.0,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т79" : {
+		"endpoints" : "Стадион «Лужники» (южн.)&nbsp;— Савеловский вокзал",
+		"length" : 26.6,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 80" : {
+		"endpoints" : "6-й м/р Бибирева&nbsp;— Осташковская ул.",
+		"length" : 14.2,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 81" : {
+		"endpoints" : "м.&nbsp;«Беляево»&nbsp;— м.&nbsp;«Битцевский парк»",
+		"length" : 15.0,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тб 82" : {
+		"endpoints" : "Б-ца МПС&nbsp;— Белорусский вокзал",
+		"length" : 20.6,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 83" : {
+		"endpoints" : "Уссурийская ул.&nbsp;— м.&nbsp;«Преображенская площадь»",
+		"length" : 17.4,
+		"quantity" : 10,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 85" : {
+		"endpoints" : "Пр. Карамзина&nbsp;— м.&nbsp;«Профсоюзная»",
+		"length" : 25.8,
+		"quantity" : 16,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Т86" : {
+		"endpoints" : "Серебряный бор&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 25.2,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 86" : {
+		"endpoints" : "Серебряный бор&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 25.2,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тб 88" : {
+		"endpoints" : "Просп. Буденного&nbsp;— Комсомольская пл.",
+		"length" : 10.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Б" : {
+		"endpoints" : "по Садовому кольцу",
+		"length" : 31.2,
+		"quantity" : 33,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 1" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— Москворецкий рынок",
+		"length" : 15.1,
+		"quantity" : 14,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 2" : {
+		"endpoints" : "Детский санаторий&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 19.8,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 3" : {
+		"endpoints" : "Балаклавский просп.&nbsp;— м.&nbsp;«Чистые Пруды»",
+		"length" : 31.6,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 4л" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— м.&nbsp;«Бульвар Рокоссовского»",
+		"length" : 12.3,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 4пр" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— м.&nbsp;«Бульвар Рокоссовского»",
+		"length" : 12.3,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 6" : {
+		"endpoints" : "Братцево&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 23.7,
+		"quantity" : 22,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 6к" : {
+		"endpoints" : "Братцево&nbsp;— Восточный мост",
+		"length" : 11.0,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 7" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— м.&nbsp;«Новослободская»",
+		"length" : 31.1,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 8" : {
+		"endpoints" : "Новоконная пл.&nbsp;— 3-я Владимирская ул.",
+		"length" : 19.8,
+		"quantity" : 13,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 9" : {
+		"endpoints" : "м.&nbsp;«Белорусская»&nbsp;— МИИТ",
+		"length" : 4.3,
+		"quantity" : 3,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 10" : {
+		"endpoints" : "Таллинская ул.&nbsp;— м.&nbsp;«Щукинская»",
+		"length" : 11.1,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 11" : {
+		"endpoints" : "Останкино&nbsp;— 16-я Парковая ул.",
+		"length" : 34.5,
+		"quantity" : 36,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 12" : {
+		"endpoints" : "Пр. Энтузиастов&nbsp;— 2-я ул. Машиностроения",
+		"length" : 15.0,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 13" : {
+		"endpoints" : "Детский санаторий&nbsp;— Каланчевская ул.",
+		"length" : 21.7,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 14" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 16.1,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 15" : {
+		"endpoints" : "Таллинская ул.&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 18.7,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 16" : {
+		"endpoints" : "Ул. Академика Янгеля&nbsp;— Ул. Серпуховский Вал",
+		"length" : 30.8,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 17" : {
+		"endpoints" : "Медведково&nbsp;— Останкино",
+		"length" : 22.9,
+		"quantity" : 36,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 19" : {
+		"endpoints" : "Каланчевская ул.&nbsp;— м.&nbsp;«Новослободская»",
+		"length" : 13.1,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 19к" : {
+		"endpoints" : "м.&nbsp;«Новослободская»&nbsp;— м.&nbsp;«Новослободская»",
+		"length" : 3.8,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 20" : {
+		"endpoints" : "Ст. Угрешская&nbsp;— Курский вокзал",
+		"length" : 14.7,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 21" : {
+		"endpoints" : "Таллинская ул.&nbsp;— м.&nbsp;«Щукинская»",
+		"length" : 12.5,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 23" : {
+		"endpoints" : "Михалково&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 14.3,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 24" : {
+		"endpoints" : "Новогиреево&nbsp;— Курский вокзал",
+		"length" : 28.0,
+		"quantity" : 19,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 25" : {
+		"endpoints" : "Останкино&nbsp;— Сокольническая застава",
+		"length" : 16.6,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 26" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 21.0,
+		"quantity" : 16,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 27" : {
+		"endpoints" : "м.&nbsp;«Дмитровская»&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 17.7,
+		"quantity" : 27,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 28" : {
+		"endpoints" : "Просп. Маршала Жукова&nbsp;— м.&nbsp;«Сокол»",
+		"length" : 14.1,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 27к" : {
+		"endpoints" : "м.&nbsp;«Дмитровская»&nbsp;— Михалково",
+		"length" : 11.6,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 29" : {
+		"endpoints" : "Детский санаторий&nbsp;— Богородское",
+		"length" : 10.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 30" : {
+		"endpoints" : "Таллинская ул.&nbsp;— Михалково",
+		"length" : 27.4,
+		"quantity" : 19,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"Тм 31" : {
+		"endpoints" : "Просп. Маршала Жукова&nbsp;— м.&nbsp;«Войковская»",
+		"length" : 16.0,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 32" : {
+		"endpoints" : "Пр. Энтузиастов&nbsp;— м.&nbsp;«Партизанская»",
+		"length" : 15.3,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 33" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— Сокольническая застава",
+		"length" : 16.2,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 34" : {
+		"endpoints" : "16-я Парковая ул.&nbsp;— Новогиреево",
+		"length" : 35.4,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 34к" : {
+		"endpoints" : "16-я Парковая ул.&nbsp;— м.&nbsp;«Семёновская»",
+		"length" : 15.6,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 35" : {
+		"endpoints" : "Новоконная пл.&nbsp;— Нагатино",
+		"length" : 31.0,
+		"quantity" : 22,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 36" : {
+		"endpoints" : "Детский санаторий&nbsp;— 3-я Владимирская ул.",
+		"length" : 27.3,
+		"quantity" : 22,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 37" : {
+		"endpoints" : "Новогиреево&nbsp;— Каланчевская ул.",
+		"length" : 30.8,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 38" : {
+		"endpoints" : "Черемушки&nbsp;— м.&nbsp;«Пролетарская»",
+		"length" : 21.1,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 39" : {
+		"endpoints" : "м.&nbsp;«Университет»&nbsp;— м.&nbsp;«Чистые Пруды»",
+		"length" : 29.2,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 40" : {
+		"endpoints" : "Ст. Угрешская&nbsp;— Новоконная пл.",
+		"length" : 13.4,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 43" : {
+		"endpoints" : "Ст. Угрешская&nbsp;— м.&nbsp;«Семеновская»",
+		"length" : 30.7,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 45" : {
+		"endpoints" : "Новоконная пл.&nbsp;— Сокольническая застава",
+		"length" : 19.6,
+		"quantity" : 11,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 46" : {
+		"endpoints" : "м.&nbsp;«Бульвар Рокоссовского»&nbsp;— м.&nbsp;«Пролетарская»",
+		"length" : 32.4,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 47" : {
+		"endpoints" : "Нагатино&nbsp;— м.&nbsp;«Октябрьская»",
+		"length" : 22.0,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 47к" : {
+		"endpoints" : "Нагатино&nbsp;— Нижние Котлы",
+		"length" : 10.1,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 49" : {
+		"endpoints" : "Балаклавский просп.&nbsp;— Нагатино",
+		"length" : 19.7,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм 50" : {
+		"endpoints" : "Пр. Энтузиастов&nbsp;— Каланчевская ул.",
+		"length" : 14.1,
+		"quantity" : 16,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм А" : {
+		"endpoints" : "м.&nbsp;«Октябрьская»&nbsp;— м.&nbsp;«Чистые Пруды»",
+		"length" : 20.4,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Тм Б" : {
+		"endpoints" : "Курский вокзал&nbsp;— Сокольническая застава",
+		"length" : 13.6,
+		"quantity" : 8,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"10" : {
+		"endpoints" : "м. Братиславская&nbsp;— Белая Дача",
+		"length" : 16.6,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"129" : {
+		"endpoints" : "Мякинино&nbsp;— Автобаза Генштаба",
+		"length" : 23.4,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"205" : {
+		"endpoints" : "ул. Довженко&nbsp;— Совхоз \"Заречье»",
+		"length" : 43.7,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"212" : {
+		"endpoints" : "Братцево&nbsp;— Юровская ул.",
+		"length" : 22.8,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"297" : {
+		"endpoints" : "ст. Бирюлево-Товарная&nbsp;— Измайлово (Институт садоводства)",
+		"length" : 9.0,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"400" : {
+		"endpoints" : "Зеленоград (Северная)&nbsp;— м. Речной вокзал",
+		"length" : 56.5,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"403" : {
+		"endpoints" : "Зеленоград (ст. Крюково)&nbsp;— Соколово",
+		"length" : 46.6,
+		"quantity" : 1,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"408" : {
+		"endpoints" : "Зеленоград&nbsp;— Хоругвино&nbsp;— Холмы",
+		"length" : 41.7,
+		"quantity" : 1,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"510" : {
+		"endpoints" : "м. Домодедовская&nbsp;— Домодедовское кладбище",
+		"length" : 46.7,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"513" : {
+		"endpoints" : "м. Теплый Стан&nbsp;— Жедочи",
+		"length" : 90.2,
+		"quantity" : 1,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"706" : {
+		"endpoints" : "м. Выхино&nbsp;— 2-й Московский крематорий",
+		"length" : 16.7,
+		"quantity" : 7,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"716" : {
+		"endpoints" : "м. Сокольники&nbsp;— п. Восточный",
+		"length" : 27.7,
+		"quantity" : 9,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt "
+	},  
+	"760" : {
+		"endpoints" : "м. Щелковская&nbsp;— 2-й московский крематорий",
+		"length" : 29.5,
+		"quantity" : 8,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"817" : {
+		"endpoints" : "м. Планерная&nbsp;— Аэропорт Шереметьево-1",
+		"length" : 46.9,
+		"quantity" : 9,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"930" : {
+		"endpoints" : "м. Тушинская&nbsp;— Красногорск (ст. Павшино)",
+		"length" : 23.9,
+		"quantity" : 11,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"1002" : {
+		"endpoints" : "Киевский&nbsp;— м. Саларьево",
+		"length" : 94.0,
+		"quantity" : 6,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"268к" : {
+		"endpoints" : "м. Планерная&nbsp;— Городок ЮРМА",
+		"length" : 21.8,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"400к" : {
+		"endpoints" : "Зеленоград (14-й м/р)&nbsp;— м. Митино",
+		"length" : 50.3,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"655к" : {
+		"endpoints" : "Капотня&nbsp;— ТЦ «Белая Дача»",
+		"length" : 14.8,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"Н1" : {
+		"endpoints" : "ул. Озерная&nbsp;— Аэропорт Шереметьево",
+		"length" : 116.4,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"14" : {
+		"endpoints" : "ул. Cвятоозерская&nbsp;— ст. Реутово",
+		"length" : 14.8,
+		"quantity" : 9,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"18" : {
+		"endpoints" : "м. Бульвар Дмитрия Донского&nbsp;— Бутовский полигон",
+		"length" : 21.3,
+		"quantity" : 1,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"127" : {
+		"endpoints" : "Рублево&nbsp;— ул. Коцюбинского",
+		"length" : 22.4,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"268" : {
+		"endpoints" : "м. Планерная&nbsp;— 12-й м/р Куркина",
+		"length" : 17.6,
+		"quantity" : 12,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"283" : {
+		"endpoints" : "м. Щелковская&nbsp;— п. Восточный",
+		"length" : 10.7,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"462" : {
+		"endpoints" : "Ерино&nbsp;— м. Южная",
+		"length" : 46.6,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"626" : {
+		"endpoints" : "3-й м/р Строгина&nbsp;— м. Молодежная",
+		"length" : 36.8,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"722" : {
+		"endpoints" : "Некрасовка (10-я городская больница)&nbsp;— ст. Люберцы&nbsp;— м. Выхино",
+		"length" : 23.2,
+		"quantity" : 11.0,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},  
+	"726" : {
+		"endpoints" : "2-й Красковский пр.&nbsp;— п. Некрасовка",
+		"length" : 16.1,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"772" : {
+		"endpoints" : "м. Выхино&nbsp;— 2-й Красковский пр.",
+		"length" : 22.7,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"773" : {
+		"endpoints" : "9 м/р Кожухова&nbsp;— ст. Реутово",
+		"length" : 24.3,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"794" : {
+		"endpoints" : "м. Молодежная&nbsp;— Немчиновка (Автоцентр)",
+		"length" : 12.5,
+		"quantity" : 9,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"819" : {
+		"endpoints" : "м. Южная&nbsp;— Щербинское кладбище",
+		"length" : 32.6,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"828" : {
+		"endpoints" : "ул. Россошанская&nbsp;— Институт садоводства",
+		"length" : 18.8,
+		"quantity" : 2,
+		"class" : ["m"],
+		"vendor" : "mgt"
+	},  
+	"849" : {
+		"endpoints" : "4-й м/р Кожухова&nbsp;— Некрасовская ул.",
+		"length" : 17.7,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"851" : {
+		"endpoints" : "м. Речной вокзал&nbsp;— Аэропорт Шереметьево-1",
+		"length" : 44.5,
+		"quantity" : 14,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"865" : {
+		"endpoints" : "м. Планерная&nbsp;— Перепечинское кладбище",
+		"length" : 57.6,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"883" : {
+		"endpoints" : "м. Филевский парк&nbsp;— Торговый центр",
+		"length" : 30.3,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"959" : {
+		"endpoints" : "4-й мкр. Митина&nbsp;— ТЦ МЕГА-Химки",
+		"length" : 33.2,
+		"quantity" : 4,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"1001" : {
+		"endpoints" : "Троицк&nbsp;— Киевский",
+		"length" : 101.8,
+		"quantity" : 3,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},  
+	"1004" : {
+		"endpoints" : "5-й м/р Северного Бутова&nbsp;— Каменка",
+		"length" : 167.4,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"400т" : {
+		"endpoints" : "Зеленоград (16-й микрорайон)&nbsp;— м. Тушинская",
+		"length" : 61.4,
+		"quantity" : 14,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"741" : {
+		"endpoints" : "м. Тушинская&nbsp;— Митинское кладбище",
+		"length" : 19.1,
+		"quantity" : 7,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},  
+	"510э" : {
+		"endpoints" : "м.Домодедовская&nbsp;— Домодедовское кладбище",
+		"length" : 46.7,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt",
+		"express" : true
+	},  
+	"747" : {
+		"endpoints" : "м. Выхино&nbsp;— ул. Камова",
+		"length" : 12.7,
+		"quantity" : 2,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"864" : {
+		"endpoints" : "ул.Академика Янгеля&nbsp;— фабрика им.1 Мая",
+		"length" : 46.0,
+		"quantity" : 6,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"1133" : {
+		"endpoints" : "пос. Восточный&nbsp;— пос. Акулово",
+		"length" : 73.6,
+		"quantity" : 1,
+		"class" : ["s"],
+		"vendor" : "mgt",
+		"express" : true
+	},  
+	"МЦ1" : {
+		"endpoints" : "м. Аннино&nbsp;— ММЦ УФМС»",
+		"length" : 94.9,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt",
+		"express" : true
+	},  
+	"1147" : {
+		"endpoints" : "Сколково&nbsp;— м. Тропарево",
+		"length" : 30.8,
+		"quantity" : 3,
+		"class" : ["l"],
+		"vendor" : "mgt",
+		"express" : true
+	},  
+	"669" : {
+		"endpoints" : "2-й мкр. Жулебина&nbsp;— 1-й мкр. Жулебина",
+		"length" : 13.2,
+		"quantity" : 5,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},  
+	"400э" : {
+		"endpoints" : "Зеленоград (Северная)&nbsp;— м. Речной вокзал",
+		"length" : 66.4,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt",
+		"express" : true
+	},  
+	"723" : {
+		"endpoints" : "Некрасовка&nbsp;— ст. Люберцы&nbsp;— ст. Реутово",
+		"length" : 35.9,
+		"quantity" : 12,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	}
+}
