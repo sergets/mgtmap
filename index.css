@@ -165,7 +165,11 @@ body {
     position: absolute;
     top: 0;
     left: 30px;
+<<<<<<< HEAD
     width: 350px;
+=======
+    width: 240px;
+>>>>>>> 18d134e284c877a9275535776ddb7cc4df18e237
     max-height: 90%;
     overflow-y: auto;
 }
@@ -198,7 +202,6 @@ body {
         margin: 0;
     }
 }
-
 
 .route-card .title {
     transform: scale(1.5);
