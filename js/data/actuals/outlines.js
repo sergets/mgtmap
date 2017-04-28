@@ -1,33 +1,24 @@
 define([
     'vow',
-    'data/colorings/default',
-    'data/colorings/type',
-    'data/colorings/black',
-    'data/colorings/vendor',
-    'data/colorings/troll-project',
-    'data/colorings/wires'
+    'data/colorings/now',
+    'data/colorings/sobyanin',
+    'data/colorings/katz'
 ], function(
     vow,
-    defaultColoring,
-    typeColoring,
-    blackColoring,
-    vendorColoring,
-    trollProjectColoring,
-    wiresColoring
+    nowColoring,
+    sobyaninColoring,
+    katzColoring
 ) {
 
 var colorings = {
-    default : defaultColoring,
-    type : typeColoring,
-    black : blackColoring,
-    vendor : vendorColoring,
-    'troll-project' : trollProjectColoring,
-    wires : wiresColoring
+    now : nowColoring,
+    sobyanin : sobyaninColoring,
+    katz : katzColoring
 };
 
 return {
     shouldRecalc : function(state, updatedStateFields) {
-        var coloring = colorings[state.customColoringId || 'default'];
+        var coloring = colorings[state.customColoringId || 'now'];
 
         return updatedStateFields.indexOf('customColoringId') != -1 || 
             coloring.shouldRecalcOutlinesOn.some(function(stateField) {
@@ -38,12 +29,12 @@ return {
     deps : ['widths', 'routes'],
 
     calc : function(data, state, widths, routes) {
-        var coloring = colorings[state.customColoringId || 'default'];
+        var coloring = colorings[state.customColoringId || 'now'];
 
         return vow.resolve(Object.keys(data.segments).reduce(function(outlines, segmentId) {
             outlines[+segmentId] = coloring.getSegmentOutlines(+segmentId, data, state, {
-                actualWidths : widths,
-                actualRoutes : routes
+                widths : widths,
+                routes : routes
             });
             return outlines;
         }, {}));

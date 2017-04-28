@@ -23,6 +23,7 @@ define([
 var DEFAULT_WIDTH = 2,
     NO_DATA_WIDTH = 0,
     SELECTED_ROUTE_WIDTH = 15,
+    BASE_DATA_URL = '//sergets.github.io/mgtmap/data/',
     VENDOR_NAMES = {
         'mgt' : 'ГУП «Мосгортранс»',
         'mgt-express' : 'ГУП «Мосгортранс»',
@@ -74,7 +75,7 @@ extend(DataManager.prototype, {
             promise = deferred.promise();
 
         $.ajax({
-            url : fileName,
+            url : BASE_DATA_URL + fileName,
             data : {
             //    ncrnd : Math.random()
             },
@@ -84,7 +85,7 @@ extend(DataManager.prototype, {
             },
             dataType : 'json',
             error : function(req, st, e) {
-                alert('error on ' + fileName + ': ' + e.message);
+                console.warn('Data loading error on ' + fileName + ': ' + e.message);
                 deferred.reject(e);
             },
             context : this
@@ -96,14 +97,14 @@ extend(DataManager.prototype, {
     },
 
     getSegments : function() {
-        return this._getDataFromFile('data/segments.json');
+        return this._getDataFromFile('segments.json');
     },
 
     setSegmentGeometry : function(segmentId, geometry) {
         return vow.all([this.getSegments(), this.getSegmentBounds()]).done(function() {
-            this._data['data/segments.json'][segmentId] = geometry;
+            this._data['segments.json'][segmentId] = geometry;
             this._bounds[segmentId] = geomUtils.bounds(geometry);
-            this._changedFiles['data/segments.json'] = true;
+            this._changedFiles['segments.json'] = true;
             this.trigger('data-updated');
         }, this);
     },
@@ -115,7 +116,7 @@ extend(DataManager.prototype, {
     },
 
     getRoutes : function() {
-        return this._getDataFromFile('data/routes.json');
+        return this._getDataFromFile('routes.json');
     },
 
     getLastDate : function() {
@@ -133,15 +134,15 @@ extend(DataManager.prototype, {
     },
 
     getRoutesForSegment : function(segmentId) {
-        return this._getDataFromFile('data/routes.json').then(function(routesBySegment) {
+        return this.getRoutes().then(function(routesBySegment) {
             return routesBySegment[segmentId] || {};
         });
     },
 
     setRoutesForSegment : function(segmentId, data) {
         return this.getRoutesForSegment(segmentId).then(function() {
-            this._data['data/routes.json'][segmentId] = data;
-            this._changedFiles['data/routes.json'] = true;
+            this._data['routes.json'][segmentId] = data;
+            this._changedFiles['routes.json'] = true;
             this.trigger('data-updated');
         }, this);
     },
@@ -153,7 +154,7 @@ extend(DataManager.prototype, {
     },
 
     getFreqs : function() {
-        return this._getDataFromFile('data/freqs.json');
+        return this._getDataFromFile('freqs.json');
     },
 
     getActualWidthForRoute : function(route) {
@@ -169,11 +170,11 @@ extend(DataManager.prototype, {
     },
 
     getRegistry : function() {
-        return this._getDataFromFile('data/rgam.json');
+        return this._getDataFromFile('rgam.json');
     },
 
     getWiredSegments : function() {
-        return this._getDataFromFile('data/trolley-wire.json');
+        return this._getDataFromFile('trolley-wire.json');
     },
 
     getSegmentLengths : function() {
@@ -207,84 +208,64 @@ extend(DataManager.prototype, {
 
             registryData && (res += '<span class="subtitle">' + registryData.endpoints + '</span>');
 
-            if(stateManager.getCustomColoringId() == 'troll-project') {
-                var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, lengths, this._actuals.routes, trolleyWires) * 100),
-                    isExpress = registryData && registryData.express,
-                    isPrivate = registryData && registryData.vendor != 'mgt',
-                    type = route.indexOf('Тб') == 0? 'troll' : route.indexOf('Тм') == 0? 'tram' : 'bus';
+            var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, lengths, this._actuals.routes, trolleyWires) * 100),
+                isExpress = registryData && registryData.express,
+                isPrivate = registryData && registryData.vendor != 'mgt',
+                isSmall = registryData && registryData.class.join() == 's',
+                type = route.indexOf('Тб') == 0? 'troll' : route.indexOf('Тм') == 0? 'tram' : 'bus';
 
-                if(type == 'troll') {
-                    res += 'Это троллейбусный маршрут. Троллейбус экологичен, чист и бесшумен.';
-                } else if(type == 'tram') {
-                    res += 'Это трамвайный маршрут. Трамвай экологичен, чист и при правильной прокладке путей практически бесшумен.';
-                } else if(isExpress && trolleyFraction >= 50) {
-                    res += 'Это автобус-экспресс. <b>' + trolleyFraction + '%</b> его трассы проходят под троллейбусными проводами, но чтобы он мог обгонять поостановочные троллейбусы, нужно повесить вторую пару проводов. Это будет несложно, так как питающие подстанции и кабели уже на месте.';
-                } else if(isPrivate && trolleyFraction >= 50) {
-                    res += 'Этот автобусный маршрут обслуживается частным перевозчиком. <b>' + trolleyFraction + '%</b> его трассы проходят под троллейбусными проводами, поэтому его можно было бы перевести на бесшумный и чистый подвижной состав прямо сейчас, но это потребует пересмотра условий контракта.';
-                } else if(trolleyFraction >= 50) {
-                    res += 'Этот автобусный маршрут на <b>' + trolleyFraction + '%</b> проходит под троллейбусными проводами. Грязные дизельные автобусы можно заменить на тихие экологичные троллейбусы хоть завтра, технологии это позволяют.';
-                } else {
-                    res += (trolleyFraction > 0?
-                        'Этот автобусный маршрут проходит под троллейбусными проводами на <b>' + trolleyFraction + '%</b>. ' :
-                        'Над этим автобусным маршрутом троллейбусных проводов нет. ') + 'К сожалению, текущий уровень развития технологий электротранспорта для нашего климата не позволяет легко заменить его на тихий и экологичный троллейбус.<p>В будущем, возможно, появятся пригодные для нашего климата электробусы, которые помогут нам избавиться от выхлопов дизеля.'
-                }
 
-                if (registryData && registryData.quantity) {
-                    var quantity = registryData.quantity,
-                        inclination = ((quantity % 10 == 1 && quantity != 11)? 'one' :
-                            (quantity % 10 > 1 && quantity % 10 < 5 && Math.floor(quantity / 10) != 1)? 'some' :
-                            'many');
-
-                    res += '<p>Здесь работает <b>' + quantity + '</b> ' + {
-                        bus : {
-                            one : 'автобус',
-                            some : 'автобуса',
-                            many : 'автобусов'
-                        },
-                        troll : {
-                            one : 'троллейбус',
-                            some : 'троллейбуса',
-                            many : 'троллейбусов'
-                        },
-                        tram : {
-                            one : 'трамвай',
-                            some : 'трамвая',
-                            many : 'трамваев'
-                        }
-                    }[type][inclination] + '. ';
-                    if(type == 'bus' && quantity) {
-                        res += 'В год ' + (quantity == 1? 'он выбасывает' : 'они выбасывают') + ' в воздух примерно <b>' + quantity * 3 + ' т</b> опасных газов (CO, оксидов серы и азота).';
-                    }
-                }
-
-                return res;
-            }
-
-            if(!freqs[route]) {
-                res += 'Нет данных о частоте движения';
+            if(type == 'troll') {
+                res += 'Это троллейбусный маршрут. Троллейбус экологичен, чист и бесшумен.';
+            } else if(type == 'tram') {
+                res += 'Это трамвайный маршрут. Трамвай экологичен, чист и при правильной прокладке путей практически бесшумен.';
+            } else if(isExpress && trolleyFraction >= 50) {
+                res += 'Это автобус-экспресс. <b>' + trolleyFraction + '%</b> его трассы проходят под троллейбусными проводами, но чтобы он мог обгонять поостановочные троллейбусы, нужно повесить вторую пару проводов. Это будет несложно, так как питающие подстанции и кабели уже на месте, но по формальному критерию нашей карты (ни метра новых проводов) этот маршрут не подходит.';
+            } else if(isSmall && trolleyFraction >= 50) {
+                res += 'На этом автобусном маршруте работают микроавтобусы малого класса. Такие редкоходящие маршруты с малым пассажиропотоком и есть экономическая ниша автобуса. Под троллейбусными проводами проходит <b>' + trolleyFraction + '%</b> его трассы, но заменять микроавтобусы на большие троллейбусы может быть экономически нецелесообразно. К тому же электробус такого размера, пригодный для нашего климата, вероятно, появится раньше полноразмерного.';
+            } else if(isPrivate && trolleyFraction >= 50) {
+                res += 'Этот автобусный маршрут на <b>' + trolleyFraction + '%</b> проходит под троллейбусными проводами. Грязные дизельные автобусы можно заменить на тихие экологичные троллейбусы хоть завтра, технологии это позволяют.<br/>Этот маршрут обслуживается частным перевозчиком, однако есть процедура передачи частных маршрутов Мосгортрансу: частник взамен получает возможность открыть новый автобусный маршрут c похожими параметрами.';
+            } else if(trolleyFraction >= 50) {
+                res += 'Этот автобусный маршрут на <b>' + trolleyFraction + '%</b> проходит под троллейбусными проводами. Грязные дизельные автобусы можно заменить на тихие экологичные троллейбусы хоть завтра, технологии это позволяют.';
             } else {
-                var stateManager = this._stateManager,
-                    timeSettings = stateManager.getTimeSettings(),
-                    currentDay = Object.keys(freqs[route]).filter(function(dow) { return dow & timeSettings.dow; }),
-                    timetable = [];
+                res += (trolleyFraction > 0?
+                    'Этот автобусный маршрут проходит под троллейбусными проводами на <b>' + trolleyFraction + '%</b>. ' :
+                    'Над этим автобусным маршрутом троллейбусных проводов нет. ') + 'К сожалению, текущий уровень развития технологий электротранспорта для нашего климата не позволяет легко заменить его на тихий и экологичный троллейбус.<p>В будущем, возможно, появятся пригодные для нашего климата электробусы, которые помогут нам избавиться от выхлопов дизеля.'
+            }
 
-                if(!freqs[route][currentDay]) {
-                    res += 'Маршрут сегодня не ходит';
-                } else {
-                    res += '<div class="timetable">';
-                    for (var h = timeSettings.fromHour; h <= timeSettings.toHour; h++) {
-                        res += '<div class="hour">' + (h % 24) + '<div class="minutes">' +
-                            (freqs[route][currentDay][h]?
-                                Array.apply(Array, Array(Math.round(freqs[route][currentDay][h]))).map(function() { return '.'; }).join('') :
-                                '') +
-                            '</div></div>';
-                        //timetable.push('в ' + h + ' ч — <b>' + (freqs[route][currentDay][h] || 'нет рейсов') + '</b>');
+            if (registryData && registryData.quantity) {
+                var quantity = registryData.quantity,
+                    inclination = ((quantity % 10 == 1 && quantity != 11)? 'one' :
+                        (quantity % 10 > 1 && quantity % 10 < 5 && Math.floor(quantity / 10) != 1)? 'some' :
+                        'many');
+
+                res += '<p>Здесь работает <b>' + quantity + '</b> ' + {
+                    bus : {
+                        one : 'автобус',
+                        some : 'автобуса',
+                        many : 'автобусов'
+                    },
+                    troll : {
+                        one : 'троллейбус',
+                        some : 'троллейбуса',
+                        many : 'троллейбусов'
+                    },
+                    tram : {
+                        one : 'трамвай',
+                        some : 'трамвая',
+                        many : 'трамваев'
                     }
-                    res += '</div>'; //Частота движения (рейсов в час):<br/>' + timetable.join('<br/>');
+                }[type][inclination] + '. ';
+                if(type == 'bus' && quantity) {
+
+                    var wasteCoefficient = registryData.class? registryData.class.reduce(function(p, c) {
+                        return p + { 's' : 0.9, 'm' : 2.2, 'l' : 3, 'xl' : 3.5 }[c];
+                    }, 0) / registryData.class.length : 3;
+
+                    res += 'В год ' + (quantity == 1? 'он выбасывает' : 'они выбасывают') + ' в воздух примерно <b>' + Math.round(quantity * wasteCoefficient) + ' т</b> опасных газов (CO, оксидов серы и азота).';
                 }
             }
 
-            registryData && (res += 'Перевозчик: <b>' + VENDOR_NAMES[registry[route].vendor] + '</b>');
             return res;
         }, this);
     },
@@ -334,7 +315,7 @@ extend(DataManager.prototype, {
 
                 return r + (busRegistry &&
                     trolleyUtils.getTrolleyFraction(route, lengths, that._actuals.routes, trolleyWires) >= 0.5 &&
-                    busRegistry.vendor == 'mgt' &&
+                    busRegistry.class.join() != 's' &&
                     !busRegistry.express?
                         busRegistry.quantity :
                         0);

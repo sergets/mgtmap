@@ -1,37 +1,30 @@
 define([
     'vow',
     'utils/route',
-    'data/colorings/default',
-    'data/colorings/type',
-    'data/colorings/black',
-    'data/colorings/vendor',
-    'data/colorings/troll-project',
-    'data/colorings/wires'
+    'data/colorings/katz',
+    'data/colorings/now',
+    'data/colorings/sobyanin'
 ], function(
     vow,
     routeUtils,
-    defaultColoring,
-    typeColoring,
-    blackColoring,
-    vendorColoring,
-    trollProjectColoring,
-    wiresColoring
+    katzColoring,
+    nowColoring,
+    sobyaninColoring
 ) {
 
 var colorings = {
-    default : defaultColoring,
-    type : typeColoring,
-    black : blackColoring,
-    vendor : vendorColoring,
-    'troll-project' : trollProjectColoring,
-    wires : wiresColoring
+    katz : katzColoring,
+    now : nowColoring,
+    sobyanin : sobyaninColoring
 };
+
+var DEFAULT_COLORING = 'now';
 
 return {
     shouldRecalc : function(state, updatedStateFields) {
-        var coloring = colorings[state.customColoringId || 'default'];
+        var coloring = colorings[state.customColoringId || DEFAULT_COLORING];
 
-        return updatedStateFields.indexOf('customColoringId') != -1 || 
+        return updatedStateFields.indexOf('customColoringId') != -1 ||
             coloring.shouldRecalcOutlinesOn.some(function(stateField) {
                 return updatedStateFields.indexOf(stateField) != -1;
             });
@@ -40,7 +33,7 @@ return {
     deps : ['widths', 'routes'],
 
     calc : function(data, state, widths, routes) {
-        var coloring = colorings[state.customColoringId || 'default'];
+        var coloring = colorings[state.customColoringId || DEFAULT_COLORING];
 
         return vow.resolve(Object.keys(data.segments).reduce(function(outlines, segmentId) {
             var outlinesByRoute = (routes[segmentId] || []).reduce(function(outlinesByRoute, route) {
@@ -52,7 +45,7 @@ return {
                     return outlinesByRoute;
                 }, {}),
                 firstRoute = Object.keys(outlinesByRoute)[0],
-                hasDifferent = Object.keys(outlinesByRoute).some(function(route) { 
+                hasDifferent = Object.keys(outlinesByRoute).some(function(route) {
                     return outlinesByRoute[route] != outlinesByRoute[firstRoute];
                 });
 
