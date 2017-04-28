@@ -6109,6 +6109,13 @@
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
+	"Т13" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Трубная пл.",
+		"length" : 16.0,
+		"quantity" : 13,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
 	"Тб 14" : {
 		"endpoints" : "Платф. Северянин&nbsp;— Электрозаводский мост",
 		"length" : 30.4,
