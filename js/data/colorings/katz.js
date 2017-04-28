@@ -5,9 +5,8 @@ define([
 ) {
     return {
         getRouteColor : function(route, data, state, actuals) {
-            var trolleyFraction = trolleyUtils.getTrolleyFraction(route, actuals.lengths, actuals.actualRoutes, data.trolleyWires);
-
-            var totalLength = 0,
+            var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, actuals.lengths, actuals.actualRoutes, data.trolleyWires) * 100),
+                totalLength = 0,
                 trolleyLength = 0;
 
             Object.keys(actuals.lengths).forEach(function(segmentId) {
@@ -30,7 +29,11 @@ define([
             if(route.indexOf('Тб') != -1) {
                 return '#4d2';
             }
-            return 'rgb(' + Math.round(34 * trolleyFraction) + ',' + Math.round(187 * trolleyFraction) + ',' + Math.round(255 * trolleyFraction) + ')';
+//          return 'rgb(' + Math.round(34 * trolleyFraction) + ',' + Math.round(187 * trolleyFraction) + ',' + Math.round(255 * trolleyFraction) + ')';
+            if(trolleyFraction >= 50 && !(data.registry[route] && (data.registry[route].class.join() == 's' || data.registry[route].express))) {
+                return '#1bf';
+            }
+            return '#528';
         },
         getRouteOutlines : function(segmentId, route, data, state, actuals) {
             return trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)? '#af5' : '#999';

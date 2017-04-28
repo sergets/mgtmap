@@ -22,7 +22,6 @@ require([
     'worker/commands/renderTile',
     'worker/commands/renderHotspots',
     'worker/commands/getActuals'
-    //'worker/commands/getJunctionDataForTile'
 ], function(
     vow,
     initCommand,
@@ -30,7 +29,6 @@ require([
     renderTileCommand,
     renderHotspotsCommand,
     getActualsCommand
-    //getJunctionDataForTileCommand
 ) {
     var commands = {
         init : initCommand,
@@ -38,7 +36,6 @@ require([
         renderTile : renderTileCommand,
         renderHotspots : renderHotspotsCommand,
         getActuals : getActualsCommand
-        //getJunctionDataForTile : getJunctionDataForTileCommand
     };
         
     this.addEventListener('message', function(e) {

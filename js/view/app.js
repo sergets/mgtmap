@@ -34,7 +34,9 @@ extend(AppView.prototype, eventsEmitter);
 
 extend(AppView.prototype, {
     _init : function() {
-        // this._createControls();
+        this._createTopPane();
+        this._createControls();
+
         this._progressView = new ProgressView(this._map.getBackgroundPane());
         this._searchView = new SearchView('.sidebar', this._dataManager);
         this._settingsView = new SettingsView('body', this._stateManager.serialize());
@@ -57,6 +59,7 @@ extend(AppView.prototype, {
             .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
             .on('mouseover', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOver.bind(this))
             .on('mouseout', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOut.bind(this))
+            .on('click', '.mayor-option', this._onChangeColoring.bind(this))
             .on('click', '.route-card .close', this._onDeselectRoute.bind(this))
             //.on('click', '.deselect-all', this._onDeselectAllRoutes.bind(this));
 
@@ -77,84 +80,83 @@ extend(AppView.prototype, {
             }, this);
     },
 
-    /*_createControls : function() {
+
+    _createTopPane : function() {
+        var yMap = this._map.getMap();
+        this._topPane = $('<div class="top-pane"><h1>Сколько троллейбусов должно быть в Москве?</h1>' +
+                'Современные троллейбусы могут проходить до 50% маршрута без проводов. ' +
+                'Многие автобусные маршруты сейчас проходят под проводами и их можно сделать тихими и экологичными прямо завтра, ' +
+                'без нового строительства — нужно просто купить троллейбусы!' +
+            '</div>');
+        this._mayorPane = $('<div class="mayor-selector">' +
+                    '<div class="mayor-option sobyanin">Как планируют в мэрии</div>' +
+                    '<div class="mayor-option now">Как сейчас</div>' +
+                    '<div class="mayor-option katz">Как надо</div>' +
+                '</div>');
+        this._countersPane = $('<div class="counters">' +
+            'Всего на маршрутах:<br>' +
+            '<span class="counter-temp">' +
+                '<div class="trolley">...</div>' +
+                '<div class="bus">...</div>' +
+            '</span>' +
+        '</div>');
+        yMap.panes.append('top-pane', new ymaps.pane.StaticPane(yMap, {
+            css : {
+                left: 0,
+                right: 0
+            },
+            zIndex : 203
+        }));
+        yMap.panes.get('top-pane').getElement().appendChild(this._topPane[0]);
+        yMap.panes.append('mayor-pane', new ymaps.pane.StaticPane(yMap, {
+            css : {
+                left: '50%',
+                top: this._topPane.height() + 'px',
+                //marginTop: '10px',
+                //marginLeft: '-250px'
+            },
+            zIndex : 603
+        }));
+        yMap.panes.get('mayor-pane').getElement().appendChild(this._mayorPane[0]);
+        yMap.panes.append('counters-pane', new ymaps.pane.StaticPane(yMap, {
+            css : {
+                left: '50%',
+                bottom: 0
+            },
+            zIndex : 204
+        }));
+        yMap.panes.get('counters-pane').getElement().appendChild(this._countersPane[0]);
+        $(window).resize(function() {
+            $(yMap.panes.get('mayor-pane').getElement()).css('top', this._topPane.height() + 'px');
+        }.bind(this));
+        vow.all([
+            this._dataManager.getWholeTrollNumber(),
+            this._dataManager.getWholeBusNumber(),
+            this._dataManager.getEcoBusNumber(),
+        ]).spread(function(trolls, buses, ecobuses) {
+            $('.counter-temp').remove();
+            $('.counters').append([
+                $('<span/>').addClass('counter-sobyanin').append([
+                    $('<div/>').addClass('counter trolley').html(0),
+                    $('<div/>').addClass('counter bus').html(trolls + buses)
+                ]),
+                $('<span/>').addClass('counter-now').append([
+                    $('<div/>').addClass('counter trolley').html(trolls),
+                    $('<div/>').addClass('counter bus').html(buses)
+                ]),
+                $('<span/>').addClass('counter-katz').append([
+                    $('<div/>').addClass('counter trolley').html(trolls + ecobuses),
+                    $('<div/>').addClass('counter bus').html(buses - ecobuses)
+                ])
+            ]);
+        });
+    },
+
+    _createControls : function() {
         var timeSettings = this._stateManager.getTimeSettings();
 
 
-
-        this._createListControl('7:00', {
-            position : {
-                top : 10,
-                right : 90
-            }
-        }, Array.apply([], Array(24)).reduce(function(res, _, i) {
-            res[i + 4] = (i + 4) % 24 + ':00';
-            return res;
-        }, {}), function(val) {
-            this.trigger('time-settings-updated', { fromHour : +val });
-        }, this);
-
-        this._createListControl('24:00', {
-            position : {
-                top : 10,
-                right : 10
-            }
-        }, Array.apply([], Array(24)).reduce(function(res, _, i) {
-            res[i + 4] = (i + 5) % 24 + ':00';
-            return res;
-        }, {}), function(val) {
-            this.trigger('time-settings-updated', { toHour : +val });
-        }, this);
-
-        this._createListControl('x1', {
-            position : {
-                top : 45,
-                right : 10
-            }
-        }, {
-            "0.25" : 'x0.25',
-            "0.5" : 'x0.5',
-            "1" : 'x1',
-            "2" : 'x2',
-            "3" : 'x3',
-            "5" : 'x5'
-        },
-        function(val) {
-            this.trigger('width-factor-updated', +val);
-        }, this);
-
-        var colorings = {
-            "default" : 'обычные цвета',
-            "vendor" : 'по перевозчику',
-            "type" : 'по типу',
-            "black" : 'все чёрные'
-        }
-
-        this._createListControl(colorings[this._stateManager.getCustomColoringId() || ''] || this._stateManager.getCustomColoringId(), {
-            position : {
-                top : 115,
-                right : 10
-            }
-        }, colorings,
-        function(val) {
-            this.trigger('coloring-updated', val);
-        }, this);
-
-        var _this = this;
-
-        $('#dateForm')
-            .appendTo(this._map.getControlsPane())
-            .find('input')
-            .val((new Date()).toISOString().substr(0, 10))
-            .change(function() {
-                if(this.value) {
-                    var date = new Date(this.value),
-                        dow = 1 << ((date.getDay()? date.getDay() : 7) - 1);
-
-                    _this.trigger('time-settings-updated', { date : +date, dow : dow });
-                }
-            });
-
+        this._selectedRouteViews = {};
         //
     },
 
@@ -182,7 +184,7 @@ extend(AppView.prototype, {
             control.get(i).events.add('click', createEventListener(i));
         });
         this._map.getMap().controls.add(control, options);
-    },*/
+    },
 
     /*_onSaveSegment : function(e) {
         if(!this._stateManager.isAdminMode()) return;
@@ -355,6 +357,18 @@ extend(AppView.prototype, {
 
     hideProgress : function(val) {
         this._progressView.setVal(1).hide();
+    },
+
+    _onChangeColoring : function(e) {
+        var option = e.target,
+            newColoring = e.target.className.split(' ')[1];
+
+        $('body').removeClass('sobyanin katz now').addClass(newColoring);
+        $('#spinner').addClass('visible');
+
+        setTimeout(function() {
+            this._stateManager.setCustomColoringId(newColoring);
+        }.bind(this), 200);
     }
 });
 

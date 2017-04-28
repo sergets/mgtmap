@@ -24,9 +24,9 @@ var StateManager = function() {
         bounds :
         [[55.74, 37.55], [55.76, 37.65]];
     this._timeSettings = {
-        dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
-        fromHour : 7,
-        toHour : 24,
+        dow : 1, // ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
+        fromHour : 7, //(new Date()).getHours(),
+        toHour : 24, //(new Date()).getHours(),
         date : +new Date(new Date().toISOString().substring(0, 10))
     };
     //this._selectedRoutes = query.routes? query.routes.split(',') : [];
@@ -35,7 +35,7 @@ var StateManager = function() {
     // this._isAdminMode = 'admin' in query;
     this._isDebugMode = 'debug' in query,
     this._white = query.white || 0.7;
-    this._customColoringId = query.coloring || 'default';
+    this._customColoringId = query.coloring || 'now';
 
     this._isTouch = true; // 'ontouchstart' in window;
     this._isNarrow = window.innerWidth < 500;

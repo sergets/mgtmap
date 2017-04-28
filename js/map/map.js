@@ -33,7 +33,7 @@ var ANIMATION_DURATION = 300,
 
 var Map = function(dataManager, stateManager, worker) {
     this._map = new ymaps.Map('map', extend({
-        controls: ['zoomControl', 'geolocationControl'],
+        controls: [],
     }, {
         bounds : stateManager.getBounds()
     }), {
@@ -69,7 +69,10 @@ extend(Map.prototype, {
             dataManager = this._dataManager,
             that = this;
 
-        this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 10 } });
+        // this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+
+        map.controls.add('geolocationControl', { position : { right : 10, top : 10 } });
+        map.controls.add('zoomControl', { position : { right : 10, top : 50 } });
 
         map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
             zIndex : 200
