@@ -76,11 +76,11 @@ if(typeof importScripts == 'undefined') {
 }
 
 function collectDeps(deps, module, aliasMap) {
-    var decl = aliasMap.find(function(item) {
+    var decl = (aliasMap.filter(function(item) {
         return module.length == 2? 
             item[1] == module :
             item[0] == module; 
-    }).slice();
+    })[0] || []).slice();
     if(!decl) return deps;
     if(typeof decl[2] == 'function') {
         decl[2] = decl[2](ym) || [];

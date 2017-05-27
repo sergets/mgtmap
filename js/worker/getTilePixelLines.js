@@ -184,11 +184,10 @@ define([
 									var resPath = tileUtils.offsetLine(segmentUnshiftedCoords, curPosition);
 
 									tilePixelLines.push.apply(tilePixelLines, dashLines.map(function(line) {
-										return Object.assign({
-											coords : resPath,
-											color : colors[routeUtils.strip(route)] || '#ccc',
-											data : { id : id, route : routeUtils.strip(route) }
-										}, line);
+										line.coords || (line.coords = resPath);
+										line.color || (line.color = colors[routeUtils.strip(route)] || '#ccc');
+										line.data || (line.data = { id : id, route : routeUtils.strip(route) });
+										return line;
 									}));
 							}
 						}
