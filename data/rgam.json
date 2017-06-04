@@ -6151,6 +6151,13 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
+	"Т18" : {
+		"endpoints" : "Рижский вокзал&nbsp;— Стрельбищенский пер.",
+		"length" : 21.4,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
 	"Тб 19" : {
 		"endpoints" : "Крылатское&nbsp;— м.&nbsp;«Сокол»",
 		"length" : 25.7,
@@ -6396,6 +6403,13 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
+	"Т51" : {
+		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Измайловская»",
+		"length" : 9.6,
+		"quantity" : 14,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
 	"Тб 51" : {
 		"endpoints" : "Пл. Соловецких Юнг&nbsp;— м.&nbsp;«Измайловская»",
 		"length" : 9.6,
@@ -6537,6 +6551,13 @@
 		"vendor" : "mgt"
 	},
 	"Тб 71" : {
+		"endpoints" : "Каширское шоссе, 148&nbsp;— м.&nbsp;«Добрынинская»",
+		"length" : 35.7,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т71" : {
 		"endpoints" : "Каширское шоссе, 148&nbsp;— м.&nbsp;«Добрынинская»",
 		"length" : 35.7,
 		"quantity" : 23,
