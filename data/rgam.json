@@ -6130,6 +6130,13 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
+	"15" : {
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Лужнецкий пр.",
+		"length" : 29.8,
+		"quantity" : 19,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
 	"Тб м7к" : {
 		"endpoints" : "Карачаровский путепровод&nbsp;— м.&nbsp;«Лубянка»",
 		"length" : 18.6,
