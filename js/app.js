@@ -4,7 +4,7 @@ requirejs.config({
         jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
         vow : '//cdn.rawgit.com/dfilatov/vow/0.4.12/vow.min',
         'pretty-json-stringify' : '//cdn.rawgit.com/sergets/pretty-json-stringify/0.0.2/index',
-        ymaps : '//api-maps.yandex.ru/2.1/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'   
+        ymaps : '//api-maps.yandex.ru/2.1.50/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'   
     },
     shim : {
         ymaps : { exports : 'ymaps' }
