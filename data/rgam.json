@@ -400,7 +400,7 @@
 		"vendor" : "mgt"
 	},
 	"48" : {
-		"endpoints" : "Ледовый дворец&nbsp;— Живописная ул.",
+		"endpoints" : "Силикатный завод&nbsp;— Живописная ул.",
 		"length" : 22.9,
 		"quantity" : 10,
 		"class" : ["l", "xl"],
@@ -869,7 +869,7 @@
 		"vendor" : "autoline"
 	},
 	"818" : {
-		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— м.&nbsp;«Полежаевская»",
+		"endpoints" : "м.&nbsp;«Динамо»&nbsp;— Силикатный завод",
 		"length" : 16.3,
 		"quantity" : 6,
 		"class" : ["m"],
@@ -6131,7 +6131,7 @@
 		"vendor" : "mgt"
 	},
 	"15" : {
-		"endpoints" : "ВДНХ (южн.)&nbsp;— Лужнецкий пр.",
+		"endpoints" : "ВДНХ (южн.)&nbsp;— Новодевичий монастырь",
 		"length" : 29.8,
 		"quantity" : 19,
 		"class" : ["l"],
@@ -6677,6 +6677,13 @@
 		"vendor" : "mgt"
 	},
 	"Тб 88" : {
+		"endpoints" : "Просп. Буденного&nbsp;— Комсомольская пл.",
+		"length" : 10.8,
+		"quantity" : 7,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т88" : {
 		"endpoints" : "Просп. Буденного&nbsp;— Комсомольская пл.",
 		"length" : 10.8,
 		"quantity" : 7,

@@ -6,7 +6,8 @@ define([
     'data/colorings/type',
     'data/colorings/black',
     'data/colorings/vendor',
-    'data/colorings/troll-project'
+    'data/colorings/troll-project',
+    'data/colorings/wires'
 ], function(
     vow,
     extend,
@@ -15,7 +16,8 @@ define([
     typeColoring,
     blackColoring,
     vendorColoring,
-    trollProjectColoring
+    trollProjectColoring,
+    wiresColoring
 ) {
 
 var DEFAULT_WIDTH = 2,
@@ -27,7 +29,8 @@ var colorings = {
     type : typeColoring,
     black : blackColoring,
     vendor : vendorColoring,
-    'troll-project' : trollProjectColoring
+    'troll-project' : trollProjectColoring,
+    wires : wiresColoring
 };
 
 return function(data, state, updatedStateFields, oldActuals) {

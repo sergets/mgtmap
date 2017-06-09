@@ -68,9 +68,13 @@ define([
 						var outlinePath = offsetLine(generator, segmentUnshiftedCoords, opaqueOffset);
 
 						segmentOutlines[id] && Object.keys(segmentOutlines[id]).forEach(function(width) {
+							var outlineDescription = segmentOutlines[id][width];
+							if(!outlineDescription.color) {
+								outlineDescription = { color : outlineDescription, offset : 0 };
+							}
  							lines.push({
-								coords : outlinePath,
-								color : segmentOutlines[id][width],
+								coords : outlineDescription.offset? offsetLine(generator, segmentUnshiftedCoords, opaqueOffset + outlineDescription.offset * zoomWidthFactor) : outlinePath,
+								color : outlineDescription.color,
 								data : { id : id },
 								width : totalWidth - opaqueOffsetLeft - opaqueOffsetRight + 2 * width * zoomWidthFactor,
 								dashStyle : [],
