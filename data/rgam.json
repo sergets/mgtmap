@@ -1829,9 +1829,9 @@
 		"vendor" : "mgt"
 	},
 	"223" : {
-		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Первомайская»",
+		"endpoints" : "Камчатская ул.&nbsp;— м.&nbsp;«Измайловская»",
 		"length" : 11.0,
-		"quantity" : 11,
+		"quantity" : 19,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
@@ -6137,7 +6137,7 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
-	"Тб м7к" : {
+	"м7к" : {
 		"endpoints" : "Карачаровский путепровод&nbsp;— м.&nbsp;«Лубянка»",
 		"length" : 18.6,
 		"quantity" : 13,
@@ -6501,7 +6501,7 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
-	"Тб м7" : {
+	"м7" : {
 		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Лубянка»",
 		"length" : 33.4,
 		"quantity" : 20,
