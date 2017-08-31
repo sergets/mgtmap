@@ -1,7 +1,7 @@
 define(function() {
     return {
         getRouteColor : function(route, data, state) {
-            return data.registry && {
+            return data.registry && data.registry[route] && {
                 'autoline' : '#59c',
                 'tmp20' : '#871',
                 'alphagrant' : '#d22',
@@ -10,7 +10,7 @@ define(function() {
                 'gortaxi' : '#ff2',
                 'autocars' : '#000',
                 'transway' : '#f0f'
-            }[data.registry[route][vendor]] || '#ddd';
+            }[data.registry[route].vendor] || '#ddd';
         },
         getSegmentOutlines : function(segmentId, data, state) {
             return null;
