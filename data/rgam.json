@@ -728,6 +728,13 @@
 		"class" : ["s"],
 		"vendor" : "mgt"
 	},
+	"384" : {
+		"endpoints" : "Савёловский вокзал&nbsp;— м.&nbsp;«Динамо»",
+		"length" : 9.3,
+		"quantity" : 2,
+		"class" : ["s"],
+		"vendor" : "mgt"
+	},
 	"85" : {
 		"endpoints" : "Гостиницы ВДНХ&nbsp;— Рижский вокзал",
 		"length" : 24.1,
@@ -4160,6 +4167,13 @@
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
+	"507" : {
+		"endpoints" : "м.&nbsp;«Саларьево»&nbsp;— Переделкино Ближнее",
+		"length" : 22.0,
+		"quantity" : 12,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
 	"708" : {
 		"endpoints" : "Бирюлево-Западное&nbsp;— м.&nbsp;«Южная»",
 		"length" : 22.1,
@@ -4413,6 +4427,13 @@
 		"vendor" : "mgt"
 	},
 	"736" : {
+		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Строгино»",
+		"length" : 19.3,
+		"quantity" : 2,
+		"class" : ["l", "xl"],
+		"vendor" : "mgt"
+	},
+	"C11" : {
 		"endpoints" : "4-й м/р Митина&nbsp;— м.&nbsp;«Строгино»",
 		"length" : 19.3,
 		"quantity" : 2,
@@ -6221,6 +6242,13 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
+	"Т26" : {
+		"endpoints" : "Карачаровский путепровод&nbsp;— Автозаводский мост",
+		"length" : 27.9,
+		"quantity" : 23,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
 	"Тб 27" : {
 		"endpoints" : "Ветакадемия&nbsp;— м.&nbsp;«Таганская»",
 		"length" : 22.1,
@@ -6438,6 +6466,13 @@
 		"class" : ["l"],
 		"vendor" : "mgt"
 	},
+	"Т53" : {
+		"endpoints" : "Платф. Новогиреево&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 23.8,
+		"quantity" : 10,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
 	"Тб 54" : {
 		"endpoints" : "м.&nbsp;«Филевский Парк»&nbsp;— Белорусский вокзал",
 		"length" : 17.9,
@@ -6509,6 +6544,13 @@
 		"vendor" : "mgt"
 	},
 	"Тб 63к" : {
+		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Таганская»",
+		"length" : 28.3,
+		"quantity" : 15,
+		"class" : ["xl"],
+		"vendor" : "mgt"
+	},
+	"Т63" : {
 		"endpoints" : "138-й кв. Выхина&nbsp;— м.&nbsp;«Таганская»",
 		"length" : 28.3,
 		"quantity" : 15,
@@ -6614,6 +6656,13 @@
 		"vendor" : "mgt"
 	},
 	"Тб 78" : {
+		"endpoints" : "Вагоноремонтная ул.&nbsp;— Белорусский вокзал",
+		"length" : 29.0,
+		"quantity" : 15,
+		"class" : ["l"],
+		"vendor" : "mgt"
+	},
+	"Т78" : {
 		"endpoints" : "Вагоноремонтная ул.&nbsp;— Белорусский вокзал",
 		"length" : 29.0,
 		"quantity" : 15,
