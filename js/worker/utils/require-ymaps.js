@@ -1,4 +1,4 @@
-var SERVER = '//api-maps.yandex.ru/2.1.50/';
+var SERVER = '//api-maps.yandex.ru/2.1.56/';
 
 if(typeof importScripts == 'undefined') {
     define(['ymaps', function(ymaps) {
