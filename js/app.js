@@ -2,7 +2,7 @@ requirejs.config({
     baseUrl : 'js',
     paths : {
         jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
-        vow : '//cdn.rawgit.com/dfilatov/vow/0.4.12/vow.min',
+        vow : '//cdn.rawgit.com/dfilatov/vow/0.4.17/vow.min',
         'pretty-json-stringify' : '//cdn.rawgit.com/sergets/pretty-json-stringify/0.0.2/index',
         ymaps : '//api-maps.yandex.ru/2.1.50/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'   
     },
@@ -19,7 +19,8 @@ require([
     'state/manager',
     'data/manager',
     'map/map',
-    'view/app'
+    'view/app',
+    'utils/route',
 ], function(
     ym,
     $,
@@ -72,6 +73,20 @@ require([
         stateManager.on('selected-routes-updated', function(route) {
             appView.updateSelectedRoutes();
         });
+
+        tileWorker.on({
+            'progress' : function(e, progress) {
+                appView.showProgress(progress);
+            },
+            'ready' : function(e) {
+                appView.hideProgress();
+            },
+            'updated' : function() {
+                tileWorker.command('getActuals').then(function(actuals) {
+                    dataManager.setActuals(actuals);
+                })
+            }
+        });
         
         appView.on({
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
@@ -82,7 +97,7 @@ require([
             'select-segment-routes' : function(e, segmentId) { 
                 dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
                     stateManager.selectRoutes(routes.map(function(route) {
-                        return (route.indexOf('-') != 0) && route.replace(/^[<>]/, '');
+                        return routeUtils.notPhantom(route) && routeUtils.strip(route);
                     }).filter(Boolean));
                 });
             }

@@ -25,6 +25,7 @@ define([
 					});
 					res.push({ prop : 'strokeStyle', val : line.color });
 					res.push({ prop : 'lineWidth', val : line.width });
+					res.push({ prop : 'lineCap', val : line.lineCap || (line.dashStyle.length? 'butt' : 'round') });
 					res.push({ prop : 'lineDashOffset', val : line.dashOffset || 0 });
 					res.push({ cmd : 'setLineDash', args : [line.dashStyle] });
 					res.push({ cmd : 'stroke' });

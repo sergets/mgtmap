@@ -3,6 +3,7 @@ define([
     'jquery',
     'utils/extend',
     'view/route',
+    'view/progress',
     'vow',
     'utils/date',
     'utils/events-emitter'
@@ -11,6 +12,7 @@ define([
     $,
     extend,
     routeView,
+    ProgressView,
     vow,
     dateUtils,
     eventsEmitter
@@ -29,6 +31,7 @@ extend(AppView.prototype, eventsEmitter);
 extend(AppView.prototype, {
     _init : function() {
         this._createControls();
+        this._progressView = new ProgressView(this._map.getBackgroundPane());
         
         $(document)
             //.on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
@@ -52,7 +55,7 @@ extend(AppView.prototype, {
 
         this._selectedRouteViews = {};          
     
-        this._createListControl(
+        /*this._createListControl(
             ({ 6 : 'суббота', 0 : 'воскресенье' })[(new Date()).getDay()] || 'будни',
             {
                 float : 'right'
@@ -65,11 +68,11 @@ extend(AppView.prototype, {
                 this.trigger('time-settings-updated', { dow : +val });
             },
             this
-        );
+        );*/
 
-        this._createListControl((new Date()).getHours() + ':00', {
+        this._createListControl('7:00', {
             position : {
-                top : 45,
+                top : 10,
                 right : 90
             }
         }, Array.apply([], Array(24)).reduce(function(res, _, i) {
@@ -79,9 +82,9 @@ extend(AppView.prototype, {
             this.trigger('time-settings-updated', { fromHour : +val });
         }, this);
 
-        this._createListControl(((new Date()).getHours() + 1) + ':00', {
+        this._createListControl('24:00', {
             position : {
-                top : 45,
+                top : 10,
                 right : 10
             }
         }, Array.apply([], Array(24)).reduce(function(res, _, i) {
@@ -93,7 +96,7 @@ extend(AppView.prototype, {
 
         this._createListControl('x1', {
             position : {
-                top : 80,
+                top : 45,
                 right : 10
             }
         }, {
@@ -109,7 +112,7 @@ extend(AppView.prototype, {
         }, this);
 
         var colorings = {
-            "" : 'обычная',
+            "" : 'обычные цвета',
             "vendor" : 'по перевозчику',
             "type" : 'по типу',
             "black" : 'все чёрные'
@@ -117,7 +120,7 @@ extend(AppView.prototype, {
 
         this._createListControl(colorings[this._stateManager.getCustomColoringId() || ''] || this._stateManager.getCustomColoringId(), {
             position : {
-                top : 150,
+                top : 115,
                 right : 10
             }
         }, colorings,
@@ -127,13 +130,18 @@ extend(AppView.prototype, {
         
         var _this = this;
         
-        $('#dateForm').find('input')
-        .val((new Date()).toISOString().substr(0, 10))
-        .change(function() {
-            if(this.value) {
-                _this.trigger('time-settings-updated', { date : +new Date(this.value) });
-            }
-        });
+        $('#dateForm')
+            .appendTo(this._map.getControlsPane())
+            .find('input')
+            .val((new Date()).toISOString().substr(0, 10))
+            .change(function() {
+                if(this.value) {
+                    var date = new Date(this.value),
+                        dow = 1 << ((date.getDay()? date.getDay() : 7) - 1);
+                      
+                    _this.trigger('time-settings-updated', { date : +date, dow : dow });
+                }
+            });
 
         this.updateSelectedRoutes();
     },
@@ -226,7 +234,7 @@ extend(AppView.prototype, {
     },
 
     _onRouteMouseOut : function(e) {
-        this._map.unhighlightRoutes();
+        this._map.unhighlightRoutes([this._routeElemToRouteId(e.target)]);
     },
 
     _onRoutesHighlightedOnMap : function(e, data) {
@@ -313,6 +321,14 @@ extend(AppView.prototype, {
             });
         });*/
         this.updateSelectedRoutes();
+    },
+
+    showProgress : function(val) {
+        this._progressView.setVal(val).show();
+    },
+
+    hideProgress : function(val) {
+        this._progressView.setVal(1).hide();
     }
 });
 

@@ -3,6 +3,7 @@ define([
     'utils/extend',
     'vow',
     'utils/cache',
+    'utils/route',
     'utils/events-emitter',
     'map/worker-canvas-layer',
     'map/worker-hotspot-source',
@@ -12,6 +13,7 @@ define([
     extend,
     vow,
     Cache,
+    routeUtils,
     eventsEmitter,
     _,
     _,
@@ -32,11 +34,11 @@ var Map = function(dataManager, stateManager, worker) {
     this._worker = worker;
     this._dataManager = dataManager;
     this._stateManager = stateManager;
-    
-    this._selectionLayer = null;
-    this._pendingSelectionLayer = null;
+    this._tileCaches = {};
 
     this._currentSegmentRoutes = null;
+
+    this._selectionLayers = [];
 
     dataManager.on('data-updated', function() {
         this.getMap().balloon.close();
@@ -54,6 +56,7 @@ extend(Map.prototype, {
             that = this;
 
         this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+
         map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
             zIndex : 200
         }));
@@ -68,6 +71,13 @@ extend(Map.prototype, {
             },
             zIndex : 150
         }));
+        map.panes.append('background-html', new ymaps.pane.StaticPane(map, {
+            css : {
+                width: '100%',
+                height: '100%'
+            },
+            zIndex : 300
+        }));
 
         this._map.panes.get('mgtmap').getElement().style.transitionDuration = 'all ' + ANIMATION_DURATION/1000 + 's';
         ymaps.modules.require([
@@ -77,7 +87,7 @@ extend(Map.prototype, {
             WorkerCanvasLayer,
             WorkerHotspotSource
         ) {
-            var rendererLayer = that._rendererLayer = new WorkerCanvasLayer(worker, null, {
+            var rendererLayer = that._rendererLayer = new WorkerCanvasLayer(worker, null, that._tileCaches, {
                     tileTransparent : true,
                     pane : 'mgtmap'
                 }),
@@ -95,82 +105,141 @@ extend(Map.prototype, {
         map.balloon.events.add('close', this._onBalloonClosed, this);
     },
 
-    _createSelectionLayer : function(query, onReady) {
-        var that = this;
+    _dimRendererLayer : function() {
+        this._rendererLayer.getElement().style.opacity = 0.2;
+    },
 
-        ymaps.modules.require(['worker-canvas-layer'], function(WorkerCanvasLayer) {
-            if(that._pendingSelectionLayer) {
-                that._pendingSelectionLayer.events.remove('ready');
-                that._map.layers.remove(that._pendingSelectionLayer);
-                that._pendingSelectionLayer = null;
+    _restoreRendererLayer : function() {
+        this._rendererLayer.getElement().style.opacity = 1;
+    },
+
+    _getSelectionLayerDesc : function(query) {
+        var layerDesc;
+
+        this._selectionLayers.some(function(desc) {
+            if (desc.query == query) {
+                layerDesc = desc;
+                return true;
             }
-            var newSelectionLayer = that._pendingSelectionLayer = new WorkerCanvasLayer(that._worker, query, {
+        });
+
+        return layerDesc;
+    },
+
+    _showSelectionLayer : function(query) {
+        this._dimRendererLayer();
+        this._hideLastVisibleLayer();
+
+        var layerDesc = this._getSelectionLayerDesc(query),
+            selectionLayers = this._selectionLayers;
+
+        if(layerDesc) {
+            if(layerDesc.removingTimeout) {
+                clearTimeout(layerDesc.removingTimeout);
+                delete layerDesc.removingTimeout;
+            }
+            layerDesc.layer.getElement().style.opacity = 1;
+            if(selectionLayers.indexOf(layerDesc) != selectionLayers.length - 1) {
+                selectionLayers.splice(selectionLayers.indexOf(layerDesc), 1);
+                selectionLayers.push(layerDesc);
+            }
+        }
+        else {
+            var that = this;
+
+            ymaps.modules.require(['worker-canvas-layer'], function(WorkerCanvasLayer) {
+                var layer = new WorkerCanvasLayer(that._worker, query, that._tileCaches, {
                     tileTransparent : true,
                     pane : 'selection'
                 });
 
-            newSelectionLayer.events.once('ready', function() {
-                that._pendingSelectionLayer = null;
-                var oldSelectionLayer = that._selectionLayer;
+                that._map.layers.add(layer);
+                layer.getElement().style.opacity = 0;
+                layer.getElement().style.transition = 'opacity ease 0.3s';
+                selectionLayers.push({
+                    query : query,
+                    layer : layer 
+                });
 
-                that._selectionLayer = newSelectionLayer;
-                newSelectionLayer.getElement().style.opacity = 1;
-                if(oldSelectionLayer) {
-                    oldSelectionLayer.getElement().style.opacity = 0;
-                    setTimeout(function() {
-                        that._map.layers.remove(oldSelectionLayer);
-                    }, ANIMATION_DURATION);
-                }
-                onReady && onReady();
+                setTimeout(function() {
+                    layer.getElement().style.opacity = 1;
+                }, 10);
             });
-
-            that._map.layers.add(newSelectionLayer);
-
-            var layerElem = newSelectionLayer.getElement();
-
-            layerElem.style.transition = 'all ' + ANIMATION_DURATION/1000 + 's';
-            layerElem.style.opacity = 0;
-        });
+        }
     },
 
-    _removeSelectionLayer : function() {
-        var that = this,
-            oldSelectionLayer = this._selectionLayer;
+    _removeSelectionLayer : function(query) {
+        var map = this._map,
+            selectionLayers = this._selectionLayers,
+            layerDesc = this._getSelectionLayerDesc(query);
 
-        if(that._pendingSelectionLayer) {
-            that._pendingSelectionLayer.events.remove('ready');
-            that._map.layers.remove(that._pendingSelectionLayer);
-            that._pendingSelectionLayer = null;
-        }
-
-        this._selectionLayer = null;
-
-        if(oldSelectionLayer) {
-            oldSelectionLayer.getElement().style.opacity = 0;
-            setTimeout(function() {
-                that._map.layers.remove(oldSelectionLayer);
+        if(layerDesc) {
+            layerDesc.layer.getElement().style.opacity = 0;
+            layerDesc.removingTimeout = setTimeout(function() {
+                map.layers.remove(layerDesc.layer);
+                selectionLayers.splice(selectionLayers.indexOf(layerDesc), 1);
             }, ANIMATION_DURATION);
         }
+
+        this._showLastVisibleLayer();
+    },
+
+    _clearSelectionLayers : function() {            
+        this._selectionLayers.filter(function(layerDesc) {
+            return !layerDesc.removingTimeout;
+        }).forEach(function(layerDesc) {
+            this._removeSelectionLayer(layerDesc.query);
+        }, this);
+    },
+
+    _hideLastVisibleLayer : function() {
+        var visibleLayers = this._selectionLayers.filter(function(layerDesc) {
+                return !layerDesc.removingTimeout;
+            }),
+            lastVisibleLayer = visibleLayers[visibleLayers.length - 1];
+
+        if(lastVisibleLayer) {
+            lastVisibleLayer.layer.getElement().style.opacity = 0;
+        } 
+    },
+
+    _showLastVisibleLayer : function() {
+        var visibleLayers = this._selectionLayers.filter(function(layerDesc) {
+                return !layerDesc.removingTimeout;
+            }),
+            lastVisibleLayer = visibleLayers[visibleLayers.length - 1];
+
+        if(lastVisibleLayer) {
+            lastVisibleLayer.layer.getElement().style.opacity = 1;
+        }
+        else {
+            this._restoreRendererLayer();
+        }
+    },
+
+    _getIntersectionRoutes : function(segmentId) {
+        return this._dataManager.getActualRoutesForSegment(segmentId).then(function(routes) {
+            if(!this._currentSegmentRoutes || !routes) {
+                return;
+            }
+
+            var currentSegmentRoutes = this._currentSegmentRoutes;               
+                
+            return routes.map(function(route) {
+                var routeName = routeUtils.strip(route);
+                return routeUtils.notPhantom(route) && currentSegmentRoutes.indexOf(routeName) !== -1 && routeName;
+            }).filter(Boolean);
+        }, this);
     },
 
     _onHotspotMouseover : function(e) {
         if(this._currentSegmentRoutes) {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
-            this._dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
-                if(!this._currentSegmentRoutes || !routes) {
-                    return;
-                }
-
-                var currentSegmentRoutes = this._currentSegmentRoutes,               
-                    routesToHighlight = routes.map(function(route) {
-                        var routeName = route.replace(/^[<>]/, '');
-                        return currentSegmentRoutes.indexOf(routeName) !== -1 && routeName;
-                    }).filter(Boolean)
-
-                if(routesToHighlight.length) { 
-                    this.trigger('highlight-routes', { routes : routesToHighlight });
-                    this.highlightRoutes(routesToHighlight);
+            this._getIntersectionRoutes(segmentId).done(function(routes) {
+                if(routes && routes.length && routes.length < this._currentSegmentRoutes.length) { 
+                    this.trigger('highlight-routes', { routes : routes });
+                    this.highlightRoutes(routes);
                     this._routesHovered = true;
                 }
             }, this);
@@ -178,13 +247,17 @@ extend(Map.prototype, {
     },
 
     _onHotspotMouseout : function(e) {
-        if(!this._currentSegmentRoutes || !this._routesHovered) {
-            return;
-        }
+        if(this._currentSegmentRoutes && this._routesHovered) {
+            var segmentId = e.get('activeObject').getProperties().segmentId;
 
-        this.trigger('unhighlight-routes');
-        this.unhighlightRoutes();
-        this._routesHovered = false;
+            this._getIntersectionRoutes(segmentId).done(function(routes) {
+                if(routes) { 
+                    this.trigger('unhighlight-routes', { routes : routes });
+                    this.unhighlightRoutes(routes);
+                    this._routesHovered = false;
+                }
+            }, this);
+        }
     },
 
     _onHotspotClicked : function(e) {
@@ -193,8 +266,9 @@ extend(Map.prototype, {
             segmentId = e.get('activeObject').getProperties().segmentId;
 
         dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
-            return vow.all(routes.reduce(function(res, i) {
-                var routeName = i.replace(/^[<>]/g, '');
+            routes = routes.filter(routeUtils.notPhantom).map(routeUtils.strip);
+
+            return vow.all(routes.reduce(function(res, routeName) {
                 res[routeName] = dataManager.getBusColor(routeName);
                 return res;
             }, {})).then(function(colors) {
@@ -205,27 +279,15 @@ extend(Map.prototype, {
     },
 
     _onBalloonOpen : function(segmentId, routes) {
-        var pane = this._map.panes.get('mgtmap').getElement();
-
-        this._onBalloonClosed();
-
         this._currentSegmentRoutes = routes
-            .filter(function(route) { return route.indexOf('-') !== 0; })
-            .map(function(route) { return route.replace(/^[<>]/, ''); });
-        this._createSelectionLayer(this._currentSegmentRoutes.join(';'), function() {
-            //pane.style.transition = 'opacity .3s';
-            pane.style.opacity = 0.2;
-        });
+            .filter(routeUtils.notPhantom)
+            .map(routeUtils.strip);
+        this._showSelectionLayer(this._currentSegmentRoutes.join(';'));
     },
 
-    _onBalloonClosed : function() {
-        var pane = this._map.panes.get('mgtmap').getElement();
-
+    _onBalloonClosed : function(e) {
+        this._clearSelectionLayers();
         this._currentSegmentRoutes = null;
-        this._removeSelectionLayer();
-        setTimeout(function() {
-            pane.style.opacity = 1;
-        });
     },
 
     closeBalloon : function() {
@@ -233,11 +295,11 @@ extend(Map.prototype, {
     },
 
     highlightRoutes : function(routes) {
-        this._createSelectionLayer(routes.join(';'));
+        this._showSelectionLayer(routes.join(';'));
     },
 
-    unhighlightRoutes : function() {
-        this._createSelectionLayer(this._currentSegmentRoutes.join(';'));
+    unhighlightRoutes : function(routes) {
+        this._removeSelectionLayer(routes.join(';'));
     },
 
     _onBoundsChanged : function(e) {
@@ -248,6 +310,14 @@ extend(Map.prototype, {
     
     getMap : function() {
         return this._map;
+    },
+
+    getBackgroundPane : function() {
+        return this._map.panes.get('background-html').getElement();
+    },
+    
+    getControlsPane : function() {
+        return this._map.panes.get('controls').getElement();
     }
 });
 

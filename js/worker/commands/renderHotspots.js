@@ -1,7 +1,9 @@
 define([
-    'worker/getTilePixelLines'
+    'worker/getTilePixelLines',
+    'worker/utils/tile-utils'
 ], function(
-    getTilePixelLines
+    getTilePixelLines,
+    TileUtils
 ) {
     return function(params, key) {
         var res = [],
@@ -30,8 +32,8 @@ define([
             return { result : res, key : key };
         });
     };
-});
 
-function tilePixelsToGlobalPixels(tile, point) {
-    return [point[0] + tile[0] * TILE_SIZE, point[1] + tile[1] * TILE_SIZE];
-}
+    function tilePixelsToGlobalPixels(tile, point) {
+        return [point[0] + tile[0] * TileUtils.TILE_SIZE, point[1] + tile[1] * TileUtils.TILE_SIZE];
+    }
+});

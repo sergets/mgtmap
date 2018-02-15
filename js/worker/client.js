@@ -21,6 +21,8 @@ var MapWorker = function(dataManager, stateManager) {
     this._isInited = false;
     this._isBusy = true;
     this._messageQueue = [];
+    this._commandsCount = 0;
+    this._cumulativeCommandsCount = 0;
 };
 
 extend(MapWorker.prototype, eventsEmitter);
@@ -47,6 +49,11 @@ extend(MapWorker.prototype, {
     },
     
     _onWorkerMessage : function(e) {
+        if(e.data.progress && e.data.progress !== this._progress) {
+            this._progress = e.data.progress;
+            this.trigger('progress', this._progress);
+        }
+
         if (e.data.state == 'instantiated') {
             this._postInitMessage();
         } else if (e.data.state == 'busy') {
@@ -59,7 +66,7 @@ extend(MapWorker.prototype, {
                 this.postMessage.apply(this, msg);
             }, this);
             this._messageQueue = [];
-            this.trigger('updated');
+            this.trigger('message', e.data);
         } else {
             this.trigger('message', e.data);
         }
@@ -75,14 +82,28 @@ extend(MapWorker.prototype, {
     },
 
     command : function(command, params) {
-        var key = Math.random() + '' + +(new Date()),
+        var that = this,
+            key = Math.random() + '' + +(new Date()),
+            isProgressableCommand = (command == 'render-tile'),
             deferred = vow.defer(),
             resultFn = function(e, data) {
                 if (data.key == key) {
+                    if(that._commandsCount > 0) {
+                        that._commandsCount--;
+                    }
+                    if(that._commandsCount == 0) {
+                        that._cumulativeCommandsCount = 0;
+                    }
+                    that._actualizeProgress();
+
                     this.un('message', resultFn);
                     deferred.resolve(data.result);
                 }
             };
+
+        this._commandsCount++;
+        this._cumulativeCommandsCount++;
+        this._actualizeProgress();
 
         this.on('message', resultFn);
         this.postMessage({
@@ -92,7 +113,17 @@ extend(MapWorker.prototype, {
         });
                         
         return deferred.promise();
+    },
+
+    _actualizeProgress : function() {
+        if(this._cumulativeCommandsCount) {
+            this.trigger('progress', (this._cumulativeCommandsCount - this._commandsCount) / this._cumulativeCommandsCount);
+        }
+        else {
+            this.trigger('ready');
+        }
     }
+
 });
 
 return MapWorker;

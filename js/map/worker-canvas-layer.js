@@ -7,7 +7,7 @@ define([
 ) {
 
 var TILE_SIZE = 256,
-    CACHE_SIZE = 100;
+    CACHE_SIZE = 1000;
 
 ymaps.modules.define('worker-canvas-layer', [
     'util.imageLoader',
@@ -20,11 +20,11 @@ ymaps.modules.define('worker-canvas-layer', [
     defineClass
 ) {
     var WorkerCanvasLayer = defineClass(
-        function(worker, query) {
+        function(worker, query, caches) {
             var layerId = Math.random(),
                 canvas = document.createElement('canvas'),
                 ctx = canvas.getContext("2d"),
-                tileCaches = this._tileCaches = {};
+                tileCaches = this._tileCaches = caches;
 
             this._layerId = layerId;
             this._query = query;
@@ -32,6 +32,7 @@ ymaps.modules.define('worker-canvas-layer', [
             canvas.width = TILE_SIZE;
             canvas.height = TILE_SIZE;
             ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
 
             imageLoader.proxy.add({
                 matchUrl : function(url) { return url.indexOf('worker:' + layerId + '?') != -1; },
@@ -75,7 +76,7 @@ ymaps.modules.define('worker-canvas-layer', [
                 this,
                 [
                     'worker:' + layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join(',')
-                ].concat([].slice.call(arguments, 2))
+                ].concat([].slice.call(arguments, 3))
             );
         },
         Layer,

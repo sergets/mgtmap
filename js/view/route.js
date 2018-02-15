@@ -1,14 +1,16 @@
 define([
     'jquery',
-    'vow'
+    'vow',
+    'utils/route'
 ], function(
     $,
-    vow
+    vow,
+    routeUtils
 ) {
 
 return function(route, dataManager) {
-    var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
-        routeCleared = route.replace(/^(Тб|Тм) /, ''),
+    var type = routeUtils.getType(route);
+        routeCleared = routeUtils.clearType(route),
         view = $('<div/>')
             .addClass('route-card')
             .append($('<div/>')

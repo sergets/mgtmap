@@ -35,6 +35,8 @@ body {
     line-height: 19px;
     text-align: center;
     cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
     transition: all ease .3s;
     user-select: none;
 }
@@ -47,17 +49,17 @@ body {
 
 .trolley {
     background-color: #1e90ff;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJzY2FsZSgwLjgpIiBmaWxsPSIjZmZmIiBkPSJNMTYgMTkuNDloMy4yMTZ2LTkuMTI0SDE2djkuMTIzem0tNC41MjcgMGgzLjIxOHYtOS4xMjRoLTMuMjE3djkuMTIzem0tOC45NDgtNS4zOTNoNy42NHYtMy43M2gtNy42NHYzLjczem00LjAwOCA4LjM4NWMtMS4xMjIgMC0yLjAzMi0uODM2LTIuMDMyLTEuODY1IDAtMS4wMjguOTEtMS44NjMgMi4wMzMtMS44NjMgMS4xMjUgMCAyLjAzNy44MzUgMi4wMzcgMS44NjMgMCAxLjAzLS45MTIgMS44NjUtMi4wMzcgMS44NjV6bTEzLjk5LTUuMzkydi02LjcyNEwxOC4wNiA4LjExSDE0LjdWNi45MjZoLTEuMjg3bC00LTMuNjQyLS4xMzItLjEyTDYuNjIzLjc0NyA1LjgwNCAwaC0xLjg1TDcuMzQgMy4wODNsNC4yMjUgMy44NDNoLTEuODZMNS43IDMuMjg0bC0uMTk3LS4xOEwyLjkxMy43NDUgMi4wOSAwSC4yNGwzLjYxIDMuMjg0IDQuMDAzIDMuNjQySDYuNTVWOC4xMUgwdjIuMjU2aDEuMjE3djMuNzNIMHY3LjU1MmgyLjE0OGMtLjA5My0uMzM1LS4xNC0uNjgtLjE0LTEuMDMgMC0uNTYyLjEyLTEuMTA4LjM2LTEuNjIyLjIyNy0uNDk3LjU1NS0uOTQyLjk3LTEuMzIyLjQyLS4zODIuOTA1LS42ODIgMS40NDYtLjg5Mi41Ni0uMjE3IDEuMTU0LS4zMjcgMS43NjgtLjMyN3YxLjA5Yy0xLjg0OC4wMDYtMy4zNDMgMS4zNzgtMy4zNDMgMy4wNzIgMCAxLjY5NyAxLjUgMy4wNzMgMy4zNSAzLjA3MyAxLjQ2IDAgMi43LS44NTIgMy4xNjItMi4wNDJoMTAuODAydi0yLjE2NGgxLjMwN1YxNy4wOWgtMS4zMDZ6Ii8+PC9zdmc+');
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMHYuN2w2LjMgNS42SDMuNnYxSDB2MS4yaC40djUuOEgwdjQuM2gyYTMgMyAwIDAgMSAzLTMgMyAzIDAgMCAxIDMgM2g3LjRsMi41LS40Yy41LTcuMy0xLjYtMTAuOS0xLjYtMTAuOUgxM3YtMWgtMi4zTDMuOCAwSDIuMWw3LjEgNi4zSDhMLjggMEgwem0xNiA4LjRjLjQgMS43IDEgMi45IDEuNCA2LjZsLTEuMy0uNC0uMS02LjJ6bS0xNC42LjFIOHY1LjhIMS40VjguNXptNy41IDBoMi44djguOUg5VjguNXptMy42IDBoMi44djguOWgtMi44VjguNXptLTcuNiA3LjZhMi41IDIuNSAwIDAgMC0yLjQgMi41QTIuNSAyLjUgMCAwIDAgNC45IDIxYTIuNSAyLjUgMCAwIDAgMi41LTIuNEEyLjUgMi41IDAgMCAwIDUgMTZ6bTAgMS4xYTEuMyAxLjMgMCAwIDEgMS40IDEuNCAxLjMgMS4zIDAgMCAxLTEuNCAxLjMgMS4zIDEuMyAwIDAgMS0xLjMtMS4zQTEuMyAxLjMgMCAwIDEgNSAxNy4yeiIvPjwvc3ZnPg==');
 }
 
 .bus {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIHRyYW5zZm9ybT0ic2NhbGUoMC44KSB0cmFuc2xhdGUoMCw4KSIgZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjZmZmIiBkPSJNMTYgMTEuMzhoMy4yMTZWMi4yNTVIMTZ2OS4xMjN6bS00LjUyNyAwaDMuMjE4VjIuMjU1aC0zLjIxN3Y5LjEyM3pNMi41MjUgNS45ODVoNy42NHYtMy43M2gtNy42NHYzLjczem00LjAwOCA4LjM4NWMtMS4xMjIgMC0yLjAzMi0uODM1LTIuMDMyLTEuODYzIDAtMS4wMy45MS0xLjg2NCAyLjAzMy0xLjg2NCAxLjEyNSAwIDIuMDM3LjgzNSAyLjAzNyAxLjg2NCAwIDEuMDI4LS45MTIgMS44NjQtMi4wMzcgMS44NjR6bTEzLjk5LTUuMzlWMi4yNTZMMTguMDYgMEgwdjIuMjU2aDEuMjE3djMuNzNIMHY3LjU1MmgyLjE0OGMtLjA5My0uMzM2LS4xNC0uNjgtLjE0LTEuMDMgMC0uNTYzLjEyLTEuMTA4LjM2LTEuNjIyLjIyNy0uNDk3LjU1NS0uOTQyLjk3LTEuMzIzLjQyLS4zODIuOTA1LS42OCAxLjQ0Ni0uODkuNTYtLjIxOCAxLjE1NC0uMzI4IDEuNzY4LS4zMjh2MS4wOWMtMS44NDguMDA2LTMuMzQzIDEuMzc3LTMuMzQzIDMuMDcyIDAgMS42OTcgMS41IDMuMDcyIDMuMzUgMy4wNzIgMS40NiAwIDIuNy0uODUyIDMuMTYyLTIuMDQyaDEwLjgwMnYtMi4xNjRoMS4zMDdWOC45OGgtMS4zMDZ6Ii8+PC9zdmc+');
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgNy4zdjEuMmguNHY1LjNIMHY0LjhoMmEzIDMgMCAwIDEgMy0zIDMgMyAwIDAgMSAzIDNoOGMxIDAgMS40IDAgMS42LS41di0yLjhjMC0xLS43LTEtLjctMWwtLjMtNWMuNS0uMi4zLS43LjMtLjd2LS44YzAtLjYtLjYtLjUtLjYtLjVIMHptMS41IDEuMmg2LjR2NS4ySDEuNVY4LjV6bTcuNCAwaDIuOXY4LjhIOC45VjguNXptMy42IDBoMi45djguOGgtMi45VjguNXpNNSAxNmEyLjUgMi41IDAgMCAwLTIuNSAyLjRBMi41IDIuNSAwIDAgMCA1IDIxYTIuNSAyLjUgMCAwIDAgMi40LTIuNUEyLjUgMi41IDAgMCAwIDUgMTYuMXptMCAxLjFhMS4zIDEuMyAwIDAgMSAxLjMgMS4zQTEuMyAxLjMgMCAwIDEgNSAyMGExLjMgMS4zIDAgMCAxLTEuNC0xLjRBMS4zIDEuMyAwIDAgMSA1IDE3LjJ6Ii8+PC9zdmc+');
     background-color: black;
 }
 
 .tram {
     background-color: red;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNGRkYiIHRyYW5zZm9ybT0ic2NhbGUoMC44KSB0cmFuc2xhdGUoMCwgMykiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZD0iTTkuMjc1IDE5LjM1YzAtLjE5Ni0uMDQtLjM4Ni0uMTEtLjU2LS4yNS0uNjE3LS44OTUtMS4wNTctMS42NTUtMS4wNTdzLTEuNDA1LjQ0LTEuNjU1IDEuMDU2Yy0uMDcuMTczLS4xMS4zNjMtLjExLjU2IDAgLjg5Mi43OSAxLjYyIDEuNzY1IDEuNjIuOTc0IDAgMS43NjUtLjcyOCAxLjc2NS0xLjYyIi8+PHBhdGggZD0iTTIuNjE4IDIwLjk3Yy45NzYgMCAxLjc2Ni0uNzI1IDEuNzY2LTEuNjIgMC0uMTk3LS4wMzgtLjM4Ni0uMTEtLjU2LS4yNS0uNjE3LS44OTYtMS4wNTctMS42NTYtMS4wNTctLjk3NSAwLTEuNzY0LjcyNS0xLjc2NCAxLjYxNyAwIC4xMTQuMDEyLjIyNS4wMzYuMzMyLjE2Ny43MzQuODc3IDEuMjg3IDEuNzI4IDEuMjg3Ii8+PHBhdGggZD0iTS4wODIgMjIuNzMyaDIxLjI2NXYtMS4yNEguMDgyIi8+PHBhdGggZD0iTTE2LjY2NSAxNy4yOThoMy4zM1Y4aC0zLjMzdjkuMjk4em0tNC42ODQgMGgzLjMzVjhoLTMuMzN2OS4yOTh6bS05LjI2LTUuNDM2aDcuOTFWOEgyLjcydjMuODYyem0yLjEzNi04LjA5NGwyLjY1OC0xLjY1IDIuNjYgMS42NS0yLjY2IDEuNjUtMi42NTgtMS42NXptMTYuNDk0IDExLjA1VjhsLTIuNTUyLTIuMzM3SDkuNTJsMi4yMzItMS4zODRjLjE4NS0uMTE3LjI5Ni0uMzA4LjI5Ni0uNTEzIDAtLjIwNi0uMTEtLjM5Ny0uMjk2LS41MTJMNy44OTIuODZjLS4yMjgtLjE0LS41My0uMTQtLjc1NSAwTDMuMjc1IDMuMjU3Yy0uMTg0LjExNS0uMjk1LjMwNi0uMjk1LjUxMiAwIC4yMDQuMTEuMzk1LjI5NS41MWwyLjIzMiAxLjM4NC01LjQyNS4wMDR2Mi4zMzhMMS4zNjYgOHYzLjg2MkguMDgydjUuOTEyYy41NTMtLjc0MiAxLjQ4LTEuMjMgMi41MzMtMS4yMzNoNC44OTNjMS42OTIgMCAzLjA3IDEuMjYzIDMuMDcgMi44MSAwIC4xMTQtLjAwOC4yMjMtLjAyMi4zM0gyMS4zNVYxNy4zaDEuMzV2LTIuNDhoLTEuMzV6Ii8+PC9nPjwvc3ZnPg==');
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYuMyAxLjRIMy43djFINmw0LjIgMi4zLTQgMi4zSDB2Mi40aDYuNnY1SDB2NGgxNS4xYzIuNy0uMyAzLjEtMS40IDIuNy0zLjUtLjctMy4xLTEtNy44LTMuNi03LjhoLTZsNC0yLjRMOCAyLjRoMnYtMUg2LjN6bTEuNiA3aDMuNnY5LjNIOHptNS43LjFjLjggMCAxLjQuMSAxLjkuNi41LjYgMSAzLjQgMSA0LjMtMi43IDAtMy42LjUtMy44LTEuNGwtLjItM2MwLS40LjUtLjQgMS4xLS40ek0uMiAxOC43YTEuOCAxLjggMCAwIDAgMy42IDB6bTMuOSAwdjFoM3YtMXptMy4zIDBhMS44IDEuOCAwIDAgMCAzLjYgMHpNMCAyMS4xdjFoMTYuOHYtMXoiLz48L3N2Zz4=');
 }
 
 .route, .antiroute {
@@ -164,14 +166,10 @@ body {
 .sidebar {
     position: absolute;
     top: 0;
-    left: 30px;
-<<<<<<< HEAD
-    width: 350px;
-=======
-    width: 240px;
->>>>>>> 18d134e284c877a9275535776ddb7cc4df18e237
-    max-height: 90%;
-    overflow-y: auto;
+    left: 38px;
+    width: 320px;
+    bottom: 60px;
+    pointer-events: none;
 }
 
 @media screen and (max-width: 500px) {
@@ -188,11 +186,14 @@ body {
 
 .route-card {
     background: #ffffff;
-    padding: 15px 10px;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0px 3px 30px 0px rgba(30,31,39,0.5);
+    padding: 10px;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0px 3px 10px 0px rgba(30,31,39,0.5);
     overflow: hidden;
-    margin: 20px;
+    margin: 10px;
+    max-height: 100%;
+    overflow-y: auto;
+    pointer-events: auto;
 }
 
 @media screen and (max-width: 500px) {
@@ -204,8 +205,13 @@ body {
 }
 
 .route-card .title {
-    transform: scale(1.5);
-    margin-left: 17px;
+    line-height: 35px;
+    font-size: 27px;
+    width: 100px;
+    height: 35px;
+    padding-left: 30px;
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .route-card .subtitle {
@@ -255,7 +261,7 @@ body {
 #dateForm
 {
     position: absolute;
-    top: 115px;
+    top: 80px;
     right: 10px;
 }
 
@@ -266,9 +272,76 @@ body {
     height: 28px; 
     border: 0;
     padding: 0 10px;
-    font: 10pt arial, sans-serif
+    font: 10pt arial, sans-serif;
+    width: 140px;
 }
 
 body.route-selected .current-route {
     display: block;
 }
+
+.progress {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    height: 0;
+    top: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 2px #1e90ff;
+    opacity: 0;
+    transition: all ease .3s;
+    transition-delay: .5s;
+}
+
+.progress_visible {
+    left: 33%;
+    right: 33%;
+    height: 10px;
+    opacity: 1;
+    transition-delay: 0;
+}
+
+.progress-bar {
+    background: #1e90ff;
+    height: 100%;
+    transition: width ease .3s;
+}
+
+.timetable {
+    display: block;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.timetable .hour {
+  float: left;
+  width: 45px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 23px;
+  line-height: 20px;
+  position: relative;
+  padding-right: 18px;
+  text-align: right;
+  margin: 5px;
+  font-family: montserrat;
+}
+
+.timetable .minutes {
+  text-align: left;
+  position: absolute;
+  left: 25px;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  display: block;
+  font-size: 17px;
+  line-height: 4px;
+  font-weight: bold;
+  word-wrap: break-word;
+  transform: rotate(-90deg) scaleX(-1) ;
+}
+

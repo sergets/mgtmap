@@ -24,7 +24,19 @@ define([
 
 var DEFAULT_WIDTH = 2,
     NO_DATA_WIDTH = 0,
-    SELECTED_ROUTE_WIDTH = 20;
+    SELECTED_ROUTE_WIDTH = 15,
+    VENDOR_NAMES = {
+        'mgt' : 'ГУП «Мосгортранс»',
+        'mgt-express' : 'ГУП «Мосгортранс»',
+        'autoline' : 'ООО «Трансавтолиз»',
+        'tmp20' : 'ООО «Таксомоторный парк №20»',
+        'alphagrant' : 'ООО «Альфа Грант»',
+        'rico' : 'ООО Транспортная компания «Рико»',
+        'gepart' : 'ООО «Гепарт»',
+        'gortaxi' : 'ООО «ГорТакси»',
+        'autocars' : 'ООО «Авто-Карз»',
+        'transway' : 'ООО «Транс-Вей»'
+    }
 
 var DataManager = function(stateManager) {
     this._stateManager = stateManager;
@@ -32,24 +44,20 @@ var DataManager = function(stateManager) {
     this._data = {};
     this._loadingPromises = {};
 
-    this._actualWidths = {};
-    this._actualRoutes = {};
-    this._actualColors = {};
-
-    this._actualsReady = true;
+    this._actuals = {};
+    this._actualsReady = false;
+    this._actualsDeferred = vow.defer();
 
     this._changedFiles = {};
     this._saveWindows = {};
     
     this._stateManager.on({
-        'time-settings-updated' : this._recalcActuals.bind(this, ['timeSettings']),
-        'coloring-id-updated' : this._recalcActuals.bind(this, ['customColoringId']),
+        'time-settings-updated' : this._dropActuals.bind(this),
+        'coloring-id-updated' : this._dropActuals.bind(this),
         'width-factor-updated' : function() {
             this.trigger('data-updated');
         }
     }, this);
-    
-    this._recalcActuals(Object.keys(this._stateManager.serialize()));
 };
 
 extend(DataManager.prototype, eventEmitter);
@@ -126,8 +134,8 @@ extend(DataManager.prototype, {
     },
 
     getActualRoutesForSegment : function(segmentId) {
-        return vow.when(this._actualsReady).then(function() {
-            return this._actualRoutes[segmentId];
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            return actuals.routes[segmentId];
         }, this);
     },
     
@@ -136,14 +144,14 @@ extend(DataManager.prototype, {
     },
     
     getActualWidthForRoute : function(route) {
-        return vow.when(this._actualsReady).then(function() {
-            return this._actualWidths[segmentId];
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            return actuals.widths[segmentId];
         }, this);
     },  
 
     getBusColor : function(route) {
-        return vow.when(this._actualsReady).then(function() {
-            return this._actualColors[route] || '#ccc';
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            return actuals.colors[route] || '#ccc';
         }, this);
     },
 
@@ -157,29 +165,17 @@ extend(DataManager.prototype, {
 
     getSegmentLengths : function() {
         return this.getSegments().then(function(segments) {
-
-
-
-            //var mapElem = $('<div/>').css({ display: 'none' }).appendTo('body'),
-            //    map = new ymaps.Map(mapElem[0], { center : [56, 37], zoom : 14 });
-
             var projection = ymaps.projection.wgs84Mercator;
 
             var lengths = segments.reduce(function(res, segment, id) {
                 if(!segment[0][0]) return res;
 
-                //var points = 
-                //var lineStringGeometry = new ymaps.geometry.LineString(segment),
-                //    geoObject = new ymaps.GeoObject({ geometry: lineStringGeometry });
-
-                //map.geoObjects.add(geoObject);
                 res[id] = geomUtils.getLength(segment.map(function(point) { 
                     return projection.toGlobalPixels(point, 20);
                 }));
                 return res;
             }, {});
 
-            //mapElem.remove();
             return lengths;
         }, this);
     },
@@ -190,7 +186,7 @@ extend(DataManager.prototype, {
             this.getRegistry(),
             this.getSegmentLengths(),
             this.getWiredSegments(),
-            this._actualsReady
+            this._actualsDeferred.promise()
         ]).spread(function(freqs, registry, lengths, trolleyWires) {
             var res = '',
                 registryData = registry[route],
@@ -199,7 +195,7 @@ extend(DataManager.prototype, {
             registryData && (res += '<span class="subtitle">' + registryData.endpoints + '</span>');
 
             if(stateManager.getCustomColoringId() == 'troll-project') {
-                var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, lengths, this._actualRoutes, trolleyWires) * 100),
+                var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, lengths, this._actuals.routes, trolleyWires) * 100),
                     isExpress = registryData && registryData.express,
                     isPrivate = registryData && registryData.vendor != 'mgt',
                     type = route.indexOf('Тб') == 0? 'troll' : route.indexOf('Тм') == 0? 'tram' : 'bus'; 
@@ -262,14 +258,20 @@ extend(DataManager.prototype, {
                 if(!freqs[route][currentDay]) {
                     res += 'Маршрут сегодня не ходит';
                 } else {
+                    res += '<div class="timetable">';
                     for (var h = timeSettings.fromHour; h <= timeSettings.toHour; h++) {
-                        timetable.push('в ' + h + ' ч — <b>' + (freqs[route][currentDay][h] || 'нет рейсов') + '</b>');
+                        res += '<div class="hour">' + (h % 24) + '<div class="minutes">' + 
+                            (freqs[route][currentDay][h]?
+                                Array.apply(Array, Array(Math.round(freqs[route][currentDay][h]))).map(function() { return '.'; }).join('') :
+                                '') + 
+                            '</div></div>';
+                        //timetable.push('в ' + h + ' ч — <b>' + (freqs[route][currentDay][h] || 'нет рейсов') + '</b>');
                     }
-                    res += 'Частота движения (рейсов в час):<br/>' + timetable.join('<br/>');
+                    res += '</div>'; //Частота движения (рейсов в час):<br/>' + timetable.join('<br/>');
                 }
             }
 
-            registryData && (res += '<br/><br>Перевозчик: <b>' + registry[route].vendor + '</b>');
+            registryData && (res += 'Перевозчик: <b>' + VENDOR_NAMES[registry[route].vendor] + '</b>');
             return res;
         }, this);
     },
@@ -279,9 +281,9 @@ extend(DataManager.prototype, {
             this.getRegistry(),
             this.getSegmentLengths(),
             this.getWiredSegments(),
-            this._actualsReady
-        ]).spread(function(registry, lengths, trolleyWires) {
-            var routesList = Object.keys(this._actualColors);
+            this._actualsDeferred.promise()
+        ]).spread(function(registry, lengths, trolleyWires, actuals) {
+            var routesList = Object.keys(actuals.colors);
 
             return routesList.reduce(function(r, route) {
                 return r + (route.indexOf('Тб') == 0 && registry[route]? registry[route].quantity : 0);
@@ -294,9 +296,9 @@ extend(DataManager.prototype, {
             this.getRegistry(),
             this.getSegmentLengths(),
             this.getWiredSegments(),
-            this._actualsReady
-        ]).spread(function(registry, lengths, trolleyWires) {
-            var routesList = Object.keys(this._actualColors);
+            this._actualsDeferred.promise()
+        ]).spread(function(registry, lengths, trolleyWires, actuals) {
+            var routesList = Object.keys(actuals.colors);
 
             return routesList.reduce(function(r, route) {
                 return r + (route.indexOf('Тб') == -1 && route.indexOf('Тм') == -1 && registry[route]? registry[route].quantity : 0);
@@ -309,16 +311,16 @@ extend(DataManager.prototype, {
             this.getRegistry(),
             this.getSegmentLengths(),
             this.getWiredSegments(),
-            this._actualsReady
-        ]).spread(function(registry, lengths, trolleyWires) {
-            var routesList = Object.keys(this._actualColors),
+            this._actualsDeferred.promise()
+        ]).spread(function(registry, lengths, trolleyWires, actuals) {
+            var routesList = Object.keys(actuals.colors),
                 that = this;
 
             return routesList.reduce(function(r, route) {
                 var busRegistry = route.indexOf('Тб') == -1 && route.indexOf('Тм') == -1 && registry[route];
 
                 return r + (busRegistry && 
-                    trolleyUtils.getTrolleyFraction(route, lengths, that._actualRoutes, trolleyWires) >= 0.5 &&
+                    trolleyUtils.getTrolleyFraction(route, lengths, that._actuals.routes, trolleyWires) >= 0.5 &&
                     busRegistry.vendor == 'mgt' &&
                     !busRegistry.express?
                         busRegistry.quantity :
@@ -327,30 +329,17 @@ extend(DataManager.prototype, {
         }, this);
     },
 
-    _recalcActuals : function(changedStateFields) {
-        var stateManager = this._stateManager;
+    _dropActuals : function() {
+        this._actualsDeferred = vow.defer();
+        this._actuals = {};
+        this._actualsReady = false;
+    },
 
-        this._actualsReady = vow.all({
-            freqs : this.getFreqs(),
-            segments : this.getSegments(),
-            routes : this.getRoutes(),
-            trolleyWires : this.getWiredSegments(),
-            registry : this.getRegistry(),
-            lengths : this.getSegmentLengths()
-        }).then(function(data) {
-            return calcActuals(
-                data,
-                stateManager.serialize(),
-                changedStateFields,
-                { actualWidths : this._actualWidths, actualRoutes : this._actualRoutes, actualColors : this._actualColors }
-            );
-        }, this).then(function(actualData) {
-            this._actualWidths = actualData.actualWidths;
-            this._actualRoutes = actualData.actualRoutes;
-            this._actualColors = actualData.actualColors;
-            this._actualsReady = true;
-            this.trigger('data-updated');
-        }, this);
+    setActuals : function(actuals) {
+        this._actualsDeferred.resolve(actuals);
+        this._actuals = actuals;
+        this._actualsReady = true;
+        this.trigger('data-updated');
     },
 
     saveChangedFiles : function() {

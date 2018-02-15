@@ -1,26 +1,21 @@
 define([
     'jquery',
+    'utils/route'
 ], function(
-    $
+    $,
+    routeUtils
 ) {
 
 return function(id, routes, colors) {
     return $('<div/>')
         .addClass('segment')
         .attr('segment-id', id)
+        //.append($('<h2/>').html(id))
         .append(
             routes
-                .filter(function(route) {
-                    return route.indexOf('-') !== 0;
-                })
+                .filter(routeUtils.notPhantom)
                 .map(function(route) {
-                    route = route.replace(/^[<>]/, '');
-
-                    var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
-                        routeCleared = route.replace(/^(Тб|Тм) /, ''),
-                        div = $('<div/>').addClass(type).css('backgroundColor', colors[route]).html(routeCleared);
-
-                    return div;
+                    return $('<div/>').addClass(routeUtils.getType(route)).css('backgroundColor', colors[route]).html(routeUtils.clearType(route));
                 }, this)
         )
         /*.append($('<div/>')
