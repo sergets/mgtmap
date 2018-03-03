@@ -8,7 +8,8 @@ define([
     'data/actuals/colors',
     'data/actuals/outlines',
     'data/actuals/max-width',
-    'data/actuals/junctions'
+    'data/actuals/junctions',
+    'data/actuals/route-bounds'
 ], function(
     vow,
     extend,
@@ -19,7 +20,8 @@ define([
     actualColors,
     actualOutlines,
     actualMaxWidth,
-    actualJunctions
+    actualJunctions,
+    actualRouteBounds
 ) {
 
 return function(data, state, updatedStateFields, oldActuals) {
@@ -31,7 +33,8 @@ return function(data, state, updatedStateFields, oldActuals) {
             'colors' : actualColors,
             'outlines' : actualOutlines,
             'maxWidth' : actualMaxWidth,
-            'junctions' : actualJunctions
+            'junctions' : actualJunctions,
+            'routeBounds' : actualRouteBounds
         },
         fieldsToRecalc = Object.keys(fields).filter(function(fieldName) {
             return !oldActuals[fieldName] || fields[fieldName].shouldRecalc(state, updatedStateFields);

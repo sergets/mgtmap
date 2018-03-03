@@ -4,6 +4,7 @@ define([
     'utils/extend',
     'view/route',
     'view/progress',
+    'view/search',
     'vow',
     'utils/date',
     'utils/events-emitter'
@@ -13,6 +14,7 @@ define([
     extend,
     routeView,
     ProgressView,
+    SearchView,
     vow,
     dateUtils,
     eventsEmitter
@@ -32,6 +34,11 @@ extend(AppView.prototype, {
     _init : function() {
         this._createControls();
         this._progressView = new ProgressView(this._map.getBackgroundPane());
+        this._searchView = new SearchView('.sidebar', this._dataManager);
+
+        if(!this._stateManager.getSelectedRoutes().length) {
+            this._searchView.show();
+        }
         
         $(document)
             //.on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
@@ -47,6 +54,12 @@ extend(AppView.prototype, {
         this._map
             .on('highlight-routes', this._onRoutesHighlightedOnMap, this)
             .on('unhighlight-routes', this._onRoutesUnhighlightedOnMap, this);
+
+        this._searchView
+            .on('route-selected', function(e, data) {
+                this._searchView.clear().hide();
+                this.trigger('route-selected', data);
+            }, this);
 
     },
     
@@ -226,6 +239,7 @@ extend(AppView.prototype, {
     },
     
     _onSelectRoute : function(e) {
+        this._searchView.clear().hide();
         this.trigger('route-selected', this._routeElemToRouteId(e.target));
     },
 
@@ -272,6 +286,7 @@ extend(AppView.prototype, {
 
     _onDeselectRoute : function(e) {
         this.trigger('route-deselected');
+        this._searchView.show();
     },
 
     _createSelectedRouteView : function(route) {

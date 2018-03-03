@@ -318,6 +318,10 @@ extend(Map.prototype, {
     
     getControlsPane : function() {
         return this._map.panes.get('controls').getElement();
+    },
+
+    setBounds : function(bounds) {
+        return this._map.setBounds(bounds);
     }
 });
 

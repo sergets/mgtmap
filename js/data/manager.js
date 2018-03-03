@@ -145,7 +145,7 @@ extend(DataManager.prototype, {
     
     getActualWidthForRoute : function(route) {
         return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
-            return actuals.widths[segmentId];
+            return actuals.widths[route];
         }, this);
     },  
 
@@ -326,6 +326,44 @@ extend(DataManager.prototype, {
                         busRegistry.quantity :
                         0);
             }, 0);
+        }, this);
+    },
+
+    getRouteBounds : function(route) {
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            return actuals.routeBounds[route];
+        }, this);
+    },
+
+    getMatchingRoutes : function(text, strict) {
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            var existing = actuals.existingRoutes,
+                histMappings = {
+                    '1к' : ['Тб 8'],
+                    '5' : ['м3'],
+                    '16' : ['м27'],
+                    '23' : ['223'],
+                    '31' : ['А'],
+                    '33' : ['м1', '144к'],
+                    '37' : ['м9'],
+                    '44' : ['м2'],
+                    '45' : ['м8'],
+                    '48' : ['м9'],
+                    '62' : ['Тб м4'],
+                    '63' : ['м7'],
+                    '84' : ['Тб м4'],
+                    '95' : ['Т79'],
+                    '25' : ['м5']
+                };
+
+            if(!text) { return []; }
+
+            var strictRe = new RegExp('^((Тм )|(Тб )|Т|т|м|С)?' + text + '[а-я]?$', 'i'),
+                looseRe = new RegExp('^' + text + '(.*)$', 'i');
+
+            return existing.filter(function(rt) {
+                return strict? strictRe.test(rt) : looseRe.test(rt) && !strictRe.test(rt);
+            }).concat(histMappings[text]).filter(Boolean);
         }, this);
     },
 

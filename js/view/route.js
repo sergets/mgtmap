@@ -9,7 +9,7 @@ define([
 ) {
 
 return function(route, dataManager) {
-    var type = routeUtils.getType(route);
+    var type = routeUtils.getType(route),
         routeCleared = routeUtils.clearType(route),
         view = $('<div/>')
             .addClass('route-card')
