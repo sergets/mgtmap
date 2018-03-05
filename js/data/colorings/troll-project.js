@@ -28,7 +28,7 @@ define([
                 return '#f84';;
             }
             if(route.indexOf('Тб') != -1) {
-                return '#6f0';
+                return '#4d2';
             }
             if(trolleyFraction > 0.5 && !(data.registry[route] && (data.registry[route].vendor != 'mgt' || data.registry[route].express))) {
                 return '#1bf';
@@ -41,8 +41,8 @@ define([
 
             return trolleyUtils.isSegmentInRoute(segmentId, selectedRoute, actuals.actualRoutes)?
                 trolleyUtils.isSegmentTrolleyForRoute(segmentId, selectedRoute, actuals.actualRoutes, data.trolleyWires)?
-                    { 10 : '#6f0' } : 
-                    { 10 : '#999' } :
+                    { 10 : { color : '#af5', avoidEmpty : true } } : 
+                    { 10 : { color : '#999', avoidEmpty : true } } :
                 null;
             }
         },

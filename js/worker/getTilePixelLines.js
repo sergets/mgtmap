@@ -95,75 +95,56 @@ define([
 					});
 				});
 
-				var objects = resSegmentLines.concat(resJunctionLines);
+				var objects = resSegmentLines.concat(resJunctionLines),
+					tilePixelLines = [];
 
-				var tilePixelLines = objects.reduce(function(lines, object) {
+				// Generate outlines
+				objects.forEach(function(object) {
+					var routes = object.routes,
+						id = object.id,
+						totalWidth = routes.reduce(function(s, route) {
+							return s + (actuals.widths[routeUtils.strip(route)] || 0);
+						}, 0) * zoomWidthFactor;
+
+					if(id && actuals.outlines[id]) {
+						var actualOutlines = actuals.outlines[id];
+
+						Object.keys(actualOutlines).forEach(function(width) {
+							var outlineDescription = actualOutlines[width];
+							if(!outlineDescription.color) {
+								outlineDescription = { color : outlineDescription, offset : 0 };
+							}
+							if(!(outlineDescription.avoidEmpty && totalWidth == 0)) {
+								tilePixelLines.push(generateSegmentOutline(
+									object.geometry,
+									routes,
+									outlineDescription.offset || 0,
+									outlineDescription.color,
+									width,
+									{ id : id }
+								));
+							}
+						});
+					}
+					if(purpose == 'hotspots') {
+						tilePixelLines.push(generateSegmentOutline(object.geometry, routes, 0, '#000', 0, { id : id }));
+					}
+				});
+
+				// Generate route lines
+				objects.forEach(function(object) {
 					var segmentUnshiftedCoords = object.geometry,
 						id = object.id;
 
 					var routes = object.routes,
 						widths = actuals.widths,
 						colors = actuals.colors,
-						segmentOutlines = actuals.outlines,
 						totalWidth = routes.reduce(function(s, route) {
 							return s + (widths[routeUtils.strip(route)] || 0);
 						}, 0) * zoomWidthFactor,
 						curPosition = -totalWidth / 2;
 
-					// Generate segment overall outline
-					if(id && segmentOutlines[id] || purpose == 'hotspots') {
-						var opaqueOffsetLeft = 0; 
-						routes.some(function(route) {
-							if(routeUtils.notPhantom(route)) {
-								return true;
-							} else {
-								opaqueOffsetLeft += (widths[routeUtils.strip(route)] || 0);
-							}
-						});
-						opaqueOffsetLeft = opaqueOffsetLeft * zoomWidthFactor;
-
-						var opaqueOffsetRight = 0; 
-						routes.slice(0).reverse().some(function(route) {
-							if(routeUtils.notPhantom(route)) {
-								return true;
-							} else {
-								opaqueOffsetRight += (widths[routeUtils.strip(route)] || 0);
-							}
-						});
-						opaqueOffsetRight = opaqueOffsetRight * zoomWidthFactor;
-
-						var opaqueOffset = (opaqueOffsetLeft - opaqueOffsetRight) / 2;
-
-						var outlinePath = tileUtils.offsetLine(segmentUnshiftedCoords, opaqueOffset);
-
-						id && segmentOutlines[id] && Object.keys(segmentOutlines[id]).forEach(function(width) {
-							var outlineDescription = segmentOutlines[id][width];
-							if(!outlineDescription.color) {
-								outlineDescription = { color : outlineDescription, offset : 0 };
-							}
- 							lines.push({
-								coords : outlineDescription.offset? tileUtils.offsetLine(segmentUnshiftedCoords, opaqueOffset + outlineDescription.offset * zoomWidthFactor) : outlinePath,
-								color : outlineDescription.color,
-								data : { id : id },
-								width : totalWidth - opaqueOffsetLeft - opaqueOffsetRight + 2 * width * zoomWidthFactor,
-								dashStyle : [],
-								lineCap : 'butt',
-								dashOffset : 0
-							});
- 						});
-
- 						purpose == 'hotspots' && lines.push({
-							coords : outlinePath,
-							color : '#000',
-							data : { id : id },
-							width : totalWidth - opaqueOffsetLeft - opaqueOffsetRight,
-							dashStyle : [],
-							dashOffset : 0
-						});
-					}
-
-					// Generate route lines
-					(purpose != 'hotspots') && routes.forEach(function(route) {
+					routes.forEach(function(route) {
 						var width = widths[routeUtils.strip(route)] * zoomWidthFactor || 0,
 							direction,
 							dashLines = [];
@@ -202,7 +183,7 @@ define([
 									
 									var resPath = tileUtils.offsetLine(segmentUnshiftedCoords, curPosition);
 
-									lines = lines.concat(dashLines.map(function(line) {
+									tilePixelLines.push.apply(tilePixelLines, dashLines.map(function(line) {
 										return Object.assign({
 											coords : resPath,
 											color : colors[routeUtils.strip(route)] || '#ccc',
@@ -214,9 +195,7 @@ define([
 
 						curPosition += width/2;
 					});
-
-					return lines;
-				}, []);
+				});
 
 				cache.set(x, y, z, purpose, tilePixelLines);
 				resolve(tilePixelLines);
@@ -296,6 +275,51 @@ define([
                 	junctionLineGeometries.set(fromId, toId, fromShift, fromShift, size, junctionLineGeometry);
 
                 	return junctionLineGeometry;
+				}
+
+				function getSegmentOutlineOffsets(routes) {
+					var widths = actuals.widths,
+						colors = actuals.colors,
+						opaqueOffsetLeft = 0;
+
+					routes.some(function(route) {
+						if(routeUtils.notPhantom(route)) {
+							return true;
+						} else {
+							opaqueOffsetLeft += (widths[routeUtils.strip(route)] || 0);
+						}
+					});
+					opaqueOffsetLeft = opaqueOffsetLeft * zoomWidthFactor;
+
+					var opaqueOffsetRight = 0; 
+					routes.slice(0).reverse().some(function(route) {
+						if(routeUtils.notPhantom(route)) {
+							return true;
+						} else {
+							opaqueOffsetRight += (widths[routeUtils.strip(route)] || 0);
+						}
+					});
+					opaqueOffsetRight = opaqueOffsetRight * zoomWidthFactor;
+
+					return [opaqueOffsetLeft, opaqueOffsetRight];
+				}
+
+				function generateSegmentOutline(segmentUnshiftedCoords, routes, offset, color, excessWidth, data) {
+					var opaqueOffsets = getSegmentOutlineOffsets(routes),
+						opaqueOffset = (opaqueOffsets[0] - opaqueOffsets[1]) / 2,
+						totalWidth = routes.reduce(function(s, route) {
+							return s + (actuals.widths[routeUtils.strip(route)] || 0);
+						}, 0) * zoomWidthFactor;
+
+					return {
+						coords : tileUtils.offsetLine(segmentUnshiftedCoords, opaqueOffset + offset * zoomWidthFactor),
+						color : color,
+						data : data,
+						width : totalWidth - opaqueOffsets[0] - opaqueOffsets[1] + 2 * excessWidth * zoomWidthFactor,
+						dashStyle : [],
+						lineCap : 'butt',
+						dashOffset : 0
+					};
 				}
 			});
 		});
