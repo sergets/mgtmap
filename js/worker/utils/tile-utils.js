@@ -9,14 +9,7 @@ define([
 	    		getObjectIdsByTile : function(x, y, z, margin) {
 			        var bounds = this.tileToGeoBounds(x, y, z, margin);
 
-			    	return global.tree.search({
-			            minX : bounds[0][0],
-			            minY : bounds[0][1],
-			            maxX : bounds[1][0],
-			            maxY : bounds[1][1]
-			        }).map(function(item) {
-			        	return item.id;
-			        });
+			    	return global.tree.search(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]);
 			    },
 
 			    offsetLine : function(sourceCoords, offset) {

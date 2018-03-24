@@ -1,0 +1,30 @@
+define(function() {
+    var fileUtils = {
+        getActualsFileNameByState : function(state, routes) {
+            if (routes) {
+                var dates = Object.keys(Object.keys(routes).reduce(
+                        function(res, segmentId) {
+                            Object.keys(routes[segmentId]).forEach(function(date) { res[date] = true; });
+                            return res;
+                        },
+                        {}
+                    )).sort(),
+                    requestedDate = state.timeSettings.date,
+                    pastDates = dates.filter(function(date) { return +new Date(date) < requestedDate });
+
+                state.timeSettings.date = +new Date(pastDates[pastDates.length - 1]);
+            }
+
+            return [
+                new Date(state.timeSettings.date).toISOString().substring(0, 10),
+                state.timeSettings.dow,
+                state.timeSettings.fromHour,
+                state.timeSettings.toHour,
+                state.widthFactor,
+                state.customColoringId,
+            ].join('-') + '.json';
+        }
+    };
+
+    return fileUtils;
+});

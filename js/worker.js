@@ -4,14 +4,14 @@ setImmediate = function(func) {
     return setTimeout(func, 0);
 }; // otherwise vow's nextTick tries to use postMessage
 
-importScripts('//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
+if (typeof define === 'undefined') {
+    importScripts('../lib/requirejs/require.js');  // cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
+}
 
-requirejs.config({ //baseUrl : '.',
+requirejs.config({
     paths : {
-        jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
-        vow : '//cdn.rawgit.com/dfilatov/vow/0.4.17/lib/vow',
-        rbush : '//unpkg.com/rbush@2.0.1/rbush',
-        'pretty-json-stringify' : '//cdn.rawgit.com/sergets/pretty-json-stringify/0.0.2/index',
+        vow : '../lib/vow/vow.min',  // cdn.rawgit.com/dfilatov/vow/0.4.17/lib/vow
+        flatbush : '../lib/flatbush/flatbush.min' // unpkg.com/flatbush@1.3.0/flatbush.min.js
     }
 });
 

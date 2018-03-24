@@ -61,42 +61,46 @@ define([
 								//console.warn(rt, 'has conflicting one-way segments at:', routesBySegment);
 								passingModes[rt] = { type : 'strange' };
 							} else if(matchingOneWaySegments.length == 1 && matchingTwoWaySegments.length == 1) {
+								var ways = {};
+
+								ways[matchingTwoWaySegments[0]] = [
+									{
+										to : fromId,
+										as : (route[0] == '>'? '<' : '>') + rt
+									},
+									{
+										to : matchingOneWaySegments[0],
+										as : route
+									},
+								];
+								ways[fromId] = [{
+									to : matchingTwoWaySegments[0],
+									as : rt
+								}];
+								ways[matchingOneWaySegments[0]] = [{
+									to : matchingTwoWaySegments[0],
+									as : rt
+								}];
+
 								passingModes[rt] = {
 									type : 'splitting',
-									ways : {
-										[matchingTwoWaySegments[0]] : [
-											{
-												to : fromId,
-												as : (route[0] == '>'? '<' : '>') + rt
-											},
-											{
-												to : matchingOneWaySegments[0],
-												as : route
-											},
-										],
-										[fromId] : [{
-											to : matchingTwoWaySegments[0],
-											as : rt
-										}],
-										[matchingOneWaySegments[0]] : [{
-											to : matchingTwoWaySegments[0],
-											as : rt
-										}],
-									}
+									ways : ways
 								};
 							} else if(matchingOneWaySegments.length == 1 && matchingTwoWaySegments.length == 0) {
+								var ways = {};
+
+								ways[fromId] = [{
+									to : matchingOneWaySegments[0],
+									as : route
+								}],
+								ways[matchingOneWaySegments[0]] = [{
+									to : fromId,
+									as : (route[0] == '>'? '<' : '>') + rt
+								}];
+
 								passingModes[rt] = {
 									type : 'passing',
-									ways : {
-										[fromId] : [{
-											to : matchingOneWaySegments[0],
-											as : route
-										}],
-										[matchingOneWaySegments[0]] : [{
-											to : fromId,
-											as : (route[0] == '>'? '<' : '>') + rt
-										}]
-									}
+									ways : ways
 								};
 							} else {
 								//console.warn(rt, 'has ' + matchingOneWaySegments.length + ' one-way segments ' + matchingTwoWaySegments.length + ':', routesBySegment);
@@ -116,60 +120,67 @@ define([
 							if(matchingIncomingSegments.length == 0 && matchingOutgoingSegments.length == 0 && matchingTwoWaySegments.length == 0) {
 								passingModes[rt] = { type : 'ending' };
 							} else if(matchingIncomingSegments.length == 0 && matchingOutgoingSegments.length == 0 && matchingTwoWaySegments.length == 1) {
+								ways = {};
+
+								ways[fromId] = [{
+									to : matchingTwoWaySegments[0],
+									as : rt
+								}];
+								ways[matchingTwoWaySegments[0]] = [{
+									to : fromId,
+									as : rt
+								}];
+
 								passingModes[rt] = {
 									type : 'passing',
-									ways : {
-										[fromId] : [{
-											to : matchingTwoWaySegments[0],
-											as : rt
-										}],
-										[matchingTwoWaySegments[0]] : [{
-											to : fromId,
-											as : rt
-										}]
-									}
+									ways : ways
 								};
 							} else if(matchingIncomingSegments.length == 0 && matchingOutgoingSegments.length == 0 && matchingTwoWaySegments.length == 2) {
+								var ways = {};
+
+
+								ways[matchingTwoWaySegments[0]] = [
+									{ to : matchingTwoWaySegments[1], as : rt }, // TODO direction
+									{ to : fromId, as : rt }
+								];
+								ways[matchingTwoWaySegments[1]] = [
+									{ to : matchingTwoWaySegments[0], as : rt },
+									{ to : fromId, as : rt }
+								];
+								ways[fromId] = [
+									{ to : matchingTwoWaySegments[0], as : rt },
+									{ to : matchingTwoWaySegments[1], as : rt }
+								];
+
 								passingModes[rt] = { 
 									type : '3-way',
-									ways : {
-										[matchingTwoWaySegments[0]] : [
-											{ to : matchingTwoWaySegments[1], as : rt }, // TODO direction
-											{ to : fromId, as : rt }
-										],
-										[matchingTwoWaySegments[1]] : [
-											{ to : matchingTwoWaySegments[0], as : rt },
-											{ to : fromId, as : rt }
-										],
-										[fromId] : [
-											{ to : matchingTwoWaySegments[0], as : rt },
-											{ to : matchingTwoWaySegments[1], as : rt }
-										]
-									}
+									ways : ways
 								};
 							} else if(matchingIncomingSegments.length == 1 && matchingOutgoingSegments.length == 1 && matchingIncomingSegments[0] != matchingOutgoingSegments[0] && matchingTwoWaySegments.length == 0) {
+								var ways = {};
+
+								ways[fromId] = [
+									{
+										to : matchingOutgoingSegments[0],
+										as : '<' + rt
+									},
+									{
+										to : matchingIncomingSegments[0],
+										as : '>' + rt
+									},
+								];
+								ways[matchingOutgoingSegments[0]] = [{
+									to : fromId,
+									as : '<' + rt
+								}];
+								ways[matchingOutgoingSegments[0]] = [{
+									to : fromId,
+									as : '>' + rt
+								}];
+
 								passingModes[rt] = {
 									type : 'splitting',
-									ways : {
-										[fromId] : [
-											{
-												to : matchingOutgoingSegments[0],
-												as : '<' + rt
-											},
-											{
-												to : matchingIncomingSegments[0],
-												as : '>' + rt
-											},
-										],
-										[matchingOutgoingSegments[0]] : [{
-											to : fromId,
-											as : '<' + rt
-										}],
-										[matchingOutgoingSegments[0]] : [{
-											to : fromId,
-											as : '>' + rt
-										}],
-									}
+									ways : ways
 								};
 							} else {
 								//console.warn(rt, 'has <' + matchingIncomingSegments.length + ', >' + matchingIncomingSegments.length + ', ' + matchingTwoWaySegments.length + ' at:', routesBySegment);
@@ -177,9 +188,10 @@ define([
 							}
 						} else if(fromRoutes.filter(function(r) { return r == rt }).length = 2) {
 							if(findSegmentsHaving(rt, fromId).length == 0 && findSegmentsHaving('>' + rt, fromId).length == 0 && findSegmentsHaving('<' + rt, fromId).length == 0) {
-								passingModes[rt] = { type : 'u-turn', ways : {
-									[fromId] : [{ to : fromId, as : rt }]
-								} };
+								var ways = {};
+
+								ways[fromId] = [{ to : fromId, as : rt }];
+								passingModes[rt] = { type : 'u-turn', ways : ways };
 							}
 							else {
 								//console.warn(rt, 'has u-turn and something else', routesBySegment);

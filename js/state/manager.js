@@ -35,7 +35,7 @@ var StateManager = function() {
     // this._isAdminMode = 'admin' in query;
     this._isDebugMode = 'debug' in query,
     this._white = query.white || 0.7;
-    this._customColoringId = query.coloring;
+    this._customColoringId = query.coloring || 'default';
 
     this._isTouch = true; // 'ontouchstart' in window;
     this._isNarrow = window.innerWidth < 500;

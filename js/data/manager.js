@@ -3,7 +3,6 @@ define([
     'ymaps',
     'utils/extend',
     'vow',
-    'pretty-json-stringify',
     'utils/geom',
     'utils/date',
     'data/trolley',
@@ -14,7 +13,6 @@ define([
     ymaps,
     extend,
     vow,
-    prettyJSONStringify,
     geomUtils,
     dateUtils,
     trolleyUtils,
@@ -77,7 +75,7 @@ extend(DataManager.prototype, {
         $.ajax({
             url : fileName,
             data : {
-                ncrnd : Math.random()
+            //    ncrnd : Math.random()
             },
             success : function(res) {
                 this._data[fileName] = res;
@@ -117,6 +115,20 @@ extend(DataManager.prototype, {
 
     getRoutes : function() {
         return this._getDataFromFile('data/routes.json');
+    },
+
+    getLastDate : function() {
+        return this.getRoutes().then(function(routes) {
+            var dates = Object.keys(Object.keys(routes).reduce(
+                function(res, segmentId) {
+                    Object.keys(routes[segmentId]).forEach(function(date) { res[date] = true; });
+                    return res
+                },
+                {}
+            )).sort();
+
+            return dates[dates.length - 1]; 
+        })
     },
 
     getRoutesForSegment : function(segmentId) {
@@ -378,22 +390,6 @@ extend(DataManager.prototype, {
         this._actuals = actuals;
         this._actualsReady = true;
         this.trigger('data-updated');
-    },
-
-    saveChangedFiles : function() {
-        Object.keys(this._changedFiles).forEach(function(fileName) {
-            var saveWindows = this._saveWindows;
-            if(!saveWindows[fileName]) {
-                saveWindows[fileName] = window.open('about:blank');
-                saveWindows[fileName].onunload = function() { delete saveWindows[fileName]; return true; };
-            }
-            saveWindows[fileName].document.documentElement.innerHTML = '<pre>' + prettyJSONStringify(this._data[fileName], { 
-                shouldExpand : function(obj, level) {
-                    return level < 2;
-                }
-            }) + '</pre>';
-            saveWindows[fileName].document.title = fileName;
-        }, this);
     }
 });
 

@@ -1,17 +1,24 @@
 define([
+    'jquery',
     'vow',
     'ymaps',
     'utils/events-emitter',
     'utils/extend'
 ], function(
+    $,
     vow,
     ymaps,
     eventsEmitter,
     extend
 ) {
 
+var DEFAULT_WORKER_SCRIPT = './js/worker.js';
+
+var script = $('script[data-main="js/app"]')[0].src,
+    workerScript = /app\.min\.js/.test(script)? script.replace(/app\.min\.js/, 'worker.min.js') : DEFAULT_WORKER_SCRIPT;
+
 var MapWorker = function(dataManager, stateManager) {
-    var worker = this._worker = new Worker('./js/worker.js'),
+    var worker = this._worker = new Worker(workerScript),
         that = this;
 
     worker.addEventListener('message', this._onWorkerMessage.bind(this));
@@ -38,8 +45,7 @@ extend(MapWorker.prototype, {
             routes : dataManager.getRoutes(),
             freqs : dataManager.getFreqs(),
             trolleyWires : dataManager.getWiredSegments(),
-            registry : dataManager.getRegistry(),
-            lengths : dataManager.getSegmentLengths()
+            registry : dataManager.getRegistry()
         }).done(function(params) {
             worker.postMessage({
                 command : 'init',

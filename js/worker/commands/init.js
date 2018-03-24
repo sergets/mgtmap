@@ -3,16 +3,18 @@ define([
     'utils/date',
     'utils/route',
     'utils/cache',
+    'utils/file',
     'data/calc-actuals',
-    'rbush',
+    'flatbush',
     'vow'
 ], function(
     geomUtils,
     dateUtils,
     routeUtils,
     Cache,
+    fileUtils,
     calcActuals,
-    rbush,
+    flatbush,
     vow
 ) {
     var CACHE_SIZE = 400;
@@ -20,43 +22,41 @@ define([
     return function(params) {
         var deferred = vow.defer(),
             state = this.state = params.state,
+            segments = params.segments,
             data = this.data = {
-                segments : params.segments,
+                segments : segments,
                 freqs : params.freqs,
                 routes : params.routes,
                 registry : params.registry,
-                trolleyWires : params.trolleyWires,
-                lengths : params.lengths
+                trolleyWires : params.trolleyWires
             },
-            tree = this.tree = rbush(),
+            tree = this.tree = flatbush(segments.length),
             progress = 0;
 
-        calcActuals(data, state, Object.keys(state), {}).then(
+        segments.forEach(function(segment, i) {
+            var bounds = geomUtils.bounds(segment);
+            deferred.notify(i / segments.length * 0.5);
+            tree.add(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]);
+        });
+        tree.finish();
+
+        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes)).then(function(res) { 
+            if(res.status != 200) {
+                throw new Error;
+            }
+            return res.json();
+        }).catch(function(err) { 
+            return calcActuals(data, state, Object.keys(state), {});
+        }).then(
             function(actuals) {
                 this.actuals = actuals;
                 this.tilePixelLinesCache = new Cache(CACHE_SIZE);
-                
-                var items = data.segments.map(function(segment, id) {
-                    if(!segment.length) return;
-
-                    var bounds = geomUtils.bounds(segment),
-                        item = {
-                            minX : bounds[0][0],
-                            minY : bounds[0][1],
-                            maxX : bounds[1][0],
-                            maxY : bounds[1][1],
-                            id : id
-                        };
-                    deferred.notify(0.5 + (id / data.segments.length * 0.4));
-                    return item;
-                }).slice(1);
-                tree.load(items);
             },
             function(err) {
                 throw err;
             },
             function(progress) {
-                deferred.notify(progress / 2);
+                deferred.notify(0.5 + progress / 2);
             },
             this
         ).then(function() {
