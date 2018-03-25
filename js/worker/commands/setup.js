@@ -31,7 +31,7 @@ define([
             }
             return res.json();
         }).catch(function(err) { 
-            calcActuals(data, state, changedStateFields, this.actuals)
+            return calcActuals(data, state, changedStateFields, this.actuals);
         }).then(
             function(actuals) {
                 this.actuals = actuals;

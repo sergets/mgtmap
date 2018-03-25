@@ -5,7 +5,7 @@ define([
 ) {
     return {
         getRouteColor : function(route, data, state, actuals) {
-            var trolleyFraction = trolleyUtils.getTrolleyFraction(route, data.lengths, actuals.actualRoutes, data.trolleyWires);
+            var trolleyFraction = 0.7;//  trolleyUtils.getTrolleyFraction(route, data.lengths, actuals.actualRoutes, data.trolleyWires);
 
             /*var totalLength = 0,
                 trolleyLength = 0;
@@ -25,7 +25,7 @@ define([
             });*/
 
             if(route.indexOf('Тм') != -1) {
-                return '#f84';;
+                return '#f84';
             }
             if(route.indexOf('Тб') != -1) {
                 return '#4d2';

@@ -5,13 +5,13 @@ setImmediate = function(func) {
 }; // otherwise vow's nextTick tries to use postMessage
 
 if (typeof define === 'undefined') {
-    importScripts('../lib/requirejs/require.js');  // cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
+    importScripts('//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js');
 }
 
 requirejs.config({
     paths : {
-        vow : '../lib/vow/vow.min',  // cdn.rawgit.com/dfilatov/vow/0.4.17/lib/vow
-        flatbush : '../lib/flatbush/flatbush.min' // unpkg.com/flatbush@1.3.0/flatbush.min.js
+        vow : '//cdn.rawgit.com/dfilatov/vow/0.4.17/lib/vow',
+        flatbush : '//unpkg.com/flatbush@1.3.0/flatbush.min'
     }
 });
 

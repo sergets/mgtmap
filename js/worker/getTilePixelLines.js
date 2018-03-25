@@ -145,51 +145,21 @@ define([
 						curPosition = -totalWidth / 2;
 
 					routes.forEach(function(route) {
-						var width = widths[routeUtils.strip(route)] * zoomWidthFactor || 0,
-							direction,
-							dashLines = [];
+						var width = widths[routeUtils.strip(route)] * zoomWidthFactor || 0;
 
 						curPosition += width/2;
 
-						if(width == 0) { return; }
+						if(routeUtils.notPhantom(route) && width > 0) {	
+							var resPath = tileUtils.offsetLine(segmentUnshiftedCoords, curPosition);
 
-						if(routeUtils.notPhantom(route)) {	
-							switch(route[0]) {
-								case '>':
-									direction = 1;
-								case '<':
-									direction = direction || -1;
-
-									var DASH_LENGTH = 0,
-										DASH_GAP = 8,
-										ARROW_LENGTH = 1.5,
-										ARROW_WIDTH = 3;
-
-					                var arrowSteps = Math.max(Math.ceil(ARROW_WIDTH * width / 2), 2);
-	           						for(var j = ARROW_WIDTH; j > 0; j -= 1/arrowSteps) {
-	           							dashLines.push({
-	           								width : j * width,
-	           								dashStyle : [ width * (DASH_LENGTH + ARROW_LENGTH * (ARROW_WIDTH - j)), width * (ARROW_LENGTH * j + DASH_GAP)],
-	           								dashOffset : direction == 1? width * (DASH_GAP/2) :  - width * (j * ARROW_LENGTH + DASH_GAP/2)
-	                    				});
-	           						}
-			
-								default:
-									dashLines.push({
-										width : width,
-										dashStyle : [],
-										dashOffset : 0
-									});
-									
-									var resPath = tileUtils.offsetLine(segmentUnshiftedCoords, curPosition);
-
-									tilePixelLines.push.apply(tilePixelLines, dashLines.map(function(line) {
-										line.coords || (line.coords = resPath);
-										line.color || (line.color = colors[routeUtils.strip(route)] || '#ccc');
-										line.data || (line.data = { id : id, route : routeUtils.strip(route) });
-										return line;
-									}));
-							}
+							tilePixelLines.push({
+								coords: resPath,
+								color: colors[routeUtils.strip(route)] || '#ccc',
+								width: width,
+								arrowDirection: route[0] == '>'? 1 : route[0] == '<'? -1 : 0,
+								arrowGap: 100,
+								data: { id: id, route: routeUtils.strip(route) }
+							});
 						}
 
 						curPosition += width/2;
