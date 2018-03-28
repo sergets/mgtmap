@@ -10,6 +10,8 @@ requirejs = requirejs.config({
     nodeRequire : require
 });
 
+var coloring = process.argv[2] || 'default';
+
 var state = {
     timeSettings : { 
         dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
@@ -23,13 +25,15 @@ var state = {
     isAdminMode : false,
     isDebugMode : false,
     white : 0.7,
-    customColoringId : 'default',
+    customColoringId : coloring,
     isTouch : false,
     isNarrow : false
 };
 
 requirejs(['data/calc-actuals', 'utils/file'], function(calcActuals, fileUtils) {
 	var fs = require('vow-fs');
+
+    console.log('Generating actuals at ' + fileUtils.getActualsFileNameByState(state) + '...');
 
 	vow.all({ 
 	    segments : fs.read('../data/segments.json').then(JSON.parse),

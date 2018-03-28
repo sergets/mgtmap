@@ -16,7 +16,7 @@ define(function() {
             }
 
             return [
-                new Date(state.timeSettings.date).toISOString().substring(0, 10),
+                new Date(state.timeSettings.date || undefined).toISOString().substring(0, 10),
                 state.timeSettings.dow,
                 state.timeSettings.fromHour,
                 state.timeSettings.toHour,

@@ -1,5 +1,5 @@
 define(function() {
-	var ARROW_GAP = 8,
+	var ARROW_GAP = 4,
 		ARROW_LENGTH = 1.5,
 		ARROW_WIDTH = 3;
 

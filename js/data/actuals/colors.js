@@ -35,15 +35,16 @@ return {
             })
     },
 
-    deps : ['widths', 'routes', 'existingRoutes'],
+    deps : ['widths', 'routes', 'existingRoutes', 'lengths'],
 
-    calc : function(data, state, widths, routes, existingRoutes) {
+    calc : function(data, state, widths, routes, existingRoutes, lengths) {
         var coloring = colorings[state.customColoringId || 'default'];
 
         return vow.resolve(existingRoutes.reduce(function(colors, routeName) {
             colors[routeName] = coloring.getRouteColor(routeName, data, state, { 
                 actualWidths : widths,
-                actualRoutes : routes
+                actualRoutes : routes,
+                lengths : lengths
             });
             return colors;
         }, {}));

@@ -1,63 +1,55 @@
 define([
-    'utils/geom'
+    'utils/geom',
+    'utils/wgs-84'
 ], function(
-    geomUtils
+    geomUtils,
+    projection
 ) {
-	var TILE_SIZE = 256,
-		TileUtils = function(projection, generator) {
-			return {
-	    		getObjectIdsByTile : function(x, y, z, margin) {
-			        var bounds = this.tileToGeoBounds(x, y, z, margin);
+	var TILE_SIZE = 256;
 
-			    	return global.tree.search(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]);
-			    },
+	return {
+		TILE_SIZE: TILE_SIZE,
 
-			    offsetLine : function(sourceCoords, offset) {
-					return geomUtils.cut(
-						generator.sides(
-							sourceCoords,
-							Math.abs(offset)
-						)[offset > 0? 'leftSide' : 'rightSide'],
-						Math.abs(offset),
-						Math.abs(offset)
-					);
-				},
+		getObjectIdsByTile : function(x, y, z, margin) {
+	        var bounds = this.tileToGeoBounds(x, y, z, margin);
 
-				getZoomFactor : function(z) {
-					return 1 / (z > 15? 0.5 : (16 - z));
-				},
+	    	return global.tree.search(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]);
+	    },
 
-				tileToGlobalPixelBounds : function(x, y, z) {
-					var zf = TILE_SIZE;
-					return [x * TILE_SIZE, y * TILE_SIZE, (x + 1) * TILE_SIZE, (y + 1) * TILE_SIZE];
-				},
+	    offsetLine : function(sourceCoords, offset) {
+			return geomUtils.offsetLine(sourceCoords, offset);
+		},
 
-				geoPointToTilePixels : function(point, x, y, z) {
-					var globalPixelPoint = projection.toGlobalPixels(point.slice().reverse(), z);
-					return [globalPixelPoint[0] - (x * TILE_SIZE), globalPixelPoint[1] - (y * TILE_SIZE)];
-				},
+		getZoomFactor : function(z) {
+			return 1 / (z > 15? 0.5 : (16 - z));
+		},
 
-				tilePixelsToGeoPoint : function(point, x, y, z) {
-					var globalPixelPoint = [point[0] + (x * TILE_SIZE), point[1] + (y * TILE_SIZE)];
-					return projection.fromGlobalPixels(globalPixelPoint, z).reverse();
-				},
+		tileToGlobalPixelBounds : function(x, y, z) {
+			var zf = TILE_SIZE;
+			return [x * TILE_SIZE, y * TILE_SIZE, (x + 1) * TILE_SIZE, (y + 1) * TILE_SIZE];
+		},
 
-				tileToGeoBounds : function(x, y, z, margin) {
-					margin = margin || 0;
-					var globalPixelBounds = this.tileToGlobalPixelBounds(x, y, z);
+		geoPointToTilePixels : function(point, x, y, z) {
+			var globalPixelPoint = projection.toGlobalPixels(point.slice().reverse(), z);
+			return [globalPixelPoint[0] - (x * TILE_SIZE), globalPixelPoint[1] - (y * TILE_SIZE)];
+		},
 
-					var res = [
-						projection.fromGlobalPixels([globalPixelBounds[0] - margin, globalPixelBounds[3] + margin], z).reverse(), 
-						projection.fromGlobalPixels([globalPixelBounds[2] + margin, globalPixelBounds[1] - margin], z).reverse()
-					];
-					return res;
-				}
-			};
-		};
+		tilePixelsToGeoPoint : function(point, x, y, z) {
+			var globalPixelPoint = [point[0] + (x * TILE_SIZE), point[1] + (y * TILE_SIZE)];
+			return projection.fromGlobalPixels(globalPixelPoint, z).reverse();
+		},
 
-	TileUtils.TILE_SIZE = TILE_SIZE;
+		tileToGeoBounds : function(x, y, z, margin) {
+			margin = margin || 0;
+			var globalPixelBounds = this.tileToGlobalPixelBounds(x, y, z);
 
-	return TileUtils;
+			var res = [
+				projection.fromGlobalPixels([globalPixelBounds[0] - margin, globalPixelBounds[3] + margin], z).reverse(), 
+				projection.fromGlobalPixels([globalPixelBounds[2] + margin, globalPixelBounds[1] - margin], z).reverse()
+			];
+			return res;
+		}
+	};
 });
 
 

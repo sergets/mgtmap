@@ -10,16 +10,16 @@ clean:
 
 actuals: install
 	mkdir -p actuals
-	node tools/make-actuals.js
+	node tools/make-actuals.js ${COLORING}
 
 deploy: install actuals
-	node lib/requirejs/bin/r.js -o tools/app.build.js
-	node lib/requirejs/bin/r.js -o tools/worker.build.js
+	node node_modules/requirejs/bin/r.js -o tools/app.build.js
+	node node_modules/requirejs/bin/r.js -o tools/worker.build.js
 	cat index.html | sed 's/\(<!-- \[development\]\) -->/\1 /g;s/<!-- \(\[\/development\] -->\)/ \1/g;s/\(<!-- \[production\]\)/\1 -->/g;s/\(\[\/production\] -->\)/<!-- \1/g' > deploy/index.html
 	cp index.css deploy/
 	cp troll-logo.png deploy/
-	cp -r data deploy/data
-	cp -r actuals deploy/actuals
+	cp -r data deploy/
+	cp -r actuals deploy/
 
 install: 
 	yarn install

@@ -37,6 +37,7 @@ return {
             }
 
             widths[routeName] *= state.widthFactor;
+            widths[routeName] = Math.round(widths[routeName] * 100) / 100 || widths[routeName];
 
             return widths;
         }, {}));

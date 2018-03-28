@@ -43,6 +43,11 @@ define(function() {
         });
     }
 
+    function normalize(vec) {
+        var l = Math.sqrt(vec[0] * vec[0] + vec[1] * vec[1]);
+        return l? [vec[0] / l, vec[1] / l] : [0, 0];
+    }
+
     return {
         getLength : function(line) {
             return _getSegmentLengths(line).reduce(function(s, l) { return s + l; }, 0);
@@ -174,6 +179,35 @@ define(function() {
             return line.filter(function(r, i, a) {
                 return (r !== a[i - 1]);
             });
+        },
+
+        offsetLine : function(points, offset) {
+            var res = [],
+                n = points.length - 1,
+                segmentOrts = [],
+                segmentNormals = [];
+
+            for (i = 0; i < n; i++) {
+                segmentOrts[i] = normalize([points[i + 1][0] - points[i][0], points[i + 1][1] - points[i][1]]);
+
+                if (i > 0) { 
+                    var normal = normalize([segmentOrts[i - 1][0] + segmentOrts[i][0], segmentOrts[i - 1][1] + segmentOrts[i][1]]);
+                    segmentNormals[i] = [-normal[1], normal[0]];
+                }
+            }
+
+            res.push([points[0][0] - segmentOrts[0][1] * offset, points[0][1] + segmentOrts[0][0] * offset]);
+
+            for (i = 1; i < n; i++) {
+                var sin = segmentOrts[i][0] * segmentNormals[i][1] - segmentOrts[i][1] * segmentNormals[i][0],
+                    trimmedOffset = offset * Math.min(1 / sin, 3);
+
+                res.push([points[i][0] + segmentNormals[i][0] * trimmedOffset, points[i][1] + segmentNormals[i][1] * trimmedOffset]);
+            }
+
+            res.push([points[n][0] - segmentOrts[n - 1][1] * offset, points[n][1] + segmentOrts[n - 1][0] * offset]);
+
+            return res;
         }
     }
 });

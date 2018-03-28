@@ -5,24 +5,24 @@ define([
 ) {
     return {
         getRouteColor : function(route, data, state, actuals) {
-            var trolleyFraction = 0.7;//  trolleyUtils.getTrolleyFraction(route, data.lengths, actuals.actualRoutes, data.trolleyWires);
+            var trolleyFraction = trolleyUtils.getTrolleyFraction(route, actuals.lengths, actuals.actualRoutes, data.trolleyWires);
 
-            /*var totalLength = 0,
+            var totalLength = 0,
                 trolleyLength = 0;
 
-            Object.keys(data.lengths).forEach(function(segmentId) {
+            Object.keys(actuals.lengths).forEach(function(segmentId) {
                 if(trolleyUtils.isSegmentInRoute(segmentId, route, actuals.actualRoutes)) {
                     var times = actuals.actualRoutes[segmentId].reduce(function(t, r) {
                         if(r == route) return t + 2;
                         if(r == '>' + route || r == '<' + route) return t + 1;
                         return t; 
                     }, 0);
-                    totalLength += times * data.lengths[segmentId];
+                    totalLength += times * actuals.lengths[segmentId];
                     if(trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)) {
-                        trolleyLength += times * data.lengths[segmentId];
+                        trolleyLength += times * actuals.lengths[segmentId];
                     }
                 }
-            });*/
+            });
 
             if(route.indexOf('Тм') != -1) {
                 return '#f84';
@@ -50,36 +50,3 @@ define([
         shouldRecalcOutlinesOn : ['timeSettings', 'selectedRoutes']
     };
 });
-
-/*function isSegmentInRoute(segmentId, route, actualRoutes) {
-    var routes = actualRoutes[segmentId];
-
-    return routes &&
-        (routes.indexOf('>' + route) != -1 ||
-        routes.indexOf('<' + route) != -1 ||
-        routes.indexOf(route) != -1);
-}*/
-
-/*function isSegmentTrolleyForRoute(segmentId, route, actualRoutes, trolleyWires) {
-    segmentId = +segmentId;
-    var routes = actualRoutes[segmentId],
-        isSelectedRouteForward = routes && routes.indexOf('>' + route) != -1,
-        isSelectedRouteBackward = routes && routes.indexOf('<' + route) != -1,
-        isSelectedRouteBoth = routes && routes.indexOf(route) != -1,
-        isSegmentTrolleyForward = trolleyWires.forward.indexOf(segmentId) != -1,
-        isSegmentTrolleyBackward = trolleyWires.backward.indexOf(segmentId) != -1,
-        isSegmentTrolleyBoth = trolleyWires.both.indexOf(segmentId) != -1;
-
-    if(isSelectedRouteForward && isSelectedRouteBackward) {
-        isSelectedRouteBoth = true;
-    }
-    if(isSelectedRouteBoth) {
-        isSelectedRouteForward = false;
-        isSelectedRouteBackward = false;
-    }
-
-    return (isSelectedRouteForward && (isSegmentTrolleyForward || isSegmentTrolleyBoth)) ||
-        (isSelectedRouteBackward && (isSegmentTrolleyBackward || isSegmentTrolleyBoth)) ||
-        (isSelectedRouteBoth && isSegmentTrolleyBoth);
-    return res;
-}*/

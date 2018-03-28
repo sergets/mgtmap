@@ -27,9 +27,10 @@ var Map = function(dataManager, stateManager, worker) {
         controls: ['zoomControl', 'geolocationControl'],
     }, {
         bounds : stateManager.getBounds()
-    }, {
-        suppressMapOpenBlock : true
-    }));
+    }), {
+        suppressMapOpenBlock: true,
+        yandexMapDisablePoiInteractivity: true
+    });
 
     this._worker = worker;
     this._dataManager = dataManager;
@@ -55,13 +56,17 @@ extend(Map.prototype, {
             worker = this._worker,
             that = this;
 
-        this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
+        this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 10 } });
 
         map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
             zIndex : 200
         }));
         map.panes.append('selection', new (map.panes.get('places').constructor)(map, {
             zIndex : 201
+        }));
+        map.panes.append('toponyms', new (map.panes.get('places').constructor)(map, {
+            css : { opacity: 0.5 },
+            zIndex : 202
         }));
         map.panes.append('white', new ymaps.pane.StaticPane(map, {
             css : {
@@ -101,6 +106,10 @@ extend(Map.prototype, {
             hotspotLayer.events.add('mouseleave', that._onHotspotMouseout, that);
         });
 
+        map.layers.add(new ymaps.Layer(
+            'http://vec.maps.yandex.net/tiles?l=map&%c&scale={{ scale }}&lang=ru_RU&scale=1&geometry=0',
+            { pane: 'toponyms', tileTransparent: true }
+        ));
         map.events.add('boundschange', this._onBoundsChanged, this);
         map.balloon.events.add('close', this._onBalloonClosed, this);
     },
