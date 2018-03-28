@@ -36,15 +36,20 @@ requirejs(['data/calc-actuals', 'utils/file'], function(calcActuals, fileUtils) 
     console.log('Generating actuals at ' + fileUtils.getActualsFileNameByState(state) + '...');
 
 	vow.all({ 
-	    segments : fs.read('../data/segments.json').then(JSON.parse),
-	    freqs : fs.read('../data/freqs.json').then(JSON.parse),
-	    routes : fs.read('../data/routes.json').then(JSON.parse),
-	    registry : fs.read('../data/rgam.json').then(JSON.parse),
-	    trolleyWires : fs.read('../data/trolley-wire.json').then(JSON.parse)
+	    segments : fs.read('data/segments.json').then(JSON.parse),
+	    freqs : fs.read('data/freqs.json').then(JSON.parse),
+	    routes : fs.read('data/routes.json').then(JSON.parse),
+	    registry : fs.read('data/rgam.json').then(JSON.parse),
+	    trolleyWires : fs.read('data/trolley-wire.json').then(JSON.parse)
 	}).then(function(data) {
 		return calcActuals(data, state, Object.keys(state), {}).then(function(actuals) {
-			return fs.write('../actuals/' + fileUtils.getActualsFileNameByState(state, data.routes), JSON.stringify(actuals));
-		});
-	});
+            console.log('Writing to', fileUtils.getActualsFileNameByState(state, data.routes));
+			return fs.write('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes), JSON.stringify(actuals));
+		}, function(err) {
+            console.log('error saving', err);
+        });
+	}, function(err) {
+        console.log('error reading', err);
+    });
 
 });
