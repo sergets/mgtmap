@@ -36,9 +36,9 @@ extend(AppView.prototype, {
         this._progressView = new ProgressView(this._map.getBackgroundPane());
         this._searchView = new SearchView('.sidebar', this._dataManager);
 
-        if(!this._stateManager.getSelectedRoutes().length) {
+        //if(!this._stateManager.getSelectedRoutes().length) {
             this._searchView.show();
-        }
+        //}
         
         $(document)
             //.on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
@@ -60,7 +60,6 @@ extend(AppView.prototype, {
                 this._searchView.clear().hide();
                 this.trigger('route-selected', data);
             }, this);
-
     },
     
     _createControls : function() {
@@ -156,7 +155,7 @@ extend(AppView.prototype, {
                 }
             });
 
-        this.updateSelectedRoutes();
+        //this.updateSelectedRoutes();
     },
 
     _createListControl : function(content, options, items, onItemSelected, ctx) {
@@ -310,7 +309,7 @@ extend(AppView.prototype, {
         //return view;
     },
 
-    updateSelectedRoutes : function() {
+    /*updateSelectedRoutes : function() {
         this._map.closeBalloon();
         var selectedRoutes = this._stateManager.getSelectedRoutes();
         Object.keys(this._selectedRouteViews).forEach(function(route) {
@@ -324,19 +323,31 @@ extend(AppView.prototype, {
                 this._selectedRouteViews[route] = this._createSelectedRouteView(route);
             }
         }, this)
+    },*/
+
+    showSelectedRoute : function(route) {
+        this._map.closeBalloon();
+        this._selectedRouteViews[route] = this._createSelectedRouteView(route);
     },
 
-    refreshColors : function() {
-        /*var dataManager = this._dataManager,
+    hideSelectedRoute : function() {
+        Object.keys(this._selectedRouteViews).forEach(function(route) {
+            this._selectedRouteViews[route].remove();
+            delete this._selectedRouteViews[route];
+        }, this);
+    },
+
+    /*refreshColors : function() {
+        / *var dataManager = this._dataManager,
             selectedRouteViews = this._selectedRouteViews;
 
         Object.keys(selectedRouteViews).forEach(function(route) {
             dataManager.getBusColor(route).then(function(color) {
                 selectedRouteViews[route].css('background-color', color);
             });
-        });*/
+        });* /
         this.updateSelectedRoutes();
-    },
+    },*/
 
     showProgress : function(val) {
         this._progressView.setVal(val).show();

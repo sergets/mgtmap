@@ -29,7 +29,7 @@ var StateManager = function() {
         toHour : 24,
         date : +new Date(new Date().toISOString().substring(0, 10))
     };
-    this._selectedRoutes = query.routes? query.routes.split(',') : [];
+    //this._selectedRoutes = query.routes? query.routes.split(',') : [];
     this._widthFactor = 1;
     this._isEqualWidthsMode = 'equal' in query;
     // this._isAdminMode = 'admin' in query;
@@ -71,9 +71,9 @@ extend(StateManager.prototype, {
         isUpdated && this.trigger('time-settings-updated', this._timeSettings);
     },
     
-    getSelectedRoutes : function() {
+    /*getSelectedRoutes : function() {
         return this._selectedRoutes;
-    },
+    },*/
     
     /*selectRoutes : function(routes) {
         routes.forEach(function(route) {
@@ -95,7 +95,7 @@ extend(StateManager.prototype, {
         this.trigger('selected-routes-updated', this._selectedRoutes);
     },*/
 
-    selectRoute : function(route) {
+    /*selectRoute : function(route) {
         this._selectedRoutes = [route];
         this.trigger('selected-routes-updated', this._selectedRoutes);
     },
@@ -103,7 +103,7 @@ extend(StateManager.prototype, {
     deselectRoute : function() {
         this._selectedRoutes = [];
         this.trigger('selected-routes-updated', this._selectedRoutes);
-    },
+    },*/
 
     getWhite : function() {
         return this._white;
@@ -148,7 +148,7 @@ extend(StateManager.prototype, {
     serialize : function() {
         return {
             timeSettings : this._timeSettings,
-            selectedRoutes : this._selectedRoutes,
+            selectedRoutes : [], //this._selectedRoutes,
             widthFactor : this._widthFactor,
             isEqualWidthsMode : this._isEqualWidthsMode,
             isAdminMode : this._isAdminMode,

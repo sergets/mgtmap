@@ -29,6 +29,8 @@ ymaps.modules.define('worker-canvas-layer', [
             this._layerId = layerId;
             this._query = query;
 
+            console.log('constructing layer for', query);
+
             canvas.width = TILE_SIZE;
             canvas.height = TILE_SIZE;
             ctx.lineJoin = 'round';
@@ -41,14 +43,15 @@ ymaps.modules.define('worker-canvas-layer', [
                         zoom = +params[2],
                         deferred = ymaps.vow.defer();
 
-                    if (tileCaches[zoom] && tileCaches[zoom].get(params, query)) {
-                        return ymaps.vow.resolve(tileCaches[zoom].get(params, query));
+                    if (tileCaches[zoom] && tileCaches[zoom].get(params, JSON.stringify(query))) {
+                        return ymaps.vow.resolve(tileCaches[zoom].get(params, JSON.stringify(query)));
                     } else {
                         worker.command('renderTile', {
                             x : +params[0],
                             y : +params[1],
                             z : zoom,
-                            routes : params[3] && params[3].split(';')
+                            routes : params[3] && params[3].split(';'),
+                            style : params[4] && JSON.parse(params[4])
                         }).done(function(result) {
                             ctx.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
                             result.forEach(function(canvasCommand) {
@@ -59,7 +62,7 @@ ymaps.modules.define('worker-canvas-layer', [
                                 }
                             });
                             var url = canvas.toDataURL();
-                            (tileCaches[zoom] || (tileCaches[zoom] = new Cache(CACHE_SIZE))).set(params, query, url);
+                            (tileCaches[zoom] || (tileCaches[zoom] = new Cache(CACHE_SIZE))).set(params, JSON.stringify(query), url);
                             deferred.resolve(url);
                         });
 

@@ -4,6 +4,7 @@ define([
     'vow',
     'utils/cache',
     'utils/route',
+    'worker/utils/tile-utils',
     'utils/events-emitter',
     'map/worker-canvas-layer',
     'map/worker-hotspot-source',
@@ -14,13 +15,15 @@ define([
     vow,
     Cache,
     routeUtils,
+    tileUtils,
     eventsEmitter,
     _,
     _,
     segmentView
 ) {
 
-var ANIMATION_DURATION = 300;
+var ANIMATION_DURATION = 300,
+    SELECTED_ROUTE_WIDTH = 10;
 
 var Map = function(dataManager, stateManager, worker) {
     this._map = new ymaps.Map('map', extend({
@@ -126,7 +129,7 @@ extend(Map.prototype, {
         var layerDesc;
 
         this._selectionLayers.some(function(desc) {
-            if (desc.query == query) {
+            if (JSON.stringify(desc.query) == JSON.stringify(query)) {
                 layerDesc = desc;
                 return true;
             }
@@ -242,7 +245,7 @@ extend(Map.prototype, {
     },
 
     _onHotspotMouseover : function(e) {
-        if(this._currentSegmentRoutes) {
+        if(this._currentSegmentRoutes && !this._selectedRoute) {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
             this._getIntersectionRoutes(segmentId).done(function(routes) {
@@ -256,7 +259,7 @@ extend(Map.prototype, {
     },
 
     _onHotspotMouseout : function(e) {
-        if(this._currentSegmentRoutes && this._routesHovered) {
+        if(!this._selectedRoute && this._currentSegmentRoutes && this._routesHovered) {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
             this._getIntersectionRoutes(segmentId).done(function(routes) {
@@ -270,21 +273,23 @@ extend(Map.prototype, {
     },
 
     _onHotspotClicked : function(e) {
-        var position = e.get('coords'),
-            dataManager = this._dataManager,
-            segmentId = e.get('activeObject').getProperties().segmentId;
+        if(!this._selectedRoute) {
+            var position = e.get('coords'),
+                dataManager = this._dataManager,
+                segmentId = e.get('activeObject').getProperties().segmentId;
 
-        dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
-            routes = routes.filter(routeUtils.notPhantom).map(routeUtils.strip);
+            dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
+                routes = routes.filter(routeUtils.notPhantom).map(routeUtils.strip);
 
-            return vow.all(routes.reduce(function(res, routeName) {
-                res[routeName] = dataManager.getBusColor(routeName);
-                return res;
-            }, {})).then(function(colors) {
-                this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
-                this._onBalloonOpen(segmentId, routes);
-            }, function() {}, this);
-        }, this);
+                return vow.all(routes.reduce(function(res, routeName) {
+                    res[routeName] = dataManager.getBusColor(routeName);
+                    return res;
+                }, {})).then(function(colors) {
+                    this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
+                    this._onBalloonOpen(segmentId, routes);
+                }, function() {}, this);
+            }, this);
+        }
     },
 
     _onBalloonOpen : function(segmentId, routes) {
@@ -304,11 +309,25 @@ extend(Map.prototype, {
     },
 
     highlightRoutes : function(routes) {
-        this._showSelectionLayer(routes.join(';'));
+        this._showSelectionLayer([routes.join(';')]);
     },
 
     unhighlightRoutes : function(routes) {
-        this._removeSelectionLayer(routes.join(';'));
+        this._removeSelectionLayer([routes.join(';')]);
+    },
+
+    showSelectedRoute : function(route) {
+        this._dataManager.getRouteBounds(route).then(function(bounds) {
+            this._selectedRoute = route;
+            this._map.setBounds(bounds).then(function() {
+                this._showSelectionLayer([route, JSON.stringify({ width: SELECTED_ROUTE_WIDTH })]);
+            }, this);
+        }, this);
+    },
+
+    hideSelectedRoute : function() {
+        this._removeSelectionLayer([this._selectedRoute, JSON.stringify({ width: SELECTED_ROUTE_WIDTH })]);
+        this._selectedRoute = null;
     },
 
     _onBoundsChanged : function(e) {

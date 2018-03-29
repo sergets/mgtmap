@@ -1,9 +1,11 @@
 define([
-   'worker/getTilePixelLines',
-   'worker/renderer/renderLine'
+	'utils/extend',
+    'worker/getTilePixelLines',
+    'worker/renderer/renderLine'
 ], function(
-   getTilePixelLines,
-   renderLine
+	extend,
+    getTilePixelLines,
+    renderLine
 ) {
 	return function(params, key) {
 		var res = [],
@@ -11,6 +13,7 @@ define([
 			y = params.y,
 			z = params.z,
 			routes = params.routes;
+			styleOverride = params.style || {};
 
 		return getTilePixelLines.call(this, x, y, z).then(function(tilePixelLines) {
 			if(routes) {
@@ -20,7 +23,7 @@ define([
 			}
 
 			tilePixelLines.forEach(function(line) {
-				res.push.apply(res, renderLine(line));
+				res.push.apply(res, renderLine(extend({}, line, styleOverride)));
 			});
 		
 			return { result : res, key : key };

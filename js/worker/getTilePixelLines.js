@@ -139,7 +139,7 @@ define([
 
 					curPosition += width/2;
 
-					if(routeUtils.notPhantom(route) && width > 0) {	
+					if(routeUtils.notPhantom(route)) {	
 						var resPath = geomUtils.offsetLine(segmentUnshiftedCoords, curPosition);
 
 						tilePixelLines.push({

@@ -44,7 +44,7 @@ require([
             map : map
         });
 
-        stateManager.on('selected-routes-updated time-settings-updated width-factor-updated coloring-id-updated', function() {
+        stateManager.on('time-settings-updated width-factor-updated coloring-id-updated', function() {
             tileWorker.command('setup', { state : stateManager.serialize() });
         });
 
@@ -65,14 +65,14 @@ require([
             }
         });
 
-        dataManager.on('data-updated', function() {
+        /*dataManager.on('data-updated', function() {
             //dataManager.saveChangedFiles();
             appView.refreshColors();
-        });
+        });*/
 
-        stateManager.on('selected-routes-updated', function(route) {
+        /*stateManager.on('selected-routes-updated', function(route) {
             appView.updateSelectedRoutes();
-        });
+        });*/
 
         tileWorker.on({
             'progress' : function(e, progress) {
@@ -92,20 +92,25 @@ require([
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
             'coloring-updated' : function(e, coloringId) { stateManager.setCustomColoringId(coloringId); },
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
-            'route-selected' : function(e, data) {
-                dataManager.getRouteBounds(data).then(function(bounds) {
+            'route-selected' : function(e, route) {
+                /*dataManager.getRouteBounds(route).then(function(bounds) {
                     map.setBounds(bounds);
-                });
-                stateManager.selectRoute(data);
-             },
-            'route-deselected' : function(e, data) { stateManager.deselectRoute(); },
-            'select-segment-routes' : function(e, segmentId) {
+                });*/
+                map.showSelectedRoute(route);
+                appView.showSelectedRoute(route);
+            },
+            'route-deselected' : function(e, route) {
+                //stateManager.deselectRoute();
+                map.hideSelectedRoute();
+                appView.hideSelectedRoute();
+            }
+            /*'select-segment-routes' : function(e, segmentId) {
                 dataManager.getActualRoutesForSegment(segmentId).done(function(routes) {
                     stateManager.selectRoutes(routes.map(function(route) {
                         return routeUtils.notPhantom(route) && routeUtils.strip(route);
                     }).filter(Boolean));
                 });
-            }
+            }*/
         });
     });
 });
