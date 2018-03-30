@@ -23,7 +23,8 @@ define([
 ) {
 
 var ANIMATION_DURATION = 300,
-    SELECTED_ROUTE_WIDTH = 10;
+    SELECTED_ROUTE_WIDTH = 10,
+    OUTLINE_WIDTH = 3;
 
 var Map = function(dataManager, stateManager, worker) {
     this._map = new ymaps.Map('map', extend({
@@ -320,13 +321,13 @@ extend(Map.prototype, {
         this._dataManager.getRouteBounds(route).then(function(bounds) {
             this._selectedRoute = route;
             this._map.setBounds(bounds).then(function() {
-                this._showSelectionLayer([route, JSON.stringify({ width: SELECTED_ROUTE_WIDTH })]);
+                this._showSelectionLayer([route, JSON.stringify({ width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH })]);
             }, this);
         }, this);
     },
 
     hideSelectedRoute : function() {
-        this._removeSelectionLayer([this._selectedRoute, JSON.stringify({ width: SELECTED_ROUTE_WIDTH })]);
+        this._removeSelectionLayer([this._selectedRoute, JSON.stringify({ width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH })]);
         this._selectedRoute = null;
     },
 

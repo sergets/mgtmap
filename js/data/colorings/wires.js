@@ -15,6 +15,9 @@ define(function() {
             if(data.trolleyWires.backward.indexOf(segmentId) != -1) return { 5 : { color : '#6f0', offset : -5 } };
             return null;
         },
+        getRouteOutlines : function(segmentId, route, data, state) {
+            return null;
+        },
         shouldRecalcColorsOn : ['timeSettings'],
         shouldRecalcOutlinesOn : ['timeSettings']
     };

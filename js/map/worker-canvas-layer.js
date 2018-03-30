@@ -29,8 +29,6 @@ ymaps.modules.define('worker-canvas-layer', [
             this._layerId = layerId;
             this._query = query;
 
-            console.log('constructing layer for', query);
-
             canvas.width = TILE_SIZE;
             canvas.height = TILE_SIZE;
             ctx.lineJoin = 'round';
@@ -39,7 +37,7 @@ ymaps.modules.define('worker-canvas-layer', [
             imageLoader.proxy.add({
                 matchUrl : function(url) { return url.indexOf('worker:' + layerId + '?') != -1; },
                 load : function(url, request) {
-                    var params = url.substr(url.indexOf('?') + 1).split(','),
+                    var params = url.substr(url.indexOf('?') + 1).split('|'),
                         zoom = +params[2],
                         deferred = ymaps.vow.defer();
 
@@ -78,7 +76,7 @@ ymaps.modules.define('worker-canvas-layer', [
             WorkerCanvasLayer.superclass.constructor.apply(
                 this,
                 [
-                    'worker:' + layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join(',')
+                    'worker:' + layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join('|')
                 ].concat([].slice.call(arguments, 3))
             );
         },
@@ -93,7 +91,7 @@ ymaps.modules.define('worker-canvas-layer', [
 
             setQuery : function(query) {
                 this._query = query;
-                this.setTileUrlTemplate('worker:' + this._layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join(','));
+                this.setTileUrlTemplate('worker:' + this._layerId + '?' + ['%x', '%y', '%z'].concat(this._query || []).join('|'));
                 this.update();
             }
         }

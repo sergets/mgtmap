@@ -89,6 +89,7 @@ define([
 				tilePixelLines = [];
 
 			// Generate outlines
+			
 			objects.forEach(function(object) {
 				var routes = object.routes,
 					id = object.id,
@@ -140,11 +141,16 @@ define([
 					curPosition += width/2;
 
 					if(routeUtils.notPhantom(route)) {	
-						var resPath = geomUtils.offsetLine(segmentUnshiftedCoords, curPosition);
+						var resPath = geomUtils.offsetLine(segmentUnshiftedCoords, curPosition),
+							outlineColor = actuals.routeOutlines[id];
+
+						if(outlineColor && typeof outlineColor == 'object') { outlineColor = outlineColor[routeUtils.strip(route)]; }
 
 						tilePixelLines.push({
 							coords: resPath,
 							color: colors[routeUtils.strip(route)] || '#ccc',
+							outlineColor: outlineColor,
+							outlineWidth: 0,
 							width: width,
 							arrowDirection: route[0] == '>'? 1 : route[0] == '<'? -1 : 0,
 							arrowGap: Math.max(30 / width, 10),

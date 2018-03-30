@@ -6,6 +6,9 @@ define(['utils/bus-color'], function(getBusColor) {
         getSegmentOutlines : function(segmentId, data, state) {
             return null;
         },
+        getRouteOutlines : function(segmentId, route, data, state) {
+            return null;
+        },
         shouldRecalcColorsOn : ['timeSettings'],
         shouldRecalcOutlinesOn : []
     };

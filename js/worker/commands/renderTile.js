@@ -23,7 +23,7 @@ define([
 			}
 
 			tilePixelLines.forEach(function(line) {
-				res.push.apply(res, renderLine(extend({}, line, styleOverride)));
+				renderLine(res, extend({}, line, styleOverride));
 			});
 		
 			return { result : res, key : key };
