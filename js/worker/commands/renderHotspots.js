@@ -1,8 +1,10 @@
 define([
-    'worker/getTilePixelLines',
+    'vow',
+    'worker/renderer/renderer',
     'worker/utils/tile-utils'
 ], function(
-    getTilePixelLines,
+    vow,
+    renderer,
     tileUtils
 ) {
     return function(params, key) {
@@ -11,14 +13,14 @@ define([
             y = params.y,
             z = params.z;
 
-        return getTilePixelLines.call(this, x, y, z, 'hotspots').then(function(tilePixelLines) {
+        return vow.resolve(renderer.renderHotspots(x, y, z)).then(function(tilePixelLines) {
             tilePixelLines.forEach(function(line) {
                 var lineCoords = line.coords;
 
                 res.push({ 
                     shape : {
                         type : 'LineString',
-                        pixelGeometry : line.coords.map(tilePixelsToGlobalPixels.bind(this, [x, y])),
+                        pixelGeometry : line.coords,
                         params : { strokeWidth : line.width + this.state.isTouch? 10 : 0 }
                     },
                     feature : {
@@ -32,8 +34,4 @@ define([
             return { result : res, key : key };
         });
     };
-
-    function tilePixelsToGlobalPixels(tile, point) {
-        return [point[0] + tile[0] * tileUtils.TILE_SIZE, point[1] + tile[1] * tileUtils.TILE_SIZE];
-    }
 });

@@ -1,10 +1,14 @@
 define([
+	'vow',
 	'utils/extend',
-    'worker/getTilePixelLines',
+    'worker/utils/tile-utils',
+    'worker/renderer/renderer',
     'worker/renderer/renderLine'
 ], function(
+	vow,
 	extend,
-    getTilePixelLines,
+    tileUtils,
+    renderer,
     renderLine
 ) {
 	return function(params, key) {
@@ -15,7 +19,7 @@ define([
 			routes = params.routes;
 			styleOverride = params.style || {};
 
-		return getTilePixelLines.call(this, x, y, z).then(function(tilePixelLines) {
+		return vow.resolve(renderer.renderTile.call(this, x, y, z)).then(function(tilePixelLines) {
 			if(routes) {
 				tilePixelLines = tilePixelLines.filter(function(line) {
 					return routes.indexOf(line.data.route) != -1;
@@ -23,7 +27,7 @@ define([
 			}
 
 			tilePixelLines.forEach(function(line) {
-				renderLine(res, extend({}, line, styleOverride));
+				renderLine(res, extend({}, line, styleOverride), x * tileUtils.TILE_SIZE, y * tileUtils.TILE_SIZE);
 			});
 		
 			return { result : res, key : key };

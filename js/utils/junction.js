@@ -349,9 +349,9 @@ define([
 		    return groups;
 		},
 
-		getJunctionLineGeometry : function(junctionSize, junction, cutFrom, cutTo, fromShift, toShift, tileUtils) {
-			var shiftedFrom = geomUtils.deduplicate(tileUtils.offsetLine(cutFrom, fromShift)),
-				shiftedTo = geomUtils.deduplicate(tileUtils.offsetLine(cutTo, toShift)),
+		getJunctionLineGeometry : function(junctionSize, junction, cutFrom, cutTo, fromShift, toShift) {
+			var shiftedFrom = geomUtils.deduplicate(geomUtils.offsetLine(cutFrom, fromShift)),
+				shiftedTo = geomUtils.deduplicate(geomUtils.offsetLine(cutTo, toShift)),
 				lastFromSegment = [shiftedFrom[shiftedFrom.length - 2], shiftedFrom[shiftedFrom.length - 1]],
 				lastFromSegmentLength = geomUtils.getLength(lastFromSegment),
 				firstToSegment = [shiftedTo[0], shiftedTo[1]],

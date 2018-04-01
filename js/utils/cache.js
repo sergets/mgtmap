@@ -16,6 +16,7 @@ define(['utils/extend'], function(extend) {
 				key = this._buildKey.apply(this, args);
 
 			if (this._order.length == this._capacity) {
+				console.log('cache exceeded', this._capacity);
 				delete this._storage[this._order.shift()];
 			}
 
@@ -25,6 +26,10 @@ define(['utils/extend'], function(extend) {
 
 		get : function() {
 			return this._storage[this._buildKey.apply(this, arguments)];
+		},
+
+		has : function() {
+			return this._buildKey.apply(this, arguments) in this._storage;
 		},
 
 		drop : function() {

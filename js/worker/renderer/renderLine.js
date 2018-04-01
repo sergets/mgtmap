@@ -3,7 +3,7 @@ define(function() {
 		ARROW_LENGTH = 1.5,
 		ARROW_WIDTH = 3;
 
-	var renderLine = function(res, params) {
+	var renderLine = function(res, params, offsetX, offsetY) {
 		var coords = params.coords,
 			width = params.width,
 			color = params.color,
@@ -12,9 +12,9 @@ define(function() {
 
 		if (outlineWidth && outlineColor) {
 			res.unshift.apply(res, 
-				[{ cmd : 'beginPath' }, { cmd : 'moveTo', args : coords[0] }]
+				[{ cmd : 'beginPath' }, { cmd : 'moveTo', args : [coords[0][0] - offsetX, coords[0][1] - offsetY] }]
 				.concat(coords.slice(1).map(function(pnt) {
-					return { cmd : 'lineTo', args : pnt };
+					return { cmd : 'lineTo', args : [pnt[0] - offsetX, pnt[1] - offsetY] };
 				}))
 				.concat([
 					{ prop : 'strokeStyle', val : outlineColor },
@@ -31,7 +31,7 @@ define(function() {
 				arrowGap = params.arrowGap || ARROW_GAP,
 				arrowSteps = Math.max(Math.ceil(arrowWidth * params.width / 2), 2);
 
-			renderLine(res, { coords : coords, width : width, color : color });
+			renderLine(res, { coords : coords, width : width, color : color }, offsetX, offsetY);
 			for (var j = arrowWidth; j > 0; j -= 1/arrowSteps) {
 				renderLine(res, {
 					coords : coords,
@@ -40,15 +40,15 @@ define(function() {
 					lineCap : 'butt',
 					dashStyle : [width * (arrowLength * (arrowWidth - j)), width * (arrowLength * j + arrowGap)],
 					dashOffset : params.arrowDirection == 1? width * (arrowGap/2) :  - width * (j * arrowLength + arrowGap/2)
-				});
+				}, offsetX, offsetY);
 			}
-		} else {
+		} else if (width > 0) {
 			res.push(
 				{ cmd : 'beginPath' },
-				{ cmd : 'moveTo', args : coords[0] }
+				{ cmd : 'moveTo', args : [coords[0][0] - offsetX, coords[0][1] - offsetY] }
 			);
 			coords.slice(1).forEach(function(pnt) {
-				res.push({ cmd : 'lineTo', args : pnt });
+				res.push({ cmd : 'lineTo', args : [pnt[0] - offsetX, pnt[1] - offsetY] });
 			});
 			res.push(
 				{ prop : 'strokeStyle', val : color },

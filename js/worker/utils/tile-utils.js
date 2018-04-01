@@ -10,7 +10,7 @@ define([
 	return {
 		TILE_SIZE: TILE_SIZE,
 
-		getObjectIdsByTile : function(x, y, z, margin) {
+		getSegmentIdsByTile : function(x, y, z, margin) {
 	        var bounds = this.tileToGeoBounds(x, y, z, margin);
 
 	    	return global.tree.search(bounds[0][0], bounds[0][1], bounds[1][0], bounds[1][1]);

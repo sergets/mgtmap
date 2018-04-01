@@ -3,13 +3,15 @@ define([
     'utils/route',
     'utils/junction',
     'utils/cache',
-    'worker/utils/tile-utils'
+    'worker/utils/tile-utils',
+    'utils/wgs-84'
 ], function(
     geomUtils,
     routeUtils,
     junctionUtils,
     Cache,
-    tileUtils
+    tileUtils,
+    projection
 ) {
 	var EPSILON = 1e-5;
 
@@ -35,7 +37,7 @@ define([
 				resJunctionLines = [],
 				doneJunctions = {};
 
-			tileUtils.getObjectIdsByTile(x, y, z, zoomWidthFactor * actuals.maxWidth).forEach(function(id) {
+			tileUtils.getSegmentIdsByTile(x, y, z, zoomWidthFactor * actuals.maxWidth).forEach(function(id) {
 				resSegmentLines.push({
 					geometry : getCutSegment(id),
 					routes : actuals.routes[id] || [],
@@ -170,7 +172,7 @@ define([
 			function getTilePixelSegment(id) {
 				if(!tilePixelSegments[Math.abs(id)]) {
 					tilePixelSegments[Math.abs(id)] = data.segments[Math.abs(id)].map(function(geoPoint) {
-						return tileUtils.geoPointToTilePixels(geoPoint, x, y, z);
+						return projection.toGlobalPixels(geoPoint.slice().reverse(), z); // .geoPointToTilePixels(geoPoint, x, y, z);
 					});
 				}
 				return id > 0? tilePixelSegments[id] : tilePixelSegments[-id].slice().reverse()
