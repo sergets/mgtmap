@@ -16,7 +16,7 @@ define([
 			x = params.x,
 			y = params.y,
 			z = params.z,
-			routes = params.routes;
+			routes = params.routes,
 			styleOverride = params.style || {};
 
 		return vow.resolve(renderer.renderTile.call(this, x, y, z)).then(function(tilePixelLines) {

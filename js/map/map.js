@@ -297,7 +297,7 @@ extend(Map.prototype, {
         this._currentSegmentRoutes = routes
             .filter(routeUtils.notPhantom)
             .map(routeUtils.strip);
-        this._showSelectionLayer(this._currentSegmentRoutes.join(';'));
+        this._showSelectionLayer({ routes : this._currentSegmentRoutes });
     },
 
     _onBalloonClosed : function(e) {
@@ -310,24 +310,24 @@ extend(Map.prototype, {
     },
 
     highlightRoutes : function(routes) {
-        this._showSelectionLayer([routes.join(';')]);
+        this._showSelectionLayer({ routes : routes });
     },
 
     unhighlightRoutes : function(routes) {
-        this._removeSelectionLayer([routes.join(';')]);
+        this._removeSelectionLayer({ routes : routes });
     },
 
     showSelectedRoute : function(route) {
         this._dataManager.getRouteBounds(route).then(function(bounds) {
             this._selectedRoute = route;
             this._map.setBounds(bounds).then(function() {
-                this._showSelectionLayer([route, JSON.stringify({ width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH })]);
+                this._showSelectionLayer({ routes : [route], style : { width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH } });
             }, this);
         }, this);
     },
 
     hideSelectedRoute : function() {
-        this._removeSelectionLayer([this._selectedRoute, JSON.stringify({ width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH })]);
+        this._removeSelectionLayer({ routes : [this._selectedRoute], style : { width: SELECTED_ROUTE_WIDTH, outlineWidth: OUTLINE_WIDTH } });
         this._selectedRoute = null;
     },
 

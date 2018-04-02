@@ -3,7 +3,7 @@ requirejs.config({
     paths : {
         jquery : '//yastatic.net/jquery/2.2.0/jquery.min',
         vow : '//cdn.rawgit.com/dfilatov/vow/0.4.17/vow.min',
-        ymaps : '//api-maps.yandex.ru/2.1.56/?lang=ru_RU&coordorder=lonlat&mode=debug&load=package.full,graphics.generator.stroke.outline,util.imageLoader'
+        ymaps : '//api-maps.yandex.ru/2.1.62/?lang=ru_RU&coordorder=lonlat&load=package.full'
     },
     shim : {
         ymaps : { exports : 'ymaps' },
