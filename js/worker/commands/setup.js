@@ -25,7 +25,7 @@ define([
 
         this.state = state;
 
-        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes)).then(function(res) { 
+        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) { 
             if(res.status != 200) {
                 throw new Error;
             }

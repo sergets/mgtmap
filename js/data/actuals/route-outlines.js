@@ -51,9 +51,12 @@ return {
                     });
                     return outlinesByRoute;
                 }, {}),
-                hasDifferent = Object.values(outlinesByRoute).some(function(val, i, arr) { return val !== arr[0]; });
+                firstRoute = Object.keys(outlinesByRoute)[0],
+                hasDifferent = Object.keys(outlinesByRoute).some(function(route) { 
+                    return outlinesByRoute[route] != outlinesByRoute[firstRoute];
+                });
 
-            outlines[+segmentId] = hasDifferent? outlinesByRoute : Object.values(outlinesByRoute)[0] || null;
+            outlines[+segmentId] = hasDifferent? outlinesByRoute : outlinesByRoute[firstRoute] || null;
 
             return outlines;
         }, {}));

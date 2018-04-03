@@ -4,6 +4,7 @@ define([
     'vow',
     'utils/cache',
     'utils/route',
+    'utils/file',
     'worker/utils/tile-utils',
     'utils/events-emitter',
     'map/worker-canvas-layer',
@@ -15,6 +16,7 @@ define([
     vow,
     Cache,
     routeUtils,
+    fileUtils,
     tileUtils,
     eventsEmitter,
     _,
@@ -24,7 +26,8 @@ define([
 
 var ANIMATION_DURATION = 300,
     SELECTED_ROUTE_WIDTH = 10,
-    OUTLINE_WIDTH = 3;
+    OUTLINE_WIDTH = 3,
+    MIN_ZOOM = 9;
 
 var Map = function(dataManager, stateManager, worker) {
     this._map = new ymaps.Map('map', extend({
@@ -32,8 +35,10 @@ var Map = function(dataManager, stateManager, worker) {
     }, {
         bounds : stateManager.getBounds()
     }), {
+        minZoom: MIN_ZOOM,
         suppressMapOpenBlock: true,
-        yandexMapDisablePoiInteractivity: true
+        yandexMapDisablePoiInteractivity: true,
+        avoidFractionalZoom: true
     });
 
     this._worker = worker;
@@ -58,6 +63,8 @@ extend(Map.prototype, {
     _init : function() {
         var map = this._map,
             worker = this._worker,
+            stateManager = this._stateManager,
+            dataManager = this._dataManager,
             that = this;
 
         this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 10 } });
@@ -96,18 +103,31 @@ extend(Map.prototype, {
             WorkerCanvasLayer,
             WorkerHotspotSource
         ) {
-            var rendererLayer = that._rendererLayer = new WorkerCanvasLayer(worker, null, that._tileCaches, {
-                    tileTransparent : true,
-                    pane : 'mgtmap'
-                }),
-                hotspotLayer = that._hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker));
+            dataManager.getRoutes().then(function(routes) {
+                var prerenderedTileStorageId = fileUtils.getActualsFileNameByState(stateManager.serialize(), routes),
+                    rendererLayer = that._rendererLayer = new WorkerCanvasLayer(
+                        worker,
+                        null,
+                        that._tileCaches,
+                        prerenderedTileStorageId,
+                        {
+                            tileTransparent : true,
+                            pane : 'mgtmap'
+                        }
+                    ),
+                    hotspotLayer = that._hotspotLayer = new ymaps.hotspot.Layer(new WorkerHotspotSource(worker));
 
-            map.layers.add(rendererLayer);
-            map.layers.add(hotspotLayer);
+                map.layers.add(rendererLayer);
+                map.layers.add(hotspotLayer);
 
-            hotspotLayer.events.add('click', that._onHotspotClicked, that);
-            hotspotLayer.events.add('mouseenter', that._onHotspotMouseover, that);
-            hotspotLayer.events.add('mouseleave', that._onHotspotMouseout, that);
+                hotspotLayer.events.add('click', that._onHotspotClicked, that);
+                hotspotLayer.events.add('mouseenter', that._onHotspotMouseover, that);
+                hotspotLayer.events.add('mouseleave', that._onHotspotMouseout, that);
+
+                stateManager.on('time-settings-updated coloring-id-updated width-factor-updated', function() {
+                    rendererLayer.setPrerenderedStorageId(fileUtils.getActualsFileNameByState(stateManager.serialize(), routes));
+                });
+            });
         });
 
         map.layers.add(new ymaps.Layer(
@@ -161,7 +181,7 @@ extend(Map.prototype, {
             var that = this;
 
             ymaps.modules.require(['worker-canvas-layer'], function(WorkerCanvasLayer) {
-                var layer = new WorkerCanvasLayer(that._worker, query, that._tileCaches, {
+                var layer = new WorkerCanvasLayer(that._worker, query, that._tileCaches, null, {
                     tileTransparent : true,
                     pane : 'selection'
                 });

@@ -16,6 +16,7 @@ define([
 			x = params.x,
 			y = params.y,
 			z = params.z,
+			devicePixelRatio = params.devicePixelRatio || 1,
 			routes = params.routes,
 			styleOverride = params.style || {};
 
@@ -27,7 +28,7 @@ define([
 			}
 
 			tilePixelLines.forEach(function(line) {
-				renderLine(res, extend({}, line, styleOverride), x * tileUtils.TILE_SIZE, y * tileUtils.TILE_SIZE);
+				renderLine(res, extend({}, line, styleOverride), x * tileUtils.TILE_SIZE, y * tileUtils.TILE_SIZE, devicePixelRatio);
 			});
 		
 			return { result : res, key : key };

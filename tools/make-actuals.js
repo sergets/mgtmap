@@ -44,7 +44,7 @@ requirejs(['data/calc-actuals', 'utils/file'], function(calcActuals, fileUtils) 
 	}).then(function(data) {
 		return calcActuals(data, state, Object.keys(state), {}).then(function(actuals) {
             console.log('Writing to', fileUtils.getActualsFileNameByState(state, data.routes));
-			return fs.write('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes), JSON.stringify(actuals));
+			return fs.write('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json', JSON.stringify(actuals));
 		}, function(err) {
             console.log('error saving', err);
         });

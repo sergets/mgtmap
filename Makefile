@@ -7,12 +7,17 @@ clean:
 	rm -rf ./node_modules
 	rm -rf ./deploy
 	rm -rf ./actuals
+	rm -rf ./tiles
 
 actuals: install
 	mkdir -p actuals
 	node tools/make-actuals.js ${COLORING}
 
-deploy: install actuals
+tiles: install
+	mkdir -p tiles
+	node tools/make-tiles.js ${COLORING}
+
+deploy: install actuals tiles
 	node node_modules/requirejs/bin/r.js -o tools/app.build.js
 	node node_modules/requirejs/bin/r.js -o tools/worker.build.js
 	cat index.html | sed 's/\(<!-- \[development\]\) -->/\1 /g;s/<!-- \(\[\/development\] -->\)/ \1/g;s/\(<!-- \[production\]\)/\1 -->/g;s/\(\[\/production\] -->\)/<!-- \1/g' > deploy/index.html
@@ -20,6 +25,7 @@ deploy: install actuals
 	cp troll-logo.png deploy/
 	cp -r data deploy/
 	cp -r actuals deploy/
+	cp -r tiles deploy/
 
 install: 
 	yarn install

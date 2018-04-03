@@ -53,9 +53,7 @@ return function(data, state, updatedStateFields, oldActuals) {
         readyFields[fieldId] = vow.all((fields[fieldId].deps || []).map(function(depName) {
             return fieldsToRecalc.indexOf(depName) != -1? readyFields[depName] : oldActuals[depName];
         })).then(function(readyDeps) {
-            return fields[fieldId].calc.apply(fields[fieldId], [data, state].concat(readyDeps)).then(function(res) {
-                return res;
-            });
+            return fields[fieldId].calc.apply(fields[fieldId], [data, state].concat(readyDeps));
         });
         deferred.notify((i + 1) / fieldsToRecalc.length);
     });

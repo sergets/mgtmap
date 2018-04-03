@@ -124,7 +124,7 @@ extend(AppView.prototype, {
         }, this);
 
         var colorings = {
-            "" : 'обычные цвета',
+            "default" : 'обычные цвета',
             "vendor" : 'по перевозчику',
             "type" : 'по типу',
             "black" : 'все чёрные'

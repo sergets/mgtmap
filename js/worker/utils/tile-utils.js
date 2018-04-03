@@ -48,7 +48,21 @@ define([
 				projection.fromGlobalPixels([globalPixelBounds[2] + margin, globalPixelBounds[1] - margin], z).reverse()
 			];
 			return res;
-		}
+		},
+
+		geoBoundsToTiles : function(bounds, zoom) {
+			var globalPixelBounds = [
+				projection.toGlobalPixels([bounds[0][1], bounds[0][0]], zoom),
+				projection.toGlobalPixels([bounds[1][1], bounds[1][0]], zoom)
+			];
+
+			return {
+				minX : Math.floor(globalPixelBounds[0][0] / TILE_SIZE),
+				maxY : Math.floor(globalPixelBounds[0][1] / TILE_SIZE),
+				maxX : Math.floor(globalPixelBounds[1][0] / TILE_SIZE),
+				minY : Math.floor(globalPixelBounds[1][1] / TILE_SIZE)
+			};
+		},
 	};
 });
 

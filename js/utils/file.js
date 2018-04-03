@@ -12,17 +12,17 @@ define(function() {
                     requestedDate = state.timeSettings.date,
                     pastDates = dates.filter(function(date) { return +new Date(date) < requestedDate });
 
-                state.timeSettings.date = +new Date(pastDates[pastDates.length - 1]);
+                var lastDate = +new Date(pastDates[pastDates.length - 1]);
             }
 
             return [
-                new Date(state.timeSettings.date || undefined).toISOString().substring(0, 10),
+                new Date(lastDate || state.timeSettings.date || undefined).toISOString().substring(0, 10),
                 state.timeSettings.dow,
                 state.timeSettings.fromHour,
                 state.timeSettings.toHour,
                 state.widthFactor,
                 state.customColoringId,
-            ].join('-') + '.json';
+            ].join('-');
         }
     };
 
