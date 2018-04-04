@@ -17,7 +17,8 @@ define([
     flatbush,
     vow
 ) {
-    var CACHE_SIZE = 400;
+    var CACHE_SIZE = 400,
+        BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp/actuals/';
 
     return function(params) {
         var deferred = vow.defer(),
@@ -40,12 +41,12 @@ define([
         });
         tree.finish();
 
-        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) { 
+        fetch(BASE_ACTUALS_URL + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) {
             if(res.status != 200) {
                 throw new Error;
             }
             return res.json();
-        }).catch(function(err) { 
+        }).catch(function(err) {
             return calcActuals(data, state, Object.keys(state), {});
         }).then(
             function(actuals) {

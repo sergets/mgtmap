@@ -9,7 +9,8 @@ define([
 ) {
 
 var TILE_SIZE = 256,
-    CACHE_SIZE = 1000;
+    CACHE_SIZE = 1000,
+    BASE_TILES_URL = '//sergets.github.io/mgtmap-gp/tiles/';
 
 ymaps.modules.define('worker-canvas-layer', [
     'util.imageLoader',
@@ -81,7 +82,7 @@ ymaps.modules.define('worker-canvas-layer', [
                     deferred.resolve({ target : tileCaches[zoom].get(x, y, JSON.stringify(query)) });
                 } else {
                     (this._prerenderedStorageId && zoom <= MAX_PRERENDERABLE_ZOOM && (!query || !Object.keys(query).length)?
-                        loadImage('tiles/' + this._prerenderedStorageId + '/' + x + '_' + y + '_' + zoom + '@' + Math.ceil(scale) + 'x.png') :
+                        loadImage(BASE_TILES_URL + this._prerenderedStorageId + '/' + x + '_' + y + '_' + zoom + '@' + scale + 'x.png') :
                         ymaps.vow.reject())
                     .fail(function() {
                         var canvasDeferred = ymaps.vow.defer(),

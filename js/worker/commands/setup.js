@@ -11,6 +11,8 @@ define([
     fileUtils,
     renderer
 ) {
+    var BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp/actuals/';
+
     return function(params, key) {
         postMessage({ state : 'busy', progress : 0 });
 
@@ -27,7 +29,7 @@ define([
 
         this.state = state;
 
-        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) {
+        fetch(BASE_ACTUALS_URL + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) {
             if(res.status != 200) {
                 throw new Error;
             }
