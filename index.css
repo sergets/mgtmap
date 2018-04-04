@@ -121,17 +121,17 @@ body {
     transition: 1s;
 }
 
-body.sobyanin .counters {
+body.sobyanin .counters, body.sobyanin .top-pane p {
     box-shadow: 0 0 20px 20px rgba(224, 224, 224, 0.8);
     background: rgba(224, 224, 224, 0.8);
 }
 
-body.now .counters {
+body.now .counters, body.sobyanin .top-pane p {
     box-shadow: 0 0 20px 20px rgba(240, 240, 224, 0.8);
     background: rgba(240, 240, 224, 0.8);
 }
 
-body.katz .counters {
+body.katz .counters, body.sobyanin .top-pane p {
     box-shadow: 0 0 20px 20px rgba(255, 255, 208, 0.8);
     background: rgba(255, 255, 208, 0.8);
 }
@@ -172,9 +172,15 @@ body.katz .counter-katz,
     top: 0;
     left: 0;
     right: 0;
-    padding-bottom: 150px;
+    padding-bottom: 180px;
     text-align: center;
     transition: 1s;
+}
+
+.top-pane p {
+    display: inline-block;
+    margin: 0;
+    max-width: 600px;
 }
 
 @media screen and (max-width: 500px) {

@@ -16,9 +16,11 @@ var colorings = {
     sobyanin : sobyaninColoring
 };
 
+var DEFAULT_COLORING = 'katz';
+
 return {
     shouldRecalc : function(state, updatedStateFields) {
-        var coloring = colorings[state.customColoringId || 'now'];
+        var coloring = colorings[state.customColoringId || DEFAULT_COLORING];
 
         return updatedStateFields.indexOf('customColoringId') != -1 ||
             coloring.shouldRecalcColorsOn.some(function(stateField) {
@@ -29,7 +31,7 @@ return {
     deps : ['widths', 'routes', 'existingRoutes', 'lengths'],
 
     calc : function(data, state, widths, routes, existingRoutes, lengths) {
-        var coloring = colorings[state.customColoringId || 'now'];
+        var coloring = colorings[state.customColoringId || DEFAULT_COLORING];
 
         return vow.resolve(existingRoutes.reduce(function(colors, routeName) {
             colors[routeName] = coloring.getRouteColor(routeName, data, state, {
