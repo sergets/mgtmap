@@ -146,9 +146,7 @@ extend(DataManager.prototype, {
     },
 
     getActualRoutesForSegment : function(segmentId) {
-        console.log('getting actual routes for segment', segmentId);
         return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
-            console.log('got', actuals.routes[segmentId]);
             return actuals.routes[segmentId];
         }, this);
     },
