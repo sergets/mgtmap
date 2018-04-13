@@ -38,7 +38,7 @@ var DEFAULT_WIDTH = 2,
 
 var DataManager = function(stateManager) {
     this._stateManager = stateManager;
-    
+
     this._data = {};
     this._loadingPromises = {};
 
@@ -48,7 +48,7 @@ var DataManager = function(stateManager) {
 
     this._changedFiles = {};
     this._saveWindows = {};
-    
+
     this._stateManager.on({
         'time-settings-updated' : this._dropActuals.bind(this),
         'coloring-id-updated' : this._dropActuals.bind(this),
@@ -68,10 +68,10 @@ extend(DataManager.prototype, {
         if (fileName in this._loadingPromises) {
             return vow.resolve(this._loadingPromises[fileName]);
         }
-        
+
         var deferred = vow.defer(),
             promise = deferred.promise();
-        
+
         $.ajax({
             url : fileName,
             data : {
@@ -88,16 +88,16 @@ extend(DataManager.prototype, {
             },
             context : this
         });
-        
-        
+
+
         this._loadingPromises[fileName] = promise;
         return promise;
     },
-    
+
     getSegments : function() {
         return this._getDataFromFile('data/segments.json');
     },
-    
+
     setSegmentGeometry : function(segmentId, geometry) {
         return vow.all([this.getSegments(), this.getSegmentBounds()]).done(function() {
             this._data['data/segments.json'][segmentId] = geometry;
@@ -106,7 +106,7 @@ extend(DataManager.prototype, {
             this.trigger('data-updated');
         }, this);
     },
-    
+
     getSegmentCount : function() {
         return this.getSegments().then(function(segments) {
             return segments.length;
@@ -127,7 +127,7 @@ extend(DataManager.prototype, {
                 {}
             )).sort();
 
-            return dates[dates.length - 1]; 
+            return dates[dates.length - 1];
         })
     },
 
@@ -136,7 +136,7 @@ extend(DataManager.prototype, {
             return routesBySegment[segmentId] || {};
         });
     },
-    
+
     setRoutesForSegment : function(segmentId, data) {
         return this.getRoutesForSegment(segmentId).then(function() {
             this._data['data/routes.json'][segmentId] = data;
@@ -146,20 +146,22 @@ extend(DataManager.prototype, {
     },
 
     getActualRoutesForSegment : function(segmentId) {
+        console.log('getting actual routes for segment', segmentId);
         return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            console.log('got', actuals.routes[segmentId]);
             return actuals.routes[segmentId];
         }, this);
     },
-    
+
     getFreqs : function() {
         return this._getDataFromFile('data/freqs.json');
     },
-    
+
     getActualWidthForRoute : function(route) {
         return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
             return actuals.widths[route];
         }, this);
-    },  
+    },
 
     getBusColor : function(route) {
         return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
@@ -182,7 +184,7 @@ extend(DataManager.prototype, {
             var lengths = segments.reduce(function(res, segment, id) {
                 if(!segment[0][0]) return res;
 
-                res[id] = geomUtils.getLength(segment.map(function(point) { 
+                res[id] = geomUtils.getLength(segment.map(function(point) {
                     return projection.toGlobalPixels(point, 20);
                 }));
                 return res;
@@ -210,7 +212,7 @@ extend(DataManager.prototype, {
                 var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, lengths, this._actuals.routes, trolleyWires) * 100),
                     isExpress = registryData && registryData.express,
                     isPrivate = registryData && registryData.vendor != 'mgt',
-                    type = route.indexOf('Тб') == 0? 'troll' : route.indexOf('Тм') == 0? 'tram' : 'bus'; 
+                    type = route.indexOf('Тб') == 0? 'troll' : route.indexOf('Тм') == 0? 'tram' : 'bus';
 
                 if(type == 'troll') {
                     res += 'Это троллейбусный маршрут. Троллейбус экологичен, чист и бесшумен.';
@@ -223,14 +225,14 @@ extend(DataManager.prototype, {
                 } else if(trolleyFraction >= 50) {
                     res += 'Этот автобусный маршрут на <b>' + trolleyFraction + '%</b> проходит под троллейбусными проводами. Грязные дизельные автобусы можно заменить на тихие экологичные троллейбусы хоть завтра, технологии это позволяют.';
                 } else {
-                    res += (trolleyFraction > 0? 
+                    res += (trolleyFraction > 0?
                         'Этот автобусный маршрут проходит под троллейбусными проводами на <b>' + trolleyFraction + '%</b>. ' :
                         'Над этим автобусным маршрутом троллейбусных проводов нет. ') + 'К сожалению, текущий уровень развития технологий электротранспорта для нашего климата не позволяет легко заменить его на тихий и экологичный троллейбус.<p>В будущем, возможно, появятся пригодные для нашего климата электробусы, которые помогут нам избавиться от выхлопов дизеля.'
                 }
 
                 if (registryData && registryData.quantity) {
                     var quantity = registryData.quantity,
-                        inclination = ((quantity % 10 == 1 && quantity != 11)? 'one' : 
+                        inclination = ((quantity % 10 == 1 && quantity != 11)? 'one' :
                             (quantity % 10 > 1 && quantity % 10 < 5 && Math.floor(quantity / 10) != 1)? 'some' :
                             'many');
 
@@ -251,7 +253,7 @@ extend(DataManager.prototype, {
                             many : 'трамваев'
                         }
                     }[type][inclination] + '. ';
-                    if(type == 'bus' && quantity) { 
+                    if(type == 'bus' && quantity) {
                         res += 'В год ' + (quantity == 1? 'он выбасывает' : 'они выбасывают') + ' в воздух примерно <b>' + quantity * 3 + ' т</b> опасных газов (CO, оксидов серы и азота).';
                     }
                 }
@@ -272,10 +274,10 @@ extend(DataManager.prototype, {
                 } else {
                     res += '<div class="timetable">';
                     for (var h = timeSettings.fromHour; h <= timeSettings.toHour; h++) {
-                        res += '<div class="hour">' + (h % 24) + '<div class="minutes">' + 
+                        res += '<div class="hour">' + (h % 24) + '<div class="minutes">' +
                             (freqs[route][currentDay][h]?
                                 Array.apply(Array, Array(Math.round(freqs[route][currentDay][h]))).map(function() { return '.'; }).join('') :
-                                '') + 
+                                '') +
                             '</div></div>';
                         //timetable.push('в ' + h + ' ч — <b>' + (freqs[route][currentDay][h] || 'нет рейсов') + '</b>');
                     }
@@ -331,7 +333,7 @@ extend(DataManager.prototype, {
             return routesList.reduce(function(r, route) {
                 var busRegistry = route.indexOf('Тб') == -1 && route.indexOf('Тм') == -1 && registry[route];
 
-                return r + (busRegistry && 
+                return r + (busRegistry &&
                     trolleyUtils.getTrolleyFraction(route, lengths, that._actuals.routes, trolleyWires) >= 0.5 &&
                     busRegistry.vendor == 'mgt' &&
                     !busRegistry.express?

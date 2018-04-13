@@ -20,7 +20,7 @@ require([
     'data/manager',
     'map/map',
     'view/app',
-    'utils/route',
+    'utils/deep-equal'
 ], function(
     ym,
     $,
@@ -29,7 +29,8 @@ require([
     StateManager,
     DataManager,
     Map,
-    AppView
+    AppView,
+    deepEqual
 ) {
     ym.ready(function() {
         var stateManager = new StateManager(),
@@ -82,8 +83,10 @@ require([
                 appView.hideProgress();
             },
             'updated' : function() {
-                tileWorker.command('getActuals').then(function(actuals) {
-                    dataManager.setActuals(actuals);
+                tileWorker.command('getActuals').then(function(res) {
+                    if (deepEqual(stateManager.serialize(), res.state)) {
+                        dataManager.setActuals(res.actuals);
+                    }
                 })
             }
         });

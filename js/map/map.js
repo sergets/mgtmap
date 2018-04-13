@@ -1,6 +1,7 @@
 define([
     'ymaps',
     'utils/extend',
+    'utils/deep-equal',
     'vow',
     'utils/cache',
     'utils/route',
@@ -13,6 +14,7 @@ define([
 ], function(
     ymaps,
     extend,
+    deepEqual,
     vow,
     Cache,
     routeUtils,
@@ -53,7 +55,7 @@ var Map = function(dataManager, stateManager, worker) {
     dataManager.on('data-updated', function() {
         this.getMap().balloon.close();
     }, this);
-    
+
     this._init();
 };
 
@@ -150,7 +152,7 @@ extend(Map.prototype, {
         var layerDesc;
 
         this._selectionLayers.some(function(desc) {
-            if (JSON.stringify(desc.query) == JSON.stringify(query)) {
+            if (deepEqual(desc.query, query)) {
                 layerDesc = desc;
                 return true;
             }
@@ -191,7 +193,7 @@ extend(Map.prototype, {
                 layer.getElement().style.transition = 'opacity ease 0.3s';
                 selectionLayers.push({
                     query : query,
-                    layer : layer 
+                    layer : layer
                 });
 
                 setTimeout(function() {
@@ -217,7 +219,7 @@ extend(Map.prototype, {
         this._showLastVisibleLayer();
     },
 
-    _clearSelectionLayers : function() {            
+    _clearSelectionLayers : function() {
         this._selectionLayers.filter(function(layerDesc) {
             return !layerDesc.removingTimeout;
         }).forEach(function(layerDesc) {
@@ -233,7 +235,7 @@ extend(Map.prototype, {
 
         if(lastVisibleLayer) {
             lastVisibleLayer.layer.getElement().style.opacity = 0;
-        } 
+        }
     },
 
     _showLastVisibleLayer : function() {
@@ -256,8 +258,8 @@ extend(Map.prototype, {
                 return;
             }
 
-            var currentSegmentRoutes = this._currentSegmentRoutes;               
-                
+            var currentSegmentRoutes = this._currentSegmentRoutes;
+
             return routes.map(function(route) {
                 var routeName = routeUtils.strip(route);
                 return routeUtils.notPhantom(route) && currentSegmentRoutes.indexOf(routeName) !== -1 && routeName;
@@ -270,7 +272,7 @@ extend(Map.prototype, {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
             this._getIntersectionRoutes(segmentId).done(function(routes) {
-                if(routes && routes.length && routes.length < this._currentSegmentRoutes.length) { 
+                if(routes && routes.length && routes.length < this._currentSegmentRoutes.length) {
                     this.trigger('highlight-routes', { routes : routes });
                     this.highlightRoutes(routes);
                     this._routesHovered = true;
@@ -284,7 +286,7 @@ extend(Map.prototype, {
             var segmentId = e.get('activeObject').getProperties().segmentId;
 
             this._getIntersectionRoutes(segmentId).done(function(routes) {
-                if(routes) { 
+                if(routes) {
                     this.trigger('unhighlight-routes', { routes : routes });
                     this.unhighlightRoutes(routes);
                     this._routesHovered = false;
@@ -356,7 +358,7 @@ extend(Map.prototype, {
 
         bounds[0][0] && this.trigger('bounds-changed', { bounds : bounds });
     },
-    
+
     getMap : function() {
         return this._map;
     },
@@ -364,7 +366,7 @@ extend(Map.prototype, {
     getBackgroundPane : function() {
         return this._map.panes.get('background-html').getElement();
     },
-    
+
     getControlsPane : function() {
         return this._map.panes.get('controls').getElement();
     },

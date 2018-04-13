@@ -2,12 +2,14 @@ define([
     'vow',
     'data/calc-actuals',
     'utils/route',
-    'utils/file'
+    'utils/file',
+    'worker/renderer/renderer'
 ], function(
     vow,
     calcActuals,
     routeUtils,
-    fileUtils
+    fileUtils,
+    renderer
 ) {
     return function(params, key) {
         postMessage({ state : 'busy', progress : 0 });
@@ -25,17 +27,17 @@ define([
 
         this.state = state;
 
-        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) { 
+        fetch('actuals/' + fileUtils.getActualsFileNameByState(state, data.routes) + '.json').then(function(res) {
             if(res.status != 200) {
                 throw new Error;
             }
             return res.json();
-        }).catch(function(err) { 
+        }).catch(function(err) {
             return calcActuals(data, state, changedStateFields, this.actuals);
         }).then(
             function(actuals) {
                 this.actuals = actuals;
-                this.tilePixelLinesCache.drop();
+                renderer.dropCaches();
 
                 deferred.resolve({ state : 'ready', key : key });
             }, function(err) {
