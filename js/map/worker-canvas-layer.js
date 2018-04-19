@@ -1,14 +1,15 @@
 define([
     'ymaps',
+    'utils/extend',
     'utils/cache'
 ], function(
     ymaps,
+    extend,
     Cache
 ) {
 
 var TILE_SIZE = 256,
-    CACHE_SIZE = 1000,
-    NULL_GIF = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
+    CACHE_SIZE = 1000;
 
 ymaps.modules.define('worker-canvas-layer', [
     'util.imageLoader',
@@ -22,14 +23,12 @@ ymaps.modules.define('worker-canvas-layer', [
 ) {
     var MAX_PRERENDERABLE_ZOOM = 13;
 
-    var dpi = window.devicePixelRatio || 1;
-
-    function createCanvas() {
+    function createCanvas(scale) {
         var canvas = document.createElement('canvas'),
             ctx = canvas.getContext("2d");
 
-        canvas.width = TILE_SIZE * dpi;
-        canvas.height = TILE_SIZE * dpi;
+        canvas.width = TILE_SIZE * scale;
+        canvas.height = TILE_SIZE * scale;
         ctx.lineJoin = 'round';
 
         return canvas;
@@ -38,7 +37,7 @@ ymaps.modules.define('worker-canvas-layer', [
     function loadImage(src) {
         var deferred = ymaps.vow.defer(),
             img = document.createElement('img');
-                        
+
         img.onload = function() {
             deferred.resolve(img);
         };
@@ -63,35 +62,36 @@ ymaps.modules.define('worker-canvas-layer', [
                 this.update();
             }, this);
 
-            var layerOptions = arguments[4] || {};
+            var layerOptions = extend({ tileContainerClass : 'default#canvas' }, arguments[4]);
 
-            layerOptions.imagePreprocessor = function(img, tileData) {
+            var tileLoader = function(args) {
                 var query = this._query,
-                    x = tileData.tileNumber[0],
-                    y = tileData.tileNumber[1],
-                    zoom = tileData.tileZoom,
+                    x = args.number[0],
+                    y = args.number[1],
+                    zoom = args.zoom,
+                    scale = args.scale,
                     deferred = ymaps.vow.defer();
 
                 if (tileCaches[zoom] && tileCaches[zoom].has(x, y, JSON.stringify(query))) {
-                    deferred.resolve(tileCaches[zoom].get(x, y, JSON.stringify(query)));
+                    deferred.resolve({ target : tileCaches[zoom].get(x, y, JSON.stringify(query)) });
                 } else {
-                    (this._prerenderedStorageId && zoom <= MAX_PRERENDERABLE_ZOOM && (!query || !Object.keys(query).length)? 
-                        loadImage('tiles/' + this._prerenderedStorageId + '/' + x + '_' + y + '_' + zoom + '@' + dpi + 'x.png') :
+                    (this._prerenderedStorageId && zoom <= MAX_PRERENDERABLE_ZOOM && (!query || !Object.keys(query).length)?
+                        loadImage('tiles/' + this._prerenderedStorageId + '/' + x + '_' + y + '_' + zoom + '@' + scale + 'x.png') :
                         ymaps.vow.reject())
                     .fail(function() {
                         var canvasDeferred = ymaps.vow.defer(),
-                            canvas = createCanvas(),
+                            canvas = createCanvas(scale),
                             ctx = canvas.getContext('2d');
 
                         worker.command('renderTile', {
                             x : x,
                             y : y,
                             z : zoom,
-                            devicePixelRatio : dpi,
+                            devicePixelRatio : scale,
                             routes : query && query.routes,
                             style : query && query.style
                         }).then(function(result) {
-                            ctx.clearRect(0, 0, TILE_SIZE * dpi, TILE_SIZE * dpi);
+                            ctx.clearRect(0, 0, TILE_SIZE * scale, TILE_SIZE * scale);
                             result.forEach(function(canvasCommand) {
                                 if (canvasCommand.prop) {
                                     ctx[canvasCommand.prop] = canvasCommand.val;
@@ -106,7 +106,7 @@ ymaps.modules.define('worker-canvas-layer', [
                     })
                     .then(function(resImage) {
                         (tileCaches[zoom] || (tileCaches[zoom] = new Cache(CACHE_SIZE))).set(x, y, JSON.stringify(query), resImage);
-                        deferred.resolve(resImage);
+                        deferred.resolve({ target : resImage });
                     });
                 }
 
@@ -114,7 +114,7 @@ ymaps.modules.define('worker-canvas-layer', [
             }.bind(this);
 
             WorkerCanvasLayer.superclass.constructor.apply(
-                this, [NULL_GIF, layerOptions].concat([].slice.call(arguments, 5))
+                this, [{ tileLoader : tileLoader }, layerOptions].concat([].slice.call(arguments, 5))
             );
         },
         Layer,
