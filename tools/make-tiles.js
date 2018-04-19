@@ -20,8 +20,8 @@ var TILE_SIZE = 256,
 
 var coloring = process.argv[2] || 'default';
 var state = {
-    timeSettings : { 
-        dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
+    timeSettings : {
+        dow : process.argv[3] || 1,
         fromHour : 7,
         toHour : 24,
         date : +new Date()
@@ -54,7 +54,7 @@ requirejs([
 ) {
     console.log('Making tiles for ' + fileUtils.getActualsFileNameByState(state) + '...');
 
-	vow.all({ 
+	vow.all({
 	    segments : vowFs.read('data/segments.json').then(JSON.parse),
 	    freqs : vowFs.read('data/freqs.json').then(JSON.parse),
 	    routes : vowFs.read('data/routes.json').then(JSON.parse),
@@ -119,18 +119,18 @@ requirejs([
         console.log('error reading data', err);
     }).then(function(res) { return res; }, function(err) { console.log(err); });
 
-    /// 
+    ///
 
     function renderTileToFile(x, y, z, fileName, devicePixelRatio) {
         if(!devicePixelRatio) {
             devicePixelRatio = 1;
         }
 
-        return renderTileCommand({ x : x, y : y, z : z, devicePixelRatio: devicePixelRatio }, '').then(function(res) {    
+        return renderTileCommand({ x : x, y : y, z : z, devicePixelRatio: devicePixelRatio }, '').then(function(res) {
             var deferred = vow.defer(),
                 canvas = new Canvas(devicePixelRatio * TILE_SIZE, devicePixelRatio * TILE_SIZE),
                 ctx = canvas.getContext('2d');
-            
+
             res.result.forEach(function(canvasCommand) {
                 if (canvasCommand.prop) {
                     ctx[canvasCommand.prop] = canvasCommand.val;
@@ -145,13 +145,13 @@ requirejs([
             stream.on('data', function(chunk) {
                 out.write(chunk);
             });
-             
+
             stream.on('end', function() {
                 console.log('Tile ', x, y, z, '@' + devicePixelRatio, ' written to ', fileName);
                 deferred.resolve();
             });
 
             return deferred.promise();
-        });    
+        });
     }
 });

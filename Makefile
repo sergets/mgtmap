@@ -11,11 +11,15 @@ clean:
 
 actuals: install
 	mkdir -p actuals
-	node tools/make-actuals.js ${COLORING}
+	node tools/make-actuals.js ${COLORING} 1
+	node tools/make-actuals.js ${COLORING} 32
+	node tools/make-actuals.js ${COLORING} 64
 
 tiles: install
 	mkdir -p tiles
-	node tools/make-tiles.js ${COLORING}
+	node tools/make-tiles.js ${COLORING} 1
+	node tools/make-actuals.js ${COLORING} 32
+	node tools/make-actuals.js ${COLORING} 64
 
 deploy: install actuals tiles
 	node node_modules/requirejs/bin/r.js -o tools/app.build.js
@@ -27,5 +31,5 @@ deploy: install actuals tiles
 	cp -r actuals deploy/
 	cp -r tiles deploy/
 
-install: 
+install:
 	yarn install

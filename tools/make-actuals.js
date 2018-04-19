@@ -13,8 +13,8 @@ requirejs = requirejs.config({
 var coloring = process.argv[2] || 'default';
 
 var state = {
-    timeSettings : { 
-        dow : ({ 6 : 32, 0 : 64 })[(new Date()).getDay()] || 1,
+    timeSettings : {
+        dow : process.argv[3] || 1,
         fromHour : 7,
         toHour : 24,
         date : +new Date()
@@ -35,7 +35,7 @@ requirejs(['data/calc-actuals', 'utils/file'], function(calcActuals, fileUtils) 
 
     console.log('Generating actuals at ' + fileUtils.getActualsFileNameByState(state) + '...');
 
-	vow.all({ 
+	vow.all({
 	    segments : fs.read('data/segments.json').then(JSON.parse),
 	    freqs : fs.read('data/freqs.json').then(JSON.parse),
 	    routes : fs.read('data/routes.json').then(JSON.parse),
