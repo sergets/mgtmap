@@ -1,3 +1,5 @@
+COLORING=default
+
 .PHONY: dev install clean actuals deploy
 
 dev:
@@ -18,8 +20,8 @@ actuals: install
 tiles: install
 	mkdir -p tiles
 	node tools/make-tiles.js ${COLORING} 1
-	node tools/make-actuals.js ${COLORING} 32
-	node tools/make-actuals.js ${COLORING} 64
+	node tools/make-tiles.js ${COLORING} 32
+	node tools/make-tiles.js ${COLORING} 64
 
 deploy: install actuals tiles
 	node node_modules/requirejs/bin/r.js -o tools/app.build.js
