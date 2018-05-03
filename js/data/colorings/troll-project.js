@@ -15,7 +15,7 @@ define([
                     var times = actuals.actualRoutes[segmentId].reduce(function(t, r) {
                         if(r == route) return t + 2;
                         if(r == '>' + route || r == '<' + route) return t + 1;
-                        return t; 
+                        return t;
                     }, 0);
                     totalLength += times * actuals.lengths[segmentId];
                     if(trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)) {
@@ -30,10 +30,7 @@ define([
             if(route.indexOf('Тб') != -1) {
                 return '#4d2';
             }
-            if(trolleyFraction > 0.5 && !(data.registry[route] && (data.registry[route].vendor != 'mgt' || data.registry[route].express))) {
-                return '#1bf';
-            }
-            return '#528';
+            return 'rgb(' + Math.round(34 * trolleyFraction) + ',' + Math.round(187 * trolleyFraction) + ',' + Math.round(255 * trolleyFraction) + ')';
         },
         getRouteOutlines : function(segmentId, route, data, state, actuals) {
             return trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)? '#af5' : '#999';
@@ -44,7 +41,7 @@ define([
 
             return trolleyUtils.isSegmentInRoute(segmentId, selectedRoute, actuals.actualRoutes)?
                 trolleyUtils.isSegmentTrolleyForRoute(segmentId, selectedRoute, actuals.actualRoutes, data.trolleyWires)?
-                    { 10 : { color : '#af5', avoidEmpty : true } } : 
+                    { 10 : { color : '#af5', avoidEmpty : true } } :
                     { 10 : { color : '#999', avoidEmpty : true } } :
                 null;
             }
