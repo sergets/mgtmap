@@ -82,7 +82,7 @@ require([
             'ready' : function(e) {
                 appView.hideProgress();
             },
-            'updated' : function() {
+            'updated inited' : function() {
                 tileWorker.command('getActuals').then(function(res) {
                     if (deepEqual(stateManager.serialize(), res.state)) {
                         dataManager.setActuals(res.actuals);

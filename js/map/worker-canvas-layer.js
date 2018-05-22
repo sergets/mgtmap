@@ -64,13 +64,18 @@ ymaps.modules.define('worker-canvas-layer', [
 
             var layerOptions = extend({ tileContainerClass : 'default#canvas' }, arguments[4]);
 
-            var tileLoader = function(args) {
+            var tileLoader = function(args, cancellationToken) {
                 var query = this._query,
                     x = args.number[0],
                     y = args.number[1],
                     zoom = args.zoom,
                     scale = args.scale,
-                    deferred = ymaps.vow.defer();
+                    deferred = ymaps.vow.defer(),
+                    isCancelled = false;
+
+                cancellationToken.register(function() {
+                    isCancelled = true;
+                });
 
                 if (tileCaches[zoom] && tileCaches[zoom].has(x, y, JSON.stringify(query))) {
                     deferred.resolve({ target : tileCaches[zoom].get(x, y, JSON.stringify(query)) });
@@ -91,15 +96,17 @@ ymaps.modules.define('worker-canvas-layer', [
                             routes : query && query.routes,
                             style : query && query.style
                         }).then(function(result) {
-                            ctx.clearRect(0, 0, TILE_SIZE * scale, TILE_SIZE * scale);
-                            result.forEach(function(canvasCommand) {
-                                if (canvasCommand.prop) {
-                                    ctx[canvasCommand.prop] = canvasCommand.val;
-                                } else {
-                                    ctx[canvasCommand.cmd].apply(ctx, canvasCommand.args || []);
-                                }
-                            });
-                            canvasDeferred.resolve(canvas);
+                            if (!isCancelled) {
+                                ctx.clearRect(0, 0, TILE_SIZE * scale, TILE_SIZE * scale);
+                                result.forEach(function(canvasCommand) {
+                                    if (canvasCommand.prop) {
+                                        ctx[canvasCommand.prop] = canvasCommand.val;
+                                    } else {
+                                        ctx[canvasCommand.cmd].apply(ctx, canvasCommand.args || []);
+                                    }
+                                });
+                                canvasDeferred.resolve(canvas);
+                            }
                         });
 
                         return canvasDeferred.promise();

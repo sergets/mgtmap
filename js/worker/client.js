@@ -22,7 +22,7 @@ var MapWorker = function(dataManager, stateManager) {
         that = this;
 
     worker.addEventListener('message', this._onWorkerMessage.bind(this));
-    
+
     this._dataManager = dataManager;
     this._stateManager = stateManager;
     this._isInited = false;
@@ -39,7 +39,7 @@ extend(MapWorker.prototype, {
         var worker = this._worker,
             dataManager = this._dataManager,
             stateManager = this._stateManager;
-    
+
         vow.all({
             segments : dataManager.getSegments(),
             routes : dataManager.getRoutes(),
@@ -53,7 +53,7 @@ extend(MapWorker.prototype, {
             });
         });
     },
-    
+
     _onWorkerMessage : function(e) {
         if(e.data.progress && e.data.progress !== this._progress) {
             this._progress = e.data.progress;
@@ -67,7 +67,12 @@ extend(MapWorker.prototype, {
         } else if (e.data.state == 'ready') {
             this._isBusy = false;
             this._isInited = true;
-            this.trigger('updated');
+            if ('key' in e.data) {
+                this.trigger('updated');
+            }
+            else {
+                this.trigger('inited');
+            }
             this._messageQueue.forEach(function(msg) {
                 this.postMessage.apply(this, msg);
             }, this);
@@ -117,7 +122,7 @@ extend(MapWorker.prototype, {
             params : params,
             key : key
         });
-                        
+
         return deferred.promise();
     },
 
