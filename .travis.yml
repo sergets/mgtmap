@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - "node"
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++
+
+script:
+  - git config user.email "sergets@ya.ru"
+  - git config user.name "self-driving Serge Ts"
+  - git config remote.origin.url `git config remote.origin.url | sed "s/github.com/sergets:$GITHUB_KEY@github.com/"`
+  - git checkout gh-pages
+  - cp -r .git temp-git
+  - git checkout master
+  - npm install -g yarn
+  - make deploy
+  - mv temp-git deploy/.git
+  - cd deploy
+  - git add .
+  - git commit -m 'Deploy mgtmap' && git push || true
