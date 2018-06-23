@@ -11,6 +11,7 @@ script:
   - git config user.email "sergets@ya.ru"
   - git config user.name "self-driving Serge Ts"
   - git config remote.origin.url `git config remote.origin.url | sed "s/github.com/sergets:$GITHUB_KEY@github.com/"`
+  - git fetch origin gh-pages
   - git checkout gh-pages
   - cp -r .git temp-git
   - git checkout master
