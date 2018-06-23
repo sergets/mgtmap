@@ -19,4 +19,4 @@ script:
   - mv temp-git deploy/.git
   - cd deploy
   - git add .
-  - git commit -m 'Deploy mgtmap' && git push || true
+  - git commit -m 'Deploy mgtmap' && git push origin gh-pages || true
