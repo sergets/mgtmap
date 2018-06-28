@@ -27,6 +27,7 @@ deploy: install actuals tiles
 	node node_modules/requirejs/bin/r.js -o tools/app.build.js
 	node node_modules/requirejs/bin/r.js -o tools/worker.build.js
 	cat index.html | sed 's/\(<!-- \[development\]\) -->/\1 /g;s/<!-- \(\[\/development\] -->\)/ \1/g;s/\(<!-- \[production\]\)/\1 -->/g;s/\(\[\/production\] -->\)/<!-- \1/g' > deploy/index.html
+	cp CNAME deploy/
 	cp index.css deploy/
 	cp troll-logo.png deploy/
 	cp -r data deploy/
