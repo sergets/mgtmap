@@ -94,16 +94,28 @@ requirejs([
 
             vowFs.makeDir(dirname).then(function() {
                 for(var z = MIN_ZOOM; z <= MAX_PRERENDERABLE_ZOOM; z++) {
-                    var tileBounds = tileUtils.geoBoundsToTiles(totalBounds, z);
+                    var tileBounds = tileUtils.geoBoundsToTiles(totalBounds, z),
+                        totalTiles = (tileBounds.maxX - tileBounds.minX + 1) * (tileBounds.maxY - tileBounds.minY + 1),
+                        i = 0;
 
-                    console.log('Bounds for zoom ', z, ': ', tileBounds, ' - ', (tileBounds.maxX - tileBounds.minX + 1) * (tileBounds.maxY - tileBounds.minY + 1), ' tiles');
+                    resPromise = resPromise.then(function() {
+                        i = 0;
+                    });
+
+                    console.log('Bounds for zoom ', z, ': ', tileBounds, ' - ', totalTiles, ' tiles');
 
                     for(var x = tileBounds.minX; x <= tileBounds.maxX; x++) {
                         for(var y = tileBounds.minY; y <= tileBounds.maxY; y++) {
                             resPromise = resPromise
-                                .then(function(x, y, z) {
-                                    return renderTileToFile(x, y, z, dirname + '/' + x + '_' + y + '_' + z + '@1x.png', 1);
-                                }.bind(this, x, y, z))
+                                .then(function(x, y, z, totalTiles) {
+                                    return renderTileToFile(x, y, z, dirname + '/' + x + '_' + y + '_' + z + '@1x.png', 1).then(function() {
+                                        if (Math.round(++i / (totalTiles / 100)) !== Math.round((i - 1) / (totalTiles / 100))) {
+                                            if (Math.round(i / (totalTiles / 100)) % 10 === 0) {
+                                                console.log(Math.round(i / (totalTiles / 100)) + '% (tile ' + i + ' of ' + totalTiles + ')');
+                                            }
+                                        }
+                                    });
+                                }.bind(this, x, y, z, totalTiles))
                                 .then(function(x, y, z) {
                                     return renderTileToFile(x, y, z, dirname + '/' + x + '_' + y + '_' + z + '@2x.png', 2);
                                 }.bind(this, x, y, z));
@@ -147,7 +159,7 @@ requirejs([
             });
 
             stream.on('end', function() {
-                console.log('Tile ', x, y, z, '@' + devicePixelRatio, ' written to ', fileName);
+                // console.log('Tile ', x, y, z, '@' + devicePixelRatio, ' written to ', fileName);
                 deferred.resolve();
             });
 
