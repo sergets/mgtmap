@@ -319,7 +319,8 @@
 		"length" : 31.4,
 		"quantity" : 20,
 		"class" : ["l", "xl"],
-		"vendor" : "mgt"
+		"vendor" : "mgt",
+		"express" : true
 	},
 	"38" : {
 		"endpoints" : "Рижский вокзал&nbsp;— м.&nbsp;«Китай- Город»",
@@ -3374,7 +3375,8 @@
 		"length" : 22.6,
 		"quantity" : 6,
 		"class" : ["l", "xl"],
-		"vendor" : "mgt"
+		"vendor" : "mgt",
+		"express" : true
 	},
 	"612" : {
 		"endpoints" : "Ул. Герасима Курина&nbsp;— Троекуровское кладбище",
@@ -6087,14 +6089,14 @@
 		"endpoints" : "Серебряный бор&nbsp;— Тверская Застава",
 		"length" : 22.3,
 		"quantity" : 18,
-		"class" : ["l", "xl"], 
+		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
 	"Т20к" : {
 		"endpoints" : "Серебряный бор&nbsp;— м.&nbsp;«Полежаевская»",
 		"length" : 10.7,
 		"quantity" : 0,
-		"class" : ["l", "xl"], 
+		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
 	"904к" : {
@@ -6102,7 +6104,8 @@
 		"length" : 36.7,
 		"quantity" : 10,
 		"class" : ["l", "xl"],
-		"vendor" : "mgt"
+		"vendor" : "mgt",
+		"express" : true
 	},
 	"Тб 21" : {
 		"endpoints" : "Берег Москвы-реки&nbsp;— м.&nbsp;«Полежаевская»",
@@ -6206,7 +6209,7 @@
 		"endpoints" : "м.&nbsp;«Юго-Западная»&nbsp;— Киевский вокзал",
 		"length" : 28.4,
 		"quantity" : 35,
-		"class" : ["l", "xl"], 
+		"class" : ["l", "xl"],
 		"vendor" : "mgt"
 	},
 	"Тб 34к" : {
@@ -6241,14 +6244,14 @@
 		"endpoints" : "Ветакадемия&nbsp;— Шарикоподшипниковская ул.",
 		"length" : 18.2,
 		"quantity" : 9,
-		"class" : ["l"], 
+		"class" : ["l"],
 		"vendor" : "mgt"
 	},
 	"Тб 38к" : {
 		"endpoints" : "Ветакадемия&nbsp;— м.&nbsp;«Текстильщики»",
 		"length" : 18.2,
 		"quantity" : 0,
-		"class" : ["l"], 
+		"class" : ["l"],
 		"vendor" : "mgt"
 	},
 	"898к" : {
@@ -6575,7 +6578,7 @@
 		"vendor" : "mgt"
 	},
 	"Тб 82" : {
-		"endpoints" : "Б-ца МПС&nbsp;— Белорусский вокзал", 
+		"endpoints" : "Б-ца МПС&nbsp;— Белорусский вокзал",
 		"length" : 20.6,
 		"quantity" : 10,
 		"class" : ["l", "xl"],
@@ -7196,7 +7199,7 @@
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"129" : {
 		"endpoints" : "Мякинино&nbsp;— Автобаза Генштаба",
 		"length" : 23.4,
@@ -7210,287 +7213,287 @@
 		"quantity" : 12,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"212" : {
 		"endpoints" : "Братцево&nbsp;— Юровская ул.",
 		"length" : 22.8,
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"297" : {
 		"endpoints" : "ст. Бирюлево-Товарная&nbsp;— Измайлово (Институт садоводства)",
 		"length" : 9.0,
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"400" : {
 		"endpoints" : "Зеленоград (Северная)&nbsp;— м. Речной вокзал",
 		"length" : 56.5,
 		"quantity" : 12,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"403" : {
 		"endpoints" : "Зеленоград (ст. Крюково)&nbsp;— Соколово",
 		"length" : 46.6,
 		"quantity" : 1,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"408" : {
 		"endpoints" : "Зеленоград&nbsp;— Хоругвино&nbsp;— Холмы",
 		"length" : 41.7,
 		"quantity" : 1,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"510" : {
 		"endpoints" : "м. Домодедовская&nbsp;— Домодедовское кладбище",
 		"length" : 46.7,
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"513" : {
 		"endpoints" : "м. Теплый Стан&nbsp;— Жедочи",
 		"length" : 90.2,
 		"quantity" : 1,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"706" : {
 		"endpoints" : "м. Выхино&nbsp;— 2-й Московский крематорий",
 		"length" : 16.7,
 		"quantity" : 7,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"716" : {
 		"endpoints" : "м. Сокольники&nbsp;— п. Восточный",
 		"length" : 27.7,
 		"quantity" : 9,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt "
-	},  
+	},
 	"760" : {
 		"endpoints" : "м. Щелковская&nbsp;— 2-й московский крематорий",
 		"length" : 29.5,
 		"quantity" : 8,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"817" : {
 		"endpoints" : "м. Планерная&nbsp;— Аэропорт Шереметьево-1",
 		"length" : 46.9,
 		"quantity" : 9,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"930" : {
 		"endpoints" : "м. Тушинская&nbsp;— Красногорск (ст. Павшино)",
 		"length" : 23.9,
 		"quantity" : 11,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"1002" : {
 		"endpoints" : "Киевский&nbsp;— м. Саларьево",
 		"length" : 94.0,
 		"quantity" : 6,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"268к" : {
 		"endpoints" : "м. Планерная&nbsp;— Городок ЮРМА",
 		"length" : 21.8,
 		"quantity" : 3,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"400к" : {
 		"endpoints" : "Зеленоград (14-й м/р)&nbsp;— м. Митино",
 		"length" : 50.3,
 		"quantity" : 10,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"655к" : {
 		"endpoints" : "Капотня&nbsp;— ТЦ «Белая Дача»",
 		"length" : 14.8,
 		"quantity" : 2,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"Н1" : {
 		"endpoints" : "ул. Озерная&nbsp;— Аэропорт Шереметьево",
 		"length" : 116.4,
 		"quantity" : 10,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"14" : {
 		"endpoints" : "ул. Cвятоозерская&nbsp;— ст. Реутово",
 		"length" : 14.8,
 		"quantity" : 9,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"18" : {
 		"endpoints" : "м. Бульвар Дмитрия Донского&nbsp;— Бутовский полигон",
 		"length" : 21.3,
 		"quantity" : 1,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"127" : {
 		"endpoints" : "Рублево&nbsp;— ул. Коцюбинского",
 		"length" : 22.4,
 		"quantity" : 14,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"268" : {
 		"endpoints" : "м. Планерная&nbsp;— 12-й м/р Куркина",
 		"length" : 17.6,
 		"quantity" : 12,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"283" : {
 		"endpoints" : "м. Щелковская&nbsp;— п. Восточный",
 		"length" : 10.7,
 		"quantity" : 3,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"462" : {
 		"endpoints" : "Ерино&nbsp;— м. Южная",
 		"length" : 46.6,
 		"quantity" : 2,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"626" : {
 		"endpoints" : "3-й м/р Строгина&nbsp;— м. Молодежная",
 		"length" : 36.8,
 		"quantity" : 5,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"722" : {
 		"endpoints" : "Некрасовка (10-я городская больница)&nbsp;— ст. Люберцы&nbsp;— м. Выхино",
 		"length" : 23.2,
 		"quantity" : 11.0,
 		"class" : ["l", "xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"726" : {
 		"endpoints" : "2-й Красковский пр.&nbsp;— п. Некрасовка",
 		"length" : 16.1,
 		"quantity" : 3,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"772" : {
 		"endpoints" : "м. Выхино&nbsp;— 2-й Красковский пр.",
 		"length" : 22.7,
 		"quantity" : 2,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"773" : {
 		"endpoints" : "9 м/р Кожухова&nbsp;— ст. Реутово",
 		"length" : 24.3,
 		"quantity" : 6,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"794" : {
 		"endpoints" : "м. Молодежная&nbsp;— Немчиновка (Автоцентр)",
 		"length" : 12.5,
 		"quantity" : 9,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"819" : {
 		"endpoints" : "м. Южная&nbsp;— Щербинское кладбище",
 		"length" : 32.6,
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"828" : {
 		"endpoints" : "ул. Россошанская&nbsp;— Институт садоводства",
 		"length" : 18.8,
 		"quantity" : 2,
 		"class" : ["m"],
 		"vendor" : "mgt"
-	},  
+	},
 	"849" : {
 		"endpoints" : "4-й м/р Кожухова&nbsp;— Некрасовская ул.",
 		"length" : 17.7,
 		"quantity" : 5,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"851" : {
 		"endpoints" : "м. Речной вокзал&nbsp;— Аэропорт Шереметьево-1",
 		"length" : 44.5,
 		"quantity" : 14,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"865" : {
 		"endpoints" : "м. Планерная&nbsp;— Перепечинское кладбище",
 		"length" : 57.6,
 		"quantity" : 10,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"883" : {
 		"endpoints" : "м. Филевский парк&nbsp;— Торговый центр",
 		"length" : 30.3,
 		"quantity" : 5,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"959" : {
 		"endpoints" : "4-й мкр. Митина&nbsp;— ТЦ МЕГА-Химки",
 		"length" : 33.2,
 		"quantity" : 4,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"1001" : {
 		"endpoints" : "Троицк&nbsp;— Киевский",
 		"length" : 101.8,
 		"quantity" : 3,
 		"class" : ["s"],
 		"vendor" : "mgt"
-	},  
+	},
 	"1004" : {
 		"endpoints" : "5-й м/р Северного Бутова&nbsp;— Каменка",
 		"length" : 167.4,
 		"quantity" : 12,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"400т" : {
 		"endpoints" : "Зеленоград (16-й микрорайон)&nbsp;— м. Тушинская",
 		"length" : 61.4,
 		"quantity" : 14,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"741" : {
 		"endpoints" : "м. Тушинская&nbsp;— Митинское кладбище",
 		"length" : 19.1,
 		"quantity" : 7,
 		"class" : ["xl"],
 		"vendor" : "mgt"
-	},  
+	},
 	"510э" : {
 		"endpoints" : "м.Домодедовская&nbsp;— Домодедовское кладбище",
 		"length" : 46.7,
@@ -7498,21 +7501,21 @@
 		"class" : ["l"],
 		"vendor" : "mgt",
 		"express" : true
-	},  
+	},
 	"747" : {
 		"endpoints" : "м. Выхино&nbsp;— ул. Камова",
 		"length" : 12.7,
 		"quantity" : 2,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"864" : {
 		"endpoints" : "ул.Академика Янгеля&nbsp;— фабрика им.1 Мая",
 		"length" : 46.0,
 		"quantity" : 6,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"1133" : {
 		"endpoints" : "пос. Восточный&nbsp;— пос. Акулово",
 		"length" : 73.6,
@@ -7520,7 +7523,7 @@
 		"class" : ["s"],
 		"vendor" : "mgt",
 		"express" : true
-	},  
+	},
 	"МЦ1" : {
 		"endpoints" : "м. Аннино&nbsp;— ММЦ УФМС»",
 		"length" : 94.9,
@@ -7528,7 +7531,7 @@
 		"class" : ["l", "xl"],
 		"vendor" : "mgt",
 		"express" : true
-	},  
+	},
 	"1147" : {
 		"endpoints" : "Сколково&nbsp;— м. Тропарево",
 		"length" : 30.8,
@@ -7536,14 +7539,14 @@
 		"class" : ["l"],
 		"vendor" : "mgt",
 		"express" : true
-	},  
+	},
 	"669" : {
 		"endpoints" : "2-й мкр. Жулебина&nbsp;— 1-й мкр. Жулебина",
 		"length" : 13.2,
 		"quantity" : 5,
 		"class" : ["l"],
 		"vendor" : "mgt"
-	},  
+	},
 	"400э" : {
 		"endpoints" : "Зеленоград (Северная)&nbsp;— м. Речной вокзал",
 		"length" : 66.4,
@@ -7551,7 +7554,7 @@
 		"class" : ["l"],
 		"vendor" : "mgt",
 		"express" : true
-	},  
+	},
 	"723" : {
 		"endpoints" : "Некрасовка&nbsp;— ст. Люберцы&nbsp;— ст. Реутово",
 		"length" : 35.9,

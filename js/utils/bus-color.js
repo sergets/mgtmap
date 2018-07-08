@@ -7,7 +7,7 @@ define(function() {
             d = l - Math.min(r, g, b),
             s = d/l,
             h;
-        
+
         if(l == r) {
             if(g <= b) {
                 h = (g - b) / 6;
@@ -48,14 +48,14 @@ define(function() {
             ];
 
         return picks[i].map(function(pick) {
-            return l * data[pick]; 
+            return l * data[pick];
         });
     }
 
     function formatColor(rgb) {
         r = (rgb[0] * 256) | 0;
         g = (rgb[1] * 256) | 0;
-        b = (rgb[2] * 256) | 0;  
+        b = (rgb[2] * 256) | 0;
         return '#' + ('0' + r.toString(16)).substr(-2) + ('0' + g.toString(16)).substr(-2) + ('0' + b.toString(16)).substr(-2);
     }
 
@@ -86,6 +86,10 @@ define(function() {
             bus = bus.substr(3);
             type = 0;
         }
+        if(bus.indexOf('э') != -1) {
+            bus = bus.replace(/э/g, '');
+            type = 3;
+        }
         if(/.?[a-я]$/.test(bus)) {
             bus = bus.substr(0, bus.length - 1);
             k = true;
@@ -102,20 +106,25 @@ define(function() {
         z = [];
 
         switch (type) {
-            case 0: 
-                color[0] = frame(color[0], -0.1, 0.07);
+            case 0:
+                color[0] = frame(color[0], -0.1, 0.05);
                 color[1] = frame(color[1], 0.75, 1);
                 color[2] = frame(color[2], 1 - (color[1] - 0.75) * 3, 1);
                 break;
-            case 1: 
+            case 1:
                 color[0] = frame(color[0], 0.2, 0.4);
                 color[1] = frame(color[1], 0.7 + 0.3 * Math.abs(color[0] - 0.3), 1);
                 color[2] = frame(color[2], 0.3, 1);
                 break;
-            case 2: 
+            case 2:
                 color[0] = frame(color[0], 0.4 + color[1] / 4, 1 - color[1] / 4);
                 color[1] = frame(color[1], 0, 1 - 0.5 * Math.abs(color[0] - 0.8));
                 color[2] = frame(color[2], 0, 1 - 0.3 * Math.abs(color[0] - 0.8));
+                break;
+            case 3:
+                color[0] = frame(color[0], 0.1, 0.14);
+                color[1] = frame(color[1], 0.9, 1);
+                color[2] = frame(color[2], 1 - (color[1] - 0.75) * 2, 1);
                 break;
         }
         if(k) {

@@ -1,7 +1,8 @@
 define(['utils/bus-color'], function(getBusColor) {
     return {
         getRouteColor : function(route, data, state) {
-            return getBusColor(route);
+            var isExpress = data.registry && data.registry[route] && data.registry[route].express;
+            return getBusColor(route + (isExpress? 'э' : ''));
         },
         getSegmentOutlines : function(segmentId, data, state) {
             return null;
