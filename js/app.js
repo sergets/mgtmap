@@ -45,7 +45,7 @@ require([
             map : map
         });
 
-        stateManager.on('time-settings-updated width-factor-updated coloring-id-updated', function() {
+        stateManager.on('state-updated', function() {
             tileWorker.command('setup', { state : stateManager.serialize() });
         });
 
@@ -95,6 +95,7 @@ require([
             'time-settings-updated' : function(e, timeSettings) { stateManager.setTimeSettings(timeSettings); },
             'coloring-updated' : function(e, coloringId) { stateManager.setCustomColoringId(coloringId); },
             'width-factor-updated' : function(e, widthFactor) { stateManager.setWidthFactor(widthFactor); },
+            'state-updated' : function(e, state) { stateManager.setState(state); },
             'route-selected' : function(e, route) {
                 /*dataManager.getRouteBounds(route).then(function(bounds) {
                     map.setBounds(bounds);

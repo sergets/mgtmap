@@ -5,6 +5,8 @@ define([
     'view/route',
     'view/progress',
     'view/search',
+    'view/map-splitter',
+    'view/settings',
     'vow',
     'utils/date',
     'utils/events-emitter'
@@ -15,6 +17,8 @@ define([
     routeView,
     ProgressView,
     SearchView,
+    MapSplitterView,
+    SettingsView,
     vow,
     dateUtils,
     eventsEmitter
@@ -32,14 +36,22 @@ extend(AppView.prototype, eventsEmitter);
 
 extend(AppView.prototype, {
     _init : function() {
-        this._createControls();
+        // this._createControls();
         this._progressView = new ProgressView(this._map.getBackgroundPane());
         this._searchView = new SearchView('.sidebar', this._dataManager);
+        // this._mapSplitterView = new MapSplitterView();
+        this._settingsView = new SettingsView('body', this._stateManager.serialize());
+
+        this._selectedRouteViews = {};
+        //this.updateSelectedRoutes();
+
+
+
 
         //if(!this._stateManager.getSelectedRoutes().length) {
             this._searchView.show();
         //}
-        
+
         $(document)
             //.on('click', '.segment .save-segment', this._onSaveSegment.bind(this))
             //.on('click', '.segment .select-segment-routes', this._onSelectSegmentRoutes.bind(this))
@@ -60,27 +72,18 @@ extend(AppView.prototype, {
                 this._searchView.clear().hide();
                 this.trigger('route-selected', data);
             }, this);
+
+        this._settingsView
+            .on('change', function(e, data) {
+                console.log(data);
+                this.trigger('state-updated', data);
+            }, this);
     },
-    
-    _createControls : function() {
+
+    /*_createControls : function() {
         var timeSettings = this._stateManager.getTimeSettings();
 
-        this._selectedRouteViews = {};          
-    
-        /*this._createListControl(
-            ({ 6 : 'суббота', 0 : 'воскресенье' })[(new Date()).getDay()] || 'будни',
-            {
-                float : 'right'
-            },
-            {
-                1 : 'будни',
-                32 : 'суббота',
-                64 : 'воскресенье'
-            }, function(val) {
-                this.trigger('time-settings-updated', { dow : +val });
-            },
-            this
-        );*/
+
 
         this._createListControl('7:00', {
             position : {
@@ -139,9 +142,9 @@ extend(AppView.prototype, {
         function(val) {
             this.trigger('coloring-updated', val);
         }, this);
-        
+
         var _this = this;
-        
+
         $('#dateForm')
             .appendTo(this._map.getControlsPane())
             .find('input')
@@ -150,12 +153,12 @@ extend(AppView.prototype, {
                 if(this.value) {
                     var date = new Date(this.value),
                         dow = 1 << ((date.getDay()? date.getDay() : 7) - 1);
-                      
+
                     _this.trigger('time-settings-updated', { date : +date, dow : dow });
                 }
             });
 
-        //this.updateSelectedRoutes();
+        //
     },
 
     _createListControl : function(content, options, items, onItemSelected, ctx) {
@@ -182,8 +185,8 @@ extend(AppView.prototype, {
             control.get(i).events.add('click', createEventListener(i));
         });
         this._map.getMap().controls.add(control, options);
-    },
-    
+    },*/
+
     /*_onSaveSegment : function(e) {
         if(!this._stateManager.isAdminMode()) return;
 
@@ -218,8 +221,8 @@ extend(AppView.prototype, {
     /*_onReverseSegment : function(e) {
         if(!this._stateManager.isAdminMode()) return;
         this.trigger('reverse-segment', $(e.target).parent('.segment').attr('segment-id'));
-    }, 
-    
+    },
+
     _onEditSegmentGeometry : function(e) {
         if(!this._stateManager.isAdminMode()) return;
         this.trigger('edit-segment-geometry', $(e.target).parent('.segment').attr('segment-id'));
@@ -227,7 +230,7 @@ extend(AppView.prototype, {
 
     /*_onSelectSegmentRoutes : function(e) {
         this.trigger('select-segment-routes', $(e.target).parent('.segment').attr('segment-id'));
-    },*/ 
+    },*/
 
     _routeElemToRouteId : function(elem) {
         var elem = $(elem);
@@ -236,7 +239,7 @@ extend(AppView.prototype, {
 
         return { trolley: 'Тб ', bus: '', tram : 'Тм ' }[routeType] + routeNumber;
     },
-    
+
     _onSelectRoute : function(e) {
         this._searchView.clear().hide();
         this.trigger('route-selected', this._routeElemToRouteId(e.target));
@@ -251,13 +254,13 @@ extend(AppView.prototype, {
     },
 
     _onRoutesHighlightedOnMap : function(e, data) {
-        if(!data.routes || !data.routes.length) { 
+        if(!data.routes || !data.routes.length) {
             return;
         }
 
-        var elementsToHighLight = $('.segment .bus, .segment .trolley, .segment .tram'); 
+        var elementsToHighLight = $('.segment .bus, .segment .trolley, .segment .tram');
 
-        data.routes.forEach(function(route) { 
+        data.routes.forEach(function(route) {
             var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
                 routeCleared = route.replace(/^(Тб|Тм) /, '');
 
@@ -302,7 +305,7 @@ extend(AppView.prototype, {
                 )
                 .appendTo('.current-routes');
 
-        this._dataManager.getBusColor(route).done(function(color) { 
+        this._dataManager.getBusColor(route).done(function(color) {
             view.css('background-color', color);
         });*/
 
@@ -359,7 +362,7 @@ extend(AppView.prototype, {
 });
 
 function unjoinRoutes(routes) {
-    var re = /([-<>]?)((?:Тм |Тб |)(?:[А-я-0-9]+))/g, 
+    var re = /([-<>]?)((?:Тм |Тб |)(?:[А-я-0-9]+))/g,
         m = true,
         res = [];
     while(m) {

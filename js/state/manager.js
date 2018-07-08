@@ -15,11 +15,11 @@ var StateManager = function() {
             res[decodeURIComponent(params[0])] = decodeURIComponent(params[1]) || '';
             return res;
         }, {});
-    
+
     try {
         bounds = JSON.parse(localStorage.getItem('bounds'));
-    } catch(e) {};    
-        
+    } catch(e) {};
+
     this._bounds = bounds && bounds[0] && bounds[0][0]?
         bounds :
         [[55.74, 37.55], [55.76, 37.65]];
@@ -55,26 +55,52 @@ extend(StateManager.prototype, {
             this.trigger('bounds-updated', bounds);
         }
     },
-    
+
     getTimeSettings : function() {
         return this._timeSettings;
     },
-    
+
     setTimeSettings : function(data) {
         var isUpdated = false;
         Object.keys(data).forEach(function(settingName) {
             if (this._timeSettings[settingName] != data[settingName]) {
                 this._timeSettings[settingName] = data[settingName];
                 isUpdated = true;
-            }        
+            }
         }, this);
         isUpdated && this.trigger('time-settings-updated', this._timeSettings);
     },
-    
+
+    setState : function(state) {
+        var isUpdated = false;
+
+        if ('timeSettings' in state) {
+            Object.keys(state.timeSettings).forEach(function(settingName) {
+                if (this._timeSettings[settingName] != state.timeSettings[settingName]) {
+                    this._timeSettings[settingName] = state.timeSettings[settingName];
+                    isUpdated = true;
+                }
+            }, this);
+        }
+        if ('customColoringId' in state) {
+            this._customColoringId = state.customColoringId;
+            isUpdated = true;
+        }
+        if ('widthFactor' in state) {
+            this._widthFactor = state.widthFactor;
+            isUpdated = true;
+        }
+        if ('isEqualWidthsMode' in state) {
+            this._isEqualWidthsMode = state.isEqualWidthsMode;
+            isUpdated = true;
+        }
+        isUpdated && this.trigger('state-updated');
+    },
+
     /*getSelectedRoutes : function() {
         return this._selectedRoutes;
     },*/
-    
+
     /*selectRoutes : function(routes) {
         routes.forEach(function(route) {
             if (this._selectedRoutes.indexOf(route) == -1) {
@@ -112,24 +138,24 @@ extend(StateManager.prototype, {
     getWidthFactor : function() {
         return this._widthFactor;
     },
-    
+
     setWidthFactor : function(widthFactor) {
         if (this._widthFactor != widthFactor) {
             this._widthFactor = widthFactor;
             this.trigger('width-factor-updated', widthFactor);
         }
     },
-    
+
     isEqualWidthsMode : function() {
-        return this._isEqualWidthsMode; 
+        return this._isEqualWidthsMode;
     },
-    
+
     isAdminMode : function() {
-        return false; // this._isAdminMode; 
+        return false; // this._isAdminMode;
     },
 
     isDebugMode : function() {
-        return this._isDebugMode; 
+        return this._isDebugMode;
     },
 
     isMobile : function() {
@@ -156,7 +182,7 @@ extend(StateManager.prototype, {
             white : this._white,
             customColoringId : this._customColoringId,
             isTouch : this._isTouch,
-            isNarrow : this._isNarrow 
+            isNarrow : this._isNarrow
         };
     }
 });

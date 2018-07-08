@@ -50,11 +50,12 @@ var DataManager = function(stateManager) {
     this._saveWindows = {};
 
     this._stateManager.on({
-        'time-settings-updated' : this._dropActuals.bind(this),
+        'state-updated' : this._dropActuals.bind(this),
+        /*'time-settings-updated' : this._dropActuals.bind(this),
         'coloring-id-updated' : this._dropActuals.bind(this),
         'width-factor-updated' : function() {
             this.trigger('data-updated');
-        }
+        }*/
     }, this);
 };
 

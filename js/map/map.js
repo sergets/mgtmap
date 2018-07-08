@@ -126,7 +126,7 @@ extend(Map.prototype, {
                 hotspotLayer.events.add('mouseenter', that._onHotspotMouseover, that);
                 hotspotLayer.events.add('mouseleave', that._onHotspotMouseout, that);
 
-                stateManager.on('time-settings-updated coloring-id-updated width-factor-updated', function() {
+                stateManager.on('state-updated time-settings-updated coloring-id-updated width-factor-updated', function() {
                     rendererLayer.setPrerenderedStorageId(fileUtils.getActualsFileNameByState(stateManager.serialize(), routes));
                 });
             });
