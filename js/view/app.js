@@ -5,7 +5,6 @@ define([
     'view/route',
     'view/progress',
     'view/search',
-    'view/map-splitter',
     'view/settings',
     'vow',
     'utils/date',
@@ -17,7 +16,6 @@ define([
     routeView,
     ProgressView,
     SearchView,
-    MapSplitterView,
     SettingsView,
     vow,
     dateUtils,
@@ -39,7 +37,6 @@ extend(AppView.prototype, {
         // this._createControls();
         this._progressView = new ProgressView(this._map.getBackgroundPane());
         this._searchView = new SearchView('.sidebar', this._dataManager);
-        // this._mapSplitterView = new MapSplitterView();
         this._settingsView = new SettingsView('body', this._stateManager.serialize());
 
         this._selectedRouteViews = {};
