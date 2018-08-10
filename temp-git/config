@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://sergets:83dd7ac9cb6d8901a3d8f32a9411c51d780ae482@github.com/sergets/mgtmap.git
+	fetch = +refs/heads/gp-2:refs/remotes/origin/gp-2
+[branch "gp-2"]
+	remote = origin
+	merge = refs/heads/gp-2
+[user]
+	email = sergets@ya.ru
+	name = self-driving Serge Ts
+[branch "gh-pages"]
+	remote = .
+	merge = refs/heads/origin/gh-pages

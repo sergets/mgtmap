@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e Travis CI User <travis@example.org> 1533882916 +0000	clone: from https://github.com/sergets/mgtmap.git
+8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e 8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e Travis CI User <travis@example.org> 1533882916 +0000	checkout: moving from gp-2 to 8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e
+8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e 334fbebb9db1dc4327a22cadf90c17129288db88 self-driving Serge Ts <sergets@ya.ru> 1533883623 +0000	checkout: moving from 8ca253dbd2cb5dc02cf41e7e111a9bef58dbda1e to gh-pages
