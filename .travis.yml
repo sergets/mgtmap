@@ -14,10 +14,6 @@ script:
   - git fetch origin gh-pages:origin/gh-pages
   - git checkout --track origin/gh-pages
   - cp -r .git temp-git
-  - git checkout master
-  - npm install -g yarn
-  - make deploy
-  - mv temp-git deploy/.git
-  - cd deploy
-  - git add .
+  - git checkout master && npm install -g yarn
+  - make deploy && mv temp-git deploy/.git && cd deploy && git add .
   - git commit -m 'Deploy mgtmap' && git push origin gh-pages || true
