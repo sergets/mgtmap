@@ -39,7 +39,7 @@ extend(AppView.prototype, {
 
         this._progressView = new ProgressView(this._map.getBackgroundPane());
         this._searchView = new SearchView('.sidebar', this._dataManager);
-        this._settingsView = new SettingsView('body', this._stateManager.serialize());
+        //this._settingsView = new SettingsView('body', this._stateManager.serialize());
 
         this._selectedRouteViews = {};
         //this.updateSelectedRoutes();
@@ -73,11 +73,11 @@ extend(AppView.prototype, {
                 this.trigger('route-selected', data);
             }, this);
 
-        this._settingsView
+        /*this._settingsView
             .on('change', function(e, data) {
                 console.log(data);
                 this.trigger('state-updated', data);
-            }, this);
+            }, this);*/
     },
 
 
