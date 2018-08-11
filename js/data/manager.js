@@ -23,7 +23,7 @@ define([
 var DEFAULT_WIDTH = 2,
     NO_DATA_WIDTH = 0,
     SELECTED_ROUTE_WIDTH = 15,
-    BASE_DATA_URL = '//sergets.github.io/mgtmap/data/',
+    BASE_DATA_URL = '//mgtmap.ru/data/',
     VENDOR_NAMES = {
         'mgt' : 'ГУП «Мосгортранс»',
         'mgt-express' : 'ГУП «Мосгортранс»',
