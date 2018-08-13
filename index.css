@@ -45,7 +45,7 @@ body {
 
 @import url('//fonts.googleapis.com/css?family=Ubuntu:700|Montserrat:100,500,700&subset=cyrillic,latin-ext');
 
-.bus, .trolley, .tram {
+.bus, .trolley, .tram, .electrotrolley, .electrobus, .percentage {
     color: white;
     font-family: Montserrat, Ubuntu, Futura, Verdana, Sans-serif;
     font-weight: 500;
@@ -72,8 +72,13 @@ body {
 }
 
 .trolley {
-    background-color: #1bf;
+    background-color: #4d2;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMHYuN2w2LjMgNS42SDMuNnYxSDB2MS4yaC40djUuOEgwdjQuM2gyYTMgMyAwIDAgMSAzLTMgMyAzIDAgMCAxIDMgM2g3LjRsMi41LS40Yy41LTcuMy0xLjYtMTAuOS0xLjYtMTAuOUgxM3YtMWgtMi4zTDMuOCAwSDIuMWw3LjEgNi4zSDhMLjggMEgwem0xNiA4LjRjLjQgMS43IDEgMi45IDEuNCA2LjZsLTEuMy0uNC0uMS02LjJ6bS0xNC42LjFIOHY1LjhIMS40VjguNXptNy41IDBoMi44djguOUg5VjguNXptMy42IDBoMi44djguOWgtMi44VjguNXptLTcuNiA3LjZhMi41IDIuNSAwIDAgMC0yLjQgMi41QTIuNSAyLjUgMCAwIDAgNC45IDIxYTIuNSAyLjUgMCAwIDAgMi41LTIuNEEyLjUgMi41IDAgMCAwIDUgMTZ6bTAgMS4xYTEuMyAxLjMgMCAwIDEgMS40IDEuNCAxLjMgMS4zIDAgMCAxLTEuNCAxLjMgMS4zIDEuMyAwIDAgMS0xLjMtMS4zQTEuMyAxLjMgMCAwIDEgNSAxNy4yeiIvPjwvc3ZnPg==');
+}
+
+.electrotrolley {
+    background-color: #1bf;
+    background-image: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgMHYuN2w2LjMgNS42SDMuNnYxSDB2MS4yaC40djUuOEgwdjQuM2gyYTMgMyAwIDAgMSAzLTMgMyAzIDAgMCAxIDMgM2g3LjRsMi41LS40Yy41LTcuMy0xLjYtMTAuOS0xLjYtMTAuOUgxM3YtMWgtMi4zTDMuOCAwSDIuMWw3LjEgNi4zSDhMLjggMEgwem0xNiA4LjRjLjQgMS43IDEgMi45IDEuNCA2LjZsLTEuMy0uNC0uMS02LjJ6bS0xNC42LjFIOHY1LjhIMS40VjguNXptNy41IDBoMi44djguOUg5VjguNXptMy42IDBoMi44djguOWgtMi44VjguNXptLTcuNiA3LjZhMi41IDIuNSAwIDAgMC0yLjQgMi41QTIuNSAyLjUgMCAwIDAgNC45IDIxYTIuNSAyLjUgMCAwIDAgMi41LTIuNEEyLjUgMi41IDAgMCAwIDUgMTZ6bTAgMS4xYTEuMyAxLjMgMCAwIDEgMS40IDEuNCAxLjMgMS4zIDAgMCAxLTEuNCAxLjMgMS4zIDEuMyAwIDAgMS0xLjMtMS4zQTEuMyAxLjMgMCAwIDEgNSAxNy4yek0xOSA3aDNsLTEgNiA0LThoLTNsMS02eiIvPjwvc3ZnPg==');
 }
 
 .bus {
@@ -81,9 +86,19 @@ body {
     background-color: #528;
 }
 
+.electrobus {
+    background-color: #1bf;
+    background-image: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAgNy4zdjEuMmguNHY1LjNIMHY0LjhoMmEzIDMgMCAwIDEgMy0zIDMgMyAwIDAgMSAzIDNoOGMxIDAgMS40IDAgMS42LS41di0yLjhjMC0xLS43LTEtLjctMWwtLjMtNWMuNS0uMi4zLS43LjMtLjd2LS44YzAtLjYtLjYtLjUtLjYtLjVIMHptMS41IDEuMmg2LjR2NS4ySDEuNVY4LjV6bTcuNCAwaDIuOXY4LjhIOC45VjguNXptMy42IDBoMi45djguOGgtMi45VjguNXpNNSAxNmEyLjUgMi41IDAgMCAwLTIuNSAyLjRBMi41IDIuNSAwIDAgMCA1IDIxYTIuNSAyLjUgMCAwIDAgMi40LTIuNUEyLjUgMi41IDAgMCAwIDUgMTYuMXptMCAxLjFhMS4zIDEuMyAwIDAgMSAxLjMgMS4zQTEuMyAxLjMgMCAwIDEgNSAyMGExLjMgMS4zIDAgMCAxLTEuNC0xLjRBMS4zIDEuMyAwIDAgMSA1IDE3LjJ6TTE5IDdoM2wtMSA2IDQtOGgtM2wxLTZ6Ii8+PC9zdmc+');
+}
+
 .tram {
     background-color: #f84;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYuMyAxLjRIMy43djFINmw0LjIgMi4zLTQgMi4zSDB2Mi40aDYuNnY1SDB2NGgxNS4xYzIuNy0uMyAzLjEtMS40IDIuNy0zLjUtLjctMy4xLTEtNy44LTMuNi03LjhoLTZsNC0yLjRMOCAyLjRoMnYtMUg2LjN6bTEuNiA3aDMuNnY5LjNIOHptNS43LjFjLjggMCAxLjQuMSAxLjkuNi41LjYgMSAzLjQgMSA0LjMtMi43IDAtMy42LjUtMy44LTEuNGwtLjItM2MwLS40LjUtLjQgMS4xLS40ek0uMiAxOC43YTEuOCAxLjggMCAwIDAgMy42IDB6bTMuOSAwdjFoM3YtMXptMy4zIDBhMS44IDEuOCAwIDAgMCAzLjYgMHpNMCAyMS4xdjFoMTYuOHYtMXoiLz48L3N2Zz4=');
+}
+
+.percentage {
+    color: #1bf;
+    border-top: 1px solid #528;
 }
 
 .route, .antiroute {
@@ -121,7 +136,7 @@ body {
     transition: 1s;
 }
 
-body.sobyanin .counters, body.sobyanin .top-pane p {
+/* body.sobyanin .counters, body.sobyanin .top-pane p {
     box-shadow: 0 0 20px 20px rgba(224, 224, 224, 0.8);
     background: rgba(224, 224, 224, 0.8);
 }
@@ -134,12 +149,14 @@ body.now .counters, body.now .top-pane p {
 body.katz .counters, body.katz .top-pane p {
     box-shadow: 0 0 20px 20px rgba(255, 255, 208, 0.8);
     background: rgba(255, 255, 208, 0.8);
-}
+} */
 
-.counters .trolley, .counters .bus {
+.counters .trolley, .counters .bus, .counters .electrotrolley, .counters .electrobus {
     transform: scale(2);
-    margin: 20px 45px 0 45px;
+    margin: 20px 50px 0 45px;
     display: inline-block;
+    padding-left: 20px;
+    width: 55px;
     float: none;
 }
 
@@ -172,21 +189,54 @@ body.katz .counter-katz,
     top: 0;
     left: 0;
     right: 0;
-    padding-bottom: 180px;
-    text-align: center;
-    transition: 1s;
+    text-align: left;
+    pointer-events: none;
+    padding-bottom: 25px;
+    max-height: 100%;
+    box-sizing: padding-box;
+}
+
+.top-pane_expanded {
+    padding-bottom: 100px;
+    overflow-y: scroll;
+    pointer-events: all;
 }
 
 .top-pane p {
-    display: inline-block;
-    margin: 0;
+    display: none;
+    margin-left: 40px;
     max-width: 600px;
+    overflow: hidden;
+}
+
+.top-pane_expanded p {
+    display: block;
+    pointer-events: all;
+}
+
+h1 {
+    font-family: 'PT Sans Caption', 'PT Sans', 'Verdana', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline;
+    transition: font-size ease .3s;
+}
+
+.top-pane_expanded h1 {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    margin-top: 40px;
 }
 
 @media screen and (max-width: 500px) {
     .top-pane {
         font-size: 12px;
-        padding-bottom: 10px;
     }
 
     h1 {
@@ -195,24 +245,76 @@ body.katz .counter-katz,
 }
 
 body.sobyanin .top-pane {
-    background: linear-gradient(to bottom, #ddd, transparent);
+    background: linear-gradient(to bottom, rgba(221, 221, 221, .9), rgba(221, 221, 221, .9) 60%, transparent);
 }
 
 body.now .top-pane {
-    background: linear-gradient(to bottom, #eed, transparent);
+    background: linear-gradient(to bottom, rgba(238, 238, 221, .9), rgba(238, 238, 238, .9) 60%, transparent);
 }
 
 body.katz .top-pane {
-    background: linear-gradient(to bottom, #ffc, transparent);
+    background: linear-gradient(to bottom, rgba(255, 255, 204, .9), rgba(255, 255, 204, .9) 60%, transparent);
+}
+
+body.sobyanin .top-pane_expanded {
+    background: linear-gradient(to bottom, rgba(221, 221, 221, .9), rgba(221, 221, 221, .9) 80%, transparent);
+}
+
+body.now .top-pane_expanded {
+    background: linear-gradient(to bottom, rgba(238, 238, 221, .9), rgba(238, 238, 238, .9) 80%, transparent);
+}
+
+body.katz .top-pane_expanded {
+    background: linear-gradient(to bottom, rgba(255, 255, 204, .9), rgba(255, 255, 204, .9) 80%, transparent);
+}
+
+.top-pane-toggler {
+    display: inline-block;
+}
+
+.top-pane_expanded .top-pane-toggler {
+    display: block;
+    text-align: center;
+}
+
+.top-pane-toggler:before {
+    content: 'Подробнее';
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px dashed black;
+    margin-top: 10px;
+    pointer-events: all;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.top-pane_expanded .top-pane-toggler:before {
+    content: 'Показать карту';
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px dashed black;
+    margin-top: 10px;
+    pointer-events: all;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.top-pane-toggler:before:hover {
+    color: #d23;
 }
 
 .mayor-selector {
-    width: 500px;
     position: absolute;
-    left: 50%;
-    margin-left: -250px;
+    top: 5px;
+    right: 45px;
+    font-size: 15px;
+}
+
+.top-pane_expanded .mayor-selector {
+    position: static;
     text-align: center;
     margin-top: 10px;
+    font-size: 18px;
 }
 
 @media screen and (max-width: 500px) {
@@ -229,10 +331,14 @@ body.katz .top-pane {
     border: 2px solid #528;
     color: #528;
     font-family: 'PT Sans', 'Verdana', sans-serif;
-    font-size: 18px;
-    padding: 5px 15px;
+    padding: 3px 10px;
     border-radius: 20px;
     transition: all .3s;
+    pointer-events: auto;
+}
+
+.top-pane_expanded .mayor-option {
+    padding: 5px 15px;
 }
 
 body.sobyanin .mayor-option {
@@ -266,13 +372,35 @@ body.katz .mayor-option.katz {
     color: white;
 }
 
+.top-pane_expanded .mayor-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
+.mayor-wrapper {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
 
-h1 {
-    font-family: 'PT Sans Caption', 'PT Sans', 'Verdana', sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    margin-bottom: 5px;
+.mayor-counters {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: none;
+    font-size: 16px;
+    text-align: left;
+}
+
+.top-pane_expanded .mayor-counters {
+    display: block;
+}
+
+.mayor-counters__counter {
+    float: none;
+    display: inline-block;
+    width: 50px;
+    padding-left: 22px;
 }
 
 /*.routes-editor .route, .routes-editor .antiroute {
@@ -366,9 +494,15 @@ h1 {
     overflow-y: auto;
     pointer-events: none;
     box-sizing: border-box;
-    padding-top: 108px;
+    padding-top: 30px;
     padding-bottom: 60px;
-    padding-left: 30px;
+    padding-left: 5px;
+    transition: opacity .3s;
+}
+
+.sidebar_with-top-pane-expanded {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .sidebar > div {

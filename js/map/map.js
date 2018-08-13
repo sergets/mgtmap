@@ -311,7 +311,7 @@ extend(Map.prototype, {
                     res[routeName] = dataManager.getBusColor(routeName);
                     return res;
                 }, {})).then(function(colors) {
-                    this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML);
+                    this._map.balloon.open(position, segmentView(segmentId, routes, colors).outerHTML, { pane: 'outerBalloon' });
                     this._onBalloonOpen(segmentId, routes);
                 }, function() {}, this);
             }, this);

@@ -35,7 +35,9 @@ var DEFAULT_WIDTH = 2,
         'gortaxi' : 'ООО «ГорТакси»',
         'autocars' : 'ООО «Авто-Карз»',
         'transway' : 'ООО «Транс-Вей»'
-    }
+    },
+    ELECTROBUS_ROUTES = ['Тб 36', 'Тб 42', 'Тб 73', 'Тб 76', 'Тб 80', 'Тб 83', 'Т25', 'Т88', '31', '33', '53', '649', '705', '778'];
+
 
 var DataManager = function(stateManager) {
     this._stateManager = stateManager;
@@ -52,9 +54,9 @@ var DataManager = function(stateManager) {
 
     this._stateManager.on({
         'state-updated' : this._dropActuals.bind(this),
-        /*'time-settings-updated' : this._dropActuals.bind(this),
-        'coloring-id-updated' : this._dropActuals.bind(this),
-        'width-factor-updated' : function() {
+        /*'time-settings-updated' : this._dropActuals.bind(this),*/
+        'coloring-id-updated' : this._dropActuals.bind(this)
+        /*'width-factor-updated' : function() {
             this.trigger('data-updated');
         }*/
     }, this);
@@ -319,6 +321,36 @@ extend(DataManager.prototype, {
                     !busRegistry.express?
                         busRegistry.quantity :
                         0);
+            }, 0);
+        }, this);
+    },
+
+    get100PercentTrollBusNumber : function() {
+        return vow.all([
+            this.getRegistry(),
+            this.getSegmentLengths(),
+            this.getWiredSegments(),
+            this._actualsDeferred.promise()
+        ]).spread(function(registry, lengths, trolleyWires, actuals) {
+            var routesList = Object.keys(actuals.colors),
+                that = this;
+
+            return routesList.reduce(function(r, route) {
+                var busRegistry = route.indexOf('Тб') == -1 && route.indexOf('Тм') == -1 && registry[route];
+
+                return r + (busRegistry &&
+                    trolleyUtils.getTrolleyFraction(route, lengths, that._actuals.routes, trolleyWires) == 1 &&
+                    !busRegistry.express?
+                        busRegistry.quantity :
+                        0);
+            }, 0);
+        }, this);
+    },
+
+    getSobyaninElectrobusNumber : function() {
+        return this.getRegistry().then(function(registry) {
+            return ELECTROBUS_ROUTES.reduce(function(res, rt) {
+                return res + registry[rt].quantity;
             }, 0);
         }, this);
     },

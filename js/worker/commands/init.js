@@ -18,7 +18,7 @@ define([
     vow
 ) {
     var CACHE_SIZE = 400,
-        BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp/actuals/';
+        BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp1/actuals/';
 
     return function(params) {
         var deferred = vow.defer(),

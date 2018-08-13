@@ -1,8 +1,13 @@
 define(['data/trolley'], function(trolleyUtils) {
+    var electrobusRoutes = ['Тб 36', 'Тб 42', 'Тб 73', 'Тб 76', 'Тб 80', 'Тб 83', 'Т25', 'Т88', '31', '33', '53', '649', '705', '778'];
+
     return {
         getRouteColor : function(route, data, state) {
             if(route.indexOf('Тм') != -1) {
                 return '#f84';
+            }
+            if(electrobusRoutes.indexOf(route) !== -1) {
+                return '#1bf';
             }
             return '#528';
         },

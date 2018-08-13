@@ -11,7 +11,7 @@ define([
     fileUtils,
     renderer
 ) {
-    var BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp/actuals/';
+    var BASE_ACTUALS_URL = '//sergets.github.io/mgtmap-gp1/actuals/';
 
     return function(params, key) {
         postMessage({ state : 'busy', progress : 0 });

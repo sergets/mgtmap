@@ -45,7 +45,7 @@ require([
             map : map
         });
 
-        stateManager.on('state-updated', function() {
+        stateManager.on('coloring-id-updated', function() {
             tileWorker.command('setup', { state : stateManager.serialize() });
         });
 

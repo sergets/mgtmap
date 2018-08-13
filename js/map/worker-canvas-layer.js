@@ -10,7 +10,7 @@ define([
 
 var TILE_SIZE = 256,
     CACHE_SIZE = 1000,
-    BASE_TILES_URL = '//sergets.github.io/mgtmap-gp/tiles/';
+    BASE_TILES_URL = '//sergets.github.io/mgtmap-gp1/tiles/';
 
 ymaps.modules.define('worker-canvas-layer', [
     'util.imageLoader',
