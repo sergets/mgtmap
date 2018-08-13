@@ -6196,7 +6196,8 @@
 		"length" : 17.5,
 		"quantity" : 10,
 		"class" : ["l", "xl"],
-		"vendor" : "mgt"
+		"vendor" : "mgt",
+		"express" : true
 	},
 	"895к" : {
 		"endpoints" : "м.&nbsp;«Теплый Стан»&nbsp;— Ул. Липовый Парк, 4",
