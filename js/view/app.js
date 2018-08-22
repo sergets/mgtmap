@@ -145,7 +145,10 @@ extend(AppView.prototype, {
 
         this._welcomeView
             .on('show-table', function() {
+                var onTableViewClosed = (function() { this._tableView.un('closed', onTableViewClosed); this._welcomeView.open(); }).bind(this);
+
                 this._tableView.open();
+                this._tableView.on('closed', onTableViewClosed);
             }, this);
 
         this._tableView.on('opened', function() { this._welcomeView.close(); }, this);
