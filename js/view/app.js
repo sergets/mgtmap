@@ -124,7 +124,9 @@ extend(AppView.prototype, {
             //.on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
             .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
             .on('click', '.routes-table .bus', function() {
+                this._tableView.un('closed');
                 this._tableView.close();
+                this._onDeselectRoute.apply(this, arguments);
                 this._onSelectRoute.apply(this, arguments);
             }.bind(this))
             .on('mouseover', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOver.bind(this))

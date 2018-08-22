@@ -1082,11 +1082,13 @@ body.route-selected .current-route {
     position: absolute;
     margin-top: -8px;
     left: 0;
+    pointer-events: all;
 }
 
 .routes-table__fraction,
 .routes-table__quantity
 {
+    pointer-events: none;
     text-align: center;
     line-height: 25px;
     font-size: 22px;
@@ -1144,6 +1146,7 @@ body.route-selected .current-route {
 }
 
 .routes-table__diagram {
+    pointer-events: none;
     float: left;
     width: 400px;
     margin-left: 10px;
