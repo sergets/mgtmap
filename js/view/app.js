@@ -5,9 +5,10 @@ define([
     'view/route',
     'view/progress',
     'view/search',
-    'view/settings',
+    'view/welcome',
     'vow',
     'utils/date',
+    'utils/route',
     'utils/events-emitter'
 ], function(
     ymaps,
@@ -16,9 +17,10 @@ define([
     routeView,
     ProgressView,
     SearchView,
-    SettingsView,
+    WelcomeView,
     vow,
     dateUtils,
+    routeUtils,
     eventsEmitter
 ) {
 
@@ -45,9 +47,64 @@ extend(AppView.prototype, {
         this._createTopPane();
         this._createControls();
 
+        this._welcomesContainer = this._topPane.find('.welcomes-toolbar');
+        this._sidebar = $('<div class="sidebar sidebar_with-top-pane-expanded"></div>').appendTo(this._topPane.parent());
+
         this._progressView = new ProgressView(this._map.getBackgroundPane());
-        this._searchView = new SearchView('.sidebar', this._dataManager);
-        //this._settingsView = new SettingsView('body', this._stateManager.serialize());
+        this._searchView = new SearchView(this._sidebar, this._dataManager);
+        this._welcomeView = new WelcomeView(this._welcomesContainer, 'main-welcome', 'Подробнее', 'Как правильно сделать в Москве электробус?',
+                    '<p class="welcome__column welcome__column_left">В Москве есть важнейший актив, который позволяет быстро ввести электробусы: троллейбусная сеть. Современные электробусы могут заряжаться на ходу и проходить до 50% маршрута без проводов. Многие автобусные маршруты сейчас проходят под проводами и их можно сделать тихими и экологичными прямо завтра, без нового строительства — нужно просто купить такие электробусы. Они существенно дешевле и качественнее тех, что заряжаются в парке.</p>' +
+                    '<p class="welcome__column welcome__column_left">Мы нанесли на карту все автобусные маршруты Москвы и раскрасили светло-голубым те из них, которые идут под проводами 50% пути и больше. Выберите конкретный маршрут на карте или найдите его по номеру, чтобы узнать, сколько там работает автобусов и увидеть, где над ними есть контактная сеть (она будет показана зелёной обводкой вокруг линии маршрута).</p>' +
+                    '<div class="welcome__controls">' +
+                        '<div class="welcome__link">Показать карту</div>' +
+                        '<div class="welcome__link welcome__table-link">Показать список маршрутов</div>' +
+                        '<div class="mayor-selector">' +
+                            '<div class="mayor-wrapper">' +
+                                '<div class="mayor-option now">Как сейчас</div>' +
+                                '<div class="mayor-counters now">' +
+                                    '<div class="spinner spinner_visible"></div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">770</div>троллейбусов</div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">6724</div>автобусов</div>' +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="mayor-wrapper">' +
+                                '<div class="mayor-option sobyanin">Как планируют в мэрии</div>' +
+                                '<div class="mayor-counters sobyanin">' +
+                                    '<div class="spinner spinner_visible"></div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">0</div>троллейбусов</div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter electrobus">200</div>электробусов</div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">7313</div>автобусов</div>' +
+                                '</div>' +
+                            '</div>' +
+
+                            '<div class="mayor-wrapper">' +
+                                '<div class="mayor-option katz">Как надо</div>' +
+                                '<div class="mayor-counters katz">' +
+                                    '<div class="spinner spinner_visible"></div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">905</div>троллейбусов</div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter electrotrolley">1333</div>троллейбуса с АХ</div>' +
+                                //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">5294</div>автобуса</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</p>');
+
+        var routesTableRows = this._routesTableRows = (this._routesTableRows || {});
+
+        this._tableView = new WelcomeView(this._welcomesContainer, 'routes-table', 'Список маршрутов', 'Автобусы, которые ходят под проводами', [
+            $('<div/>').addClass('routes-table__search-pane').append(
+                $('<input/>').addClass('search-input search-route').on('change keydown keyup', function(e) {
+                    var row = routesTableRows[$(e.target).val()];
+                    if (row) {
+                        row[0].scrollIntoView();
+                    }
+                })
+            ),
+            $('<div/>').addClass('routes-table-content').append(
+                $('<div/>').addClass('spinner spinner_visible')
+            )
+        ]);
 
         this._selectedRouteViews = {};
         //this.updateSelectedRoutes();
@@ -56,7 +113,8 @@ extend(AppView.prototype, {
 
 
         //if(!this._stateManager.getSelectedRoutes().length) {
-            this._searchView.show();
+        this._searchView.show();
+        this._welcomeView.open();
         //}
 
         $(document)
@@ -65,6 +123,10 @@ extend(AppView.prototype, {
             //.on('click', '.segment .reverse-segment', this._onReverseSegment.bind(this))
             //.on('click', '.segment .edit-segment-geometry', this._onEditSegmentGeometry.bind(this))
             .on('click', '.segment .bus, .segment .trolley, .segment .tram', this._onSelectRoute.bind(this))
+            .on('click', '.routes-table .bus', function() {
+                this._tableView.close();
+                this._onSelectRoute.apply(this, arguments);
+            }.bind(this))
             .on('mouseover', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOver.bind(this))
             .on('mouseout', '.segment .bus, .segment .trolley, .segment .tram', this._onRouteMouseOut.bind(this))
             .on('click', '.mayor-option', this._onChangeColoring.bind(this))
@@ -81,6 +143,15 @@ extend(AppView.prototype, {
                 this.trigger('route-selected', data);
             }, this);
 
+        this._welcomeView
+            .on('show-table', function() {
+                this._tableView.open();
+            }, this);
+
+        this._tableView.on('opened', function() { this._welcomeView.close(); }, this);
+        this._welcomeView.on('opened', function() { this._tableView.close(); }, this);
+
+
         /*this._settingsView
             .on('change', function(e, data) {
                 console.log(data);
@@ -92,40 +163,15 @@ extend(AppView.prototype, {
     _createTopPane : function() {
         var yMap = this._map.getMap();
         this._topPane = $(
-                '<div class="top-pane top-pane_expanded">' +
-                    '<h1>Сколько троллейбусов должно быть в Москве?</h1>' +
-                    '<p>Современные троллейбусы (они же — электробусы с динамической подзарядкой) могут проходить до&nbsp;50% маршрута без&nbsp;проводов. ' +
-                    'Многие автобусные маршруты сейчас проходят под&nbsp;проводами и&nbsp;их можно сделать тихими и&nbsp;экологичными прямо&nbsp;завтра, ' +
-                    'без&nbsp;нового строительства — нужно просто купить троллейбусы.</p>' +
-                    '<p>Мы нанесли на карту все автобусные маршруты Москвы и раскрасили светло-голубым те из них, которые идут под проводами 50%&nbsp;пути и больше. ' +
-                    'Выберите конкретный маршрут на карте или найдите его по номеру, чтобы узнать, сколько там работает автобусов и увидеть, где над ними есть контактная сеть' +
-                    ' (она будет показана зелёной обводкой вокруг линии маршрута).</p>' +
-                    '<div class="top-pane-toggler"></div>' +
+                '<div class="top-pane">' +
+                    '<h1>Как правильно сделать в Москве электробус?</h1>' +
                     '<div class="mayor-selector">' +
-                        '<div class="mayor-wrapper">' +
-                            '<div class="mayor-option sobyanin">Как планируют в мэрии</div>' +
-                            '<div class="mayor-counters sobyanin">' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">0</div>троллейбусов</div>' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter electrobus">200</div>электробусов</div>' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">7313</div>автобусов</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="mayor-wrapper">' +
-                            '<div class="mayor-option now">Как сейчас</div>' +
-                            '<div class="mayor-counters now">' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">770</div>троллейбусов</div>' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">6724</div>автобусов</div>' +
-                            '</div>' +
-                        '</div>' +
-                        '<div class="mayor-wrapper">' +
-                            '<div class="mayor-option katz">Как надо</div>' +
-                            '<div class="mayor-counters katz">' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter trolley">905</div>троллейбусов</div>' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter electrotrolley">1333</div>троллейбуса с АХ</div>' +
-                            //    '<div class="mayor-counters__row"><div class="mayor-counters__counter bus">5294</div>автобуса</div>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>');
+                        '<div class="mayor-option now">Как сейчас</div>' +
+                        '<div class="mayor-option sobyanin">Как планируют в мэрии</div>' +
+                        '<div class="mayor-option katz">Как надо</div>' +
+                    '</div>' +
+                    '<div class="welcomes-toolbar"></div>' +
+                '</div>');
         /* this._countersPane = $('<div class="counters">' +
             'Всего на маршрутах:<br>' +
             '<span class="counter-temp">' +
@@ -133,11 +179,6 @@ extend(AppView.prototype, {
                 '<div class="bus">...</div>' +
             '</span>' +
         '</div>'); */
-
-        this._topPane.find('.top-pane-toggler').on('click', function() {
-            this._topPane.toggleClass('top-pane_expanded');
-            $('.sidebar').toggleClass('sidebar_with-top-pane-expanded');
-        }.bind(this));
 
         yMap.panes.append('top-pane', new ymaps.pane.StaticPane(yMap, {
             css : {
@@ -172,80 +213,136 @@ extend(AppView.prototype, {
             $(yMap.panes.get('mayor-pane').getElement()).css('top', this._topPane.height() + 'px');
         }.bind(this)); */
 
-
+        var dataManager = this._dataManager;
 
         vow.all([
-            this._dataManager.getWholeTrollNumber(),
-            this._dataManager.getWholeBusNumber(),
-            this._dataManager.getEcoBusNumber(),
-            this._dataManager.getSobyaninElectrobusNumber(),
-            this._dataManager.get100PercentTrollBusNumber(),
-        ]).spread(function(trolls, buses, ecobuses, sobyaninElectrobuses, trolls100percent) {
-            console.log(arguments);
+            dataManager.getTrolleyNumbers(),
+            dataManager.getRegistry()
+        ]).spread(function(numbers, registry) {
+            var fractions = numbers.fractions,
+                buses = numbers.buses,
+                trolls = numbers.trolls,
+                ecoBuses = numbers.ecoBuses,
+                fullTrolls = numbers.fullTrolls,
+                sobyaninElectrobuses = numbers.sobyaninElectrobuses;
+
             //$('.counter-temp').remove();
+            $('.mayor-counters .spinner').removeClass('.spinner_visible');
+            setTimeout(function() {
+                $('.mayor-counters .spinner').remove();
+            }, 100);
+
             $('.mayor-counters.sobyanin').append([
-                $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter electrobus').html(200), 'электробусов (?)'
-                ]),
-                $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter bus').html(buses + trolls - sobyaninElectrobuses), incline(buses + trolls - sobyaninElectrobuses, 'автобус', 'автобуса', 'автобусов')
-                ]),
                 $('<div/>').addClass('.mayor-counters__row').append([
                     $('<div/>')
                         .addClass('mayor-counters__counter percentage')
                         .html(
                             Math.round(100 * 200 / (200 + buses + trolls - sobyaninElectrobuses)) + '%'
                         ),
-                    'электротранспорта'
-                ])
+                    'электротранспорта:'
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter electrobus').html(200), 'электробусов'
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter bus').html(buses + trolls - sobyaninElectrobuses), incline(buses + trolls - sobyaninElectrobuses, 'автобус', 'автобуса', 'автобусов')
+                ]),
             ]);
 
             $('.mayor-counters.now').append([
-                $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter trolley').html(trolls), incline(trolls, 'троллейбус', 'троллейбуса', 'троллейбусов')
-                ]),
-                $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter bus').html(buses), incline(buses, 'автобус', 'автобуса', 'автобусов')
-                ]),
                 $('<div/>').addClass('.mayor-counters__row').append([
                     $('<div/>')
                         .addClass('mayor-counters__counter percentage')
                         .html(
                             Math.round(100 * trolls / (buses + trolls)) + '%'
                         ),
-                    'электротранспорта'
+                    'электротранспорта:'
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter trolley').html(trolls), incline(trolls, 'троллейбус', 'троллейбуса', 'троллейбусов')
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter bus').html(buses), incline(buses, 'автобус', 'автобуса', 'автобусов')
                 ])
             ]);
 
 
             $('.mayor-counters.katz').append([
                 $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter trolley').html(trolls + trolls100percent), incline(trolls + trolls100percent, 'троллейбус', 'троллейбуса', 'троллейбусов')
-                ]),
-               $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter electrotrolley').html(ecobuses - trolls100percent), incline(ecobuses - trolls100percent, 'троллейбус с АХ', 'троллейбуса с АХ', 'троллейбусов с АХ')
-                ]),
-                $('<div/>').addClass('.mayor-counters__row').append([
-                    $('<div/>').addClass('mayor-counters__counter bus').html(buses - ecobuses), incline(buses - ecobuses, 'автобус', 'автобуса', 'автобусов')
-                ]),
-                $('<div/>').addClass('.mayor-counters__row').append([
                     $('<div/>')
                         .addClass('mayor-counters__counter percentage')
                         .html(
-                            Math.round(100 * (trolls + ecobuses) / (buses + trolls)) + '%'
+                            Math.round(100 * (trolls + ecoBuses) / (buses + trolls)) + '%'
                         ),
-                    'электротранспорта'
+                    'электротранспорта:'
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter trolley').html(trolls + fullTrolls), incline(trolls + fullTrolls, 'троллейбус', 'троллейбуса', 'троллейбусов')
+                ]),
+               $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter electrotrolley').html(ecoBuses - fullTrolls), incline(ecoBuses - fullTrolls, 'электробус', 'электробуса', 'электробусов')
+                ]),
+                $('<div/>').addClass('.mayor-counters__row').append([
+                    $('<div/>').addClass('mayor-counters__counter bus').html(buses - ecoBuses), incline(buses - ecoBuses, 'автобус', 'автобуса', 'автобусов')
                 ])
             ]);
-        }).fail(function(err) { console.warn(err); });
+
+            $('.routes-table-content .spinner').removeClass('.spinner_visible');
+            setTimeout(function() {
+                $('.routes-table-content .spinner').remove();
+            }, 100);
+
+            var routesByFraction = Object.keys(numbers.fractions)
+                .filter(function(rt) {
+                    return !!registry[rt];
+                })
+                .sort(function(a, b) { return numbers.fractions[b] - numbers.fractions[a]; }),
+                rowsByRoute = this._routesTableRows || (this._routesTableRows = {});
+
+            $('.routes-table-content').append(
+                routesByFraction.map(function(rt) {
+                    var div = rowsByRoute[rt] = $('<div/>').addClass('routes-table__row');
+
+                    dataManager.getBusColor(rt).then(function(color) {
+                        var reg = registry[rt];
+
+                        if (!reg) {
+                            div.remove();
+                        } else {
+                            div.append([
+                                $('<div/>').addClass('routes-table__number').append(
+                                    $('<div/>').addClass(routeUtils.getType(rt)).css('backgroundColor', color).html(routeUtils.clearType(rt))
+                                ),
+                                $('<div/>').addClass('routes-table__quantity').text(reg.quantity).append(
+                                    $('<span/>').addClass('routes-table__quantity-text').text(incline(reg.quantity, 'автобус', 'автобуса', 'автобусов'))
+                                ),
+                                $('<div/>').addClass('routes-table__fraction').text(Math.round(numbers.fractions[rt] * 100) + '%'),
+                                $('<div/>').addClass('routes-table__diagram').append([
+                                    $('<div/>').addClass('routes-table__name').html(reg.endpoints)
+                                        .prepend(reg.express && $('<span/>').addClass('routes-table__warning').text('экспресс'))
+                                        .prepend(reg.class.join() == 's' && $('<span/>').addClass('routes-table__warning').text('микроавтобус')),
+
+                                    $('<div/>').addClass('routes-table__length-diagram').css({ width: reg.length * 7, backgroundColor: color }).text(reg.length > 10 ? 'маршрут' : ''),
+                                    $('<div/>').addClass('routes-table__col routes-table__length').text(reg.length),
+                                    $('<div/>').addClass('routes-table__trolley-length-diagram').css({ width: numbers.fractions[rt] * reg.length * 7 }).text(reg.length * numbers.fractions[rt] > 15 ? 'из них под проводами' : ''),
+
+                                    $('<div/>').addClass('routes-table__col routes-table__length').text(Math.round(reg.length * numbers.fractions[rt] * 10) / 10)
+                                ])
+                            ]);
+                        }
+                    });
+
+                    return div;
+                })
+            );
+
+        }, this).fail(function(err) { console.warn(err); });
     },
 
     _createControls : function() {
         var timeSettings = this._stateManager.getTimeSettings();
 
-
         this._selectedRouteViews = {};
-        //
     },
 
     _createListControl : function(content, options, items, onItemSelected, ctx) {
@@ -379,7 +476,7 @@ extend(AppView.prototype, {
     },
 
     _createSelectedRouteView : function(route) {
-        return routeView(route, this._dataManager).appendTo('.sidebar');
+        return routeView(route, this._dataManager).appendTo(this._sidebar);
 
         /*var type = route.indexOf('Тб')? route.indexOf('Тм')? 'bus' : 'tram' : 'trolley',
             routeCleared = route.replace(/^(Тб|Тм) /, ''),

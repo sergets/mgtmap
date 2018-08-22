@@ -3,6 +3,7 @@ define([
     'utils/extend',
     'utils/deep-equal',
     'vow',
+    'jquery',
     'utils/cache',
     'utils/route',
     'utils/file',
@@ -16,6 +17,7 @@ define([
     extend,
     deepEqual,
     vow,
+    $,
     Cache,
     routeUtils,
     fileUtils,
@@ -71,8 +73,8 @@ extend(Map.prototype, {
 
         // this._stateManager.isMobile() || map.controls.add('rulerControl', { position : { left : 10, bottom : 35 } });
 
-        map.controls.add('geolocationControl', { position : { right : 10, top : 10 } });
-        map.controls.add('zoomControl', { position : { right : 10, top : 50 } });
+        map.controls.add('geolocationControl', { position : { right : 15, bottom : 40 } });
+        map.controls.add('zoomControl', { position : { right : 15, bottom : 80 } });
 
         map.panes.append('mgtmap', new (map.panes.get('places').constructor)(map, {
             zIndex : 200
@@ -99,6 +101,9 @@ extend(Map.prototype, {
             },
             zIndex : 300
         }));
+        $(map.panes.get('controls').getElement()).addClass('map__controls');
+
+        map.copyrights.add('mgtmap.ru');
 
         this._map.panes.get('mgtmap').getElement().style.transitionDuration = 'all ' + ANIMATION_DURATION/1000 + 's';
         ymaps.modules.require([

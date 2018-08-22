@@ -11,7 +11,8 @@ define([
     'data/actuals/max-width',
     'data/actuals/junctions',
     'data/actuals/route-bounds',
-    'data/actuals/lengths'
+    'data/actuals/lengths',
+    'data/actuals/trolley-numbers'
 ], function(
     vow,
     extend,
@@ -25,7 +26,8 @@ define([
     actualMaxWidth,
     actualJunctions,
     actualRouteBounds,
-    actualLengths
+    actualLengths,
+    actualTrolleyNumbers
 ) {
 
 return function(data, state, updatedStateFields, oldActuals) {
@@ -40,7 +42,8 @@ return function(data, state, updatedStateFields, oldActuals) {
             'maxWidth' : actualMaxWidth,
             'junctions' : actualJunctions,
             'routeBounds' : actualRouteBounds,
-            'lengths' : actualLengths
+            'lengths' : actualLengths,
+            'trolleyNumbers' : actualTrolleyNumbers
         },
         fieldsToRecalc = Object.keys(fields).filter(function(fieldName) {
             return !oldActuals[fieldName] || fields[fieldName].shouldRecalc(state, updatedStateFields);
@@ -83,7 +86,7 @@ function getSortedDeps(fieldId, fieldsDesc) {
     pushAfter && res.push(pushAfter);
 
     return res.filter(function(item, i) {
-        return res.slice(0, i).indexOf(item) === -1; 
+        return res.slice(0, i).indexOf(item) === -1;
     });
 }
 

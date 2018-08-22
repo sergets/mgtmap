@@ -24,7 +24,7 @@ define([
             });
 
             if(route.indexOf('Тм') != -1) {
-                return '#f84';
+                return '#ddd';
             }
             if(route.indexOf('Тб') != -1) {
                 return '#4d2';
