@@ -62,7 +62,7 @@ return {
             sobyaninElectrobuses: ELECTROBUS_ROUTES.reduce(function(res, rt) {
                 return res + registry[rt].quantity;
             }, 0)
-        }).then(function(th) { console.log(th); return th; }, function(e) { console.warn('error in actuals', e); });
+        });
     }
 };
 
