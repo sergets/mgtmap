@@ -363,7 +363,7 @@ body.katz .top-pane {
 body.sobyanin .mayor-option.sobyanin,
 body.now .mayor-option.now,
 body.katz .mayor-option.katz {
-    background: #528;
+    background: #528 !important;
     color: white;
     font-weight: normal;
 }
