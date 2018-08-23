@@ -180,19 +180,8 @@ extend(DataManager.prototype, {
     },
 
     getSegmentLengths : function() {
-        return this.getSegments().then(function(segments) {
-            var projection = ymaps.projection.wgs84Mercator;
-
-            var lengths = segments.reduce(function(res, segment, id) {
-                if(!segment[0][0]) return res;
-
-                res[id] = geomUtils.getLength(segment.map(function(point) {
-                    return projection.toGlobalPixels(point, 20);
-                }));
-                return res;
-            }, {});
-
-            return lengths;
+        return vow.when(this._actualsDeferred.promise()).then(function(actuals) {
+            return actuals.lengths;
         }, this);
     },
 
@@ -203,7 +192,7 @@ extend(DataManager.prototype, {
             this.getSegmentLengths(),
             this.getWiredSegments(),
             this._actualsDeferred.promise()
-        ]).spread(function(freqs, registry, lengths, trolleyWires) {
+        ]).spread(function(freqs, registry, lengths, trolleyWires, actuals) {
             var res = '',
                 registryData = registry[route],
                 stateManager = this._stateManager;

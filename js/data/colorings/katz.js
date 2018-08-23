@@ -5,23 +5,7 @@ define([
 ) {
     return {
         getRouteColor : function(route, data, state, actuals) {
-            var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, actuals.lengths, actuals.actualRoutes, data.trolleyWires) * 100),
-                totalLength = 0,
-                trolleyLength = 0;
-
-            Object.keys(actuals.lengths).forEach(function(segmentId) {
-                if(trolleyUtils.isSegmentInRoute(segmentId, route, actuals.actualRoutes)) {
-                    var times = actuals.actualRoutes[segmentId].reduce(function(t, r) {
-                        if(r == route) return t + 2;
-                        if(r == '>' + route || r == '<' + route) return t + 1;
-                        return t;
-                    }, 0);
-                    totalLength += times * actuals.lengths[segmentId];
-                    if(trolleyUtils.isSegmentTrolleyForRoute(segmentId, route, actuals.actualRoutes, data.trolleyWires)) {
-                        trolleyLength += times * actuals.lengths[segmentId];
-                    }
-                }
-            });
+            var trolleyFraction = Math.round(trolleyUtils.getTrolleyFraction(route, actuals.lengths, actuals.actualRoutes, data.trolleyWires) * 100);
 
             if(route.indexOf('Тм') != -1) {
                 return '#ddd';

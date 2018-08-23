@@ -95,9 +95,11 @@ extend(AppView.prototype, {
         this._tableView = new WelcomeView(this._welcomesContainer, 'routes-table', 'Список маршрутов', 'Автобусы, которые ходят под проводами', [
             $('<div/>').addClass('routes-table__search-pane').append(
                 $('<input/>').addClass('search-input search-route').on('change keydown keyup', function(e) {
-                    var row = routesTableRows[$(e.target).val()];
-                    if (row) {
-                        row[0].scrollIntoView();
+                    var rk = Object.keys(routesTableRows).filter(function(rt) {
+                        return rt.toLocaleLowerCase() == $(e.target).val().toLocaleLowerCase();
+                    })[0];
+                    if (rk) {
+                        routesTableRows[rk][0].scrollIntoView();
                     }
                 })
             ),

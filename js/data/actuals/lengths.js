@@ -17,8 +17,8 @@ return {
 
     calc : function(data) {
         return vow.resolve(data.segments.reduce(function(lengths, segment, id) {
-            lengths[id] = Math.round(geomUtils.getLength(segment.map(function(point) { 
-                return projection.toGlobalPixels(point, 20);
+            lengths[id] = Math.round(geomUtils.getLength(segment.map(function(point) {
+                return projection.toGlobalPixels(point.slice().reverse(), 20);
             })));
 
             return lengths;

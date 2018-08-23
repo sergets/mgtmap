@@ -44,11 +44,11 @@ body {
     min-height : 140px;
 }
 
-@import url('//fonts.googleapis.com/css?family=Ubuntu:700|Montserrat:100,500,700&subset=cyrillic,latin-ext');
+@import url('//fonts.googleapis.com/css?family=Montserrat:100,500,700|PT+Sans:400,700&subset=cyrillic,latin-ext');
 
 .bus, .trolley, .tram, .electrotrolley, .electrobus, .percentage {
     color: white;
-    font-family: Montserrat, Ubuntu, Futura, Verdana, Sans-serif;
+    font-family: Montserrat, Futura, Verdana, Sans-serif;
     font-weight: 500;
     display: block;
     float : left;
@@ -128,7 +128,7 @@ body {
 }
 
 .counters {
-    font-family: 'PT Sans', 'Verdana', sans-serif;
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 15px;
     position: absolute;
     bottom: 0;
@@ -190,7 +190,7 @@ body.katz .counter-katz,
 
 .top-pane {
     background: linear-gradient(to bottom, white, transparent);
-    font-family: 'PT Sans', 'Verdana', sans-serif;
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 18px;
     width: 100%;
     text-align: left;
@@ -209,7 +209,7 @@ body.katz .counter-katz,
 }
 
 h1 {
-    font-family: 'PT Sans', 'Verdana', sans-serif;
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-weight: 700;
     font-size: 24px;
     margin-left: 15px;
@@ -373,7 +373,7 @@ body.katz .mayor-option.katz {
     text-align: left;
     vertical-align: top;
     padding: 0 10px;
-    font-family: "PT Sans";
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 15px;
     height: 190px;
     width: 210px;
@@ -574,14 +574,14 @@ body.katz .mayor-option.katz {
 
 .route-card .subtitle {
     display: block;
-    font-family: 'PT Sans Caption', 'PT Sans', sans-serif;
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 5px;
 }
 
 .route-summary {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 14px;
     clear: both;
     margin-top: 40px;
@@ -798,7 +798,7 @@ body.route-selected .current-route {
   padding-right: 18px;
   text-align: right;
   margin: 5px;
-  font-family: montserrat;
+  font-family: Montserrat, Futura, Verdana, Sans-serif;
 }
 
 .timetable .minutes {
@@ -848,7 +848,7 @@ body.route-selected .current-route {
     padding: 0 10px;
     margin: 10px 10px 0 0;
     color: 0;
-    font-family: "PT Sans";
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 16px;
     box-shadow: 0 1px 2px 1px rgba(0,0,0,.15), 0 2px 5px -3px rgba(0,0,0,.15);
     transition: all ease .3s;
@@ -900,7 +900,7 @@ body.route-selected .current-route {
     box-shadow: 0 0 30px 10px rgba(0,0,0,.2);
     transition: all ease .3s;
     -webkit-font-smoothing: subpixel-antialiased;
-    font-family: "PT Sans";
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 15px;
     margin: 0;
 }
@@ -944,7 +944,7 @@ body.route-selected .current-route {
 
 .welcome__close {
     float: right;
-    font-family: Montserrat;
+    font-family: Montserrat, Futura, Verdana, Sans-serif;
     font-size: 40px;
     font-weight: 100;
     line-height: 18px;
@@ -975,7 +975,7 @@ body.route-selected .current-route {
     border-radius: 25px;
     transition: all ease .3s;
     opacity: .9;
-    font-family: "PT Sans";
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 500;
@@ -1092,7 +1092,7 @@ body.route-selected .current-route {
     text-align: center;
     line-height: 25px;
     font-size: 22px;
-    font-family: 'Montserrat';
+    font-family: Montserrat, Futura, Verdana, Sans-serif;
     height: 25px;
     padding: 3px;
     float: left;
@@ -1116,7 +1116,7 @@ body.route-selected .current-route {
     content: 'под проводами';
     line-height: 10px;
     font-size: 14px;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     height: 14px;
     position: absolute;
     white-space: nowrap;
@@ -1131,7 +1131,7 @@ body.route-selected .current-route {
 .routes-table__quantity {
     line-height: 25px;
     font-size: 22px;
-    font-family: 'montserrat';
+    font-family: Montserrat, Futura, Verdana, Sans-serif;
     height: 25px;
     padding: 3px;
     float: left;
