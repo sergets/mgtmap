@@ -102,7 +102,7 @@ body {
     margin-bottom: 12px;
     text-align: right;
     margin-top: 15px;
-    font-size: 34px;
+    font-size: 32px;
     padding-left: 0 !important;
     width: auto !important;
     animation: font-size-appear .3s ease-in;
@@ -376,7 +376,7 @@ body.katz .mayor-option.katz {
     font-family: 'PT Sans', Helvetica, Roboto, Arial, sans-serif;
     font-size: 15px;
     height: 190px;
-    width: 210px;
+    width: 205px;
     position: relative;
 }
 
@@ -1045,6 +1045,10 @@ body.route-selected .current-route {
     height: 50px;
 }
 
+.routes-table .welcome__content {
+    overflow-y: hidden;
+}
+
 .routes-table__search-pane .search-input {
     line-height: 28px;
     font-size: 23px;
@@ -1148,7 +1152,7 @@ body.route-selected .current-route {
 .routes-table__diagram {
     pointer-events: none;
     float: left;
-    width: 400px;
+    width: 390px;
     margin-left: 10px;
     margin-bottom: 5px;
 }
