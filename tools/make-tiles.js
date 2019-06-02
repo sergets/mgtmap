@@ -3,7 +3,7 @@ var requirejs = require('requirejs'),
 	vow = require('vow'),
     vowFs = require('vow-fs'),
     fs = require('fs'),
-    Canvas = require('canvas');
+    canvasLib = require('canvas');
 
 requirejs = requirejs.config({
     baseUrl : __dirname + '/../js',
@@ -140,7 +140,7 @@ requirejs([
 
         return renderTileCommand({ x : x, y : y, z : z, devicePixelRatio: devicePixelRatio }, '').then(function(res) {
             var deferred = vow.defer(),
-                canvas = new Canvas(devicePixelRatio * TILE_SIZE, devicePixelRatio * TILE_SIZE),
+                canvas = canvasLib.createCanvas(devicePixelRatio * TILE_SIZE, devicePixelRatio * TILE_SIZE),
                 ctx = canvas.getContext('2d');
 
             res.result.forEach(function(canvasCommand) {
